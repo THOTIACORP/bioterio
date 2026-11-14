@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Biotério Forte: Tampa moradia com monitoramento inteligente para pesquisa com roedores. Protótipo em validação, aberto a parcerias.">
+<meta name="description" content="Tampa-moradia inteligente para pesquisa com roedores. Monitoramento termográfico, ambiental e alimentar.">
 <link rel="canonical" href="https://bioterioforte.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Biotério Forte">
@@ -57,7 +57,23 @@ p{margin:0;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 .btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 header.nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.1rem;flex-wrap:wrap}
 .brand{font-family:var(--display);font-weight:700;font-size:1.2rem;text-decoration:none;color:inherit}
-.navlinks{display:flex;gap:1.4rem;font-size:.92rem;color:var(--muted);flex-wrap:wrap}
+.navlinks{font-size:.92rem;color:var(--muted)}.navlinks .navin{display:flex;gap:1.4rem;flex-wrap:wrap}
+.menubtn{display:none;position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;padding:0;flex:none}
+.menubtn span{position:absolute;left:13px;right:13px;height:2px;border-radius:2px;background:currentColor;transition:transform .28s ease,opacity .2s ease,top .28s ease}
+.menubtn span:nth-child(1){top:15px}.menubtn span:nth-child(2){top:21px}.menubtn span:nth-child(3){top:27px}
+.menubtn[aria-expanded="true"] span:nth-child(1){top:21px;transform:rotate(45deg)}.menubtn[aria-expanded="true"] span:nth-child(2){opacity:0}.menubtn[aria-expanded="true"] span:nth-child(3){top:21px;transform:rotate(-45deg)}
+@media (max-width:760px){
+ header.nav{position:sticky;top:env(safe-area-inset-top,0px);padding-block:.7rem;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .25s,background .25s}
+ header.nav.open{background:var(--bg);border-bottom-color:var(--line);box-shadow:0 14px 28px -18px rgba(10,34,70,.35)}
+ .menubtn{display:block}
+ .navlinks{flex:0 0 100%;display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease;font-size:1.02rem}
+ .navlinks.open{grid-template-rows:1fr}
+ .navlinks .navin{min-height:0;overflow:hidden;flex-direction:column;flex-wrap:nowrap;gap:0;visibility:hidden;transition:visibility 0s .32s}
+ .navlinks.open .navin{visibility:visible;transition-delay:0s}
+ .navlinks a{display:flex;justify-content:space-between;align-items:center;padding:.95rem .15rem;border-top:1px solid var(--line);color:var(--fg)}
+ .navlinks a::after{content:"→";color:var(--muted);font-size:.95rem}
+ .navlinks .navin{padding-bottom:.4rem}
+}
 .navlinks a{text-decoration:none;color:inherit}.navlinks a:hover{color:var(--fg)}
 .hero{position:relative;text-align:center;padding-block:3.2rem 1.5rem;isolation:isolate}
 .hero::before{pointer-events:none;content:"";position:absolute;z-index:-1;left:50%;top:-5rem;width:min(1100px,130vw);height:560px;transform:translateX(-50%);
@@ -180,9 +196,10 @@ footer p{max-width:none}
 <div class="wrap">
   <header class="nav">
     <a class="brand" href="#topo">Biotério Forte</a>
-    <nav class="navlinks" aria-label="Seções">
+    <button class="menubtn" id="menubtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    <nav class="navlinks" id="navlinks" aria-label="Seções"><div class="navin">
       <a href="#solucao">Solução</a><a href="#funcao">O que faz</a><a href="#validacao">Validação</a><a href="#resultados">Resultados</a><a href="#parcerias">Parcerias</a><a href="#contato">Contato</a>
-    </nav>
+    </div></nav>
   </header>
 
   <main id="topo">
@@ -401,8 +418,16 @@ addEventListener('keydown',function(e){if(e.key==='Escape'&&!c.hidden&&document.
 <script>document.documentElement.lang='pt-BR';</script>
 <script>
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1),el=id==='topo'?null:document.getElementById(id);
-  e.preventDefault();var y=el?el.getBoundingClientRect().top+window.pageYOffset-8:0;
+  e.preventDefault();var hd=document.querySelector('header.nav'),off=(hd&&getComputedStyle(hd).position==='sticky')?74:8,y=el?el.getBoundingClientRect().top+window.pageYOffset-off:0;
   try{window.scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}catch(_){window.scrollTo(0,y)}});
+(function(){var b=document.getElementById('menubtn'),n=document.getElementById('navlinks'),hd=document.querySelector('header.nav');if(!b||!n)return;
+ function set(o){b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Fechar menu':'Abrir menu');n.classList.toggle('open',o);hd.classList.toggle('open',o)}
+ b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true')});
+ n.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus()}});
+ document.addEventListener('click',function(e){if(b.getAttribute('aria-expanded')==='true'&&!hd.contains(e.target))set(false)});
+ matchMedia('(min-width:761px)').addEventListener('change',function(m){if(m.matches)set(false)});
+})();
 </script>
 <script>
 (function(){
