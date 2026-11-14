@@ -35,3 +35,14 @@ Abra o `index.html` com duplo clique, ou sirva por HTTP: `python -m http.server 
 - O 3D usa WebGL puro e precisa de um navegador atual. Os modelos são versões simplificadas das peças.
 - Os ajustes feitos no painel "Ajustar montagem" ficam só no navegador de quem os fez.
 - O protótipo está em validação e não é um produto certificado. Mantenha esse aviso no rodapé.
+
+
+## Pré-visualização em redes sociais
+
+`og-v2.jpg` (1200×630) é a imagem usada ao compartilhar o link no WhatsApp, Facebook, LinkedIn e X. As tags estão no `<head>` do `index.html` e apontam para `https://bioterioforte.com.br/`. Se mudar o domínio, troque o endereço nessas tags.
+
+## Ícone (favicon)
+`favicon.ico`, `favicon-32.png`, `icon-192.png`, `icon-512.png` e `apple-touch-icon.png` — rato térmico. Suba todos junto com o `index.html`.
+
+## Modelo 3D da placa
+`modelos/placa-validacao.stl` — placa eletrônica ilustrativa (mm), gerada da mesma geometria da seção "Eletrônica". Abre no Fusion, Blender, etc.

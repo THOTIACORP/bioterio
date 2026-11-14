@@ -27,7 +27,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Biotério Forte - Equipamentos para Pesquisa</title>
+<title>Biotério Forte</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&display=swap">
 <style>
 /* Layout: vitrine clara em azul gelo; o equipamento em 3D é o herói, com abas V1/V2, e as seções de prova e parceria vêm abaixo. */
@@ -172,6 +172,11 @@ section{padding-block:4.5rem}
 .band::before{content:"";position:absolute;z-index:-1;inset:auto -10% -60% -10%;height:100%;background:radial-gradient(50% 60% at 30% 60%,#3b82f6,transparent 70%),radial-gradient(50% 60% at 75% 70%,#7dd3fc,transparent 70%);opacity:.5}
 .band p{max-width:none;opacity:.85}
 .mail{display:inline-flex;gap:.6rem;align-items:center;background:var(--accent-fg);color:var(--accent);border-radius:999px;padding:.35rem .4rem .35rem 1.3rem;font-weight:600;max-width:100%}
+.ctas{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;align-items:center}
+.wa{display:inline-flex;align-items:center;gap:.55rem;background:#25d366;color:#06361b;border-radius:999px;padding:.72rem 1.3rem;font-weight:700;text-decoration:none;max-width:100%;transition:transform .15s,filter .15s}
+.wa small{font-weight:600;opacity:.75;font-size:.82rem}
+.wa:hover{filter:brightness(1.06);transform:translateY(-1px)}
+@media (max-width:420px){.wa small{display:none}.wa,.mail{width:100%;justify-content:center}.mail{justify-content:space-between;padding-left:1rem}.mail{gap:.4rem}.mail span{font-size:.8rem;white-space:nowrap;overflow-wrap:normal}.mail button{padding:.5rem .85rem}}
 .mail span{overflow-wrap:anywhere;user-select:all}
 .mail button{font:inherit;font-size:.88rem;font-weight:600;border:0;border-radius:999px;padding:.55rem 1rem;background:var(--accent);color:var(--accent-fg);cursor:pointer}
 footer{padding-block:2.5rem 3rem;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:4.5rem}
@@ -203,6 +208,32 @@ footer p{max-width:none}
 .lbbtns button{font:inherit;font-weight:600;font-size:.85rem;padding:.5rem .9rem;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:var(--fg);cursor:pointer}
 @media (max-width:820px){.proof,.vs{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+/* placa eletrônica */
+.pcbv{position:relative;margin-top:1.8rem;border-radius:28px;border:1px solid var(--line);background:radial-gradient(70% 80% at 50% 40%,var(--surface),var(--stage));overflow:hidden;text-align:left;min-width:0}
+.pcbv canvas{display:block;width:100%;height:clamp(320px,52vw,560px);touch-action:pan-y;cursor:grab}
+.pcbv canvas:active{cursor:grabbing}
+.pbl{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pb{position:absolute;left:0;top:0;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:2px solid #fff;background:var(--blue);color:#fff;font:700 .72rem/1 var(--body);display:grid;place-items:center;padding:0;cursor:pointer;pointer-events:auto;box-shadow:0 2px 8px rgba(10,34,70,.35);will-change:transform}
+.pb.on{background:#0fb5a8;transform-origin:center;outline:3px solid rgba(15,181,168,.35)}
+.ptag{position:absolute;left:14px;top:14px;font-size:.72rem;letter-spacing:.08em;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:.3rem .7rem;border-radius:999px}
+.pctl{position:absolute;right:14px;top:12px;display:flex;gap:.45rem}
+.pctl .vbtn{padding:.42rem .85rem;font-size:.8rem}
+.pbleg{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.6rem}
+.pbleg li{margin:0;min-width:0}
+.pbleg button{font:inherit;width:100%;text-align:left;display:flex;gap:.7rem;align-items:flex-start;padding:.65rem .8rem;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.pbleg button[aria-pressed="true"]{border-color:#0fb5a8;box-shadow:0 0 0 2px rgba(15,181,168,.25)}
+.pbleg i{flex:none;font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center;margin-top:.1rem}
+.pbleg b{display:block;font-size:.9rem;line-height:1.3}
+.pbleg span{display:block;font-size:.8rem;color:var(--muted);line-height:1.35}
+.bom{margin-top:1rem;border:1px solid var(--line);border-radius:14px;padding:.7rem .9rem;background:var(--surface)}
+.bomw{overflow-x:auto;margin-top:.7rem}
+.bom table{border-collapse:collapse;width:100%;font-size:.8rem;min-width:520px}
+.bom th,.bom td{text-align:left;padding:.35rem .6rem;border-bottom:1px solid var(--line);white-space:nowrap}
+.bom th{color:var(--muted);font-weight:600}
+.bom td:first-child{font-variant-numeric:tabular-nums;font-weight:600}
+.pnote{margin-top:.9rem;font-size:.82rem;color:var(--muted);text-align:left}
+@media (max-width:560px){.pcbv{margin-inline:-20px;border-radius:0;border-left:0;border-right:0}.ptag{display:none}.pctl{left:14px;right:auto}}
 </style>
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -212,7 +243,7 @@ footer p{max-width:none}
     <a class="brand" href="#topo">Biotério Forte</a>
     <button class="menubtn" id="menubtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
     <nav class="navlinks" id="navlinks" aria-label="Seções"><div class="navin">
-      <a href="#solucao">Solução</a><a href="#funcao">O que faz</a><a href="#validacao">Validação</a><a href="#resultados">Resultados</a><a href="#parcerias">Parcerias</a><a href="#contato">Contato</a>
+      <a href="#solucao">Solução</a><a href="#funcao">O que faz</a><a href="#eletronica">Eletrônica</a><a href="#validacao">Validação</a><a href="#resultados">Resultados</a><a href="#parcerias">Parcerias</a><a href="#contato">Contato</a>
     </div></nav>
   </header>
 
@@ -292,7 +323,7 @@ footer p{max-width:none}
         </div>
         <div class="funlist">
           <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 14.8V5a2 2 0 1 0-4 0v9.8a4 4 0 1 0 4 0z"/><path d="M12 9v7"/></svg></div>
-            <h3>Calorimetria e movimento</h3><p>Termografia médica do animal e acompanhamento dos seus movimentos, sem abrir a caixa.</p></div>
+            <h3>Calorimetria e movimento</h3><p>Termografia médica do animal e acompanhamento dos seus movimentos, sem abrir a caixa.</p><p>Uma inflamação costuma esquentar a região afetada, e uma trombose, por reduzir a circulação, costuma esfriá-la, como em patas e cauda. A câmera térmica pode registrar essas diferenças, e o movimento mostra se o animal passou a se mover ou a se comportar de outro jeito. Assim, esses sinais podem aparecer nos resultados parciais, antes de a pesquisa inteira terminar. É uma hipótese de trabalho: ainda não foi validada e não substitui diagnóstico.</p><p>O movimento e as interações também contam. Mudanças na rotina do animal, como andar menos, ficar mais tempo parado ou se levantar menos, podem ser sinais de dor ou desconforto, às vezes antes de ficarem visíveis a olho nu. Quando há mais de um animal na caixa, a ideia é registrar como eles se relacionam: aproximação, farejar, higiene em conjunto, perseguição e briga. Isolamento ou agressividade fora do normal também podem ser sinais de que algo mudou. Tudo isso é medido sem abrir a caixa e junto com a temperatura, o que dá mais contexto a cada alteração.</p></div>
           <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div>
             <h3>Ambiente</h3><p>Luz, som, temperatura e umidade dentro da caixa, registrados junto com o comportamento.</p></div>
           <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5 6.5 5 10a5 5 0 0 1-10 0c0-3.5 2-6 5-10z"/></svg></div>
@@ -306,11 +337,55 @@ footer p{max-width:none}
         <a class="btn" href="https://www.kaggle.com/datasets/ronneiborges/thermal-images-of-rats-mice-for-segmentation" target="_blank" rel="noopener">Abrir no Kaggle</a>
         <div class="bh">
           <p>Com essas imagens, o Biotério Forte vai medir cerca de 30 comportamentos do animal, seguindo a lista da competição MABe do Kaggle (reconhecimento de ações sociais em camundongos): 11 comportamentos individuais e 26 entre dois animais. Como a imagem térmica pode ser convertida para preto e branco, a ideia é alimentar o mesmo tipo de modelo de detecção usado nessa competição, a partir de um <a href="https://www.kaggle.com/code/hutch1221/mabe-starter-inference-ja" target="_blank" rel="noopener">notebook de referência</a>. Esta etapa está em planejamento e ainda não foi validada com os dados do equipamento.</p>
-          <div><h4>11 pontos do corpo acompanhados</h4><div class="chips"><span class="chip"><code>ear_left</code> orelha esq.</span><span class="chip"><code>ear_right</code> orelha dir.</span><span class="chip"><code>nose</code> nariz</span><span class="chip"><code>neck</code> pescoço</span><span class="chip"><code>body_center</code> centro do corpo</span><span class="chip"><code>lateral_left</code> lateral esq.</span><span class="chip"><code>lateral_right</code> lateral dir.</span><span class="chip"><code>hip_left</code> quadril esq.</span><span class="chip"><code>hip_right</code> quadril dir.</span><span class="chip"><code>tail_base</code> base da cauda</span><span class="chip"><code>tail_tip</code> ponta da cauda</span></div></div>
-          <div><h4>11 comportamentos individuais <small>(o rato em 3D acima demonstra <b>rear</b> e <b>run</b>)</small></h4><div class="chips"><span class="chip"><code>biteobject</code> morder objeto</span><span class="chip"><code>climb</code> escalar</span><span class="chip"><code>dig</code> cavar</span><span class="chip"><code>exploreobject</code> explorar objeto</span><span class="chip"><code>freeze</code> congelar</span><span class="chip"><code>genitalgroom</code> higiene genital</span><span class="chip"><code>huddle</code> encolher-se</span><span class="chip on"><code>rear</code> levantar</span><span class="chip"><code>rest</code> descansar</span><span class="chip on"><code>run</code> correr</span><span class="chip"><code>selfgroom</code> autolimpeza</span></div></div>
+          <details><summary>11 pontos do corpo acompanhados</summary><div class="chips"><span class="chip"><code>ear_left</code> orelha esq.</span><span class="chip"><code>ear_right</code> orelha dir.</span><span class="chip"><code>nose</code> nariz</span><span class="chip"><code>neck</code> pescoço</span><span class="chip"><code>body_center</code> centro do corpo</span><span class="chip"><code>lateral_left</code> lateral esq.</span><span class="chip"><code>lateral_right</code> lateral dir.</span><span class="chip"><code>hip_left</code> quadril esq.</span><span class="chip"><code>hip_right</code> quadril dir.</span><span class="chip"><code>tail_base</code> base da cauda</span><span class="chip"><code>tail_tip</code> ponta da cauda</span></div></details>
+          <details><summary>11 comportamentos individuais <small>(o rato em 3D acima demonstra <b>rear</b> e <b>run</b>)</small></summary><div class="chips"><span class="chip"><code>biteobject</code> morder objeto</span><span class="chip"><code>climb</code> escalar</span><span class="chip"><code>dig</code> cavar</span><span class="chip"><code>exploreobject</code> explorar objeto</span><span class="chip"><code>freeze</code> congelar</span><span class="chip"><code>genitalgroom</code> higiene genital</span><span class="chip"><code>huddle</code> encolher-se</span><span class="chip on"><code>rear</code> levantar</span><span class="chip"><code>rest</code> descansar</span><span class="chip on"><code>run</code> correr</span><span class="chip"><code>selfgroom</code> autolimpeza</span></div></details>
           <details><summary>26 comportamentos entre dois animais</summary><div class="chips"><span class="chip"><code>allogroom</code></span><span class="chip"><code>approach</code></span><span class="chip"><code>attack</code></span><span class="chip"><code>attemptmount</code></span><span class="chip"><code>avoid</code></span><span class="chip"><code>chase</code></span><span class="chip"><code>chaseattack</code></span><span class="chip"><code>defend</code></span><span class="chip"><code>disengage</code></span><span class="chip"><code>dominance</code></span><span class="chip"><code>dominancegroom</code></span><span class="chip"><code>dominancemount</code></span><span class="chip"><code>ejaculate</code></span><span class="chip"><code>escape</code></span><span class="chip"><code>flinch</code></span><span class="chip"><code>follow</code></span><span class="chip"><code>intromit</code></span><span class="chip"><code>mount</code></span><span class="chip"><code>reciprocalsniff</code></span><span class="chip"><code>shepherd</code></span><span class="chip"><code>sniff</code></span><span class="chip"><code>sniffbody</code></span><span class="chip"><code>sniffface</code></span><span class="chip"><code>sniffgenital</code></span><span class="chip"><code>submit</code></span><span class="chip"><code>tussle</code></span></div></details>
         </div>
       </div>
+    </section>
+
+    <section id="eletronica" style="padding-top:0">
+      <div class="head">
+        <span class="eyebrow">Eletrônica</span>
+        <h2>A placa que reúne os sensores da caixa</h2>
+        <p>Esta é a placa usada para validar o circuito. Ela junta o controlador ESP32-CAN, a câmera térmica Xtherm II T2S, o sensor de cor TCS3200 e os demais sensores de ambiente, luz, som e peso. Arraste para girar e toque nos números para ver o que cada peça faz.</p>
+      </div>
+      <div class="pcbv" id="pcbbox">
+        <canvas id="pcb" aria-label="Placa eletrônica em 3D com ESP32-CAN, câmera térmica Xtherm II T2S, Arduino Nano, TCS3200, HX711 e outros componentes. Modelo ilustrativo."></canvas>
+        <div class="pbl" id="pbl"></div>
+        <div class="ptag">PLACA DE VALIDAÇÃO · modelo 3D</div>
+        <div class="pctl"><button type="button" class="vbtn" id="pcbtop" aria-pressed="false">Vista de cima</button><button type="button" class="vbtn" id="pcbspin" aria-pressed="true">Girar</button></div>
+      </div>
+      <ol class="pbleg" id="pbleg"></ol>
+      <details class="bom"><summary>Lista completa de componentes (Quadro 2)</summary><div class="bomw"><table>
+        <thead><tr><th>Qtd.</th><th>Valor</th><th>Componente</th><th>Encapsulamento</th></tr></thead>
+        <tbody>
+        <tr><td>5</td><td></td><td>KRE/2-2</td><td>AK500/2-SHORT</td></tr>
+        <tr><td>1</td><td></td><td>KRE/3-2</td><td>AK500/3-SHORT</td></tr>
+        <tr><td>1</td><td></td><td>LDR</td><td>LDR-2.54</td></tr>
+        <tr><td>3</td><td>100 nF</td><td>Capacitor cerâmico</td><td>C0805</td></tr>
+        <tr><td>2</td><td>100 µF</td><td>Capacitor eletrolítico</td><td>E2,5-7Ø</td></tr>
+        <tr><td>1</td><td>10 kΩ</td><td>Resistor</td><td>R0.25W</td></tr>
+        <tr><td>1</td><td>12 V</td><td>Relé</td><td>RLY-10,2-11,4</td></tr>
+        <tr><td>6</td><td>1 kΩ</td><td>Resistor</td><td>R0805</td></tr>
+        <tr><td>4</td><td>1 kΩ</td><td>Resistor</td><td>R0.25W</td></tr>
+        <tr><td>2</td><td>1N4148</td><td>Diodo</td><td>DO35-10</td></tr>
+        <tr><td>13</td><td>220 Ω</td><td>Resistor</td><td>R0.25W</td></tr>
+        <tr><td>1</td><td>47 µH</td><td>Indutor</td><td>47UH</td></tr>
+        <tr><td>1</td><td>Xtherm II T2S</td><td>Câmera térmica</td><td>USB-C</td></tr>
+        <tr><td>1</td><td>Arduino Nano</td><td>ARDUINO-NANO</td><td>NANO_ARDUINO</td></tr>
+        <tr><td>4</td><td>BC548</td><td>Transistor NPN</td><td>TO92-CBE</td></tr>
+        <tr><td>1</td><td>DHT11</td><td>DHT11</td><td>DHT11</td></tr>
+        <tr><td>1</td><td>ESP32-CAN</td><td>ESP32-CAN</td><td>ESP32-CAN</td></tr>
+        <tr><td>2</td><td>HX711</td><td>HX711</td><td>HX711</td></tr>
+        <tr><td>1</td><td>IFR</td><td>LED</td><td>LED5MM-IF</td></tr>
+        <tr><td>1</td><td>KY-037</td><td>KY-037</td><td>KY-037</td></tr>
+        <tr><td>1</td><td>LM2596</td><td>2596</td><td>D2PACK</td></tr>
+        <tr><td>4</td><td>RGB1 a RGB4</td><td>Conector 4 pinos</td><td>HEADER/4-F</td></tr>
+        <tr><td>1</td><td>SS34</td><td>Diodo</td><td>DO-214AC</td></tr>
+        <tr><td>1</td><td>TCS3200</td><td>TCS3200-TCS230</td><td>TCS3200-TCS230</td></tr>
+        </tbody></table></div></details>
+      <p class="pnote">Modelo ilustrativo gerado a partir da lista de componentes: a posição e o formato das peças são simplificados e não substituem o projeto da placa. A câmera Xtherm II T2S substituiu o sensor AMG8833 que aparecia no Quadro 2.</p>
     </section>
 
     <section id="versoes" style="padding-top:0">
@@ -399,7 +474,8 @@ footer p{max-width:none}
         <span class="eyebrow" style="color:inherit;opacity:.7">Contato</span>
         <h2>Vamos testar isso no seu biotério?</h2>
         <p>Escreva contando quem você é e o que quer testar. Respondemos com os próximos passos.</p>
-        <div class="mail"><span id="mail-text">founder@thotiacorp.com.br</span><button type="button" id="copy">Copiar</button></div>
+        <div class="ctas"><div class="mail"><span id="mail-text">founder@thotiacorp.com.br</span><button type="button" id="copy">Copiar</button></div>
+        <a class="wa" href="https://wa.me/5566996675486?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Biot%C3%A9rio%20Forte%20e%20gostaria%20de%20testar%20no%20meu%20biot%C3%A9rio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12.04 2Zm0 18.1c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.1 8.1 0 1 1 6.9 3.8Zm4.5-6.1c-.25-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.17.25-.63.8-.77.96-.14.17-.28.19-.53.06-.25-.12-1.03-.38-1.97-1.21-.73-.65-1.22-1.45-1.36-1.7-.14-.24-.02-.38.1-.5.11-.11.25-.28.37-.42.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.17 0-.43.06-.65.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.16 1.73 2.64 4.2 3.7.59.26 1.05.41 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.45-.59 1.65-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg><span>WhatsApp</span><small>+55 66 99667-5486</small></a></div>
       </div>
     </section>
   </main>
@@ -802,6 +878,228 @@ document.getElementById('copy').addEventListener('click',function(){
   function done(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar'},1800)}
   try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
 });
+</script>
+
+<script>
+(function(){
+var cv=document.getElementById('pcb'),bx=document.getElementById('pcbbox');if(!cv||!bx)return;
+var V=[],T=1.6,PI=Math.PI;
+function hx(h){return[parseInt(h.substr(1,2),16)/255,parseInt(h.substr(3,2),16)/255,parseInt(h.substr(5,2),16)/255]}
+function pu(p,n,c,g){V.push(p[0],p[1],p[2],n[0],n[1],n[2],c[0],c[1],c[2],g)}
+function qd(a,b,c,d,n,k,g){pu(a,n,k,g);pu(b,n,k,g);pu(c,n,k,g);pu(a,n,k,g);pu(c,n,k,g);pu(d,n,k,g)}
+function box(cx,cz,y0,sx,sy,sz,col,g){var k=hx(col),x0=cx-sx/2,x1=cx+sx/2,z0=cz-sz/2,z1=cz+sz/2,y1=y0+sy;g=g||0;
+ qd([x0,y1,z0],[x0,y1,z1],[x1,y1,z1],[x1,y1,z0],[0,1,0],k,g);
+ qd([x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1],[0,0,1],k,g);
+ qd([x1,y0,z0],[x0,y0,z0],[x0,y1,z0],[x1,y1,z0],[0,0,-1],k,g);
+ qd([x1,y0,z1],[x1,y0,z0],[x1,y1,z0],[x1,y1,z1],[1,0,0],k,g);
+ qd([x0,y0,z0],[x0,y0,z1],[x0,y1,z1],[x0,y1,z0],[-1,0,0],k,g)}
+function cyl(px,py,pz,ax,h,r,col,g,sg){var k=hx(col),d,u,v,i,t0,t1,c0,s0,c1,s1,n0,n1,a,b,c,e;g=g||0;sg=sg||14;
+ if(ax==='y'){d=[0,1,0];u=[1,0,0];v=[0,0,1]}else if(ax==='x'){d=[1,0,0];u=[0,1,0];v=[0,0,1]}else{d=[0,0,1];u=[1,0,0];v=[0,1,0]}
+ function P(t,cc,ss){return[px+d[0]*t+r*(cc*u[0]+ss*v[0]),py+d[1]*t+r*(cc*u[1]+ss*v[1]),pz+d[2]*t+r*(cc*u[2]+ss*v[2])]}
+ function N(cc,ss){return[cc*u[0]+ss*v[0],cc*u[1]+ss*v[1],cc*u[2]+ss*v[2]]}
+ var o=[px,py,pz],q=[px+d[0]*h,py+d[1]*h,pz+d[2]*h],nd=[-d[0],-d[1],-d[2]];
+ for(i=0;i<sg;i++){t0=i/sg*2*PI;t1=(i+1)/sg*2*PI;c0=Math.cos(t0);s0=Math.sin(t0);c1=Math.cos(t1);s1=Math.sin(t1);
+  a=P(0,c0,s0);b=P(0,c1,s1);c=P(h,c1,s1);e=P(h,c0,s0);n0=N(c0,s0);n1=N(c1,s1);
+  pu(a,n0,k,g);pu(b,n1,k,g);pu(c,n1,k,g);pu(a,n0,k,g);pu(c,n1,k,g);pu(e,n0,k,g);
+  pu(q,d,k,g);pu(e,d,k,g);pu(c,d,k,g);pu(o,nd,k,g);pu(b,nd,k,g);pu(a,nd,k,g)}}
+var AN=[];/* âncoras de ligação das trilhas */
+function an(x,z){AN.push([x,z])}
+var B=[];/* caixas para checagem */
+/* ---- placa ---- */
+var BW=112,BL=100;
+box(0,0,0,BW,T,BL,'#17673c',0);
+[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(function(s){var x=s[0]*52,z=s[1]*46;cyl(x,T,z,'y',.04,3.1,'#d4ad4a',0,18);cyl(x,T+.03,z,'y',.03,1.8,'#0b2a1a',0,18)});
+/* ---- grupos ---- */
+var G={esp:1,amg:2,nano:3,tcs:4,hx:5,lm:6,rel:7,dht:8,ky:9,ldr:10,ir:11,bor:12,rgb:13};
+function header(cx,cz,sx,sz,h,g){box(cx,cz,T,sx,h,sz,'#16161a',g||0)}
+/* Arduino Nano */
+(function(){var cx=-31.5,cz=-29,y=T+8.5;
+ header(cx,cz-7.6,38,2.5,8.5,G.nano);header(cx,cz+7.6,38,2.5,8.5,G.nano);
+ box(cx,cz,y,43,1.2,18,'#0f6a8a',G.nano);
+ box(cx-20.2,cz,y+1.2,8.5,4,7.2,'#c9ced6',G.nano);
+ box(cx+3,cz,y+1.2,9,1.6,9,'#1a1a1d',G.nano);
+ box(cx+14,cz-4,y+1.2,3.2,1.2,2.4,'#d8d8d8',G.nano);
+ box(cx-8,cz+5,y+1.2,2,.8,1.2,'#f0c040',G.nano);
+ for(var i=0;i<15;i++){box(cx-17.5+i*2.54,cz-7.6,y+1.2,.6,2,.6,'#d9d9d9',G.nano);box(cx-17.5+i*2.54,cz+7.6,y+1.2,.6,2,.6,'#d9d9d9',G.nano)}
+ an(cx-14,cz+10.5);an(cx+14,cz+10.5);an(cx,cz-10.5)})();
+/* ESP32-CAN */
+(function(){var cx=20.5,cz=-27,y=T+8.5;
+ header(cx-3,cz-10.5,34,2.5,8.5,G.esp);header(cx-3,cz+10.5,34,2.5,8.5,G.esp);
+ box(cx,cz,y,45,1.2,26,'#17171b',G.esp);
+ box(cx-3,cz,y+1.2,18,2.6,16,'#c4c9d1',G.esp);
+ box(cx-3,cz,y+3.8,12,.15,10,'#aab0ba',G.esp);
+ for(var i=0;i<6;i++)box(cx+15+i*0,cz-8+i*3.2,y+1.2,6.5,.18,.7,'#d4ad4a',G.esp);
+ box(cx+18,cz,y+1.2,7,.15,20,'#2a2a30',G.esp);
+ box(cx-21.2,cz,y+1.2,8,3.2,9,'#c9ced6',G.esp);
+ box(cx-12,cz+8.2,y+1.2,5,1.6,4,'#1a1a1d',G.esp);
+ box(cx+10,cz+9,y+1.2,3.4,1.5,3.4,'#e8e8e8',G.esp);box(cx+15,cz+9,y+1.2,3.4,1.5,3.4,'#e8e8e8',G.esp);
+ an(cx-14,cz+14);an(cx+8,cz+14);an(cx-26,cz)})();
+/* Xtherm II T2S (câmera térmica USB-C, 26 x 26 x 24 mm) */
+(function(){var cx=0,cz=0;
+ box(cx,cz,T,26,24,26,'#2a2d34',G.amg);
+ box(cx,cz,T+24,26,.15,26,'#3a3e47',G.amg);
+ cyl(cx,T+24.15,cz,'y',2.2,9.5,'#aab0ba',G.amg,28);cyl(cx,T+26.3,cz,'y',.3,7.4,'#0d1016',G.amg,28);cyl(cx,T+26.6,cz,'y',.12,4.2,'#2a3d66',G.amg,24);
+ box(cx,cz+13.3,T+8,9,3.2,.6,'#c9ced6',G.amg);
+ box(cx+13.05,cz-8,T+10,.12,4,5,'#e8e8e8',G.amg);
+ an(cx-15,cz+14);an(cx+15,cz-14)})();
+/* Relé 12 V */
+(function(){var cx=23,cz=-3;
+ box(cx,cz,T,19,15.5,15,'#1d5fc4',G.rel);box(cx,cz,T+15.5,14,.12,8,'#f1f4f8',G.rel);box(cx+5.6,cz-4.2,T+15.6,3,.1,.9,'#1d5fc4',G.rel);
+ an(cx,cz+9);an(cx-11,cz)})();
+/* DHT11 */
+(function(){var cx=45,cz=-6;
+ box(cx,cz,T,12,5.5,15.5,'#2b78d4',G.dht);
+ for(var i=0;i<5;i++)box(cx,cz-5.6+i*2.8,T+5.5,6,.1,.9,'#0d2f66',G.dht);
+ for(i=0;i<4;i++)box(cx-1.9+i*1.27,cz+8.6,T,.45,4,.45,'#d9d9d9',G.dht);
+ an(cx,cz+9.5)})();
+/* LDR */
+(function(){var cx=50,cz=6;
+ cyl(cx,T+3,cz,'y',1.4,2.7,'#d7a83a',G.ldr,18);box(cx,cz,T+4.4,3.2,.08,.6,'#7a4a12',G.ldr);box(cx,cz+1,T+4.4,3.2,.08,.6,'#7a4a12',G.ldr);box(cx,cz-1,T+4.4,3.2,.08,.6,'#7a4a12',G.ldr);
+ box(cx-1.27,cz,T,.4,3,.4,'#d9d9d9',G.ldr);box(cx+1.27,cz,T,.4,3,.4,'#d9d9d9',G.ldr);an(cx,cz+4)})();
+/* KY-037 */
+(function(){var cx=-34,cz=-6,y=T+2.5;
+ header(cx,cz+6.5,26,2.5,2.5,G.ky);
+ box(cx,cz,y,35,1.2,15,'#1c55c6',G.ky);
+ cyl(cx-8,y+1.2,cz-1,'y',4.2,3.1,'#bcc2cc',G.ky,18);cyl(cx-8,y+5.4,cz-1,'y',.1,2.1,'#3a3f48',G.ky,18);
+ box(cx+8,cz-1,y+1.2,9,9,9,'#2a5fd8',G.ky);cyl(cx+8,y+10.2,cz-1,'y',.5,2.5,'#e0b84a',G.ky,16);box(cx+8,cz-1,y+10.7,.5,.12,4,'#6a4c10',G.ky);
+ box(cx-1,cz+4.5,y+1.2,2,1,1.2,'#ff5a3c',G.ky);
+ an(cx,cz+9);an(cx+14,cz)})();
+/* TCS3200 */
+(function(){var cx=-38,cz=16,y=T+2.5;
+ header(cx,cz+13,22,2.5,2.5,G.tcs);
+ box(cx,cz,y,29,1.2,29,'#1a1a1e',G.tcs);
+ cyl(cx,y+1.2,cz,'y',.8,11,'#f3f4f6',G.tcs,28);
+ [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(function(s){box(cx+s[0]*6.8,cz+s[1]*6.8,y+2,4.2,2.8,4.2,'#ffffff',G.tcs)});
+ box(cx,cz,y+2,6,2.2,6,'#20242c',G.tcs);cyl(cx,y+4.2,cz,'y',.4,2.4,'#8aa0c8',G.tcs,16);
+ an(cx,cz+17);an(cx+16,cz)})();
+/* LM2596 */
+(function(){var cx=-1,cz=24.5,y=T+2.5;
+ box(cx,cz,y,43,1.2,21,'#2064cc',G.lm);
+ cyl(cx-12,y+1.2,cz,'y',8,6.5,'#2c2c30',G.lm,22);cyl(cx-12,y+9.2,cz,'y',.1,5.6,'#9a6a3a',G.lm,22);
+ cyl(cx+4,y+1.2,cz-5,'y',9,3.8,'#1a1a1e',G.lm,16);cyl(cx+4,y+10.2,cz-5,'y',.1,3.4,'#aab0ba',G.lm,16);
+ box(cx+15,cz+3,y+1.2,9,9,9,'#2a5fd8',G.lm);cyl(cx+15,y+10.2,cz+3,'y',.5,2.5,'#e0b84a',G.lm,16);
+ box(cx-20,cz,y+1.2,5,6.5,15,'#2a5fd8',G.lm);box(cx+20,cz,y+1.2,5,6.5,15,'#2a5fd8',G.lm);
+ box(cx+4,cz+6,y+1.2,6,2.4,5,'#1a1a1d',G.lm);
+ an(cx,cz-12);an(cx,cz+12)})();
+/* HX711 x2 */
+[[38,21],[38,40]].forEach(function(p){var cx=p[0],cz=p[1],y=T+2.5;
+ header(cx,cz+8,16,2.5,2.5,G.hx);header(cx-12,cz-4,2.5,8,2.5,G.hx);
+ box(cx,cz,y,28,1.2,18,'#c3262f',G.hx);
+ box(cx+3,cz,y+1.2,9,1.8,4.2,'#1a1a1d',G.hx);
+ box(cx-8,cz-4,y+1.2,3,.9,2,'#e9e9e9',G.hx);box(cx+10,cz+4,y+1.2,3,.9,2,'#e9e9e9',G.hx);
+ an(cx-16,cz);an(cx+16,cz)});
+/* bornes de parafuso */
+(function(){var z=45.5,i,x;
+ [-47,-37,-27,-17,-7].forEach(function(cx){box(cx,z,T,10,9,8,'#1d4fb8',G.bor);cyl(cx-2.5,T+9,z,'y',.5,2.1,'#d9b24a',G.bor,14);cyl(cx+2.5,T+9,z,'y',.5,2.1,'#d9b24a',G.bor,14);box(cx,z,T+9.4,1,.1,4,'#6a4c10',G.bor);an(cx,z-6)});
+ box(6.5,z,T,15,9,8,'#1d4fb8',G.bor);[2,6.5,11].forEach(function(cx){cyl(cx,T+9,z,'y',.5,2.1,'#d9b24a',G.bor,14);an(cx,z-6)})})();
+/* conectores RGB */
+[[24,-48.4],[24,-45.4],[37,-48.4],[37,-45.4]].forEach(function(p){box(p[0],p[1],T,10.2,8.5,2.5,'#16161a',G.rgb);for(var i=0;i<4;i++)box(p[0]-3.81+i*2.54,p[1],T+8.5,.8,.1,.8,'#c8a040',G.rgb)});
+/* LED infravermelho */
+(function(){var cx=-18,cz=-45;cyl(cx,T,cz,'y',5,2.6,'#3a2358',G.ir,16);cyl(cx,T+5,cz,'y',1.2,2.6,'#3a2358',G.ir,16);box(cx-1.27,cz,T-.0,.4,.01,.4,'#d9d9d9',G.ir);an(cx,cz+4)})();
+/* eletrolíticos e indutor */
+[-50,-42].forEach(function(x){cyl(x,T,-45,'y',8,3.5,'#18181c',0,18);cyl(x,T+8,-45,'y',.1,3.2,'#b4bac4',0,18);box(x,-45+3.5,T+.5,1.3,7,.2,'#d9d9d9',0)});
+cyl(-31,T,-44,'y',7,4.8,'#34343a',0,20);cyl(-31,T+7,-44,'y',.1,4.4,'#b47a44',0,20);
+/* transistores BC548 */
+[-4,0,4,8].forEach(function(x){cyl(x,T,-45,'y',4.4,2.1,'#111114',0,14);box(x,-43,T,3.2,4.4,.1,'#111114',0)});
+/* diodos 1N4148 e SS34 */
+[44,51].forEach(function(x){cyl(x-2.1,T+1.1,-47,'x',4.2,.95,'#e07a2c',0,10);cyl(x-1.6,T+1.1,-47,'x',.7,1,'#111',0,10);box(x-3.4,-47,T,.5,1.1,.5,'#d9d9d9',0);box(x+3.4,-47,T,.5,1.1,.5,'#d9d9d9',0)});
+box(47,-42,T,5.4,2.3,2.6,'#18181c',0);box(49.6,-42,T,.7,2.35,2.62,'#c4c9d1',0);
+/* capacitores SMD e resistores SMD */
+[[12,-46],[15,-46],[18,-46]].forEach(function(p){box(p[0],p[1],T,2,1,1.25,'#c9a468',0)});
+for(var s=0;s<6;s++)box(-52+s*3,-39.4,T,2,.55,1.25,'#1c1c20',0);
+/* resistores axiais */
+(function(){var cols={'220':['#d33','#d33','#a55'],'1k':['#6a4','#111','#a55'],'10k':['#a55','#111','#e90']},seq=[],i;
+ for(i=0;i<13;i++)seq.push('220');for(i=0;i<4;i++)seq.push('1k');seq.push('10k');
+ seq.forEach(function(k,j){var row=j<9?0:1,col=j%9,cx=-49+col*7.4+(row?3.7:0),cz=row?39.5:36.2,y=T+1.25;
+  cyl(cx-3.15,y,cz,'x',6.3,1.2,k==='220'?'#d9c18a':'#6fa3d4',0,10);
+  [0,1,2].forEach(function(b){cyl(cx-2.2+b*1.35,y,cz,'x',.6,1.26,cols[k][b],0,10)});
+  box(cx-3.4,cz,T,.5,1.3,.5,'#d9d9d9',0);box(cx+3.4,cz,T,.5,1.3,.5,'#d9d9d9',0)})})();
+/* trilhas */
+(function(){var seed=7;function R(){seed=(seed*16807)%2147483647;return seed/2147483647}
+ var c='#33a468',n=AN.length,i;
+ for(i=0;i<90;i++){var a=AN[Math.floor(R()*n)],b=AN[Math.floor(R()*n)];if(a===b)continue;var w=R()<.2?1.4:.7,x1=a[0],z1=a[1],x2=b[0],z2=b[1];
+  if(R()<.5){box((x1+x2)/2,z1,T,Math.abs(x2-x1)+w,.05,w,c,0);box(x2,(z1+z2)/2,T,w,.05,Math.abs(z2-z1)+w,c,0)}
+  else{box(x1,(z1+z2)/2,T,w,.05,Math.abs(z2-z1)+w,c,0);box((x1+x2)/2,z2,T,Math.abs(x2-x1)+w,.05,w,c,0)}}})();
+/* ---- GL ---- */
+var gl=window.__getGL(cv,{antialias:true,alpha:true,premultipliedAlpha:false});
+if(!gl){window.__noGL('pcbbox','WebGL indisponível');return}
+function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
+var vs='attribute vec3 aP,aN,aC;attribute float aG;uniform mat4 uVP;uniform vec3 uL;uniform float uHi;varying vec3 vC;'+
+'void main(){vec3 n=normalize(aN);vec3 l=normalize(uL);float d=max(dot(n,l),0.);float d2=max(dot(n,normalize(vec3(-l.x,.35,-l.z))),0.);'+
+'vec3 c=aC*(.42+.66*d+.16*d2);'+
+'if(uHi>.5){if(abs(aG-uHi)<.5)c=mix(c,vec3(.2,.95,.9),.34)+.1;else c*=.5;}'+
+'vC=c;gl_Position=uVP*vec4(aP,1.);}';
+var fs='precision mediump float;varying vec3 vC;void main(){gl_FragColor=vec4(vC,1.);}';
+var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){window.__noGL('pcbbox','falha ao compilar');return}
+gl.useProgram(pr);
+var F=new Float32Array(V),buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,F,gl.STATIC_DRAW);
+var NV=F.length/10,ST=40;
+[['aP',3,0],['aN',3,12],['aC',3,24],['aG',1,36]].forEach(function(a){var l=gl.getAttribLocation(pr,a[0]);gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,a[1],gl.FLOAT,false,ST,a[2])});
+var uVP=gl.getUniformLocation(pr,'uVP'),uL=gl.getUniformLocation(pr,'uL'),uHi=gl.getUniformLocation(pr,'uHi');
+gl.enable(gl.DEPTH_TEST);
+window.__pcbV=F;
+/* ---- câmera ---- */
+var az=28,el=40,tAz=28,tEl=40,dist=176,auto=true,hi=0,drag=false,lx=0,ly=0,vis=true,top=false,
+ rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;if(rm)auto=false;
+var TG=[0,4,0];
+function mul(a,b){var o=new Float32Array(16),i,j,k;for(i=0;i<4;i++)for(j=0;j<4;j++){var s=0;for(k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s}return o}
+function persp(f,a,n,fr){var t=1/Math.tan(f/2),o=new Float32Array(16);o[0]=t/a;o[5]=t;o[10]=(fr+n)/(n-fr);o[11]=-1;o[14]=2*fr*n/(n-fr);return o}
+function look(e,t){var z=[e[0]-t[0],e[1]-t[1],e[2]-t[2]],l=Math.hypot(z[0],z[1],z[2]);z=[z[0]/l,z[1]/l,z[2]/l];
+ var x=[z[2],0,-z[0]];l=Math.hypot(x[0],x[2])||1;x=[x[0]/l,0,x[2]/l];var y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+ var o=new Float32Array(16);o[0]=x[0];o[1]=y[0];o[2]=z[0];o[4]=x[1];o[5]=y[1];o[6]=z[1];o[8]=x[2];o[9]=y[2];o[10]=z[2];
+ o[12]=-(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]);o[13]=-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]);o[14]=-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]);o[15]=1;return o}
+var VP=null,W=0,H=0;
+function size(){var d=Math.min(window.devicePixelRatio||1,innerWidth<700?1.5:2),w=cv.clientWidth,h=cv.clientHeight;
+ if(w!==W||h!==H||cv.width!==Math.round(w*d)){W=w;H=h;cv.width=Math.round(w*d);cv.height=Math.round(h*d);gl.viewport(0,0,cv.width,cv.height)}}
+var pl=document.getElementById('pbl'),BD=[
+ [1,'ESP32-CAN',20.5,T+12.5,-27,'Controlador principal, com Wi-Fi, Bluetooth e barramento CAN.'],
+ [2,'Xtherm II T2S',0,T+29,0,'Câmera térmica de 256 × 192 pixels, ligada por USB-C, usada na termografia do animal.'],
+ [3,'Arduino Nano',-31.5,T+13.5,-29,'Microcontrolador auxiliar para leitura de sensores.'],
+ [4,'TCS3200',-38,T+7.5,16,'Sensor de cor com luz própria.'],
+ [5,'HX711 (2×)',38,T+6,21,'Amplificador da célula de carga, para medir o peso do alimento e da água.'],
+ [5,'',38,T+6,40,''],
+ [6,'LM2596',-1,T+13,24.5,'Regulador de tensão que alimenta a placa.'],
+ [7,'Relé 12 V',23,T+17,-3,'Liga e desliga cargas de 12 V.'],
+ [8,'DHT11',45,T+7.5,-6,'Temperatura e umidade do ar dentro da caixa.'],
+ [9,'KY-037',-34,T+14,-6,'Sensor de som.'],
+ [10,'LDR',50,T+6.5,6,'Sensor de luz.'],
+ [11,'LED infravermelho',-18,T+9,-45,'LED infravermelho de 5 mm.'],
+ [12,'Bornes de parafuso',-27,T+11,45.5,'Ligações externas da placa: alimentação e sensores.'],
+ [13,'Conectores RGB (4×)',30,T+10.5,-47,'Conectores de 4 pinos, de RGB1 a RGB4.']];
+var bd=[],lg=document.getElementById('pbleg'),seen={};
+BD.forEach(function(b){var e=document.createElement('button');e.type='button';e.className='pb';e.textContent=b[0];e.setAttribute('aria-label',b[1]||('Componente '+b[0]));e.dataset.g=b[0];pl.appendChild(e);bd.push({e:e,p:[b[2],b[3],b[4]],g:b[0]});
+ if(b[1]&&!seen[b[0]]){seen[b[0]]=1;var li=document.createElement('li');li.innerHTML='<button type="button" aria-pressed="false" data-g="'+b[0]+'"><i>'+b[0]+'</i><div><b>'+b[1]+'</b><span>'+b[5]+'</span></div></button>';lg.appendChild(li)}});
+function setHi(g){hi=(hi===g)?0:g;bd.forEach(function(o){o.e.classList.toggle('on',o.g===hi)});
+ Array.prototype.forEach.call(lg.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',String(+x.dataset.g===hi))});draw()}
+pl.addEventListener('click',function(e){var t=e.target.closest('.pb');if(t)setHi(+t.dataset.g)});
+lg.addEventListener('click',function(e){var t=e.target.closest('button');if(t)setHi(+t.dataset.g)});
+function draw(){size();var D,a=az*PI/180,e=el*PI/180,D=dist*Math.max(1,1.38/(W/H)),ex=TG[0]+D*Math.cos(e)*Math.sin(a),ey=TG[1]+D*Math.sin(e),ez=TG[2]+D*Math.cos(e)*Math.cos(a);
+ VP=mul(persp(.62,W/H,20,700),look([ex,ey,ez],TG));
+ gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ gl.uniformMatrix4fv(uVP,false,VP);gl.uniform3f(uL,Math.sin(a-.6)*.6,.9,Math.cos(a-.6)*.6);gl.uniform1f(uHi,hi);
+ gl.drawArrays(gl.TRIANGLES,0,NV);
+ bd.forEach(function(o){var p=o.p,x=VP[0]*p[0]+VP[4]*p[1]+VP[8]*p[2]+VP[12],y=VP[1]*p[0]+VP[5]*p[1]+VP[9]*p[2]+VP[13],w=VP[3]*p[0]+VP[7]*p[1]+VP[11]*p[2]+VP[15];
+  o.e.style.transform='translate('+((x/w*.5+.5)*W).toFixed(1)+'px,'+((.5-y/w*.5)*H).toFixed(1)+'px)'})}
+var raf=0;
+function tick(){raf=0;if(!vis)return;
+ if(auto&&!drag&&!top)tAz+=.18;
+ az+=(tAz-az)*(drag?1:.12);el+=(tEl-el)*.12;draw();
+ if(auto||drag||Math.abs(tAz-az)>.02||Math.abs(tEl-el)>.02)raf=requestAnimationFrame(tick)}
+function kick(){if(!raf&&vis)raf=requestAnimationFrame(tick)}
+cv.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;ly=e.clientY;try{cv.setPointerCapture(e.pointerId)}catch(_){}top=false;pt.setAttribute('aria-pressed','false');kick()});
+cv.addEventListener('pointermove',function(e){if(!drag)return;tAz-=(e.clientX-lx)*.45;if(e.pointerType==='mouse')tEl=Math.max(12,Math.min(88,tEl+(e.clientY-ly)*.35));lx=e.clientX;ly=e.clientY;kick()});
+function up(){drag=false;kick()}cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+var pt=document.getElementById('pcbtop'),ps=document.getElementById('pcbspin');
+pt.addEventListener('click',function(){top=!top;pt.setAttribute('aria-pressed',String(top));if(top){tAz=Math.round(tAz/360)*360;tEl=88}else{tEl=40}kick()});
+ps.setAttribute('aria-pressed',String(auto));
+ps.addEventListener('click',function(){auto=!auto;ps.setAttribute('aria-pressed',String(auto));kick()});
+cv.addEventListener('webglcontextlost',function(e){e.preventDefault();window.__noGL('pcbbox','contexto WebGL perdido')});
+if(window.IntersectionObserver)new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis){draw();kick()}},{rootMargin:'120px'}).observe(bx);
+if(window.ResizeObserver)new ResizeObserver(function(){draw()}).observe(bx);
+draw();kick();
+window.__pcbDraw=draw;window.__pcbSet=function(a,e){az=tAz=a;el=tEl=e;auto=false;draw()};
+})();
 </script>
 </body>
 </html>
