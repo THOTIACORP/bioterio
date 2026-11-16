@@ -217,7 +217,10 @@ footer p{max-width:none}
 .galbox{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden}
 .galbox>summary{list-style:none;cursor:pointer;display:block}
 .galbox>summary::-webkit-details-marker{display:none}
-.galbox>summary img{display:block;width:100%;max-height:340px;object-fit:cover;object-position:top;background:#fff;transition:filter .2s}
+.galhero{display:block;position:relative;background:#fff}
+.galbox>summary img{display:block;width:100%;height:clamp(220px,34vw,380px);object-fit:contain;background:#fff;transition:filter .2s,transform .3s}
+.galbox>summary:hover img{transform:scale(1.02)}
+.galtag{position:absolute;left:1rem;bottom:.9rem;font-size:.78rem;font-weight:600;padding:.3rem .7rem;border-radius:999px;background:rgba(14,34,56,.82);color:#fff}
 .galbox>summary:hover img{filter:brightness(.92)}
 .galbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.3rem;border-top:1px solid var(--line)}
 .galbar b{display:block;font-size:1.05rem}
@@ -225,7 +228,7 @@ footer p{max-width:none}
 .galchev{flex:none;width:38px;height:38px;border-radius:999px;background:var(--accent);position:relative}
 .galchev::before{content:"";position:absolute;left:50%;top:45%;width:9px;height:9px;border-right:2px solid var(--accent-fg);border-bottom:2px solid var(--accent-fg);transform:translate(-50%,-50%) rotate(45deg);transition:transform .2s}
 .galbox[open] .galchev::before{transform:translate(-50%,-20%) rotate(-135deg)}
-.galbox[open]>summary img{display:none}
+.galbox[open] .galhero{display:none}
 .galbox>summary:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
 .galbody{padding:1.2rem}
 .fxfig{margin:0;display:flex;flex-direction:column;gap:.7rem}
@@ -256,6 +259,27 @@ footer p{max-width:none}
 .btot{font-size:.88rem;color:var(--muted)}
 .btot b{color:var(--fg)}
 @media (max-width:760px){.bcomp{grid-template-columns:1fr}.barrow{justify-self:center;transform:rotate(90deg)}}
+.mktw{display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center}
+.mktc{width:100%;max-width:220px;justify-self:center}
+.mktc circle{stroke:var(--surface);stroke-width:2}
+.mktc .c1{fill:color-mix(in srgb,var(--blue) 14%,var(--surface))}
+.mktc .c2{fill:color-mix(in srgb,var(--blue) 32%,var(--surface))}
+.mktc .c3{fill:var(--blue)}
+.mktc text{font:700 13px var(--body);text-anchor:middle;fill:var(--fg)}
+.mktc text:last-of-type{fill:#fff}
+.mktl{display:flex;flex-direction:column;gap:.9rem;min-width:0}
+.mrow{display:flex;gap:.8rem;align-items:flex-start}
+.mrow b{font-family:var(--display);font-size:1.15rem;display:block;font-variant-numeric:tabular-nums}
+.mrow small{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;margin-top:.15rem}
+.mk{flex:none;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:.25rem .55rem;border-radius:8px;margin-top:.2rem}
+.mk.k1{background:color-mix(in srgb,var(--blue) 14%,transparent);color:var(--blue)}
+.mk.k2{background:color-mix(in srgb,var(--blue) 30%,transparent);color:var(--fg)}
+.mk.k3{background:var(--blue);color:#fff}
+.mctl{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;font-size:.86rem;padding-top:.4rem;border-top:1px solid var(--line)}
+.mctl input{flex:1 1 160px;accent-color:var(--blue)}
+.mctl output{font-weight:700;font-variant-numeric:tabular-nums;min-width:3.5ch}
+.mfoot{font-size:.8rem!important}
+@media (max-width:700px){.mktw{grid-template-columns:1fr}.mktc{max-width:170px}}
 .gtools{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .gtools button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .gtools button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
@@ -446,6 +470,23 @@ footer p{max-width:none}
           <h3>Custos menores em todos os níveis</h3><p>Menos animais significa menos compra e criação, ração, maravalha, água, caixas, espaço nas estantes, horas de manejo e descarte.</p></div>
         <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
           <h3>Mais dados por animal</h3><p>Cada animal é acompanhado o tempo todo, sem abrir a caixa: temperatura, comportamento, alimentação e ambiente.</p></div>
+      </div>
+      <div class="card mkt" style="margin-top:1rem;gap:1rem">
+        <h3>Quantos animais deixariam de ser usados por ano</h3>
+        <p>Aplicando a redução de até ¾ aos números de uso de animais citados na dissertação, em três recortes de mercado: o total de referência (TAM), o mercado que o projeto atende (SAM) e a fatia realista de entrada (SOM).</p>
+        <div class="mktw">
+          <svg class="mktc" viewBox="0 0 220 220" aria-hidden="true">
+            <circle cx="110" cy="110" r="104" class="c1"/><circle cx="110" cy="140" r="70" class="c2"/><circle cx="110" cy="170" r="38" class="c3"/>
+            <text x="110" y="34">TAM</text><text x="110" y="96">SAM</text><text x="110" y="175">SOM</text>
+          </svg>
+          <div class="mktl">
+            <div class="mrow"><span class="mk k1">TAM</span><div><b><span id="mT">86,3 milhões</span> animais/ano</b><small>Até ¾ de 115,07 milhões: 111 milhões de roedores usados por ano nos EUA (CARBONE, 2021) + 4,07 milhões de animais usados no Brasil em 2021.</small></div></div>
+            <div class="mrow"><span class="mk k2">SAM</span><div><b><span id="mS">3,05 milhões</span> animais/ano</b><small>Até ¾ dos 4,07 milhões de animais usados por ano no Brasil, o mercado em que o equipamento foi adaptado às caixas da REBIOTERIO.</small></div></div>
+            <div class="mrow"><span class="mk k3">SOM</span><div><b><span id="mO">305 mil</span> animais/ano</b><small>Até ¾ da fatia do SAM alcançada pelo equipamento, começando pelos 26 biotérios da REBIOTERIO. Ajuste a adoção abaixo.</small></div></div>
+            <div class="mctl"><label for="mad">Adoção no Brasil (SOM)</label><input type="range" id="mad" min="1" max="50" value="10"><output id="madv">10%</output></div>
+          </div>
+        </div>
+        <p class="mfoot">Os valores são o teto teórico: supõem que todos os experimentos usem o delineamento de quatro grupos e que os três controles sejam substituídos por dados históricos. A taxa de adoção do SOM é uma hipótese, não um dado medido. Na pesquisa pré-clínica, a maior parte desses animais é eutanasiada ao final do estudo, então cada animal não usado é também um animal que não morre.</p>
       </div>
       <p class="pnote">A redução de até ¾ é o potencial do sistema em pleno funcionamento. Ela depende da formação e da validação do banco de dados histórico e da aceitação desse delineamento pelas Comissões de Ética no Uso de Animais (CEUAs).</p>
     </section>
@@ -642,7 +683,7 @@ footer p{max-width:none}
       </div>
       <details class="galbox" id="galbox">
         <summary>
-          <img src="sim/conjunto_1.jpg" alt="Prévia dos mapas de tensão das peças da V2" loading="lazy">
+          <span class="galhero"><img src="sim/destaque.jpg" alt="Mapa de tensão de von Mises do protetor da placa sob 100 N no topo" loading="lazy"><span class="galtag">Protetor da placa · 100 N no topo · folga 18</span></span>
           <span class="galbar"><span><b>Ver as 54 simulações</b><small>Clique para abrir a galeria com filtros e imagens ampliadas</small></span><span class="galchev" aria-hidden="true"></span></span>
         </summary>
         <div class="galbody">
@@ -1370,6 +1411,11 @@ meta();b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark'
 L.forEach(function(a){var el=document.getElementById(a.getAttribute('href').slice(1));if(el)M[el.id]=a});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){L.forEach(function(a){a.removeAttribute('aria-current')});var a=M[e.target.id];if(a)a.setAttribute('aria-current','true')}})},{rootMargin:'-40% 0px -55% 0px'});
 Object.keys(M).forEach(function(id){io.observe(document.getElementById(id))})})();
+</script>
+<script>
+(function(){var r=document.getElementById('mad');if(!r)return;var o=document.getElementById('madv'),O=document.getElementById('mO'),SAM=4.07e6,RED=.75;
+function fmt(n){if(n>=1e6)return (n/1e6).toLocaleString('pt-BR',{maximumFractionDigits:2})+' milhões';if(n>=1e3)return Math.round(n/1e3).toLocaleString('pt-BR')+' mil';return Math.round(n).toLocaleString('pt-BR')}
+function u(){var a=r.value/100;o.textContent=r.value+'%';O.textContent=fmt(SAM*a*RED)}r.addEventListener('input',u);u()})();
 </script>
 </body>
 </html>
