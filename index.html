@@ -337,6 +337,8 @@ footer p{max-width:none}
 .fxq{display:flex;flex-wrap:wrap;gap:.5rem}
 .fxq span{font-size:.8rem;color:var(--muted);background:var(--chip);border-radius:999px;padding:.3rem .75rem}
 .fxq b{color:var(--fg);font-variant-numeric:tabular-nums}
+.tnote2{margin:0;padding:.7rem .9rem .8rem;font-size:.76rem;line-height:1.5;color:#b9a8d8;background:#0a0422;border-top:1px solid #1d1440}
+@media (max-width:560px){.tm>div:nth-child(16){grid-column:1 / -1}}
 .gtools{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .gtools button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .gtools button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
@@ -565,9 +567,9 @@ footer p{max-width:none}
           <div class="ttag"><b>TERMOGRAFIA</b> · modelo 3D</div>
           <div class="tctl"><button type="button" class="vbtn" id="mesh" aria-pressed="true">Malha térmica</button><button type="button" class="vbtn" id="seg" aria-pressed="false">Segmentação</button></div>
           <div class="tbar" aria-hidden="true"><span>38 °C</span><i></i><span>22 °C</span></div>
-          <p class="tnote">Rato 3D com campo térmico e medições fictícias, só para demonstração. A cada 30 s ele defeca e depois urina: as manchas quentes no piso ficam fora da medida de temperatura, mas entram na contagem.</p>
         </div>
         <div class="tm" id="tm" role="group" aria-label="Medições fictícias da caixa"></div>
+        <p class="tnote2">Rato 3D com campo térmico e medições fictícias, só para demonstração. A cada 30 s ele defeca e depois urina: as manchas quentes no piso ficam fora da medida de temperatura, mas entram na contagem.</p>
         </div>
         <div class="funlist">
           <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 14.8V5a2 2 0 1 0-4 0v9.8a4 4 0 1 0 4 0z"/><path d="M12 9v7"/></svg></div>
@@ -1440,7 +1442,7 @@ var uVP=gl.getUniformLocation(pr,'uVP'),uL=gl.getUniformLocation(pr,'uL'),uHi=gl
 gl.enable(gl.DEPTH_TEST);
 window.__pcbV=F;
 /* ---- câmera ---- */
-var az=28,el=40,tAz=28,tEl=40,dist=176,auto=true,hi=0,drag=false,lx=0,ly=0,vis=true,top=false,
+var az=28,el=40,tAz=28,tEl=40,dist=232,auto=true,hi=0,drag=false,lx=0,ly=0,vis=true,top=false,
  rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;if(rm)auto=false;
 var TG=[0,4,0];
 function mul(a,b){var o=new Float32Array(16),i,j,k;for(i=0;i<4;i++)for(j=0;j<4;j++){var s=0;for(k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s}return o}
