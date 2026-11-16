@@ -302,6 +302,41 @@ footer p{max-width:none}
 .rcount small{font-size:.78rem;color:var(--muted)}
 @media (max-width:700px){.ranim{grid-template-columns:1fr}.rcount{text-align:center}.rico{transform:scale(.8)}}
 @media (prefers-reduced-motion:reduce){.rat,.dbx{transition:none}.ranim.go .rs.x .rat{animation:none}}
+.manw{display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:1.6rem;align-items:center}
+.manv{width:100%;height:auto;display:block}
+.mant{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+.mant h3{font-size:1.25rem;line-height:1.3}
+.manstats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.manstats div{border-top:1px solid var(--line);padding-top:.6rem}
+.manstats b{display:block;font-family:var(--display);font-size:1.6rem;line-height:1;color:var(--blue);font-variant-numeric:tabular-nums}
+.manstats div:last-child b{color:var(--ok)}
+.manstats small{font-size:.78rem;color:var(--muted);line-height:1.35;display:block;margin-top:.25rem}
+.mv-bg{fill:color-mix(in srgb,var(--blue) 8%,var(--surface))}
+.mv-face{fill:var(--surface);stroke:var(--muted);stroke-width:2}
+.mv-ink{fill:#1f2937}.mv-hand{stroke:#1f2937;stroke-width:2.2;stroke-linecap:round}
+.mv-h1{transform-origin:0 0;animation:mvspin 6s linear infinite}.mv-h2{transform-origin:0 0;animation:mvspin 72s linear infinite}
+.mv-desk{fill:color-mix(in srgb,var(--muted) 35%,var(--surface))}
+.mv-cage{fill:color-mix(in srgb,#bfdbfe 35%,transparent);stroke:var(--muted);stroke-width:2}
+.mv-lid{stroke:var(--muted);stroke-width:3}
+.mv-bed{fill:#e9d8b4}
+.mv-rat{animation:mvrat 5s ease-in-out infinite}
+.mv-ratb{fill:#f4f2ee;stroke:#9ca3af;stroke-width:1.2}.mv-ear{fill:#f5b5be}.mv-eye{fill:#111}.mv-tail{fill:none;stroke:#f0a5ae;stroke-width:2.4;stroke-linecap:round}
+.mv-coat{fill:#ffffff;stroke:#cbd5e1;stroke-width:2}.mv-seam{stroke:#cbd5e1;stroke-width:1.5}
+.mv-skin{fill:#e8b98f}.mv-hair{fill:#3b2a20}.mv-brow{stroke:#3b2a20;stroke-width:2;stroke-linecap:round}
+.mv-glass{fill:none;stroke:#334155;stroke-width:0}
+.mv-clip{fill:#c08b5c}.mv-lines{stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-dasharray:30;stroke-dashoffset:30;animation:mvwrite 4s ease-in-out infinite}
+.mv-arm{fill:none;stroke:#ffffff;stroke-width:12;stroke-linecap:round}
+.mv-pen{transform-origin:98px 146px;animation:mvpen .5s ease-in-out infinite alternate}
+.mv-penl{stroke:#1d4ed8;stroke-width:3.5;stroke-linecap:round}
+@keyframes mvspin{to{transform:rotate(360deg)}}
+@keyframes mvrat{0%,100%{transform:translateX(0)}45%{transform:translateX(70px)}55%{transform:translateX(70px)}}
+@keyframes mvwrite{0%{stroke-dashoffset:30}60%,100%{stroke-dashoffset:0}}
+@keyframes mvpen{to{transform:translate(4px,-3px) rotate(-6deg)}}
+@media (max-width:760px){.manw{grid-template-columns:1fr}.manv{max-width:360px;justify-self:center}.manstats{grid-template-columns:1fr 1fr}.manstats div:last-child{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){.mv-h1,.mv-h2,.mv-rat,.mv-lines,.mv-pen{animation:none}.mv-lines{stroke-dashoffset:0}}
+.fxq{display:flex;flex-wrap:wrap;gap:.5rem}
+.fxq span{font-size:.8rem;color:var(--muted);background:var(--chip);border-radius:999px;padding:.3rem .75rem}
+.fxq b{color:var(--fg);font-variant-numeric:tabular-nums}
 .gtools{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .gtools button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .gtools button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
@@ -530,7 +565,7 @@ footer p{max-width:none}
           <div class="ttag"><b>TERMOGRAFIA</b> · modelo 3D</div>
           <div class="tctl"><button type="button" class="vbtn" id="mesh" aria-pressed="true">Malha térmica</button><button type="button" class="vbtn" id="seg" aria-pressed="false">Segmentação</button></div>
           <div class="tbar" aria-hidden="true"><span>38 °C</span><i></i><span>22 °C</span></div>
-          <p class="tnote">Rato 3D com campo térmico e medições fictícias, só para demonstração.</p>
+          <p class="tnote">Rato 3D com campo térmico e medições fictícias, só para demonstração. A cada 30 s ele defeca e depois urina: as manchas quentes no piso ficam fora da medida de temperatura, mas entram na contagem.</p>
         </div>
         <div class="tm" id="tm" role="group" aria-label="Medições fictícias da caixa"></div>
         </div>
@@ -541,6 +576,47 @@ footer p{max-width:none}
             <h3>Ambiente</h3><p>Luz, som, temperatura e umidade dentro da caixa, registrados junto com o comportamento.</p></div>
           <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5 6.5 5 10a5 5 0 0 1-10 0c0-3.5 2-6 5-10z"/></svg></div>
             <h3>Dieta</h3><p>Consumo de alimento, de água e de ração de cada animal.</p></div>
+        </div>
+      </div>
+      <div class="card manual" style="margin-top:1rem">
+        <div class="manw">
+          <svg class="manv" viewBox="0 0 360 260" role="img" aria-label="Ilustração: pesquisadora de jaleco com prancheta observa um rato na caixa e anota, com um relógio na parede">
+            <rect x="0" y="0" width="360" height="260" rx="18" class="mv-bg"/>
+            <g class="mv-clock" transform="translate(300 52)"><circle r="22" class="mv-face"/><circle r="2.5" class="mv-ink"/><line y2="-14" class="mv-hand mv-h1"/><line y2="-9" class="mv-hand mv-h2"/></g>
+            <rect x="20" y="214" width="320" height="10" rx="4" class="mv-desk"/>
+            <g transform="translate(176 150)">
+              <rect width="150" height="64" rx="8" class="mv-cage"/>
+              <rect x="4" y="46" width="142" height="14" rx="4" class="mv-bed"/>
+              <path d="M0 10 H150" class="mv-lid"/>
+              <g class="mv-rat"><path d="M18 46 C8 46 6 52 12 55" class="mv-tail"/><ellipse cx="34" cy="42" rx="16" ry="9" class="mv-ratb"/><circle cx="50" cy="38" r="7.5" class="mv-ratb"/><circle cx="47" cy="31" r="3.6" class="mv-ear"/><circle cx="54" cy="37" r="1.2" class="mv-eye"/></g>
+            </g>
+            <g transform="translate(52 52)">
+              <path d="M10 162 C10 112 22 94 50 94 C78 94 90 112 90 162 Z" class="mv-coat"/>
+              <path d="M50 96 V162" class="mv-seam"/>
+              <rect x="40" y="76" width="20" height="22" rx="6" class="mv-skin"/>
+              <circle cx="50" cy="58" r="24" class="mv-skin"/>
+              <path d="M26 58 C24 34 40 28 52 30 C66 30 78 40 74 60 C70 46 58 42 50 44 C40 44 30 48 26 58 Z" class="mv-hair"/>
+              <circle cx="58" cy="60" r="2.4" class="mv-ink"/><circle cx="70" cy="60" r="2.4" class="mv-ink"/>
+              <path d="M54 54 h8 M66 54 h8" class="mv-brow"/>
+              <circle cx="64" cy="61" r="12" class="mv-glass"/>
+              <g class="mv-board"><rect x="70" y="104" width="46" height="58" rx="4" class="mv-clip" transform="rotate(-8 93 133)"/>
+                <rect x="84" y="100" width="18" height="8" rx="2" class="mv-ink" transform="rotate(-8 93 104)"/>
+                <path d="M78 120 h28 M78 130 h24 M78 140 h28 M78 150 h18" class="mv-lines" transform="rotate(-8 93 133)"/></g>
+              <path d="M24 120 C40 140 62 146 80 140" class="mv-arm"/>
+              <g class="mv-pen"><path d="M98 146 L116 118" class="mv-penl"/><circle cx="98" cy="146" r="5" class="mv-skin"/></g>
+            </g>
+          </svg>
+          <div class="mant">
+            <span class="eyebrow">O problema de hoje</span>
+            <h3>Quantas vezes você já ficou na frente da caixa, de prancheta na mão, anotando?</h3>
+            <p>No monitoramento manual, alguém precisa ir até a estante, abrir ou espiar a caixa, observar o animal e anotar à mão. Isso se repete várias vezes por dia, inclusive em fins de semana e feriados. Mesmo assim, quase todo o dia do animal fica sem registro, principalmente à noite, quando os roedores são mais ativos. E a própria presença do observador pode mudar o comportamento que se quer medir.</p>
+            <div class="mctl man-ctl"><label for="mvn">Verificações por dia</label><input type="range" id="mvn" min="1" max="8" value="3"><output id="mvv">3</output></div>
+            <div class="manstats">
+              <div><b id="mvy">1.095</b><small>idas à caixa por ano, por estudo</small></div>
+              <div><b id="mvc">1%</b><small>do dia observado, com 5 min por verificação</small></div>
+              <div><b>24 h</b><small>de registro contínuo com o Biotério Forte, sem abrir a caixa</small></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card kag" style="margin-top:1rem">
@@ -603,6 +679,7 @@ footer p{max-width:none}
         <h3>Duas câmeras, uma imagem só</h3>
         <p>A placa tem dois sensores ópticos: a câmera comum do ESP32-CAM, que vê a cena como o olho humano, e a câmera térmica Xtherm II T2S, que mede o calor. As duas imagens são sobrepostas, com a térmica por cima e com transparência ajustável, e uma completa a outra.</p>
         <p>Isso resolve um problema prático da termografia: urina e fezes recém-eliminadas também saem quentes e, na imagem térmica sozinha, podem ser confundidas com o animal. Na imagem comum, porém, elas não têm forma de rato. Cruzando as duas, o sistema mede a temperatura só onde o calor coincide com o contorno do animal e descarta as manchas quentes do piso.</p>
+        <p>As manchas descartadas da termografia não são perdidas: o sistema conta cada episódio de micção e de defecação, com horário e área aproximada da mancha. Frequência de urina e de fezes é um indicador de saúde, de estresse e de consumo de água e ração, então o que seria ruído na medida de temperatura vira um dado a mais sobre o animal.</p>
         <figure class="fxfig">
           <div class="fxstage">
             <svg class="fxl" viewBox="0 0 400 240" role="img" aria-label="Imagem comum ilustrativa: rato sobre a maravalha, com uma mancha de urina e fezes no piso">
@@ -642,9 +719,9 @@ footer p{max-width:none}
                 <ellipse cx="258" cy="72" rx="26" ry="24" stroke="#f8fafc"/>
               </g>
               <g font-family="system-ui,sans-serif" font-size="9" font-weight="700">
-                <text x="60" y="48" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">Animal: medido</text>
-                <text x="262" y="218" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Urina: descartada</text>
-                <text x="232" y="38" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Fezes: descartadas</text>
+                <text x="60" y="48" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">Animal: temperatura medida</text>
+                <text x="236" y="212" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Urina: fora da temperatura</text><text x="236" y="224" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">contada: 1 micção</text>
+                <text x="214" y="26" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Fezes: fora da temperatura</text><text x="214" y="38" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">contadas: 3 bolinhas</text>
               </g>
             </svg>
           </div>
@@ -654,7 +731,9 @@ footer p{max-width:none}
             <output id="fxv" for="fxop">55%</output>
             <label class="fxchk"><input type="checkbox" id="fxmk" checked> Mostrar marcações</label>
           </div>
-          <figcaption>Ilustração esquemática, não uma captura real. Arraste o controle: em 0% aparece só a câmera comum, em 100% só a térmica.</figcaption>
+          <div class="fxq"><span><b>36,8 °C</b> temperatura do animal</span><span><b>1</b> micção registrada</span><span><b>3</b> bolinhas de fezes registradas</span>
+          </div>
+          <figcaption>Ilustração esquemática, não uma captura real; os valores são fictícios. Arraste o controle: em 0% aparece só a câmera comum, em 100% só a térmica.</figcaption>
         </figure>
       </div>
     </section>
@@ -859,12 +938,12 @@ var vs='attribute vec3 aP;attribute vec3 aN;attribute vec2 aD;uniform mat4 uVP;u
 'float wl=pow(clamp(1.-aP.z/1.3,0.,1.),2.)*smoothstep(.25,.5,abs(aP.y));float ph=uPh+(aP.y>0.?0.:3.14159)+(aP.x>-3.5?0.:3.14159);p.x+=wl*.6*sin(ph);p.z+=wl*.4*max(0.,cos(ph))+.05*sin(2.*uPh);'+
 'float tha=-uRe*.95*smoothstep(-7.,-2.5,aP.x),cr=cos(tha),sr=sin(tha);vec2 q=vec2(p.x+2.2,p.z);p.x=q.x*cr+q.y*sr-2.2;p.z=max(-q.x*sr+q.y*cr,0.);vec3 nn=aN;nn.xz=vec2(aN.x*cr+aN.z*sr,-aN.x*sr+aN.z*cr);'+
 'p+=nn*uG;p.z*=uBr;p=mix(p,aP,step(3.5,uMode));vec4 w=uM*vec4(p,1.0);vW=w.xyz;vN=mat3(uM[0].xyz,uM[1].xyz,uM[2].xyz)*nn;vL=aP;vD=aD;gl_Position=uVP*w;}';
-var fs='precision mediump float;varying vec3 vN;varying vec3 vW;varying vec3 vL;varying vec2 vD;uniform vec3 uCam;uniform float uA;uniform float uMode;uniform float uPulse;uniform vec2 uC;uniform vec3 uTd;'+
+var fs='precision mediump float;varying vec3 vN;varying vec3 vW;varying vec3 vL;varying vec2 vD;uniform vec3 uCam;uniform float uA;uniform float uMode;uniform float uPulse;uniform vec2 uC;uniform vec3 uTd;uniform vec4 uS[8];'+
 'vec3 iron(float t){t=clamp(t,0.,1.);vec3 c0=vec3(.04,0.,.04),c1=vec3(.17,.04,.42),c2=vec3(.61,.11,.43),c3=vec3(.91,.27,.17),c4=vec3(1.,.70,.12),c5=vec3(1.,.95,.48),c6=vec3(1.);'+
 'if(t<.2)return mix(c0,c1,t/.2);if(t<.4)return mix(c1,c2,(t-.2)/.2);if(t<.6)return mix(c2,c3,(t-.4)/.2);if(t<.8)return mix(c3,c4,(t-.6)/.2);if(t<.92)return mix(c4,c5,(t-.8)/.12);return mix(c5,c6,(t-.92)/.08);}'+
 'void main(){vec3 n=normalize(vN);vec3 v=normalize(uCam-vW);float f=abs(dot(n,v));'+
 'float T=22.+vD.x*16.+vD.y*.01*uPulse-2.4*pow(1.-f,2.5);float hh=smoothstep(1.,2.,vL.x),tl=smoothstep(-8.,-9.,vL.x);T+=uTd.x*hh+uTd.z*tl+uTd.y*(1.-hh)*(1.-tl);'+
-'if(uMode>3.5){vec2 d=(vW.xy-uC)/vec2(5.,5.);T=23.1+4.2*exp(-dot(d,d))-.9*length(vW.xy)/22.;gl_FragColor=vec4(iron((T-22.)/16.)*.85,1.);return;}'+
+'if(uMode>3.5){vec2 d=(vW.xy-uC)/vec2(5.,5.);T=23.1+4.2*exp(-dot(d,d))-.9*length(vW.xy)/22.;for(int k=0;k<8;k++){vec2 e=(vW.xy-uS[k].xy)/max(uS[k].z,.01);T+=uS[k].w*exp(-dot(e,e)*2.);}gl_FragColor=vec4(iron((T-22.)/16.)*.85,1.);return;}'+
 'vec3 c=iron((T-22.)/16.);'+
 'if(uMode>2.5){gl_FragColor=vec4(iron((T-21.)/16.)*uA,1.);return;}'+
 'if(uMode>1.5){gl_FragColor=vec4(c*uA,1.);return;}'+
@@ -874,7 +953,7 @@ var fs='precision mediump float;varying vec3 vN;varying vec3 vW;varying vec3 vL;
 'gl_FragColor=vec4(c,1.);}';
 function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
 var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){__noGL('thermo','erro de shader: '+(gl.getProgramInfoLog(pr)||'').slice(0,80));return}gl.useProgram(pr);
-var U={};['uVP','uM','uG','uBr','uCam','uA','uMode','uPulse','uT','uPh','uHy','uC','uRe','uTd'].forEach(function(k){U[k]=gl.getUniformLocation(pr,k)});
+var U={};['uVP','uM','uG','uBr','uCam','uA','uMode','uPulse','uT','uPh','uHy','uC','uRe','uTd','uS'].forEach(function(k){U[k]=gl.getUniformLocation(pr,k)});
 var aP=gl.getAttribLocation(pr,'aP'),aN=gl.getAttribLocation(pr,'aN'),aD=gl.getAttribLocation(pr,'aD');
 gl.enableVertexAttribArray(aP);gl.enableVertexAttribArray(aN);gl.enableVertexAttribArray(aD);
 function bindM(p,nn,d){gl.bindBuffer(gl.ARRAY_BUFFER,p);gl.vertexAttribPointer(aP,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,nn);gl.vertexAttribPointer(aN,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,d);gl.vertexAttribPointer(aD,2,gl.UNSIGNED_BYTE,true,0,0)}
@@ -917,12 +996,15 @@ var HUD=[
  ['g2','Som','dB',function(t){return 38+2.2*Math.sin(t*.9)+1.1*Math.sin(t*2.9)},0],
  ['g2','Amônia','ppm',function(t){return 5.5+.5*Math.sin(t*.09)},1],
  ['g1','Levantamentos','x',function(t){return rc},0],
+ ['g1','Fezes','bolinhas',function(t){return nFz},0],
+ ['g1','Micções','x',function(t){return nMc},0],
+ ['g1','Área urinada','cm²',function(t){return urA},0],
  ['g3','Água','mL',function(t){return 18.4+t*.012},1],
  ['g3','Ração','g',function(t){return 22.1+t*.008},1],
- ['g1','Comportamento detectado (ilustrativo)','',function(t){return rear>.5?'rear · levantar':'run · correr'},-1]
+ ['g1','Comportamento detectado (ilustrativo)','',function(t){return evNow==='fz'?'defecar · fezes contadas, fora da termografia':evNow==='mc'?'urinar · micção contada, fora da termografia':rear>.5?'rear · levantar':'run · correr'},-1]
 ],hudEl=[],tm=document.getElementById('tm');
-HUD.forEach(function(h_){var d=document.createElement('div');d.className=h_[0];d.innerHTML='<small>'+h_[1]+'</small><b><span>0</span><em>'+h_[2]+'</em></b>';if(h_[4]<0)d.style.gridColumn='span 3';tm.appendChild(d);hudEl.push(d.querySelector('span'))});
-var lastHud=-1,rear=0,alS=0,PHs=0,lastT=0,rc=0,cyc=-1,spd=0,TH=34,TB=33.4,TT=28.6;
+HUD.forEach(function(h_){var d=document.createElement('div');d.className=h_[0];d.innerHTML='<small>'+h_[1]+'</small><b><span>0</span><em>'+h_[2]+'</em></b>';if(h_[4]<0)d.style.gridColumn='1 / -1';tm.appendChild(d);hudEl.push(d.querySelector('span'))});
+var SP=[],nFz=0,nMc=0,urA=0,evNow='',lastEc=-1,fzDrop=0,mcDone=false,SPU=new Float32Array(32),lastHud=-1,rear=0,alS=0,PHs=0,lastT=0,rc=0,cyc=-1,spd=0,TH=34,TB=33.4,TT=28.6;
 function hudUpdate(t){if(t-lastHud<.5&&lastHud>=0)return;lastHud=t;HUD.forEach(function(h_,i){var v=h_[3](t);hudEl[i].textContent=h_[4]<0?v:v.toFixed(h_[4]).replace('.',',')})}
 hudUpdate(0);
 
@@ -935,11 +1017,19 @@ function draw(now){
   var P_=15,u=t%P_,sS=function(x){x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
   rear=reduce?0:(u<8?0:u<9.2?sS((u-8)/1.2):u<12.8?1:u<14?1-sS((u-12.8)/1.2):0);
   var cy_=Math.floor(t/P_);if(cy_!==cyc){if(cyc>=0)rc++;cyc=cy_}
-  var mv=reduce?0:1-rear;alS+=dt*.45*mv;PHs+=dt*6*mv;spd=2.4*mv*(1+.15*Math.sin(t*1.7));
+  var EP=30,ue=t%EP,ec=Math.floor(t/EP);if(ec!==lastEc){lastEc=ec;fzDrop=0;mcDone=false}
+  evNow=reduce?'':(ue>=3&&ue<5.2?'fz':ue>=18&&ue<20.8?'mc':'');
+  var mv=reduce?0:(1-rear)*(evNow?0:1);alS+=dt*.45*mv;PHs+=dt*6*mv;spd=2.4*mv*(1+.15*Math.sin(t*1.7));
   TH=34+.35*Math.sin(t*.8)+.15*Math.sin(t*2.3)+rear*.4;TB=33.4+.3*Math.sin(t*.6)+rear*.3;TT=28.6+.5*Math.sin(t*.5)+.2*Math.sin(t*1.9);
   hudUpdate(reduce?0:t);var al=alS,RR=4,ox=Math.cos(al)*RR,oy=Math.sin(al)*RR,br=1+(reduce?0:Math.sin(t*2.3)*.012),pu=reduce?0:Math.sin(t*2)*60;
   var PH=PHs,HY=reduce?0:(.3+.25*rear)*Math.sin(t*(.9+rear*1.4)),sw=reduce?0:Math.sin(t*.7)*.04;
   var M=mul(T3(ox,oy,0),mul(Rz(al+1.5708+sw),T3(3,0,0)));
+  if(!reduce){var an=mul(M,T3(-6.2,0,0)),ax=an[12],ay=an[13];
+    if(evNow==='fz'&&fzDrop<3&&ue>=3.3+fzDrop*.6){SP.push({k:'fz',x:ax+(Math.random()-.5)*.6,y:ay+(Math.random()-.5)*.6,r:.42,a:12,t0:t});fzDrop++;nFz++}
+    if(evNow==='mc'&&!mcDone&&ue>=18.4){SP.push({k:'mc',x:ax,y:ay,r:.2,a:11,t0:t,g:1});mcDone=true;nMc++;urA+=Math.round(9+Math.random()*6)}}
+  SP=SP.filter(function(o){return t-o.t0<70});while(SP.length>8)SP.shift();
+  for(var si=0;si<8;si++){var o=SP[si];if(o){var ag=t-o.t0,rr=o.k==='mc'?Math.min(2,.2+ag*1.1):o.r;SPU.set([o.x,o.y,rr,o.a*Math.exp(-ag/22)],si*4)}else SPU.set([0,0,1,0],si*4)}
+  gl.uniform4fv(U.uS,SPU);
   gl.uniform1f(U.uT,reduce?0:t);gl.uniform1f(U.uPh,PH);gl.uniform1f(U.uHy,HY);gl.uniform2f(U.uC,ox,oy);gl.uniform1f(U.uRe,rear);gl.uniform3f(U.uTd,TH-34,TB-33.4,TT-28.6);
   var a=th+px*.3,b=Math.max(.32,Math.min(1.3,ph+py*.15)),dist=21*Math.max(1,1.15/Math.min(1,w/h*.9)),aspect=w/h;
   var cx=Math.cos(a)*Math.cos(b)*dist,cy=Math.sin(a)*Math.cos(b)*dist,cz=1.8+Math.sin(b)*dist;
@@ -959,6 +1049,14 @@ function draw(now){
   if(segOn){gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);setU(M,.42,1,.02,br,pu);gl.drawElements(gl.TRIANGLES,F.length,gl.UNSIGNED_SHORT,0)}
   gl.depthMask(true);
   ctx.clearRect(0,0,ov.width,ov.height);
+  ctx.font=(10.5*d)+'px Inter, system-ui, sans-serif';
+  SP.forEach(function(o){var ag=t-o.t0;if(ag>9)return;var al_=ag<.4?ag/.4:ag>7?(9-ag)/2:1;
+    var X=VP[0]*o.x+VP[4]*o.y+VP[12],Y=VP[1]*o.x+VP[5]*o.y+VP[13],W=VP[3]*o.x+VP[7]*o.y+VP[15];if(W<=0)return;
+    var x=(X/W*.5+.5)*ov.width,y=(1-(Y/W*.5+.5))*ov.height;
+    if(o.k==='fz'&&SP.filter(function(q){return q.k==='fz'&&q.t0<o.t0&&o.t0-q.t0<2}).length)return;
+    var tx_=o.k==='fz'?'fezes · contadas · fora da temperatura':'urina · contada · fora da temperatura';
+    ctx.globalAlpha=al_;ctx.strokeStyle='rgba(255,255,255,.9)';ctx.setLineDash([4*d,3*d]);ctx.lineWidth=1.3*d;ctx.beginPath();ctx.arc(x,y,(o.k==='fz'?16:22)*d,0,7);ctx.stroke();ctx.setLineDash([]);
+    var tw=ctx.measureText(tx_).width,lx_=x+18*d;if(lx_+tw+12*d>ov.width)lx_=x-18*d-tw-10*d;if(lx_<4*d)lx_=4*d;ctx.fillStyle='rgba(10,8,30,.75)';ctx.fillRect(lx_,y-22*d,tw+10*d,16*d);ctx.fillStyle='#fff';ctx.fillText(tx_,lx_+5*d,y-10*d);ctx.globalAlpha=1});
   if(segOn){
     ctx.font=(11*d)+'px Inter, system-ui, sans-serif';ctx.lineWidth=1.4*d;
     KP.forEach(function(k){
@@ -1454,6 +1552,10 @@ if(red){A.classList.add('go');N.textContent=fmt(val());}
 else if(window.IntersectionObserver){new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!vis){vis=true;cycle()}else if(!v&&vis){vis=false;clearTimeout(tm)}}).observe(A)}
 else{A.classList.add('go');N.textContent=fmt(val())}
 if(R)R.addEventListener('input',function(){if(A.classList.contains('go')){cancelAnimationFrame(raf);N.textContent=fmt(val())}})})();
+</script>
+<script>
+(function(){var r=document.getElementById('mvn');if(!r)return;var v=document.getElementById('mvv'),y=document.getElementById('mvy'),c=document.getElementById('mvc');
+function u(){var n=+r.value;v.textContent=n;y.textContent=(n*365).toLocaleString('pt-BR');var p=n*5/1440*100;c.textContent=(p<1?p.toLocaleString('pt-BR',{maximumFractionDigits:1}):Math.round(p))+'%'}r.addEventListener('input',u);u()})();
 </script>
 </body>
 </html>
