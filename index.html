@@ -28,6 +28,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Biotério Forte</title>
+<script>try{var t=localStorage.getItem("bf-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&display=swap">
 <style>
 /* Layout: vitrine clara em azul gelo; o equipamento em 3D é o herói, com abas V1/V2, e as seções de prova e parceria vêm abaixo. */
@@ -62,6 +64,36 @@ p{margin:0;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 header.nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.1rem;flex-wrap:wrap}
 .brand{font-family:var(--display);font-weight:700;font-size:1.2rem;text-decoration:none;color:inherit}
 .navlinks{font-size:.92rem;color:var(--muted)}.navlinks .navin{display:flex;gap:1.4rem;flex-wrap:wrap}
+.navlinks .ni{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:transform .2s}
+@media (min-width:761px){
+ .navlinks .navin{gap:.35rem}
+ .navlinks a{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:.35rem .55rem .3rem;border-radius:12px;text-decoration:none;color:var(--muted);font-size:.78rem;font-weight:500;position:relative;transition:color .2s,background .2s}
+ .navlinks a:hover{color:var(--fg);background:var(--chip)}
+ .navlinks a:hover .ni{transform:translateY(-2px)}
+ .navlinks a[aria-current="true"]{color:var(--fg)}
+ .navlinks a[aria-current="true"] .ni{stroke-width:2.1}
+ .navlinks a[aria-current="true"]::after{content:"";position:absolute;left:22%;right:22%;bottom:-.35rem;height:2px;border-radius:2px;background:var(--fg)}
+}
+@media (max-width:760px){
+ .navlinks a{justify-content:flex-start;gap:.8rem}
+ .navlinks a::after{margin-left:auto}
+ .navlinks .ni{color:var(--blue)}
+ .navlinks a[aria-current="true"] span{font-weight:700}
+}
+@media (min-width:761px){
+ header.nav{position:sticky;top:0;padding-block:.5rem}
+ header.nav::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:-50vw;right:-50vw;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);opacity:0;transition:opacity .2s;pointer-events:none}
+ header.nav.stuck::before{opacity:1}
+}
+.themebtn{order:3;flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer;padding:0;transition:border-color .2s,transform .2s}
+.themebtn:hover{border-color:var(--blue);transform:rotate(-12deg)}
+.themebtn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;grid-area:1/1}
+.themebtn .ic-moon{fill:currentColor;stroke:none}
+.themebtn .ic-sun{display:none}
+:root[data-theme="dark"] .themebtn .ic-sun{display:block}:root[data-theme="dark"] .themebtn .ic-moon{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .themebtn .ic-sun{display:block}:root:not([data-theme="light"]) .themebtn .ic-moon{display:none}}
+header.nav .navlinks{order:2;margin-left:auto}
+@media (max-width:760px){.themebtn{order:1;margin-left:auto}.menubtn{order:2}header.nav .navlinks{order:4;margin-left:0}}
 .menubtn{display:none;position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;padding:0;flex:none}
 .menubtn span{position:absolute;left:13px;right:13px;height:2px;border-radius:2px;background:currentColor;transition:transform .28s ease,opacity .2s ease,top .28s ease}
 .menubtn span:nth-child(1){top:15px}.menubtn span:nth-child(2){top:21px}.menubtn span:nth-child(3){top:27px}
@@ -182,6 +214,48 @@ section{padding-block:4.5rem}
 footer{padding-block:2.5rem 3rem;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:4.5rem}
 footer p{max-width:none}
 
+.galbox{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.galbox>summary{list-style:none;cursor:pointer;display:block}
+.galbox>summary::-webkit-details-marker{display:none}
+.galbox>summary img{display:block;width:100%;max-height:340px;object-fit:cover;object-position:top;background:#fff;transition:filter .2s}
+.galbox>summary:hover img{filter:brightness(.92)}
+.galbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.3rem;border-top:1px solid var(--line)}
+.galbar b{display:block;font-size:1.05rem}
+.galbar small{display:block;color:var(--muted);font-size:.85rem;margin-top:.15rem}
+.galchev{flex:none;width:38px;height:38px;border-radius:999px;background:var(--accent);position:relative}
+.galchev::before{content:"";position:absolute;left:50%;top:45%;width:9px;height:9px;border-right:2px solid var(--accent-fg);border-bottom:2px solid var(--accent-fg);transform:translate(-50%,-50%) rotate(45deg);transition:transform .2s}
+.galbox[open] .galchev::before{transform:translate(-50%,-20%) rotate(-135deg)}
+.galbox[open]>summary img{display:none}
+.galbox>summary:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.galbody{padding:1.2rem}
+.fxfig{margin:0;display:flex;flex-direction:column;gap:.7rem}
+.fxstage{position:relative;aspect-ratio:5/3;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#dccdae}
+.fxl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fxth{opacity:.55}
+.fxmark.off{display:none}
+.fxctl{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;font-size:.88rem}
+.fxctl input[type=range]{flex:1 1 180px;accent-color:var(--blue)}
+.fxctl output{font-variant-numeric:tabular-nums;font-weight:600;min-width:3ch}
+.fxchk{display:inline-flex;align-items:center;gap:.35rem;color:var(--muted)}
+.fxfig figcaption{font-size:.8rem;color:var(--muted)}
+.bcomp{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center}
+.bcol{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+.bcol .tag{align-self:flex-start}
+.bgs{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.bg{border:1px solid var(--line);border-radius:14px;padding:.7rem .8rem;display:flex;flex-direction:column;gap:.25rem;min-width:0;background:var(--bg)}
+.bg b{font-size:.88rem}
+.bg small{font-size:.75rem;color:var(--muted);line-height:1.3}
+.bg.x{border-color:var(--blue)}
+.bg.db{border-style:dashed;opacity:.9}
+.rts{display:flex;flex-wrap:wrap;gap:4px;margin-top:.3rem}
+.rt{width:14px;height:9px;border-radius:50% 60% 60% 50%;background:var(--muted);display:block;position:relative}
+.bg.x .rt{background:var(--blue)}
+.dbi{display:flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--ok);margin-top:.3rem}
+.dbi svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7}
+.barrow svg{width:34px;height:34px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btot{font-size:.88rem;color:var(--muted)}
+.btot b{color:var(--fg)}
+@media (max-width:760px){.bcomp{grid-template-columns:1fr}.barrow{justify-self:center;transform:rotate(90deg)}}
 .gtools{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .gtools button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .gtools button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
@@ -264,9 +338,13 @@ footer p{max-width:none}
 <div class="wrap">
   <header class="nav">
     <a class="brand" href="#topo">Biotério Forte</a>
+    <button class="themebtn" id="themebtn" type="button" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+      <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a7 7 0 0 0 10.7 10.7z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+    </button>
     <button class="menubtn" id="menubtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
     <nav class="navlinks" id="navlinks" aria-label="Seções"><div class="navin">
-      <a href="#solucao">Solução</a><a href="#funcao">O que faz</a><a href="#eletronica">Eletrônica</a><a href="#validacao">Validação</a><a href="#resultados">Resultados</a><a href="#parcerias">Parcerias</a><a href="#contato">Contato</a>
+      <a href="#solucao"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2h5c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z"/></svg><span>Solução</span></a><a href="#beneficios"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4z"/></svg><span>Benefícios</span></a><a href="#funcao"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2.5-6 5 12 2.5-6h4"/></svg><span>O que faz</span></a><a href="#eletronica"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2.5v3.5M15 2.5v3.5M9 18v3.5M15 18v3.5M2.5 9h3.5M2.5 15h3.5M18 9h3.5M18 15h3.5"/></svg><span>Eletrônica</span></a><a href="#validacao"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.4 2.4L15.5 9.8"/></svg><span>Validação</span></a><a href="#resultados"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-8"/></svg><span>Resultados</span></a><a href="#parcerias"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.8" cy="9" r="2.6"/><path d="M15.5 14.6c2.6-.3 4.6 1.3 5 4.4"/></svg><span>Parcerias</span></a><a href="#contato"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-9l-4.5 3.5V16.5H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/><path d="M7.5 10h9M7.5 13h6"/></svg><span>Contato</span></a>
     </div></nav>
   </header>
 
@@ -325,6 +403,51 @@ footer p{max-width:none}
         <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
           <h3>Impressão 3D</h3><p>Peças modulares. Quem tem impressora 3D pode produzir e substituir peças sem depender de fornecedor único.</p></div>
       </div>
+    </section>
+
+    <section id="beneficios" style="padding-top:0">
+      <div class="head">
+        <span class="eyebrow">Benefícios</span>
+        <h2>Até ¾ menos animais por experimento</h2>
+        <p>Em pleno funcionamento, o monitoramento contínuo de cada caixa forma um banco de dados com o histórico dos animais. Com esse histórico validado, o Biotério Forte pode reduzir em até três quartos o número de animais de um experimento, e com isso os custos em todos os níveis.</p>
+      </div>
+      <div class="card" style="gap:1.1rem">
+        <h3>Como os grupos de um experimento mudam</h3>
+        <p>Um ensaio pré-clínico típico mantém, ao mesmo tempo, três grupos de controle além do grupo que recebe o tratamento em teste. Todos usam animais novos a cada experimento.</p>
+        <div class="bcomp">
+          <div class="bcol">
+            <span class="tag wip">Hoje</span>
+            <div class="bgs">
+              <div class="bg c"><b>Controle hígido</b><small>Animais saudáveis, sem intervenção</small><div class="rts"><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i></div></div>
+              <div class="bg c"><b>Controle doença</b><small>Doença induzida, sem tratamento</small><div class="rts"><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i></div></div>
+              <div class="bg c"><b>Controle padrão-ouro</b><small>Doença tratada com o tratamento de referência</small><div class="rts"><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i></div></div>
+              <div class="bg x"><b>Grupo experimental</b><small>Doença tratada com o tratamento em teste</small><div class="rts"><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i></div></div>
+            </div>
+            <p class="btot"><b>4 grupos</b> com animais novos</p>
+          </div>
+          <div class="barrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="bcol">
+            <span class="tag ok">Com o Biotério Forte</span>
+            <div class="bgs">
+              <div class="bg db"><b>Controle hígido</b><small>Substituído por dados históricos</small><div class="dbi"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Banco de dados auditável</div></div>
+              <div class="bg db"><b>Controle doença</b><small>Substituído por dados históricos</small><div class="dbi"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Banco de dados auditável</div></div>
+              <div class="bg db"><b>Controle padrão-ouro</b><small>Substituído por dados históricos</small><div class="dbi"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Banco de dados auditável</div></div>
+              <div class="bg x"><b>Grupo experimental</b><small>Doença tratada com o tratamento em teste</small><div class="rts"><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i><i class="rt"></i></div></div>
+            </div>
+            <p class="btot"><b>1 grupo</b> com animais novos: <b>¾ a menos</b></p>
+          </div>
+        </div>
+        <p>Os três grupos de controle repetem, experimento após experimento, condições que já foram observadas muitas vezes. Quando essas condições estão registradas de forma contínua, padronizada e auditável, os dados históricos podem ocupar o lugar dos controles, e só o grupo experimental precisa de animais novos. Se os quatro grupos tiverem o mesmo tamanho, um ensaio que usaria 40 animais passa a usar 10.</p>
+      </div>
+      <div class="grid3" style="margin-top:1rem">
+        <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div>
+          <h3>Menos animais</h3><p>Aplica na prática o princípio da Redução dos 3Rs, atendendo à DBCA e às resoluções do CONCEA.</p></div>
+        <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/></svg></div>
+          <h3>Custos menores em todos os níveis</h3><p>Menos animais significa menos compra e criação, ração, maravalha, água, caixas, espaço nas estantes, horas de manejo e descarte.</p></div>
+        <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+          <h3>Mais dados por animal</h3><p>Cada animal é acompanhado o tempo todo, sem abrir a caixa: temperatura, comportamento, alimentação e ambiente.</p></div>
+      </div>
+      <p class="pnote">A redução de até ¾ é o potencial do sistema em pleno funcionamento. Ela depende da formação e da validação do banco de dados histórico e da aceitação desse delineamento pelas Comissões de Ética no Uso de Animais (CEUAs).</p>
     </section>
 
     <section id="funcao" style="padding-top:0">
@@ -409,6 +532,64 @@ footer p{max-width:none}
         <tr><td>1</td><td>TCS3200</td><td>TCS3200-TCS230</td><td>TCS3200-TCS230</td></tr>
         </tbody></table></div></details>
       <p class="pnote">Modelo ilustrativo gerado a partir da lista de componentes: a posição e o formato das peças são simplificados e não substituem o projeto da placa. A câmera Xtherm II T2S substituiu o sensor AMG8833 que aparecia no Quadro 2.</p>
+      <div class="card fx" style="margin-top:1.4rem;gap:.8rem">
+        <h3>Duas câmeras, uma imagem só</h3>
+        <p>A placa tem dois sensores ópticos: a câmera comum do ESP32-CAM, que vê a cena como o olho humano, e a câmera térmica Xtherm II T2S, que mede o calor. As duas imagens são sobrepostas, com a térmica por cima e com transparência ajustável, e uma completa a outra.</p>
+        <p>Isso resolve um problema prático da termografia: urina e fezes recém-eliminadas também saem quentes e, na imagem térmica sozinha, podem ser confundidas com o animal. Na imagem comum, porém, elas não têm forma de rato. Cruzando as duas, o sistema mede a temperatura só onde o calor coincide com o contorno do animal e descarta as manchas quentes do piso.</p>
+        <figure class="fxfig">
+          <div class="fxstage">
+            <svg class="fxl" viewBox="0 0 400 240" role="img" aria-label="Imagem comum ilustrativa: rato sobre a maravalha, com uma mancha de urina e fezes no piso">
+              <rect width="400" height="240" fill="#dccdae"/>
+              <g fill="#cbb994" opacity=".7"><circle cx="30" cy="30" r="3"/><circle cx="90" cy="200" r="4"/><circle cx="210" cy="40" r="3"/><circle cx="330" cy="70" r="4"/><circle cx="370" cy="200" r="3"/><circle cx="250" cy="215" r="3"/><circle cx="60" cy="120" r="3"/></g>
+              <ellipse cx="300" cy="165" rx="42" ry="24" fill="#c3ad80"/>
+              <g fill="#5a3b22"><ellipse cx="250" cy="70" rx="7" ry="4"/><ellipse cx="266" cy="60" rx="7" ry="4" transform="rotate(30 266 60)"/><ellipse cx="258" cy="84" rx="7" ry="4" transform="rotate(-20 258 84)"/></g>
+              <g transform="translate(150 118) rotate(-18)">
+        <path d="M-58 4 C-90 10 -110 30 -128 26" fill="none" stroke="#d9a3a3" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="0" cy="0" rx="62" ry="34" fill="#f2f0ec"/>
+        <ellipse cx="66" cy="-2" rx="26" ry="19" fill="#f2f0ec"/>
+        <ellipse cx="74" cy="-20" rx="8" ry="7" fill="#e8b9b9"/><ellipse cx="74" cy="16" rx="8" ry="7" fill="#e8b9b9"/>
+      </g>
+            </svg>
+            <svg class="fxl fxth" id="fxth" viewBox="0 0 400 240" role="img" aria-label="Imagem térmica ilustrativa da mesma cena: o rato, a urina e as fezes aparecem quentes">
+              <defs>
+                <radialGradient id="fx-body"><stop offset="0" stop-color="#fffbe0"/><stop offset=".45" stop-color="#ffd23f"/><stop offset=".8" stop-color="#ff7a1a"/><stop offset="1" stop-color="#d7263d"/></radialGradient>
+                <radialGradient id="fx-head"><stop offset="0" stop-color="#fffbe0"/><stop offset=".6" stop-color="#ffc130"/><stop offset="1" stop-color="#ff6a1a"/></radialGradient>
+                <radialGradient id="fx-tail"><stop offset="0" stop-color="#e2384d"/><stop offset="1" stop-color="#8e1f6b"/></radialGradient>
+                <radialGradient id="fx-urine"><stop offset="0" stop-color="#ff9a2a"/><stop offset=".6" stop-color="#d7263d"/><stop offset="1" stop-color="#3a0f55" stop-opacity="0"/></radialGradient>
+                <radialGradient id="fx-pel"><stop offset="0" stop-color="#ff8a1a"/><stop offset="1" stop-color="#b0204a"/></radialGradient>
+              </defs>
+              <rect width="400" height="240" fill="#1d0b3d"/>
+              <ellipse cx="300" cy="165" rx="50" ry="31" fill="url(#fx-urine)"/>
+              <g fill="url(#fx-pel)"><ellipse cx="250" cy="70" rx="8" ry="5"/><ellipse cx="266" cy="60" rx="8" ry="5" transform="rotate(30 266 60)"/><ellipse cx="258" cy="84" rx="8" ry="5" transform="rotate(-20 258 84)"/></g>
+              <g transform="translate(150 118) rotate(-18)">
+        <path d="M-58 4 C-90 10 -110 30 -128 26" fill="none" stroke="url(#fx-tail)" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="0" cy="0" rx="62" ry="34" fill="url(#fx-body)"/>
+        <ellipse cx="66" cy="-2" rx="26" ry="19" fill="url(#fx-head)"/>
+        <ellipse cx="74" cy="-20" rx="8" ry="7" fill="url(#fx-tail)"/><ellipse cx="74" cy="16" rx="8" ry="7" fill="url(#fx-tail)"/>
+      </g>
+            </svg>
+            <svg class="fxl fxmark" viewBox="0 0 400 240" aria-hidden="true">
+              <g fill="none" stroke-width="2" stroke-dasharray="6 4">
+                <ellipse cx="172" cy="112" rx="104" ry="48" transform="rotate(-18 172 112)" stroke="#22c55e"/>
+                <ellipse cx="300" cy="165" rx="56" ry="35" stroke="#f8fafc"/>
+                <ellipse cx="258" cy="72" rx="26" ry="24" stroke="#f8fafc"/>
+              </g>
+              <g font-family="system-ui,sans-serif" font-size="9" font-weight="700">
+                <text x="60" y="48" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">Animal: medido</text>
+                <text x="262" y="218" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Urina: descartada</text>
+                <text x="232" y="38" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Fezes: descartadas</text>
+              </g>
+            </svg>
+          </div>
+          <div class="fxctl">
+            <label for="fxop">Transparência da imagem térmica</label>
+            <input type="range" id="fxop" min="0" max="100" value="55">
+            <output id="fxv" for="fxop">55%</output>
+            <label class="fxchk"><input type="checkbox" id="fxmk" checked> Mostrar marcações</label>
+          </div>
+          <figcaption>Ilustração esquemática, não uma captura real. Arraste o controle: em 0% aparece só a câmera comum, em 100% só a térmica.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="versoes" style="padding-top:0">
@@ -459,14 +640,22 @@ footer p{max-width:none}
         <h2>As 54 simulações, caso a caso</h2>
         <p>Cada peça foi testada com duas cargas de uso, A e B. As cores mostram a tensão de von Mises sobre a peça deformada. A folga é o escoamento do ABS (40 MPa) dividido pela tensão de pico: abaixo de 1 a peça cederia, entre 1 e 2 fica abaixo da meta de projeto.</p>
       </div>
-      <div class="gtools" id="gtools" role="group" aria-label="Filtros">
+      <details class="galbox" id="galbox">
+        <summary>
+          <img src="sim/conjunto_1.jpg" alt="Prévia dos mapas de tensão das peças da V2" loading="lazy">
+          <span class="galbar"><span><b>Ver as 54 simulações</b><small>Clique para abrir a galeria com filtros e imagens ampliadas</small></span><span class="galchev" aria-hidden="true"></span></span>
+        </summary>
+        <div class="galbody">
+        <div class="gtools" id="gtools" role="group" aria-label="Filtros">
         <button type="button" data-f="all" aria-pressed="true">Todas</button>
         <button type="button" data-f="A" aria-pressed="false">Carga A</button>
         <button type="button" data-f="B" aria-pressed="false">Carga B</button>
         <button type="button" data-f="low" aria-pressed="false">Folga abaixo de 2</button>
         <span class="gcount" id="gcount"></span>
       </div>
-      <div class="gal" id="gal"></div>
+        <div class="gal" id="gal"></div>
+        </div>
+      </details>
       <div class="card" style="margin-top:1.4rem;gap:.7rem">
         <div><span class="tag wip">Em andamento</span></div>
         <h3>Saia e testes de fluxo de ar</h3>
@@ -1164,6 +1353,23 @@ t.addEventListener('scroll',function(){requestAnimationFrame(upd)},{passive:true
 t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1)}else if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}});
 window.addEventListener('resize',function(){build();upd()});build();upd();
 })();
+</script>
+<script>
+(function(){var r=document.getElementById('fxop'),o=document.getElementById('fxv'),t=document.getElementById('fxth'),m=document.getElementById('fxmk'),k=document.querySelector('.fxmark');
+if(!r)return;function u(){t.style.opacity=r.value/100;o.textContent=r.value+'%'}r.addEventListener('input',u);u();
+m.addEventListener('change',function(){k.classList.toggle('off',!m.checked)})})();
+</script>
+<script>
+(function(){var b=document.getElementById('themebtn'),r=document.documentElement,m=document.querySelector('meta[name="theme-color"]');if(!b)return;
+function cur(){var t=r.getAttribute('data-theme');return t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}
+function meta(){if(m)m.setAttribute('content',cur()==='dark'?'#0a1626':'#f3f8fe')}
+meta();b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('bf-theme',n)}catch(e){}meta();window.dispatchEvent(new Event('resize'))})})();
+</script>
+<script>
+(function(){if(!window.IntersectionObserver)return;var L=document.querySelectorAll('#navlinks a[href^="#"]'),M={};
+L.forEach(function(a){var el=document.getElementById(a.getAttribute('href').slice(1));if(el)M[el.id]=a});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){L.forEach(function(a){a.removeAttribute('aria-current')});var a=M[e.target.id];if(a)a.setAttribute('aria-current','true')}})},{rootMargin:'-40% 0px -55% 0px'});
+Object.keys(M).forEach(function(id){io.observe(document.getElementById(id))})})();
 </script>
 </body>
 </html>
