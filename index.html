@@ -280,6 +280,28 @@ footer p{max-width:none}
 .mctl output{font-weight:700;font-variant-numeric:tabular-nums;min-width:3.5ch}
 .mfoot{font-size:.8rem!important}
 @media (max-width:700px){.mktw{grid-template-columns:1fr}.mktc{max-width:170px}}
+.ranim{display:grid;grid-template-columns:1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:18px;background:var(--bg)}
+.rslots{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+.rs{display:flex;flex-direction:column;align-items:center;gap:.35rem;text-align:center;min-width:0}
+.rs span{font-size:.72rem;color:var(--muted);line-height:1.2}
+.rico{position:relative;width:64px;height:44px}
+.rat,.dbx{position:absolute;inset:0;margin:auto;transition:opacity .6s ease,transform .7s cubic-bezier(.3,1.4,.5,1)}
+.rat{width:64px;height:40px}
+.rat .bd{fill:var(--muted)}.rat .er{fill:color-mix(in srgb,var(--muted) 70%,#f9a8b4)}.rat .tl,.rat .ft{fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round}
+.rat .ey{fill:var(--surface)}.rat .ns{fill:#f9a8b4}
+.rs.x .rat .bd{fill:var(--blue)}.rs.x .rat .tl,.rs.x .rat .ft{stroke:var(--blue)}.rs.x .rat .er{fill:color-mix(in srgb,var(--blue) 60%,#fff)}
+.rs.x span{color:var(--fg);font-weight:600}
+.dbx{width:30px;height:30px;fill:none;stroke:var(--ok);stroke-width:1.8;opacity:0;transform:translateY(10px) scale(.5)}
+.ranim.go .rs.c .rat{opacity:0;transform:translateY(-18px) scale(.4);transition-delay:calc(var(--i)*.35s)}
+.ranim.go .rs.c .dbx{opacity:1;transform:none;transition-delay:calc(var(--i)*.35s + .3s)}
+.ranim.go .rs.c span{color:var(--ok)}
+.ranim.go .rs.x .rat{animation:rbob 1.2s ease-in-out 1.2s 2}
+@keyframes rbob{50%{transform:translateY(-4px)}}
+.rcount{text-align:right;min-width:150px}
+.rcount b{display:block;font-family:var(--display);font-size:2rem;line-height:1;color:var(--ok);font-variant-numeric:tabular-nums}
+.rcount small{font-size:.78rem;color:var(--muted)}
+@media (max-width:700px){.ranim{grid-template-columns:1fr}.rcount{text-align:center}.rico{transform:scale(.8)}}
+@media (prefers-reduced-motion:reduce){.rat,.dbx{transition:none}.ranim.go .rs.x .rat{animation:none}}
 .gtools{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .gtools button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .gtools button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
@@ -474,6 +496,10 @@ footer p{max-width:none}
       <div class="card mkt" style="margin-top:1rem;gap:1rem">
         <h3>Quantos animais deixariam de ser usados por ano</h3>
         <p>Aplicando a redução de até ¾ aos números de uso de animais citados na dissertação, em três recortes de mercado: o total de referência (TAM), o mercado que o projeto atende (SAM) e a fatia realista de entrada (SOM).</p>
+        <div class="ranim" id="ranim" role="img" aria-label="Animação: dos quatro grupos de um experimento, os três de controle viram dados históricos e só o grupo experimental continua usando animais">
+          <div class="rslots"><div class="rs c" style="--i:0"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg><svg class="dbx" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span>Controle hígido</span></div><div class="rs c" style="--i:1"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg><svg class="dbx" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span>Controle doença</span></div><div class="rs c" style="--i:2"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg><svg class="dbx" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span>Controle padrão-ouro</span></div><div class="rs x" style="--i:3"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg></div><span>Grupo experimental</span></div></div>
+          <div class="rcount"><b id="rcn">0</b><small>animais poupados por ano no SOM</small></div>
+        </div>
         <div class="mktw">
           <svg class="mktc" viewBox="0 0 220 220" aria-hidden="true">
             <circle cx="110" cy="110" r="104" class="c1"/><circle cx="110" cy="140" r="70" class="c2"/><circle cx="110" cy="170" r="38" class="c3"/>
@@ -1416,6 +1442,18 @@ Object.keys(M).forEach(function(id){io.observe(document.getElementById(id))})})(
 (function(){var r=document.getElementById('mad');if(!r)return;var o=document.getElementById('madv'),O=document.getElementById('mO'),SAM=4.07e6,RED=.75;
 function fmt(n){if(n>=1e6)return (n/1e6).toLocaleString('pt-BR',{maximumFractionDigits:2})+' milhões';if(n>=1e3)return Math.round(n/1e3).toLocaleString('pt-BR')+' mil';return Math.round(n).toLocaleString('pt-BR')}
 function u(){var a=r.value/100;o.textContent=r.value+'%';O.textContent=fmt(SAM*a*RED)}r.addEventListener('input',u);u()})();
+</script>
+<script>
+(function(){var A=document.getElementById('ranim');if(!A)return;var N=document.getElementById('rcn'),R=document.getElementById('mad'),vis=false,tm=null,raf=null,
+red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function val(){return 4.07e6*(R?R.value/100:.1)*.75}
+function fmt(n){return Math.round(n).toLocaleString('pt-BR')}
+function count(){var t0=null,v=val(),d=1600;cancelAnimationFrame(raf);(function st(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/d);k=1-Math.pow(1-k,3);N.textContent=fmt(v*k);if(k<1)raf=requestAnimationFrame(st)})(performance.now())}
+function cycle(){if(!vis)return;A.classList.remove('go');N.textContent='0';tm=setTimeout(function(){A.classList.add('go');setTimeout(count,900);tm=setTimeout(cycle,7000)},1300)}
+if(red){A.classList.add('go');N.textContent=fmt(val());}
+else if(window.IntersectionObserver){new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!vis){vis=true;cycle()}else if(!v&&vis){vis=false;clearTimeout(tm)}}).observe(A)}
+else{A.classList.add('go');N.textContent=fmt(val())}
+if(R)R.addEventListener('input',function(){if(A.classList.contains('go')){cancelAnimationFrame(raf);N.textContent=fmt(val())}})})();
 </script>
 </body>
 </html>
