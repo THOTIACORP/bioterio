@@ -232,7 +232,7 @@ footer p{max-width:none}
 .galbox>summary:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
 .galbody{padding:1.2rem}
 .fxfig{margin:0;display:flex;flex-direction:column;gap:.7rem}
-.fxstage{position:relative;aspect-ratio:5/3;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#dccdae}
+.fxstage{position:relative;aspect-ratio:3/2;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#dccdae}
 .fxl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .fxth{opacity:.55}
 .fxmark.off{display:none}
@@ -339,6 +339,13 @@ footer p{max-width:none}
 .fxq b{color:var(--fg);font-variant-numeric:tabular-nums}
 .tnote2{margin:0;padding:.7rem .9rem .8rem;font-size:.76rem;line-height:1.5;color:#b9a8d8;background:#0a0422;border-top:1px solid #1d1440}
 @media (max-width:560px){.tm>div:nth-child(16){grid-column:1 / -1}}
+.manph{position:relative;margin:0;aspect-ratio:4/4.4;border-radius:18px;overflow:visible}
+.manph .mp-main{width:100%;height:100%!important;object-fit:cover;object-position:50% 22%;border-radius:18px;display:block;filter:saturate(.9)}
+.manph .mp-inset{position:absolute;right:-14px;bottom:28px;width:48%;height:auto!important;max-height:none;aspect-ratio:3/2;object-fit:cover;border-radius:14px;border:4px solid var(--surface);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.manph .mp-tag{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:.45rem;font-size:.74rem;font-weight:600;padding:.35rem .7rem;border-radius:999px;background:rgba(14,22,40,.78);color:#fff;backdrop-filter:blur(6px)}
+.manph .mp-tag i{width:8px;height:8px;border-radius:50%;background:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.3)}
+.manph figcaption{position:absolute;left:12px;bottom:8px;font-size:.62rem;color:rgba(255,255,255,.85);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+@media (max-width:760px){.manph{max-width:380px;justify-self:center;width:100%}.manph .mp-inset{right:-6px}}
 .gtools{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .gtools button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .gtools button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
@@ -582,32 +589,12 @@ footer p{max-width:none}
       </div>
       <div class="card manual" style="margin-top:1rem">
         <div class="manw">
-          <svg class="manv" viewBox="0 0 360 260" role="img" aria-label="Ilustração: pesquisadora de jaleco com prancheta observa um rato na caixa e anota, com um relógio na parede">
-            <rect x="0" y="0" width="360" height="260" rx="18" class="mv-bg"/>
-            <g class="mv-clock" transform="translate(300 52)"><circle r="22" class="mv-face"/><circle r="2.5" class="mv-ink"/><line y2="-14" class="mv-hand mv-h1"/><line y2="-9" class="mv-hand mv-h2"/></g>
-            <rect x="20" y="214" width="320" height="10" rx="4" class="mv-desk"/>
-            <g transform="translate(176 150)">
-              <rect width="150" height="64" rx="8" class="mv-cage"/>
-              <rect x="4" y="46" width="142" height="14" rx="4" class="mv-bed"/>
-              <path d="M0 10 H150" class="mv-lid"/>
-              <g class="mv-rat"><path d="M18 46 C8 46 6 52 12 55" class="mv-tail"/><ellipse cx="34" cy="42" rx="16" ry="9" class="mv-ratb"/><circle cx="50" cy="38" r="7.5" class="mv-ratb"/><circle cx="47" cy="31" r="3.6" class="mv-ear"/><circle cx="54" cy="37" r="1.2" class="mv-eye"/></g>
-            </g>
-            <g transform="translate(52 52)">
-              <path d="M10 162 C10 112 22 94 50 94 C78 94 90 112 90 162 Z" class="mv-coat"/>
-              <path d="M50 96 V162" class="mv-seam"/>
-              <rect x="40" y="76" width="20" height="22" rx="6" class="mv-skin"/>
-              <circle cx="50" cy="58" r="24" class="mv-skin"/>
-              <path d="M26 58 C24 34 40 28 52 30 C66 30 78 40 74 60 C70 46 58 42 50 44 C40 44 30 48 26 58 Z" class="mv-hair"/>
-              <circle cx="58" cy="60" r="2.4" class="mv-ink"/><circle cx="70" cy="60" r="2.4" class="mv-ink"/>
-              <path d="M54 54 h8 M66 54 h8" class="mv-brow"/>
-              <circle cx="64" cy="61" r="12" class="mv-glass"/>
-              <g class="mv-board"><rect x="70" y="104" width="46" height="58" rx="4" class="mv-clip" transform="rotate(-8 93 133)"/>
-                <rect x="84" y="100" width="18" height="8" rx="2" class="mv-ink" transform="rotate(-8 93 104)"/>
-                <path d="M78 120 h28 M78 130 h24 M78 140 h28 M78 150 h18" class="mv-lines" transform="rotate(-8 93 133)"/></g>
-              <path d="M24 120 C40 140 62 146 80 140" class="mv-arm"/>
-              <g class="mv-pen"><path d="M98 146 L116 118" class="mv-penl"/><circle cx="98" cy="146" r="5" class="mv-skin"/></g>
-            </g>
-          </svg>
+          <figure class="manph">
+            <img class="mp-main" src="https://images.pexels.com/photos/4031689/pexels-photo-4031689.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Pesquisador de jaleco e luvas anotando em uma prancheta no laboratório" loading="lazy" width="900" height="1350">
+            <img class="mp-inset" src="https://images.pexels.com/photos/38039339/pexels-photo-38039339.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Camundongos brancos dentro de uma caixa-moradia, um deles no comedouro" loading="lazy">
+            <span class="mp-tag"><i></i>Anotação manual · 08:00, 13:00, 17:00</span>
+            <figcaption>Fotos: Pexels</figcaption>
+          </figure>
           <div class="mant">
             <span class="eyebrow">O problema de hoje</span>
             <h3>Quantas vezes você já ficou na frente da caixa, de prancheta na mão, anotando?</h3>
@@ -684,46 +671,40 @@ footer p{max-width:none}
         <p>As manchas descartadas da termografia não são perdidas: o sistema conta cada episódio de micção e de defecação, com horário e área aproximada da mancha. Frequência de urina e de fezes é um indicador de saúde, de estresse e de consumo de água e ração, então o que seria ruído na medida de temperatura vira um dado a mais sobre o animal.</p>
         <figure class="fxfig">
           <div class="fxstage">
-            <svg class="fxl" viewBox="0 0 400 240" role="img" aria-label="Imagem comum ilustrativa: rato sobre a maravalha, com uma mancha de urina e fezes no piso">
-              <rect width="400" height="240" fill="#dccdae"/>
-              <g fill="#cbb994" opacity=".7"><circle cx="30" cy="30" r="3"/><circle cx="90" cy="200" r="4"/><circle cx="210" cy="40" r="3"/><circle cx="330" cy="70" r="4"/><circle cx="370" cy="200" r="3"/><circle cx="250" cy="215" r="3"/><circle cx="60" cy="120" r="3"/></g>
-              <ellipse cx="300" cy="165" rx="42" ry="24" fill="#c3ad80"/>
-              <g fill="#5a3b22"><ellipse cx="250" cy="70" rx="7" ry="4"/><ellipse cx="266" cy="60" rx="7" ry="4" transform="rotate(30 266 60)"/><ellipse cx="258" cy="84" rx="7" ry="4" transform="rotate(-20 258 84)"/></g>
-              <g transform="translate(150 118) rotate(-18)">
-        <path d="M-58 4 C-90 10 -110 30 -128 26" fill="none" stroke="#d9a3a3" stroke-width="5" stroke-linecap="round"/>
-        <ellipse cx="0" cy="0" rx="62" ry="34" fill="#f2f0ec"/>
-        <ellipse cx="66" cy="-2" rx="26" ry="19" fill="#f2f0ec"/>
-        <ellipse cx="74" cy="-20" rx="8" ry="7" fill="#e8b9b9"/><ellipse cx="74" cy="16" rx="8" ry="7" fill="#e8b9b9"/>
-      </g>
+            <svg class="fxl" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Imagem comum: camundongos brancos na caixa-moradia, com fezes e uma mancha de urina na maravalha">
+              <image href="https://images.pexels.com/photos/38039339/pexels-photo-38039339.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" x="0" y="0" width="600" height="400" preserveAspectRatio="xMidYMid slice"/>
+              <ellipse cx="490" cy="345" rx="48" ry="20" fill="#2a1d0e" opacity=".45"/>
+              <ellipse cx="350" cy="318" rx="7" ry="4" transform="rotate(-20 350 318)" fill="#3b2412" stroke="#1f120a" stroke-width="1"/><ellipse cx="366" cy="330" rx="7" ry="4" transform="rotate(15 366 330)" fill="#3b2412" stroke="#1f120a" stroke-width="1"/><ellipse cx="352" cy="338" rx="7" ry="4" transform="rotate(-5 352 338)" fill="#3b2412" stroke="#1f120a" stroke-width="1"/>
             </svg>
-            <svg class="fxl fxth" id="fxth" viewBox="0 0 400 240" role="img" aria-label="Imagem térmica ilustrativa da mesma cena: o rato, a urina e as fezes aparecem quentes">
+            <svg class="fxl fxth" id="fxth" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Imagem térmica simulada da mesma cena: os animais, as fezes e a urina aparecem quentes">
               <defs>
-                <radialGradient id="fx-body"><stop offset="0" stop-color="#fffbe0"/><stop offset=".45" stop-color="#ffd23f"/><stop offset=".8" stop-color="#ff7a1a"/><stop offset="1" stop-color="#d7263d"/></radialGradient>
-                <radialGradient id="fx-head"><stop offset="0" stop-color="#fffbe0"/><stop offset=".6" stop-color="#ffc130"/><stop offset="1" stop-color="#ff6a1a"/></radialGradient>
-                <radialGradient id="fx-tail"><stop offset="0" stop-color="#e2384d"/><stop offset="1" stop-color="#8e1f6b"/></radialGradient>
-                <radialGradient id="fx-urine"><stop offset="0" stop-color="#ff9a2a"/><stop offset=".6" stop-color="#d7263d"/><stop offset="1" stop-color="#3a0f55" stop-opacity="0"/></radialGradient>
-                <radialGradient id="fx-pel"><stop offset="0" stop-color="#ff8a1a"/><stop offset="1" stop-color="#b0204a"/></radialGradient>
+                <filter id="fx-iron" color-interpolation-filters="sRGB">
+                  <feColorMatrix type="matrix" values=".3 .59 .11 0 0  .3 .59 .11 0 0  .3 .59 .11 0 0  0 0 0 1 0"/>
+                  <feComponentTransfer><feFuncR type="linear" slope="1.75" intercept="-.3"/><feFuncG type="linear" slope="1.75" intercept="-.3"/><feFuncB type="linear" slope="1.75" intercept="-.3"/></feComponentTransfer>
+                  <feGaussianBlur stdDeviation="2.2"/>
+                  <feComponentTransfer><feFuncR type="table" tableValues=".04 .17 .61 .91 1 1"/><feFuncG type="table" tableValues="0 .04 .11 .27 .70 1"/><feFuncB type="table" tableValues=".04 .42 .43 .17 .12 .9"/></feComponentTransfer>
+                </filter>
+                <radialGradient id="fx-hot"><stop offset="0" stop-color="#fff2a8"/><stop offset=".45" stop-color="#ffb02e"/><stop offset="1" stop-color="#e2384d" stop-opacity=".2"/></radialGradient>
+                <radialGradient id="fx-uri"><stop offset="0" stop-color="#ffc23f"/><stop offset=".55" stop-color="#e8452f"/><stop offset="1" stop-color="#7a1f6b" stop-opacity="0"/></radialGradient>
               </defs>
-              <rect width="400" height="240" fill="#1d0b3d"/>
-              <ellipse cx="300" cy="165" rx="50" ry="31" fill="url(#fx-urine)"/>
-              <g fill="url(#fx-pel)"><ellipse cx="250" cy="70" rx="8" ry="5"/><ellipse cx="266" cy="60" rx="8" ry="5" transform="rotate(30 266 60)"/><ellipse cx="258" cy="84" rx="8" ry="5" transform="rotate(-20 258 84)"/></g>
-              <g transform="translate(150 118) rotate(-18)">
-        <path d="M-58 4 C-90 10 -110 30 -128 26" fill="none" stroke="url(#fx-tail)" stroke-width="5" stroke-linecap="round"/>
-        <ellipse cx="0" cy="0" rx="62" ry="34" fill="url(#fx-body)"/>
-        <ellipse cx="66" cy="-2" rx="26" ry="19" fill="url(#fx-head)"/>
-        <ellipse cx="74" cy="-20" rx="8" ry="7" fill="url(#fx-tail)"/><ellipse cx="74" cy="16" rx="8" ry="7" fill="url(#fx-tail)"/>
-      </g>
+              <image href="https://images.pexels.com/photos/38039339/pexels-photo-38039339.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" x="0" y="0" width="600" height="400" preserveAspectRatio="xMidYMid slice" filter="url(#fx-iron)"/>
+              <ellipse cx="490" cy="345" rx="58" ry="26" fill="url(#fx-uri)"/>
+              <ellipse cx="350" cy="318" rx="9" ry="6" transform="rotate(-20 350 318)" fill="url(#fx-hot)"/><ellipse cx="366" cy="330" rx="9" ry="6" transform="rotate(15 366 330)" fill="url(#fx-hot)"/><ellipse cx="352" cy="338" rx="9" ry="6" transform="rotate(-5 352 338)" fill="url(#fx-hot)"/>
             </svg>
-            <svg class="fxl fxmark" viewBox="0 0 400 240" aria-hidden="true">
-              <g fill="none" stroke-width="2" stroke-dasharray="6 4">
-                <ellipse cx="172" cy="112" rx="104" ry="48" transform="rotate(-18 172 112)" stroke="#22c55e"/>
-                <ellipse cx="300" cy="165" rx="56" ry="35" stroke="#f8fafc"/>
-                <ellipse cx="258" cy="72" rx="26" ry="24" stroke="#f8fafc"/>
+            <svg class="fxl fxmark" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <g fill="none" stroke-width="2.5" stroke-dasharray="8 5">
+                <ellipse cx="300" cy="190" rx="78" ry="84" stroke="#22c55e"/>
+                <ellipse cx="95" cy="170" rx="80" ry="150" stroke="#22c55e"/>
+                <ellipse cx="358" cy="328" rx="30" ry="24" stroke="#f8fafc"/>
+                <ellipse cx="490" cy="345" rx="66" ry="32" stroke="#f8fafc"/>
               </g>
-              <g font-family="system-ui,sans-serif" font-size="9" font-weight="700">
-                <text x="60" y="48" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">Animal: temperatura medida</text>
-                <text x="236" y="212" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Urina: fora da temperatura</text><text x="236" y="224" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">contada: 1 micção</text>
-                <text x="214" y="26" fill="#334155" stroke="#fff" stroke-width="3" paint-order="stroke">Fezes: fora da temperatura</text><text x="214" y="38" fill="#16a34a" stroke="#fff" stroke-width="3" paint-order="stroke">contadas: 3 bolinhas</text>
+              <g font-family="system-ui,sans-serif" font-size="13" font-weight="700" paint-order="stroke" stroke="rgba(10,10,20,.85)" stroke-width="4">
+                <text x="232" y="96" fill="#4ade80">Animal: temperatura medida</text>
+                <text x="250" y="378" fill="#fff">Fezes: fora da temperatura</text>
+                <text x="250" y="394" fill="#4ade80">contadas: 3 bolinhas</text>
+                <text x="430" y="285" fill="#fff">Urina: fora da</text>
+                <text x="430" y="300" fill="#fff">temperatura</text>
+                <text x="430" y="315" fill="#4ade80">contada: 1 micção</text>
               </g>
             </svg>
           </div>
@@ -735,7 +716,7 @@ footer p{max-width:none}
           </div>
           <div class="fxq"><span><b>36,8 °C</b> temperatura do animal</span><span><b>1</b> micção registrada</span><span><b>3</b> bolinhas de fezes registradas</span>
           </div>
-          <figcaption>Ilustração esquemática, não uma captura real; os valores são fictícios. Arraste o controle: em 0% aparece só a câmera comum, em 100% só a térmica.</figcaption>
+          <figcaption>Foto: Pexels. A imagem térmica é uma simulação feita sobre a foto, e as fezes, a urina e os valores são ilustrativos. Arraste o controle: em 0% aparece só a câmera comum, em 100% só a térmica.</figcaption>
         </figure>
       </div>
     </section>
