@@ -351,6 +351,8 @@ footer p{max-width:none}
 .gtools button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .gtools button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .gcount{margin-left:auto;align-self:center;font-size:.85rem;color:var(--muted)}
+.ghd{grid-column:1/-1;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+.fs.n{background:var(--chip);color:var(--muted)}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
 .gcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0;text-align:left;font:inherit;color:inherit;padding:0;cursor:pointer}
 .gcard:hover{border-color:var(--blue)}
@@ -381,11 +383,21 @@ footer p{max-width:none}
 .pbl{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .pb{position:absolute;left:0;top:0;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:2px solid #fff;background:var(--blue);color:#fff;font:700 .72rem/1 var(--body);display:grid;place-items:center;padding:0;cursor:pointer;pointer-events:auto;box-shadow:0 2px 8px rgba(10,34,70,.35);will-change:transform}
 .pb.on{background:#0fb5a8;transform-origin:center;outline:3px solid rgba(15,181,168,.35)}
+.pinfo{position:absolute;right:16px;top:64px;width:min(330px,40%);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem 1.1rem 1.1rem;box-shadow:0 10px 30px rgba(10,34,70,.18);display:flex;flex-direction:column;gap:.45rem;animation:pin .2s ease-out}
+.pinfo[hidden]{display:none}
+@keyframes pin{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+.pinum{align-self:flex-start;flex:none;width:30px;height:30px;border-radius:50%;background:#0fb5a8;color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center}
+.pinfo h3{font-size:1.15rem;line-height:1.25;padding-right:1.6rem}
+.pinfo p{font-size:.9rem;color:var(--muted);line-height:1.5}
+.pinfo .pifn{font-size:.82rem;color:var(--fg);border-top:1px solid var(--line);padding-top:.5rem}
+.pix{position:absolute;right:.6rem;top:.55rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--chip);color:var(--fg);font:600 1.1rem/1 var(--body);cursor:pointer}
+@media (max-width:760px){.pinfo{position:relative;right:auto;top:auto;width:auto;margin:0 12px 12px;box-shadow:none}}
 .ptag{position:absolute;left:14px;top:14px;font-size:.72rem;letter-spacing:.08em;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:.3rem .7rem;border-radius:999px}
 .pctl{position:absolute;right:14px;top:12px;display:flex;gap:.45rem}
 .pctl .vbtn{padding:.42rem .85rem;font-size:.8rem}
-.pbleg{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.6rem}
-.pbleg li{margin:0;min-width:0}
+.pbleg{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));grid-auto-rows:1fr;gap:.6rem}
+.pbleg li{margin:0;min-width:0;display:flex}
+.pbleg li>button{height:100%}
 .pbleg button{font:inherit;width:100%;text-align:left;display:flex;gap:.7rem;align-items:flex-start;padding:.65rem .8rem;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .pbleg button[aria-pressed="true"]{border-color:#0fb5a8;box-shadow:0 0 0 2px rgba(15,181,168,.25)}
 .pbleg i{flex:none;font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center;margin-top:.1rem}
@@ -627,15 +639,23 @@ footer p{max-width:none}
       <div class="head">
         <span class="eyebrow">Eletrônica</span>
         <h2>A placa que reúne os sensores da caixa</h2>
-        <p>Esta é a placa usada para validar o circuito. Ela junta o controlador ESP32-CAN, a câmera térmica Xtherm II T2S, o sensor de cor TCS3200 e os demais sensores de ambiente, luz, som e peso. Arraste para girar e toque nos números para ver o que cada peça faz.</p>
+        <p>Esta é a placa usada para validar o circuito. Ela junta o controlador ESP32-CAN, a câmera térmica Xtherm II T2S, o sensor de cor TCS3200 e os demais sensores de ambiente, luz, som e peso. Toda a placa usa conectores de encaixe rápido (push-in): os sensores e módulos entram e saem sem solda e sem ferramenta, o que facilita trocar uma peça, fazer manutenção e retirar a eletrônica antes da limpeza da caixa. Arraste para girar e toque nos números para ver o que cada peça faz.</p>
       </div>
       <div class="pcbv" id="pcbbox">
         <canvas id="pcb" aria-label="Placa eletrônica em 3D com ESP32-CAN, câmera térmica Xtherm II T2S, Arduino Nano, TCS3200, HX711 e outros componentes. Modelo ilustrativo."></canvas>
         <div class="pbl" id="pbl"></div>
+        <aside class="pinfo" id="pinfo" hidden aria-live="polite"><button type="button" class="pix" id="pix" aria-label="Fechar">×</button><div class="pinum" id="pinum"></div><h3 id="pinm"></h3><p id="pids"></p><p class="pifn" id="pifn"></p></aside>
         <div class="ptag">PLACA DE VALIDAÇÃO · modelo 3D</div>
         <div class="pctl"><button type="button" class="vbtn" id="pcbtop" aria-pressed="false">Vista de cima</button><button type="button" class="vbtn" id="pcbspin" aria-pressed="true">Girar</button></div>
       </div>
       <ol class="pbleg" id="pbleg"></ol>
+      <details class="galbox" id="galpl" style="margin-top:1.2rem">
+        <summary>
+          <span class="galhero"><img src="sim/placa/web/f/projeto_1.jpg" alt="Projeto 3D da placa de validação do circuito" loading="lazy"><span class="galtag">Placa de validação · projeto 3D</span></span>
+          <span class="galbar"><span><b>Ver fotos da placa de validação</b><small>Primeiro o projeto, depois a placa real. Os sensores encaixam e desencaixam sem solda.</small></span><span class="galchev" aria-hidden="true"></span></span>
+        </summary>
+        <div class="galbody"><div class="gal" id="galpl2"></div></div>
+      </details>
       <details class="bom"><summary>Lista completa de componentes (Quadro 2)</summary><div class="bomw"><table>
         <thead><tr><th>Qtd.</th><th>Valor</th><th>Componente</th><th>Encapsulamento</th></tr></thead>
         <tbody>
@@ -866,7 +886,7 @@ footer p{max-width:none}
 </div>
 
 
-<div class="lb" id="lbar" hidden role="dialog" aria-modal="true" aria-label="Imagem da simulação do ar">
+<div class="lb" id="lbar" hidden role="dialog" aria-modal="true" aria-label="Imagem ampliada">
   <div class="lbin">
     <img id="lbarimg" alt="">
     <div class="lbbar"><div><h3 id="lbart"></h3><p id="lbarp"></p></div>
@@ -874,7 +894,20 @@ footer p{max-width:none}
   </div>
 </div>
 <script>
-(function(){var AR=[
+(function(){
+var lb=document.getElementById('lbar'),cur=[],pos=0;
+function show(L,n){cur=L;pos=(n+L.length)%L.length;var i=L[pos],im=document.getElementById('lbarimg');im.src=i.f;im.alt=i.t+', '+i.s;
+ document.getElementById('lbart').textContent=i.t+' · '+i.s;document.getElementById('lbarp').textContent=i.p;lb.hidden=false}
+function hide(){lb.hidden=true}
+document.getElementById('lbarx').onclick=hide;document.getElementById('lbarprev').onclick=function(){show(cur,pos-1)};document.getElementById('lbarnext').onclick=function(){show(cur,pos+1)};
+lb.addEventListener('click',function(e){if(e.target===lb)hide()});
+addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(cur,pos-1);if(e.key==='ArrowRight')show(cur,pos+1)});
+function build(id,L){var g=document.getElementById(id),last=null;L.forEach(function(i,n){
+ if(i.g&&i.g!==last){var h=document.createElement('h4');h.className='ghd';h.textContent=i.g;g.appendChild(h);last=i.g}
+ var b=document.createElement('button');b.type='button';b.className='gcard';
+ b.innerHTML='<img loading="lazy" src="'+i.th+'" alt="'+i.t+', '+i.s+'"><div class="gmeta"><h3>'+i.t+'</h3><p>'+i.s+'</p><div class="grow"><span class="fs '+i.k+'">'+i.v+'</span></div></div>';
+ b.onclick=function(){show(L,n)};g.appendChild(b)})}
+var AR=[
 {id:'ar_3d',t:'Caminho do ar',s:'Positiva · filtro limpo',p:'Linhas de corrente em 3D: o ar entra pela conexão lateral, percorre a caixa-moradia e sai pelos furos da sobretampa com o filtro HEPA.',k:'ok',v:'15,7 Pa'},
 {id:'pos_limpo',t:'Ventilação positiva',s:'Filtro limpo',p:'Perda de carga de 15,7 Pa e pressão interna de +12,8 Pa. O jato da entrada chega a 2,36 m/s no alto; a 3 cm do fundo a velocidade mediana é de 1,8 cm/s.',k:'ok',v:'+12,8 Pa'},
 {id:'pos_sat',t:'Ventilação positiva',s:'Filtro saturado',p:'Com o filtro no fim da vida útil, a perda de carga sobe para 27,0 Pa e a pressão interna para +24,1 Pa. O ventilador deve vencer pelo menos esse valor. A velocidade junto aos animais quase não muda.',k:'ok',v:'+24,1 Pa'},
@@ -882,16 +915,21 @@ footer p{max-width:none}
 {id:'neg_sat',t:'Ventilação negativa',s:'Filtro saturado',p:'Com o filtro saturado, a caixa fica a −24,0 Pa e a perda de carga é de 26,6 Pa. O fundo continua com ar quase parado (mediana de 0,4 cm/s).',k:'mid',v:'−24,0 Pa'},
 {id:'zona',t:'Ar na altura dos animais',s:'Positiva · 0 a 10 cm do fundo',p:'Distribuição da velocidade do ar onde os animais ficam. A mediana fica perto de 2 cm/s com o filtro limpo e de 1,7 cm/s com o filtro saturado, longe das correntes de ar que o Guide recomenda evitar.',k:'ok',v:'1,9 cm/s'},
 {id:'difusor',t:'Difusor de encaixe',s:'Proposta para a entrada lateral',p:'Meia esfera de 84 mm com 87 furos de 6 mm, encaixada por pressão no furo da carenagem. A área dos furos é 2,2 vezes a do furo, o que reduz a velocidade média de passagem de 0,42 para 0,19 m/s. O efeito no escoamento ainda será simulado.',k:'mid',v:'Proposta'}];
-var g=document.getElementById('galar2'),lb=document.getElementById('lbar'),pos=0;
-AR.forEach(function(i,n){var b=document.createElement('button');b.type='button';b.className='gcard';
- b.innerHTML='<img loading="lazy" src="sim/ar/t/'+i.id+'.jpg" alt="'+i.t+', '+i.s+'"><div class="gmeta"><h3>'+i.t+'</h3><p>'+i.s+'</p><div class="grow"><span class="fs '+i.k+'">'+i.v+'</span></div></div>';
- b.onclick=function(){show(n)};g.appendChild(b)});
-function show(n){pos=(n+AR.length)%AR.length;var i=AR[pos],im=document.getElementById('lbarimg');im.src='sim/ar/f/'+i.id+'.jpg';im.alt=i.t+', '+i.s;
- document.getElementById('lbart').textContent=i.t+' · '+i.s;document.getElementById('lbarp').textContent=i.p;lb.hidden=false}
-function hide(){lb.hidden=true}
-document.getElementById('lbarx').onclick=hide;document.getElementById('lbarprev').onclick=function(){show(pos-1)};document.getElementById('lbarnext').onclick=function(){show(pos+1)};
-lb.addEventListener('click',function(e){if(e.target===lb)hide()});
-addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(pos-1);if(e.key==='ArrowRight')show(pos+1)});
+AR.forEach(function(i){i.f='sim/ar/f/'+i.id+'.jpg';i.th='sim/ar/t/'+i.id+'.jpg'});
+build('galar2',AR);
+var PL=[
+{id:'projeto_1',g:'Projeto',t:'Projeto 3D',s:'Vista em perspectiva',p:'Modelo 3D da placa de validação com os módulos de sensores, o controlador e os conectores de borne.',k:'n',v:'Projeto'},
+{id:'projeto_2',g:'Projeto',t:'Projeto 3D',s:'Vista pelo outro lado',p:'Outra vista do projeto, mostrando o microfone, o Arduino Nano e os bornes de ligação.',k:'n',v:'Projeto'},
+{id:'projeto_3',g:'Projeto',t:'Projeto 3D',s:'Vista lateral',p:'Vista do projeto com o sensor de temperatura e umidade e os módulos de célula de carga.',k:'n',v:'Projeto'},
+{id:'projeto_4',g:'Projeto',t:'Projeto 3D',s:'Face inferior',p:'Face de baixo da placa no projeto, com as ilhas dos componentes.',k:'n',v:'Projeto'},
+{id:'projeto_5',g:'Projeto',t:'Esquema elétrico',s:'Circuito completo',p:'Esquema elétrico da placa de validação, base para o desenho das trilhas.',k:'n',v:'Projeto'},
+{id:'real_1',g:'Placa real',t:'Placa fabricada',s:'Face dos componentes',p:'Placa recém-fabricada, ainda sem componentes, vista pela face onde eles são montados.',k:'ok',v:'Real'},
+{id:'real_2',g:'Placa real',t:'Placa fabricada',s:'Trilhas de cobre',p:'Face das trilhas de cobre, antes da soldagem.',k:'ok',v:'Real'},
+{id:'real_3',g:'Placa real',t:'Soldagem',s:'Trilhas com os primeiros componentes',p:'Face das trilhas depois da soldagem dos primeiros componentes.',k:'ok',v:'Real'},
+{id:'real_4',g:'Placa real',t:'Soldagem',s:'Conectores e soquetes',p:'Face dos componentes com os soquetes, bornes e componentes passivos já soldados.',k:'ok',v:'Real'},
+{id:'real_5',g:'Placa real',t:'Placa montada',s:'Com os módulos de sensores',p:'Placa de validação montada com o Arduino Nano, os módulos de sensores, o relé e os bornes de ligação. Todos os sensores entram em conectores de encaixe rápido, sem solda, e podem ser retirados ou trocados em segundos.',k:'ok',v:'Real'}];
+PL.forEach(function(i){i.f='sim/placa/web/f/'+i.id+'.jpg';i.th='sim/placa/web/t/'+i.id+'.jpg'});
+build('galpl2',PL);
 })();
 </script>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagem da simulação">
@@ -1496,7 +1534,26 @@ var pl=document.getElementById('pbl'),BD=[
 var bd=[],lg=document.getElementById('pbleg'),seen={};
 BD.forEach(function(b){var e=document.createElement('button');e.type='button';e.className='pb';e.textContent=b[0];e.setAttribute('aria-label',b[1]||('Componente '+b[0]));e.dataset.g=b[0];pl.appendChild(e);bd.push({e:e,p:[b[2],b[3],b[4]],g:b[0]});
  if(b[1]&&!seen[b[0]]){seen[b[0]]=1;var li=document.createElement('li');li.innerHTML='<button type="button" aria-pressed="false" data-g="'+b[0]+'"><i>'+b[0]+'</i><div><b>'+b[1]+'</b><span>'+b[5]+'</span></div></button>';lg.appendChild(li)}});
-function setHi(g){hi=(hi===g)?0:g;bd.forEach(function(o){o.e.classList.toggle('on',o.g===hi)});
+var EX={
+1:'É o cérebro da placa: coordena os sensores, processa as medidas e envia os dados por Wi-Fi ou Bluetooth. O barramento CAN permite ligar várias placas por cabo, de forma robusta a ruído.',
+2:'Mede a temperatura da superfície do animal sem tocar nele. Junto com a câmera comum, separa o calor do animal das manchas quentes de urina e fezes no piso.',
+3:'Cuida da leitura de parte dos sensores e repassa os valores ao controlador principal, que fica livre para processar imagens e enviar dados.',
+4:'Mede a cor de uma superfície usando a própria luz, sem depender da iluminação da sala.',
+5:'Converte o sinal muito pequeno das células de carga em um número. São dois: um para o alimento e outro para a água, o que permite medir quanto o animal come e bebe ao longo do dia.',
+6:'Regulador chaveado que reduz a tensão de entrada para a tensão dos módulos, com pouca perda em forma de calor.',
+7:'Chave comandada pela placa que liga e desliga cargas de 12 V, como um ventilador.',
+8:'Registra a temperatura e a umidade relativa do ar dentro da caixa-moradia, duas condições que o Guide recomenda acompanhar.',
+9:'Microfone que registra o nível de ruído perto da caixa, outro fator que afeta o bem-estar dos animais.',
+10:'Resistor que muda com a luz. Mede a iluminação e confirma o ciclo claro-escuro dos animais.',
+11:'Ilumina a caixa com luz infravermelha, invisível para os roedores, para que a câmera enxergue no período escuro sem perturbar os animais.',
+12:'Pontos de ligação por parafuso para a alimentação e para os cabos que saem da placa.',
+13:'Saídas de 4 pinos, de RGB1 a RGB4, para ligar módulos externos à placa.'};
+var NM={};BD.forEach(function(b){if(b[1]&&!NM[b[0]])NM[b[0]]=[b[1],b[5]]});
+var pin=document.getElementById('pinfo');
+function info(){if(!hi){pin.hidden=true;return}document.getElementById('pinum').textContent=hi;document.getElementById('pinm').textContent=NM[hi][0];document.getElementById('pids').textContent=EX[hi]||NM[hi][1];
+ document.getElementById('pifn').textContent=(hi===12?'Ligação por parafuso, sem solda.':'Encaixe rápido: entra e sai da placa sem solda e sem ferramenta.');pin.hidden=false}
+document.getElementById('pix').addEventListener('click',function(){setHi(hi)});
+function setHi(g){hi=(hi===g)?0:g;info();bd.forEach(function(o){o.e.classList.toggle('on',o.g===hi)});
  Array.prototype.forEach.call(lg.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',String(+x.dataset.g===hi))});draw()}
 pl.addEventListener('click',function(e){var t=e.target.closest('.pb');if(t)setHi(+t.dataset.g)});
 lg.addEventListener('click',function(e){var t=e.target.closest('button');if(t)setHi(+t.dataset.g)});
