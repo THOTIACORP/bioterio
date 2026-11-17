@@ -786,12 +786,26 @@ footer p{max-width:none}
         <div class="gal" id="gal"></div>
         </div>
       </details>
-      <div class="card" style="margin-top:1.4rem;gap:.7rem">
-        <div><span class="tag wip">Em andamento</span></div>
-        <h3>Saia e testes de fluxo de ar</h3>
-        <p>Estamos confeccionando as peças da saia para fazer os testes de fluido (ar). Vamos simular ventilação positiva e negativa com filtro HEPA e verificar se há vazamentos no equipamento.</p>
-        <p>A previsão é para o final de novembro, junto com a impressão da primeira V2 em ABS. O ABS não é o material ideal (o indicado seria PSU ou PPSU), mas permite testar o conjunto fazendo a desinfecção sem autoclavar.</p>
-        <div class="chips"><span class="chip">Ventilação positiva</span><span class="chip">Ventilação negativa</span><span class="chip">Filtro HEPA</span><span class="chip">Busca de vazamentos</span><span class="chip">Final de novembro</span><span class="chip">V2 em ABS</span></div>
+      <div class="card" id="ar" style="margin-top:1.4rem;gap:.7rem">
+        <div><span class="tag ok">Concluído</span></div>
+        <h3>Fluxo de ar simulado com o filtro HEPA</h3>
+        <p>Simulamos no OpenFOAM o ar passando por dentro da V2, com o filtro HEPA modelado como meio poroso. Foram quatro cenários: ventilação positiva e negativa, cada uma com o filtro limpo e com o filtro saturado, sempre a 28,7 L/min (cerca de 20 trocas de ar por hora).</p>
+        <div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:.6rem">
+          <div class="stat"><b>4</b><span>cenários simulados</span></div>
+          <div class="stat"><b>15,7 Pa</b><span>perda de carga com o filtro limpo</span></div>
+          <div class="stat"><b>27 Pa</b><span>com o filtro saturado: mínimo que o ventilador deve vencer</span></div>
+          <div class="stat"><b>1,9 cm/s</b><span>velocidade mediana na altura dos animais (modo positivo)</span></div>
+        </div>
+        <p><b>Ventilação positiva.</b> O ar renova toda a caixa-moradia e chega aos animais com velocidade baixa, bem abaixo das correntes de ar que o <i>Guide for the Care and Use of Laboratory Animals</i> pede para evitar. O jato da entrada lateral chega a 2,4 m/s, mas fica no alto, longe do fundo. Para espalhar esse jato, desenhamos um difusor de encaixe: uma meia esfera com 87 furos que reduz a velocidade de passagem pela metade.</p>
+        <p><b>Ventilação negativa.</b> A pressão interna fica abaixo da sala, como deve ser para contenção, mas o ar perto do fundo quase não se move (mediana de 0,1 cm/s). A solução proposta é puxar o ar por uma abertura na parte de baixo da caixa, aproveitando a abertura inferior que muitas caixas já têm.</p>
+        <details class="galbox" id="galar" style="margin-top:.6rem">
+          <summary>
+            <span class="galhero"><img src="sim/ar/destaque_ar.jpg" alt="Linhas de corrente do ar dentro da V2 em ventilação positiva, coloridas pela velocidade" loading="lazy"><span class="galtag">Ventilação positiva · filtro limpo · 28,7 L/min</span></span>
+            <span class="galbar"><span><b>Ver as simulações do ar</b><small>Os quatro cenários, a velocidade na altura dos animais e o difusor</small></span><span class="galchev" aria-hidden="true"></span></span>
+          </summary>
+          <div class="galbody"><div class="gal" id="galar2"></div></div>
+        </details>
+        <div class="chips"><span class="chip">OpenFOAM</span><span class="chip">Ventilação positiva</span><span class="chip">Ventilação negativa</span><span class="chip">Filtro HEPA limpo e saturado</span><span class="chip">Difusor de encaixe</span></div>
       </div>
       <div class="card" style="margin-top:1rem;gap:.7rem">
         <div><span class="tag wip">Em andamento</span></div>
@@ -852,6 +866,34 @@ footer p{max-width:none}
 </div>
 
 
+<div class="lb" id="lbar" hidden role="dialog" aria-modal="true" aria-label="Imagem da simulação do ar">
+  <div class="lbin">
+    <img id="lbarimg" alt="">
+    <div class="lbbar"><div><h3 id="lbart"></h3><p id="lbarp"></p></div>
+      <div class="lbbtns"><button type="button" id="lbarprev">Anterior</button><button type="button" id="lbarnext">Próxima</button><button type="button" id="lbarx">Fechar</button></div></div>
+  </div>
+</div>
+<script>
+(function(){var AR=[
+{id:'ar_3d',t:'Caminho do ar',s:'Positiva · filtro limpo',p:'Linhas de corrente em 3D: o ar entra pela conexão lateral, percorre a caixa-moradia e sai pelos furos da sobretampa com o filtro HEPA.',k:'ok',v:'15,7 Pa'},
+{id:'pos_limpo',t:'Ventilação positiva',s:'Filtro limpo',p:'Perda de carga de 15,7 Pa e pressão interna de +12,8 Pa. O jato da entrada chega a 2,36 m/s no alto; a 3 cm do fundo a velocidade mediana é de 1,8 cm/s.',k:'ok',v:'+12,8 Pa'},
+{id:'pos_sat',t:'Ventilação positiva',s:'Filtro saturado',p:'Com o filtro no fim da vida útil, a perda de carga sobe para 27,0 Pa e a pressão interna para +24,1 Pa. O ventilador deve vencer pelo menos esse valor. A velocidade junto aos animais quase não muda.',k:'ok',v:'+24,1 Pa'},
+{id:'neg_limpo',t:'Ventilação negativa',s:'Filtro limpo',p:'O ar entra pelo filtro e sai pela conexão lateral. A caixa fica a −12,8 Pa, mas o ar perto do fundo quase não se move (mediana de 0,1 cm/s): a saída precisa ficar mais baixa.',k:'mid',v:'−12,8 Pa'},
+{id:'neg_sat',t:'Ventilação negativa',s:'Filtro saturado',p:'Com o filtro saturado, a caixa fica a −24,0 Pa e a perda de carga é de 26,6 Pa. O fundo continua com ar quase parado (mediana de 0,4 cm/s).',k:'mid',v:'−24,0 Pa'},
+{id:'zona',t:'Ar na altura dos animais',s:'Positiva · 0 a 10 cm do fundo',p:'Distribuição da velocidade do ar onde os animais ficam. A mediana fica perto de 2 cm/s com o filtro limpo e de 1,7 cm/s com o filtro saturado, longe das correntes de ar que o Guide recomenda evitar.',k:'ok',v:'1,9 cm/s'},
+{id:'difusor',t:'Difusor de encaixe',s:'Proposta para a entrada lateral',p:'Meia esfera de 84 mm com 87 furos de 6 mm, encaixada por pressão no furo da carenagem. A área dos furos é 2,2 vezes a do furo, o que reduz a velocidade média de passagem de 0,42 para 0,19 m/s. O efeito no escoamento ainda será simulado.',k:'mid',v:'Proposta'}];
+var g=document.getElementById('galar2'),lb=document.getElementById('lbar'),pos=0;
+AR.forEach(function(i,n){var b=document.createElement('button');b.type='button';b.className='gcard';
+ b.innerHTML='<img loading="lazy" src="sim/ar/t/'+i.id+'.jpg" alt="'+i.t+', '+i.s+'"><div class="gmeta"><h3>'+i.t+'</h3><p>'+i.s+'</p><div class="grow"><span class="fs '+i.k+'">'+i.v+'</span></div></div>';
+ b.onclick=function(){show(n)};g.appendChild(b)});
+function show(n){pos=(n+AR.length)%AR.length;var i=AR[pos],im=document.getElementById('lbarimg');im.src='sim/ar/f/'+i.id+'.jpg';im.alt=i.t+', '+i.s;
+ document.getElementById('lbart').textContent=i.t+' · '+i.s;document.getElementById('lbarp').textContent=i.p;lb.hidden=false}
+function hide(){lb.hidden=true}
+document.getElementById('lbarx').onclick=hide;document.getElementById('lbarprev').onclick=function(){show(pos-1)};document.getElementById('lbarnext').onclick=function(){show(pos+1)};
+lb.addEventListener('click',function(e){if(e.target===lb)hide()});
+addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(pos-1);if(e.key==='ArrowRight')show(pos+1)});
+})();
+</script>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagem da simulação">
   <div class="lbin">
     <img id="lbimg" alt="">
