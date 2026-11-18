@@ -36,17 +36,17 @@
 :root{
   --bg:#f3f8fe; --surface:#ffffff; --fg:#0e2238; --muted:#566b82; --line:#dbe7f5;
   --accent:#0e2238; --accent-fg:#ffffff; --blue:#2f6fe4; --chip:#e8f1fc;
-  --bad:#c2362b;--glow1:#cfe4ff; --glow2:#e4f0ff; --glow3:#b9d8ff; --ok:#14804f; --warn:#b4540a; --stage:#eaf3ff;
+  --bad:#c2362b;--glow1:#cfe4ff; --glow2:#e4f0ff; --glow3:#b9d8ff; --ok:#14804f; --neon:#0a9a48; --warn:#b4540a; --stage:#eaf3ff;
   --display:"Bricolage Grotesque","Inter",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0a1626; --surface:#102036; --fg:#e8f1fc; --muted:#92a8c2; --line:#1d3350;
   --accent:#e8f1fc; --accent-fg:#0a1626; --blue:#6ea3ff; --chip:#17304d;
-  --bad:#ff8a7a;--glow1:#1a3f73; --glow2:#14305a; --glow3:#1f5a9c; --ok:#5fd09a; --warn:#f0a35e; --stage:#0d1c30; color-scheme:dark}}
+  --bad:#ff8a7a;--glow1:#1a3f73; --glow2:#14305a; --glow3:#1f5a9c; --ok:#5fd09a; --neon:#39ff88; --warn:#f0a35e; --stage:#0d1c30; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0a1626; --surface:#102036; --fg:#e8f1fc; --muted:#92a8c2; --line:#1d3350;
   --accent:#e8f1fc; --accent-fg:#0a1626; --blue:#6ea3ff; --chip:#17304d;
-  --bad:#ff8a7a;--glow1:#1a3f73; --glow2:#14305a; --glow3:#1f5a9c; --ok:#5fd09a; --warn:#f0a35e; --stage:#0d1c30; color-scheme:dark}
+  --bad:#ff8a7a;--glow1:#1a3f73; --glow2:#14305a; --glow3:#1f5a9c; --ok:#5fd09a; --neon:#39ff88; --warn:#f0a35e; --stage:#0d1c30; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;
   padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:0}
@@ -60,7 +60,9 @@ p{margin:0;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.35rem;border-radius:999px;font:inherit;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;transition:transform .15s}
 .btn:hover{transform:translateY(-1px)}
-.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn.primary{background:#39ff88;color:#04210f;border-color:#39ff88;box-shadow:0 0 0 1px rgba(57,255,136,.35),0 8px 26px -6px rgba(57,255,136,.65)}
+.btn.primary:hover{background:#5dff9e;box-shadow:0 0 0 1px rgba(57,255,136,.5),0 10px 32px -4px rgba(57,255,136,.8)}
+.btn.primary:focus-visible{outline:3px solid #04210f;outline-offset:2px}
 header.nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.1rem;flex-wrap:wrap}
 .brand{font-family:var(--display);font-weight:700;font-size:1.2rem;text-decoration:none;color:inherit}
 .navlinks{font-size:.92rem;color:var(--muted)}.navlinks .navin{display:flex;gap:1.4rem;flex-wrap:wrap}
@@ -118,6 +120,21 @@ header.nav .navlinks{order:2;margin-left:auto}
   background:radial-gradient(40% 55% at 25% 55%,var(--glow1),transparent 70%),radial-gradient(38% 55% at 55% 35%,var(--glow2),transparent 70%),radial-gradient(40% 60% at 80% 60%,var(--glow3),transparent 70%);
   opacity:.9}
 .pill{display:inline-flex;gap:.5rem;align-items:center;padding:.35rem .9rem;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.82rem;color:var(--muted);margin-bottom:1.3rem}
+.faqhead{align-items:center;text-align:center}
+.faql{display:grid;gap:.7rem;max-width:860px;margin-inline:auto}
+.faqi{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:border-color .2s}
+.faqi[open]{border-color:color-mix(in srgb,var(--neon) 45%,var(--line))}
+.faqi>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.05rem 1.25rem;font-weight:600;font-size:.98rem;line-height:1.4}
+.faqi>summary::-webkit-details-marker{display:none}
+.faqi>summary:focus-visible{outline:2px solid var(--blue);outline-offset:-2px;border-radius:18px}
+.faqx{flex:none;position:relative;width:26px;height:26px;border-radius:50%;border:1px solid var(--line)}
+.faqx::before,.faqx::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:2px;border-radius:2px;background:currentColor;transform:translate(-50%,-50%);transition:transform .2s}
+.faqx::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faqi[open] .faqx{background:var(--neon);border-color:var(--neon);color:#04210f}
+.faqi[open] .faqx::after{transform:translate(-50%,-50%) rotate(0)}
+.faqi p{padding:0 1.25rem 1.15rem;color:var(--muted);line-height:1.6;font-size:.95rem}
+.pill.neon{background:rgba(8,40,24,.92);border-color:rgba(57,255,136,.35);color:#39ff88;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.42rem 1rem}
+.pill.neon .dot{background:#39ff88!important;box-shadow:0 0 8px #39ff88}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--warn)}
 .lead{max-width:800px;margin:1.3rem auto 0;font-size:1.15rem;color:var(--muted)}
 .cta{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem}
@@ -253,7 +270,8 @@ footer p{max-width:none}
 .rts{display:flex;flex-wrap:wrap;gap:4px;margin-top:.3rem}
 .rt{width:14px;height:9px;border-radius:50% 60% 60% 50%;background:var(--muted);display:block;position:relative}
 .bg.x .rt{background:var(--blue)}
-.dbi{display:flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--ok);margin-top:.3rem}
+.dbi{display:flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--neon);margin-top:.3rem}
+.bcol .tag.ok{background:color-mix(in srgb,var(--neon) 16%,transparent);color:var(--neon);box-shadow:0 0 0 1px color-mix(in srgb,var(--neon) 35%,transparent)}
 .dbi svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7}
 .barrow svg{width:34px;height:34px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btot{font-size:.88rem;color:var(--muted)}
@@ -307,6 +325,12 @@ footer p{max-width:none}
 .mant{display:flex;flex-direction:column;gap:.7rem;min-width:0}
 .mant h3{font-size:1.25rem;line-height:1.3}
 .manstats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.manstats.m4{grid-template-columns:repeat(2,1fr)}
+.mctls{display:flex;flex-direction:column;gap:.15rem}
+.mctls .mctl output{min-width:4.5ch;text-align:right}
+.mctls .mctl label{min-width:10.5em}
+.manstats.m4 div:last-child{grid-column:auto}
+.mnote{font-size:.76rem;color:var(--muted);line-height:1.45;margin-top:.2rem}
 .manstats div{border-top:1px solid var(--line);padding-top:.6rem}
 .manstats b{display:block;font-family:var(--display);font-size:1.6rem;line-height:1;color:var(--blue);font-variant-numeric:tabular-nums}
 .manstats div:last-child b{color:var(--ok)}
@@ -337,6 +361,21 @@ footer p{max-width:none}
 .fxq{display:flex;flex-wrap:wrap;gap:.5rem}
 .fxq span{font-size:.8rem;color:var(--muted);background:var(--chip);border-radius:999px;padding:.3rem .75rem}
 .fxq b{color:var(--fg);font-variant-numeric:tabular-nums}
+.tgrp{background:#0a0422;border-top:1px solid #1d1440;padding:.8rem .9rem .9rem;display:grid;gap:.7rem}
+.tgh small,.tgbars>small{display:block;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:#a995d6;margin-bottom:.45rem}
+.tgbtn{display:flex;flex-wrap:wrap;gap:.4rem}
+.tgbtn .vbtn{background:rgba(10,4,30,.6);color:#ffe4c0;border-color:rgba(255,190,110,.35);padding:.38rem .85rem;font-size:.8rem}
+.tgbtn .vbtn[aria-pressed="true"]{background:#39ff88;color:#04210f;border-color:#39ff88;box-shadow:0 0 0 1px rgba(57,255,136,.35),0 6px 20px -6px rgba(57,255,136,.65)}
+.tgb{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;align-items:start}
+.tgi b{font-family:var(--display);font-size:1.1rem}
+.tgi p{font-size:.84rem;line-height:1.5;color:#d6c9f0;margin:.25rem 0 .55rem}
+.tgn{display:flex;gap:1.4rem}.tgn small{display:block;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:#a995d6}
+.tgn em{font-style:normal;font-family:var(--display);font-size:1.15rem;color:#ffe9c9;font-variant-numeric:tabular-nums}
+.tgr{display:grid;grid-template-columns:8.8em 1fr 4.4em;align-items:center;gap:.5rem;font-size:.78rem;color:#b9a8d8;padding:.22rem .3rem;border-radius:8px;cursor:pointer;opacity:.6}
+.tgr.on{opacity:1;background:rgba(255,255,255,.05);color:#ffe9c9}
+.tgr i{display:block;height:8px;border-radius:4px;background:#1d1440;overflow:hidden}.tgr s{display:block;height:100%;border-radius:4px}
+.tgr b{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+@media (max-width:640px){.tgb{grid-template-columns:1fr}}
 .tnote2{margin:0;padding:.7rem .9rem .8rem;font-size:.76rem;line-height:1.5;color:#b9a8d8;background:#0a0422;border-top:1px solid #1d1440}
 @media (max-width:560px){.tm>div:nth-child(16){grid-column:1 / -1}}
 .manph{position:relative;margin:0;aspect-ratio:4/4.4;border-radius:18px;overflow:visible}
@@ -378,6 +417,10 @@ footer p{max-width:none}
 
 /* placa eletrônica */
 .pcbv{position:relative;margin-top:1.8rem;border-radius:28px;border:1px solid var(--line);background:radial-gradient(70% 80% at 50% 40%,var(--surface),var(--stage));overflow:hidden;text-align:left;min-width:0}
+.pcbv.joined{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.galbox.joined{margin-top:0;border-top:0;border-top-left-radius:0;border-top-right-radius:0}
+.galbox.joined .galbar{border-top:1px solid var(--line)}
+@media (max-width:760px){.galbox.joined{margin-inline:-20px;border-radius:0;border-left:0;border-right:0}}
 .pcbv canvas{display:block;width:100%;height:clamp(320px,52vw,560px);touch-action:pan-y;cursor:grab}
 .pcbv canvas:active{cursor:grabbing}
 .pbl{position:absolute;inset:0;pointer-events:none;overflow:hidden}
@@ -396,6 +439,7 @@ footer p{max-width:none}
 .pctl{position:absolute;right:14px;top:12px;display:flex;gap:.45rem}
 .pctl .vbtn{padding:.42rem .85rem;font-size:.8rem}
 .pbleg{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));grid-auto-rows:1fr;gap:.6rem}
+.pbleg[hidden]{display:none}
 .pbleg li{margin:0;min-width:0;display:flex}
 .pbleg li>button{height:100%}
 .pbleg button{font:inherit;width:100%;text-align:left;display:flex;gap:.7rem;align-items:flex-start;padding:.65rem .8rem;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
@@ -453,12 +497,12 @@ footer p{max-width:none}
 
   <main id="topo">
     <div class="hero">
-      <span class="pill"><span class="dot"></span>Protótipo funcional em validação</span>
+      <span class="pill neon"><span class="dot"></span>Plataforma inteligente de experimentação animal</span>
       <h1>Monitoramento inteligente para quem cuida de roedores de laboratório</h1>
-      <p class="lead">Uma capela impressa em 3D que se encaixa nas caixas-moradia da REBIOTERIO, projetada e testada com simulação estrutural aberta e reproduzível.</p>
+      <p class="lead"><strong>Precisão Térmica e Visão Computacional para Biotérios Modernos.</strong><br>Substitua o monitoramento manual e invasivo por tampas inteligentes em ABS com microventilação HEPA, termografia contínua e auditoria automatizada.</p>
       <div class="cta">
         <a class="btn primary" href="#contato">Quero conversar sobre parceria</a>
-        <a class="btn" href="#validacao">Ver a validação</a>
+        <a class="btn" href="#validacao">Explorar engenharia</a>
       </div>
 
       <div class="viewer" id="viewer">
@@ -588,8 +632,15 @@ footer p{max-width:none}
           <div class="tctl"><button type="button" class="vbtn" id="mesh" aria-pressed="true">Malha térmica</button><button type="button" class="vbtn" id="seg" aria-pressed="false">Segmentação</button></div>
           <div class="tbar" aria-hidden="true"><span>38 °C</span><i></i><span>22 °C</span></div>
         </div>
+        <div class="tgrp" aria-label="Grupos experimentais (exemplo ilustrativo)">
+          <div class="tgh"><small>Grupo experimental · exemplo: úlcera gástrica</small><div id="tgbtn" class="tgbtn" role="group" aria-label="Escolher grupo"></div></div>
+          <div class="tgb">
+            <div class="tgi"><b id="tgname">Controle</b><p id="tgdesc"></p><div class="tgn"><span><small>Abdômen</small><em id="tgab">33,4 °C</em></span><span><small>Diferença para o controle</small><em id="tgd">±0,0 °C</em></span></div></div>
+            <div class="tgbars"><small>Aquecimento do abdômen em relação ao controle</small><div id="tgbars"></div></div>
+          </div>
+        </div>
         <div class="tm" id="tm" role="group" aria-label="Medições fictícias da caixa"></div>
-        <p class="tnote2">Rato 3D com campo térmico e medições fictícias, só para demonstração. A cada 30 s ele defeca e depois urina: as manchas quentes no piso ficam fora da medida de temperatura, mas entram na contagem.</p>
+        <p class="tnote2">Rato 3D com campo térmico e medições fictícias, só para demonstração. Os grupos mostram como a termografia compara tratamentos num modelo de úlcera gástrica: quanto mais quente o abdômen em relação ao controle, maior a inflamação (na imagem, o contraste do ponto quente foi realçado para ficar visível). A cada 30 s ele defeca e depois urina: as manchas quentes no piso ficam fora da medida de temperatura, mas entram na contagem.</p>
         </div>
         <div class="funlist">
           <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 14.8V5a2 2 0 1 0-4 0v9.8a4 4 0 1 0 4 0z"/><path d="M12 9v7"/></svg></div>
@@ -612,12 +663,18 @@ footer p{max-width:none}
             <span class="eyebrow">O problema de hoje</span>
             <h3>Quantas vezes você já ficou na frente da caixa, de prancheta na mão, anotando?</h3>
             <p>No monitoramento manual, alguém precisa ir até a estante, abrir ou espiar a caixa, observar o animal e anotar à mão. Isso se repete várias vezes por dia, inclusive em fins de semana e feriados. Mesmo assim, quase todo o dia do animal fica sem registro, principalmente à noite, quando os roedores são mais ativos. E a própria presença do observador pode mudar o comportamento que se quer medir.</p>
-            <div class="mctl man-ctl"><label for="mvn">Verificações por dia</label><input type="range" id="mvn" min="1" max="8" value="3"><output id="mvv">3</output></div>
-            <div class="manstats">
-              <div><b id="mvy">1.095</b><small>idas à caixa por ano, por estudo</small></div>
-              <div><b id="mvc">1%</b><small>do dia observado, com 5 min por verificação</small></div>
+            <div class="mctls">
+              <div class="mctl man-ctl"><label for="mvb">Caixas no biotério</label><input type="range" id="mvb" min="10" max="1000" step="10" value="120"><output id="mvbv">120</output></div>
+              <div class="mctl man-ctl"><label for="mvn">Verificações por dia</label><input type="range" id="mvn" min="1" max="8" value="3"><output id="mvv">3</output></div>
+              <div class="mctl man-ctl"><label for="mvm">Minutos por caixa</label><input type="range" id="mvm" min="1" max="10" value="2"><output id="mvmv">2</output></div>
+            </div>
+            <div class="manstats m4">
+              <div><b id="mvy">−10.800</b><small>aberturas de caixa a menos por mês, só de observação e anotação</small></div>
+              <div><b id="mvh">360 h</b><small id="mvhs">de trabalho técnico por mês</small></div>
+              <div><b id="mvc">0,4%</b><small>do dia de cada animal observado</small></div>
               <div><b>24 h</b><small>de registro contínuo com o Biotério Forte, sem abrir a caixa</small></div>
             </div>
+            <p class="mnote">Estimativa: caixas × verificações por dia × 30 dias. As horas consideram o tempo de cada verificação por caixa; uma pessoa em tempo integral trabalha cerca de 176 h por mês. Com o registro automático, a caixa só precisa ser aberta para o manejo.</p>
           </div>
         </div>
       </div>
@@ -641,17 +698,16 @@ footer p{max-width:none}
         <h2>A placa que reúne os sensores da caixa</h2>
         <p>Esta é a placa usada para validar o circuito. Ela junta o controlador ESP32-CAN, a câmera térmica Xtherm II T2S, o sensor de cor TCS3200 e os demais sensores de ambiente, luz, som e peso. Toda a placa usa conectores de encaixe rápido (push-in): os sensores e módulos entram e saem sem solda e sem ferramenta, o que facilita trocar uma peça, fazer manutenção e retirar a eletrônica antes da limpeza da caixa. Arraste para girar e toque nos números para ver o que cada peça faz.</p>
       </div>
-      <div class="pcbv" id="pcbbox">
+      <div class="pcbv joined" id="pcbbox">
         <canvas id="pcb" aria-label="Placa eletrônica em 3D com ESP32-CAN, câmera térmica Xtherm II T2S, Arduino Nano, TCS3200, HX711 e outros componentes. Modelo ilustrativo."></canvas>
         <div class="pbl" id="pbl"></div>
         <aside class="pinfo" id="pinfo" hidden aria-live="polite"><button type="button" class="pix" id="pix" aria-label="Fechar">×</button><div class="pinum" id="pinum"></div><h3 id="pinm"></h3><p id="pids"></p><p class="pifn" id="pifn"></p></aside>
         <div class="ptag">PLACA DE VALIDAÇÃO · modelo 3D</div>
         <div class="pctl"><button type="button" class="vbtn" id="pcbtop" aria-pressed="false">Vista de cima</button><button type="button" class="vbtn" id="pcbspin" aria-pressed="true">Girar</button></div>
       </div>
-      <ol class="pbleg" id="pbleg"></ol>
-      <details class="galbox" id="galpl" style="margin-top:1.2rem">
+      <ol class="pbleg" id="pbleg" hidden></ol>
+      <details class="galbox joined" id="galpl">
         <summary>
-          <span class="galhero"><img src="sim/placa/web/f/projeto_1.jpg" alt="Projeto 3D da placa de validação do circuito" loading="lazy"><span class="galtag">Placa de validação · projeto 3D</span></span>
           <span class="galbar"><span><b>Ver fotos da placa de validação</b><small>Primeiro o projeto, depois a placa real. Os sensores encaixam e desencaixam sem solda.</small></span><span class="galchev" aria-hidden="true"></span></span>
         </summary>
         <div class="galbody"><div class="gal" id="galpl2"></div></div>
@@ -854,6 +910,21 @@ footer p{max-width:none}
       </div>
     </section>
 
+    <section id="faq">
+      <div class="head faqhead">
+        <span class="pill neon" style="margin-bottom:0">Perguntas frequentes</span>
+        <h2>Dúvidas técnicas e institucionais</h2>
+      </div>
+      <div class="faql">
+        <details class="faqi"><summary>O sistema exige a troca das estantes ventiladas atuais do laboratório?<span class="faqx" aria-hidden="true"></span></summary>
+          <p>Não. O Biotério Forte V2 foi projetado com encaixe modular compatível com as caixas-moradia padrão usadas na rede REBIOTERIO, permitindo modernizar a infraestrutura existente sem descartar estantes ou caixas.</p></details>
+        <details class="faqi"><summary>Como funciona a higienização e a esterilização das tampas?<span class="faqx" aria-hidden="true"></span></summary>
+          <p>O módulo eletrônico e óptico sai sem ferramentas, graças aos conectores de encaixe rápido. Sem ele, a estrutura em ABS e os alojamentos do filtro passam pela lavagem e desinfecção química de rotina do biotério. O ABS não deve ir à autoclave, porque amolece acima de cerca de 86 °C; a versão compatível com autoclave está em desenvolvimento, como descrito em Resultados.</p></details>
+        <details class="faqi"><summary>O projeto pode ser adquirido com verba de editais de fomento (FINEP, CNPq, FAPs)?<span class="faqx" aria-hidden="true"></span></summary>
+          <p>Sim. Fornecemos memorial descritivo técnico completo, justificativa de alinhamento aos princípios dos 3Rs (Refinamento) e suporte documental para inclusão em projetos de pesquisa e de infraestrutura multiusuário.</p></details>
+      </div>
+    </section>
+
     <section id="contato" style="padding-block:1rem 0">
       <div class="band">
         <span class="eyebrow" style="color:inherit;opacity:.7">Contato</span>
@@ -1002,11 +1073,11 @@ var vs='attribute vec3 aP;attribute vec3 aN;attribute vec2 aD;uniform mat4 uVP;u
 'float wl=pow(clamp(1.-aP.z/1.3,0.,1.),2.)*smoothstep(.25,.5,abs(aP.y));float ph=uPh+(aP.y>0.?0.:3.14159)+(aP.x>-3.5?0.:3.14159);p.x+=wl*.6*sin(ph);p.z+=wl*.4*max(0.,cos(ph))+.05*sin(2.*uPh);'+
 'float tha=-uRe*.95*smoothstep(-7.,-2.5,aP.x),cr=cos(tha),sr=sin(tha);vec2 q=vec2(p.x+2.2,p.z);p.x=q.x*cr+q.y*sr-2.2;p.z=max(-q.x*sr+q.y*cr,0.);vec3 nn=aN;nn.xz=vec2(aN.x*cr+aN.z*sr,-aN.x*sr+aN.z*cr);'+
 'p+=nn*uG;p.z*=uBr;p=mix(p,aP,step(3.5,uMode));vec4 w=uM*vec4(p,1.0);vW=w.xyz;vN=mat3(uM[0].xyz,uM[1].xyz,uM[2].xyz)*nn;vL=aP;vD=aD;gl_Position=uVP*w;}';
-var fs='precision mediump float;varying vec3 vN;varying vec3 vW;varying vec3 vL;varying vec2 vD;uniform vec3 uCam;uniform float uA;uniform float uMode;uniform float uPulse;uniform vec2 uC;uniform vec3 uTd;uniform vec4 uS[8];'+
+var fs='precision mediump float;varying vec3 vN;varying vec3 vW;varying vec3 vL;varying vec2 vD;uniform vec3 uCam;uniform float uA;uniform float uMode;uniform float uPulse;uniform vec2 uC;uniform vec3 uTd;uniform vec4 uS[8];uniform float uHot;'+
 'vec3 iron(float t){t=clamp(t,0.,1.);vec3 c0=vec3(.04,0.,.04),c1=vec3(.17,.04,.42),c2=vec3(.61,.11,.43),c3=vec3(.91,.27,.17),c4=vec3(1.,.70,.12),c5=vec3(1.,.95,.48),c6=vec3(1.);'+
 'if(t<.2)return mix(c0,c1,t/.2);if(t<.4)return mix(c1,c2,(t-.2)/.2);if(t<.6)return mix(c2,c3,(t-.4)/.2);if(t<.8)return mix(c3,c4,(t-.6)/.2);if(t<.92)return mix(c4,c5,(t-.8)/.12);return mix(c5,c6,(t-.92)/.08);}'+
 'void main(){vec3 n=normalize(vN);vec3 v=normalize(uCam-vW);float f=abs(dot(n,v));'+
-'float T=22.+vD.x*16.+vD.y*.01*uPulse-2.4*pow(1.-f,2.5);float hh=smoothstep(1.,2.,vL.x),tl=smoothstep(-8.,-9.,vL.x);T+=uTd.x*hh+uTd.z*tl+uTd.y*(1.-hh)*(1.-tl);'+
+'float T=22.+vD.x*16.+vD.y*.01*uPulse-2.4*pow(1.-f,2.5);float hh=smoothstep(1.,2.,vL.x),tl=smoothstep(-8.,-9.,vL.x);T+=uTd.x*hh+uTd.z*tl+uTd.y*(1.-hh)*(1.-tl);vec2 ab=(vL.xy-vec2(-1.7,0.))/vec2(1.5,1.25);T+=3.5*uHot*exp(-dot(ab,ab)*1.6)*(.6+.4*(1.-smoothstep(.3,3.,vL.z)));'+
 'if(uMode>3.5){vec2 d=(vW.xy-uC)/vec2(5.,5.);T=23.1+4.2*exp(-dot(d,d))-.9*length(vW.xy)/22.;for(int k=0;k<8;k++){vec2 e=(vW.xy-uS[k].xy)/max(uS[k].z,.01);T+=uS[k].w*exp(-dot(e,e)*2.);}gl_FragColor=vec4(iron((T-22.)/16.)*.85,1.);return;}'+
 'vec3 c=iron((T-22.)/16.);'+
 'if(uMode>2.5){gl_FragColor=vec4(iron((T-21.)/16.)*uA,1.);return;}'+
@@ -1017,7 +1088,7 @@ var fs='precision mediump float;varying vec3 vN;varying vec3 vW;varying vec3 vL;
 'gl_FragColor=vec4(c,1.);}';
 function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
 var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){__noGL('thermo','erro de shader: '+(gl.getProgramInfoLog(pr)||'').slice(0,80));return}gl.useProgram(pr);
-var U={};['uVP','uM','uG','uBr','uCam','uA','uMode','uPulse','uT','uPh','uHy','uC','uRe','uTd','uS'].forEach(function(k){U[k]=gl.getUniformLocation(pr,k)});
+var U={};['uVP','uM','uG','uBr','uCam','uA','uMode','uPulse','uT','uPh','uHy','uC','uRe','uTd','uS','uHot'].forEach(function(k){U[k]=gl.getUniformLocation(pr,k)});
 var aP=gl.getAttribLocation(pr,'aP'),aN=gl.getAttribLocation(pr,'aN'),aD=gl.getAttribLocation(pr,'aD');
 gl.enableVertexAttribArray(aP);gl.enableVertexAttribArray(aN);gl.enableVertexAttribArray(aD);
 function bindM(p,nn,d){gl.bindBuffer(gl.ARRAY_BUFFER,p);gl.vertexAttribPointer(aP,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,nn);gl.vertexAttribPointer(aN,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,d);gl.vertexAttribPointer(aD,2,gl.UNSIGNED_BYTE,true,0,0)}
@@ -1047,6 +1118,17 @@ function deform(q,t,PH,HY,RE){var x=q[0],y=q[1],z=q[2],ya=sm(-.5,1.6,q[0])*HY,dx
   var wl=Math.pow(Math.max(0,Math.min(1,1-q[2]/1.3)),2)*sm(.25,.5,Math.abs(q[1])),ph=PH+(q[1]>0?0:Math.PI)+(q[0]>-3.5?0:Math.PI);
   x+=wl*.6*Math.sin(ph);z+=wl*.4*Math.max(0,Math.cos(ph))+.05*Math.sin(2*PH);
   var a_=-RE*.95*sm(-7,-2.5,q[0]),qx=x+2.2,qz=z;x=qx*Math.cos(a_)+qz*Math.sin(a_)-2.2;z=Math.max(0,-qx*Math.sin(a_)+qz*Math.cos(a_));return [x,y,z]}
+var GRP=[
+ {k:'Controle',h:0,c:'#35e0d0',d:'Animal saudável, sem lesão. A região abdominal fica na mesma faixa de temperatura do resto do corpo.'},
+ {k:'Controle doença',h:3.0,c:'#ff6a3d',d:'Úlcera gástrica induzida, sem tratamento. A inflamação aquece o abdômen, que aparece como um ponto mais quente na imagem térmica.'},
+ {k:'Padrão-ouro',h:1.4,c:'#ffb21e',d:'Úlcera tratada com o medicamento de referência (por exemplo, omeprazol). O ponto quente continua, mas menor e menos intenso.'},
+ {k:'Tratamento teste',h:0.5,c:'#9fb8ff',d:'Úlcera tratada com o composto em estudo. O abdômen fica quase na temperatura do controle, sinal de menor inflamação.'}],gSel=0,hotC=0,gLast=-1;
+(function(){var w=document.getElementById('tgbtn');if(!w)return;GRP.forEach(function(g,i){var b=document.createElement('button');b.type='button';b.className='vbtn';b.textContent=g.k;b.setAttribute('aria-pressed',i===0);
+ b.onclick=function(){gSel=i;[].forEach.call(w.children,function(x,j){x.setAttribute('aria-pressed',j===i)});gLast=-1;if(reduce)requestAnimationFrame(draw)};w.appendChild(b)});
+ var bs=document.getElementById('tgbars');GRP.forEach(function(g,i){var r=document.createElement('div');r.className='tgr';r.innerHTML='<span>'+g.k+'</span><i><s style="width:'+(g.h/3.2*100+3)+'%;background:'+g.c+'"></s></i><b>+'+g.h.toFixed(1).replace('.',',')+' °C</b>';r.onclick=function(){w.children[i].click()};bs.appendChild(r)})})();
+function gUpd(t){if(gSel===gLast)return;gLast=gSel;var g=GRP[gSel];document.getElementById('tgname').textContent=g.k;document.getElementById('tgname').style.color=g.c;document.getElementById('tgdesc').textContent=g.d;
+ document.getElementById('tgab').textContent=(33.4+g.h*.85).toFixed(1).replace('.',',')+' °C';document.getElementById('tgd').textContent=(g.h>0?'+':'±')+g.h.toFixed(1).replace('.',',')+' °C';
+ [].forEach.call(document.getElementById('tgbars').children,function(r,i){r.classList.toggle('on',i===gSel)})}
 var t0=performance.now(),ctx=ov.getContext('2d');
 var HUD=[
  ['g1','Cabeça','°C',function(t){return TH},1],
@@ -1093,7 +1175,7 @@ function draw(now){
     if(evNow==='mc'&&!mcDone&&ue>=18.4){SP.push({k:'mc',x:ax,y:ay,r:.2,a:11,t0:t,g:1});mcDone=true;nMc++;urA+=Math.round(9+Math.random()*6)}}
   SP=SP.filter(function(o){return t-o.t0<70});while(SP.length>8)SP.shift();
   for(var si=0;si<8;si++){var o=SP[si];if(o){var ag=t-o.t0,rr=o.k==='mc'?Math.min(2,.2+ag*1.1):o.r;SPU.set([o.x,o.y,rr,o.a*Math.exp(-ag/22)],si*4)}else SPU.set([0,0,1,0],si*4)}
-  gl.uniform4fv(U.uS,SPU);
+  gl.uniform4fv(U.uS,SPU);hotC+=(GRP[gSel].h-hotC)*(reduce?1:Math.min(1,dt*3));gl.uniform1f(U.uHot,hotC*(1+(reduce?0:.06*Math.sin(t*1.6))));gUpd(t);
   gl.uniform1f(U.uT,reduce?0:t);gl.uniform1f(U.uPh,PH);gl.uniform1f(U.uHy,HY);gl.uniform2f(U.uC,ox,oy);gl.uniform1f(U.uRe,rear);gl.uniform3f(U.uTd,TH-34,TB-33.4,TT-28.6);
   var a=th+px*.3,b=Math.max(.32,Math.min(1.3,ph+py*.15)),dist=21*Math.max(1,1.15/Math.min(1,w/h*.9)),aspect=w/h;
   var cx=Math.cos(a)*Math.cos(b)*dist,cy=Math.sin(a)*Math.cos(b)*dist,cz=1.8+Math.sin(b)*dist;
@@ -1121,6 +1203,11 @@ function draw(now){
     var tx_=o.k==='fz'?'fezes · contadas · fora da temperatura':'urina · contada · fora da temperatura';
     ctx.globalAlpha=al_;ctx.strokeStyle='rgba(255,255,255,.9)';ctx.setLineDash([4*d,3*d]);ctx.lineWidth=1.3*d;ctx.beginPath();ctx.arc(x,y,(o.k==='fz'?16:22)*d,0,7);ctx.stroke();ctx.setLineDash([]);
     var tw=ctx.measureText(tx_).width,lx_=x+18*d;if(lx_+tw+12*d>ov.width)lx_=x-18*d-tw-10*d;if(lx_<4*d)lx_=4*d;ctx.fillStyle='rgba(10,8,30,.75)';ctx.fillRect(lx_,y-22*d,tw+10*d,16*d);ctx.fillStyle='#fff';ctx.fillText(tx_,lx_+5*d,y-10*d);ctx.globalAlpha=1});
+  if(hotC>.25){var hp=deform([-1.7,0,1.6],t,PH,HY,rear),hw_=mul(M,T3(hp[0],hp[1],hp[2]*br)),hv=[hw_[12],hw_[13],hw_[14]];
+    var X2=VP[0]*hv[0]+VP[4]*hv[1]+VP[8]*hv[2]+VP[12],Y2=VP[1]*hv[0]+VP[5]*hv[1]+VP[9]*hv[2]+VP[13],W2=VP[3]*hv[0]+VP[7]*hv[1]+VP[11]*hv[2]+VP[15];
+    if(W2>0){var x2=(X2/W2*.5+.5)*ov.width,y2=(1-(Y2/W2*.5+.5))*ov.height,tx2='abdômen · +'+hotC.toFixed(1).replace('.',',')+' °C vs. controle';ctx.font=(10.5*d)+'px Inter, system-ui, sans-serif';
+      ctx.globalAlpha=Math.min(1,(hotC-.25)*2);ctx.strokeStyle=GRP[gSel].c;ctx.setLineDash([4*d,3*d]);ctx.lineWidth=1.4*d;ctx.beginPath();ctx.ellipse(x2,y2,30*d,22*d,0,0,7);ctx.stroke();ctx.setLineDash([]);
+      var tw2=ctx.measureText(tx2).width,lx2=x2+34*d;if(lx2+tw2+12*d>ov.width)lx2=x2-34*d-tw2-10*d;if(lx2<4*d)lx2=4*d;ctx.fillStyle='rgba(10,8,30,.78)';ctx.fillRect(lx2,y2-30*d,tw2+10*d,16*d);ctx.fillStyle='#fff';ctx.fillText(tx2,lx2+5*d,y2-18*d);ctx.globalAlpha=1}}
   if(segOn){
     ctx.font=(11*d)+'px Inter, system-ui, sans-serif';ctx.lineWidth=1.4*d;
     KP.forEach(function(k){
@@ -1637,8 +1724,13 @@ else{A.classList.add('go');N.textContent=fmt(val())}
 if(R)R.addEventListener('input',function(){if(A.classList.contains('go')){cancelAnimationFrame(raf);N.textContent=fmt(val())}})})();
 </script>
 <script>
-(function(){var r=document.getElementById('mvn');if(!r)return;var v=document.getElementById('mvv'),y=document.getElementById('mvy'),c=document.getElementById('mvc');
-function u(){var n=+r.value;v.textContent=n;y.textContent=(n*365).toLocaleString('pt-BR');var p=n*5/1440*100;c.textContent=(p<1?p.toLocaleString('pt-BR',{maximumFractionDigits:1}):Math.round(p))+'%'}r.addEventListener('input',u);u()})();
+(function(){var r=document.getElementById('mvn'),b=document.getElementById('mvb'),m=document.getElementById('mvm');if(!r||!b||!m)return;
+var f=function(x,d){return x.toLocaleString('pt-BR',{maximumFractionDigits:d||0})};
+function u(){var n=+r.value,cx=+b.value,mi=+m.value;document.getElementById('mvv').textContent=n;document.getElementById('mvbv').textContent=f(cx);document.getElementById('mvmv').textContent=mi;
+var ab=cx*n*30,h=ab*mi/60,fte=h/176;document.getElementById('mvy').textContent='\u2212'+f(ab);document.getElementById('mvh').textContent=f(Math.round(h))+' h';
+document.getElementById('mvhs').textContent='de trabalho técnico por mês'+(fte>=0.1?', cerca de '+f(fte,1)+(fte>=1.95?' pessoas':' pessoa')+' em tempo integral':'');
+var p=n*mi/1440*100;document.getElementById('mvc').textContent=(p<1?f(p,1):f(Math.round(p)))+'%'}
+[r,b,m].forEach(function(e){e.addEventListener('input',u)});u()})();
 </script>
 </body>
 </html>
