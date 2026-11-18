@@ -481,6 +481,12 @@ footer p{max-width:none}
 @media (max-width:620px){.team>.mb{flex-basis:84%}}
 .grad{background:linear-gradient(90deg,#2fd89a 0%,#3cc7c4 45%,#6aa8ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .grad.quente{background-image:linear-gradient(90deg,#f5b800 0%,#ff8a00 45%,#e0262b 100%)}
+.parv{background:linear-gradient(160deg,#0f1b33,#14284a);display:flex;flex-direction:column;justify-content:center;padding:44px 10px 26px}
+.parv svg{width:100%;height:auto;display:block}
+.parv figcaption{position:absolute;left:12px;bottom:8px;font-size:.66rem;color:rgba(255,255,255,.6)}
+.parv .mp-tag i{background:#39ff88;box-shadow:0 0 0 3px rgba(57,255,136,.3)}
+.parcial .manstats div:nth-child(1) b{color:#e0262b}
+.parcial .mctls .mctl label{min-width:12.5em}
 </style>
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -502,7 +508,7 @@ footer p{max-width:none}
     <div class="hero">
       <span class="pill neon"><span class="dot"></span>Plataforma inteligente de experimentação animal</span>
       <h1>Monitoramento inteligente para quem cuida de <span class="grad">roedores de laboratório</span></h1>
-      <p class="lead"><strong>Precisão Térmica e Visão Computacional para Biotérios Modernos.</strong><br>Substitua o monitoramento manual e invasivo por tampas inteligentes em ABS com microventilação HEPA, termografia contínua e auditoria automatizada.</p>
+      <p class="lead"><strong>Precisão Térmica e Visão Computacional para Biotérios Modernos.</strong><br>Substitua o monitoramento manual e invasivo por tampas inteligentes com termografia contínua, monitoramento dos comportamentos, microambiente, alimentação e o melhor tudo isso com microventilação HEPA e auditoria automatizada.</p>
       <div class="cta">
         <a class="btn primary" href="#contato">Quero conversar sobre parceria</a>
         <a class="btn" href="#validacao">Explorar engenharia</a>
@@ -624,7 +630,7 @@ footer p{max-width:none}
     <section id="funcao" style="padding-top:0">
       <div class="head">
         <span class="eyebrow">O que ele faz</span>
-        <h2>Uma tampa-moradia inteligente que mede o animal sem tocar nele</h2>
+        <h2>Uma tampa-moradia inteligente que<span class="grad"> mensura a pesquisa sem tocar no animal</span></h2>
         <p>O Biotério Forte é um módulo único, uma tampa-moradia inteligente para animais de pequeno porte, em especial roedores. O software facilita a transferência de resultados de pesquisa em animais para humanos, medindo três grupos de variáveis ao mesmo tempo.</p>
       </div>
       <div class="fun">
@@ -681,6 +687,32 @@ footer p{max-width:none}
           </div>
         </div>
       </div>
+      <div class="card manual parcial" style="margin-top:1rem">
+        <div class="manw">
+          <figure class="manph parv" aria-label="Comparação ilustrativa: resultado só no fim do experimento contra curvas parciais atualizadas todo dia">
+            <span class="mp-tag"><i></i><span id="pvtag">Resultado parcial · dia 10 de 28</span></span>
+            <svg id="pvsvg" viewBox="0 0 360 396" role="img" aria-label="Gráfico ilustrativo de resultados parciais"></svg>
+            <figcaption>Curvas ilustrativas, não são dados reais</figcaption>
+          </figure>
+          <div class="mant">
+            <span class="eyebrow">E enquanto a pesquisa não termina?</span>
+            <h3><span class="grad quente">Quantas vezes você já ficou esperando o fim do experimento só para saber se o tratamento estava funcionando?</span></h3>
+            <p>No protocolo manual, as anotações ficam na prancheta e na planilha, e os grupos só são comparados no fim, depois da tabulação e muitas vezes da eutanásia e da histologia. Até lá, não dá para saber se um grupo está piorando, se a dose precisa de ajuste ou se algum animal já chegou a um ponto final humanitário. Com o registro contínuo, a temperatura, o movimento e o consumo de cada animal viram curvas por grupo, atualizadas todos os dias, e o resultado parcial pode ser consultado a qualquer momento.</p>
+            <div class="mctls">
+              <div class="mctl man-ctl"><label for="pvd">Duração do experimento</label><input type="range" id="pvd" min="7" max="90" value="28"><output id="pvdv">28 d</output></div>
+              <div class="mctl man-ctl"><label for="pvh">Dia de hoje</label><input type="range" id="pvh" min="1" max="28" value="10"><output id="pvhv">10</output></div>
+              <div class="mctl man-ctl"><label for="pva">Animais no estudo</label><input type="range" id="pva" min="4" max="200" step="2" value="40"><output id="pvav">40</output></div>
+            </div>
+            <div class="manstats m4">
+              <div><b id="pvw">18 dias</b><small>de espera até o primeiro resultado no protocolo manual</small></div>
+              <div><b id="pvm">1.200</b><small>anotações manuais até hoje (3 por animal por dia), ainda sem análise</small></div>
+              <div><b id="pvl">576.000</b><small>leituras já registradas até hoje pelo Biotério Forte (1 por minuto por animal)</small></div>
+              <div><b>Hoje</b><small>resultado parcial por grupo, sem abrir a caixa e sem interromper o estudo</small></div>
+            </div>
+            <p class="mnote">Estimativa: leituras = animais × dias decorridos × 1.440 minutos; anotações manuais = animais × dias × 3 verificações. As curvas são ilustrativas. O resultado parcial ajuda a acompanhar tendências e pontos finais humanitários, mas não substitui a análise final do experimento.</p>
+          </div>
+        </div>
+      </div>
       <div class="card kag" style="margin-top:1rem">
         <div><span class="eyebrow">Base de dados aberta</span>
         <h3 style="margin-top:.4rem">Thermal images of rats (mice) for segmentation</h3>
@@ -698,7 +730,7 @@ footer p{max-width:none}
     <section id="eletronica" style="padding-top:0">
       <div class="head">
         <span class="eyebrow">Eletrônica</span>
-        <h2>A placa que reúne os <span class="grad"> sensores da caixa máxima transparência</span></h2>
+        <h2>A placa que reúne os <span class="grad">sensores da caixa</span></h2>
         <p>Esta é a placa usada para validar o circuito. Ela junta o controlador ESP32-CAN, a câmera térmica Xtherm II T2S, o sensor de cor TCS3200 e os demais sensores de ambiente, luz, som e peso. Toda a placa usa conectores de encaixe rápido (push-in): os sensores e módulos entram e saem sem solda e sem ferramenta, o que facilita trocar uma peça, fazer manutenção e retirar a eletrônica antes da limpeza da caixa. Arraste para girar e toque nos números para ver o que cada peça faz.</p>
       </div>
       <div class="pcbv joined" id="pcbbox">
@@ -1005,6 +1037,41 @@ var PL=[
 PL.forEach(function(i){i.f='sim/placa/web/f/'+i.id+'.jpg';i.th='sim/placa/web/t/'+i.id+'.jpg'});
 build('galpl2',PL);
 })();
+</script>
+<script>
+(function(){var D=document.getElementById('pvd'),H=document.getElementById('pvh'),A=document.getElementById('pva'),S=document.getElementById('pvsvg');if(!D||!S)return;
+var f=function(x){return Math.round(x).toLocaleString('pt-BR')};
+function ctl(t){return 33.4+0.05*Math.sin(t*6.3)}
+function trt(t){return 33.4+1.6*(1-Math.exp(-t*5))*Math.exp(-t*1.6)+0.6*t*(1-t)+0.05*Math.sin(t*9)}
+function u(){var d=+D.value;H.max=d;if(+H.value>d)H.value=d;var h=+H.value,a=+A.value;
+document.getElementById('pvdv').textContent=d+' d';document.getElementById('pvhv').textContent=h;document.getElementById('pvav').textContent=a;
+var w=d-h;document.getElementById('pvw').textContent=(w<=0?'0 dias':w+(w===1?' dia':' dias'));
+document.getElementById('pvm').textContent=f(a*h*3);document.getElementById('pvl').textContent=f(a*h*1440);
+document.getElementById('pvtag').textContent='Resultado parcial · dia '+h+' de '+d;
+var X0=34,X1=346,W=X1-X0,o='';
+function px(day){return X0+W*day/d}
+o+='<text x="12" y="16" fill="#cfe0ff" font-size="12" font-weight="700">Monitoramento manual</text>';
+o+='<rect x="'+X0+'" y="28" width="'+W+'" height="120" rx="8" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)"/>';
+o+='<rect x="'+X0+'" y="28" width="'+(px(h)-X0)+'" height="120" rx="8" fill="rgba(245,184,0,.08)"/>';
+for(var k=0;k<Math.min(h,40);k++){var xx=px(k+0.5);o+='<line x1="'+xx+'" x2="'+xx+'" y1="128" y2="138" stroke="#f5b800" stroke-width="2" opacity=".7"/>'}
+o+='<text x="'+((X0+px(h))/2)+'" y="92" fill="#f5c84a" font-size="11" text-anchor="middle">'+(px(h)-X0>80?'anotações em papel':'')+'</text>';
+o+='<text x="'+(X1-22)+'" y="96" fill="#ff6b5b" font-size="34" font-weight="800" text-anchor="middle">?</text>';
+o+='<text x="'+(X1-6)+'" y="162" fill="#ff8a7a" font-size="10.5" text-anchor="end">resultado só no dia '+d+'</text>';
+var y0=210,y1=350;function py(v){return y1-(v-33.0)/(35.4-33.0)*(y1-y0)}
+o+='<text x="12" y="196" fill="#cfe0ff" font-size="12" font-weight="700">Biotério Forte</text>';
+o+='<rect x="'+X0+'" y="'+y0+'" width="'+W+'" height="'+(y1-y0)+'" rx="8" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)"/>';
+[34,35].forEach(function(v){o+='<line x1="'+X0+'" x2="'+X1+'" y1="'+py(v)+'" y2="'+py(v)+'" stroke="rgba(255,255,255,.08)"/><text x="'+(X0-4)+'" y="'+(py(v)+3)+'" fill="rgba(255,255,255,.5)" font-size="9" text-anchor="end">'+v+'</text>'});
+function path(fn,until){var p='',n=120;for(var i=0;i<=n;i++){var day=until*i/n;p+=(i?'L':'M')+px(day).toFixed(1)+' '+py(fn(day/d)).toFixed(1)}return p}
+o+='<path d="'+path(ctl,d)+'" fill="none" stroke="#6aa8ff" stroke-width="1.5" stroke-dasharray="3 4" opacity=".35"/>';
+o+='<path d="'+path(trt,d)+'" fill="none" stroke="#ff8a00" stroke-width="1.5" stroke-dasharray="3 4" opacity=".35"/>';
+o+='<path d="'+path(ctl,h)+'" fill="none" stroke="#6aa8ff" stroke-width="2.6"/>';
+o+='<path d="'+path(trt,h)+'" fill="none" stroke="#ff8a00" stroke-width="2.6"/>';
+var xh=px(h);o+='<line x1="'+xh+'" x2="'+xh+'" y1="'+(y0-6)+'" y2="'+(y1+6)+'" stroke="#39ff88" stroke-width="1.5"/><circle cx="'+xh+'" cy="'+py(trt(h/d))+'" r="4" fill="#ff8a00"/><circle cx="'+xh+'" cy="'+py(ctl(h/d))+'" r="4" fill="#6aa8ff"/>';
+o+='<text x="'+Math.min(Math.max(xh,X0+20),X1-20)+'" y="'+(y1+20)+'" fill="#39ff88" font-size="10.5" font-weight="700" text-anchor="middle">hoje (dia '+h+')</text>';
+o+='<text x="'+(X0+6)+'" y="'+(y0+14)+'" fill="#ffb35c" font-size="10">● tratamento</text><text x="'+(X0+80)+'" y="'+(y0+14)+'" fill="#9cc4ff" font-size="10">● controle</text><text x="'+(X1-6)+'" y="'+(y0+14)+'" fill="rgba(255,255,255,.55)" font-size="9.5" text-anchor="end">abdômen (°C)</text>';
+o+='<text x="'+X0+'" y="388" fill="rgba(255,255,255,.5)" font-size="9.5">dia 0</text><text x="'+X1+'" y="388" fill="rgba(255,255,255,.5)" font-size="9.5" text-anchor="end">dia '+d+'</text>';
+S.innerHTML=o}
+[D,H,A].forEach(function(e){e.addEventListener('input',u)});u()})();
 </script>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagem da simulação">
   <div class="lbin">
