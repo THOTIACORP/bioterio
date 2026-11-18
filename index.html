@@ -487,6 +487,7 @@ footer p{max-width:none}
 .parv .mp-tag i{background:#39ff88;box-shadow:0 0 0 3px rgba(57,255,136,.3)}
 .parcial .manstats div:nth-child(1) b{color:#e0262b}
 .parcial .mctls .mctl label{min-width:12.5em}
+@media (min-width:761px){.parcial .manw{grid-template-columns:1fr minmax(220px,360px)}.parcial .parv{order:2}}
 </style>
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -706,10 +707,10 @@ footer p{max-width:none}
             <div class="manstats m4">
               <div><b id="pvw">18 dias</b><small>de espera até o primeiro resultado no protocolo manual</small></div>
               <div><b id="pvm">1.200</b><small>anotações manuais até hoje (3 por animal por dia), ainda sem análise</small></div>
-              <div><b id="pvl">576.000</b><small>leituras já registradas até hoje pelo Biotério Forte (1 por minuto por animal)</small></div>
+              <div><b id="pvl">34.560.000</b><small>leituras térmicas já registradas até hoje pelo Biotério Forte (1 por segundo por animal)</small></div>
               <div><b>Hoje</b><small>resultado parcial por grupo, sem abrir a caixa e sem interromper o estudo</small></div>
             </div>
-            <p class="mnote">Estimativa: leituras = animais × dias decorridos × 1.440 minutos; anotações manuais = animais × dias × 3 verificações. As curvas são ilustrativas. O resultado parcial ajuda a acompanhar tendências e pontos finais humanitários, mas não substitui a análise final do experimento.</p>
+            <p class="mnote">Estimativa: leituras térmicas = animais × dias decorridos × 86.400 segundos (1 leitura por segundo); anotações manuais = animais × dias × 3 verificações. As curvas são ilustrativas. O resultado parcial ajuda a acompanhar tendências e pontos finais humanitários, mas não substitui a análise final do experimento.</p>
           </div>
         </div>
       </div>
@@ -1046,7 +1047,7 @@ function trt(t){return 33.4+1.6*(1-Math.exp(-t*5))*Math.exp(-t*1.6)+0.6*t*(1-t)+
 function u(){var d=+D.value;H.max=d;if(+H.value>d)H.value=d;var h=+H.value,a=+A.value;
 document.getElementById('pvdv').textContent=d+' d';document.getElementById('pvhv').textContent=h;document.getElementById('pvav').textContent=a;
 var w=d-h;document.getElementById('pvw').textContent=(w<=0?'0 dias':w+(w===1?' dia':' dias'));
-document.getElementById('pvm').textContent=f(a*h*3);document.getElementById('pvl').textContent=f(a*h*1440);
+document.getElementById('pvm').textContent=f(a*h*3);document.getElementById('pvl').textContent=f(a*h*86400);
 document.getElementById('pvtag').textContent='Resultado parcial · dia '+h+' de '+d;
 var X0=34,X1=346,W=X1-X0,o='';
 function px(day){return X0+W*day/d}
