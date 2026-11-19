@@ -393,13 +393,32 @@ footer p{max-width:none}
 .ghd{grid-column:1/-1;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
 .fs.n{background:var(--chip);color:var(--muted)}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-.gcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0;text-align:left;font:inherit;color:inherit;padding:0;cursor:pointer}
+.gcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0;text-align:left;font:inherit;color:inherit}
 .gcard:hover{border-color:var(--blue)}
-.gcard img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain;background:#fff;border-bottom:1px solid var(--line)}
+.gvisual{position:relative}
+.gsim{display:block;width:100%;padding:0;border:0;background:#fff;cursor:zoom-in}
+.gsim img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain;background:#fff;border-bottom:1px solid var(--line)}
+.gforce{position:absolute;left:.7rem;bottom:.7rem;width:88px;padding:3px;border:2px solid #fff;border-radius:10px;background:#fff;box-shadow:0 2px 12px #10243a44;cursor:zoom-in}
+.gforce img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain;background:#fff;border-radius:6px}
+.gforce span{display:block;padding:.2rem 0 .1rem;font-size:.67rem;font-weight:700;color:var(--fg);text-align:center}
+.gsim:focus-visible,.gforce:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
 .gmeta{padding:.8rem 1rem 1rem;display:flex;flex-direction:column;gap:.5rem;min-width:0}
 .gmeta h3{font-size:.98rem;line-height:1.25}
 .gmeta p{font-size:.82rem;color:var(--muted);line-height:1.4}
 .grow{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.matcompare{margin-top:1rem;gap:1rem}
+.matcompare>div:first-child p{margin-top:.35rem;color:var(--muted);font-size:.9rem}
+.matfields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem 1rem}
+.matfields label{display:grid;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--muted)}
+.matfields select,.matfields input{width:100%;min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--fg);font:inherit;padding:.65rem .75rem}
+.matfields input:disabled{opacity:.7}
+.matmetrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}
+.matmetric{min-width:0;padding:.9rem 1rem;border:1px solid var(--line);border-radius:16px;background:var(--bg)}
+.matmetric span,.matmetric small{display:block;color:var(--muted);font-size:.76rem;line-height:1.4}
+.matmetric strong{display:block;margin:.25rem 0;font-family:var(--display);font-size:1.25rem;line-height:1.2;color:var(--ok);font-variant-numeric:tabular-nums}
+.matnote,.matrefs{color:var(--muted);font-size:.78rem;line-height:1.5}
+.matrefs a{color:var(--blue)}
+@media(max-width:620px){.matfields,.matmetrics{grid-template-columns:1fr}}
 .fs{font-weight:700;padding:.15rem .6rem;border-radius:999px;font-size:.78rem}
 .fs.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .fs.mid{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
@@ -469,6 +488,13 @@ footer p{max-width:none}
 .dots{display:flex;gap:.45rem}
 .dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:width .2s,background .2s}
 .dots i.on{width:22px;border-radius:999px;background:var(--blue)}
+.supportmarks{margin-top:2.4rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.support-label{margin:0 0 .85rem;color:var(--muted);font-size:.74rem;font-weight:700;letter-spacing:.12em;text-align:center;text-transform:uppercase}
+.support-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;max-width:850px;margin-inline:auto}
+.support-logo{display:flex;align-items:center;justify-content:center;min-height:112px;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:18px;background:#fff;transition:transform .18s,border-color .18s,box-shadow .18s}
+.support-logo:hover{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 8px 24px #10243a12}
+.support-logo img{display:block;max-width:100%;max-height:64px;object-fit:contain}
+@media(max-width:520px){.support-logos{grid-template-columns:1fr}.support-logo{min-height:94px}}
 .mb{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:1.6rem 1.2rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.35rem;min-width:0}
 .tmav{width:104px;height:104px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#2f6df0,#12b5c8);color:#fff;font-weight:700;font-size:1.9rem;line-height:1;letter-spacing:.02em;box-shadow:0 8px 22px -10px rgba(20,60,140,.55);border:3px solid var(--surface);outline:1px solid var(--line);margin-bottom:.5rem}
 .tmav img{width:100%;height:100%;object-fit:cover;display:block}
@@ -480,6 +506,7 @@ footer p{max-width:none}
 @media (max-width:900px){.team>.mb{flex-basis:calc((100% - 1rem)/2)}}
 @media (max-width:620px){.team>.mb{flex-basis:84%}}
 .grad{background:linear-gradient(90deg,#2fd89a 0%,#3cc7c4 45%,#6aa8ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.grad.verde{background-image:linear-gradient(90deg,var(--ok),#18ad68,#59d98b)}
 .grad.quente{background-image:linear-gradient(90deg,#f5b800 0%,#ff8a00 45%,#e0262b 100%)}
 .parv{background:linear-gradient(160deg,#0f1b33,#14284a);display:flex;flex-direction:column;justify-content:center;padding:44px 10px 26px}
 .parv svg{width:100%;height:auto;display:block}
@@ -605,7 +632,7 @@ footer p{max-width:none}
           <h3>Mais dados por animal</h3><p>Cada animal é acompanhado o tempo todo, sem abrir a caixa: temperatura, comportamento, alimentação e ambiente.</p></div>
       </div>
       <div class="card mkt" style="margin-top:1rem;gap:1rem">
-        <h3>Quantos animais deixariam de ser usados por ano</h3>
+        <h3><span class="grad verde">Quantos animais deixariam de ser usados por ano</span></h3>
         <p>Aplicando a redução de até ¾ aos números de uso de animais citados na dissertação, em três recortes de mercado: o total de referência (TAM), o mercado que o projeto atende (SAM) e a fatia realista de entrada (SOM).</p>
         <div class="ranim" id="ranim" role="img" aria-label="Animação: dos quatro grupos de um experimento, os três de controle viram dados históricos e só o grupo experimental continua usando animais">
           <div class="rslots"><div class="rs c" style="--i:0"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg><svg class="dbx" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span>Controle hígido</span></div><div class="rs c" style="--i:1"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg><svg class="dbx" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span>Controle doença</span></div><div class="rs c" style="--i:2"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg><svg class="dbx" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span>Controle padrão-ouro</span></div><div class="rs x" style="--i:3"><div class="rico"><svg class="rat" viewBox="0 0 64 40" aria-hidden="true"><path class="tl" d="M10 26 C2 26 1 34 6 36"/><ellipse class="bd" cx="26" cy="25" rx="17" ry="11"/><circle class="bd" cx="44" cy="20" r="9"/><ellipse class="bd" cx="52" cy="22" rx="6" ry="4.5"/><circle class="er" cx="41" cy="11" r="4.5"/><circle class="ey" cx="47" cy="18" r="1.4"/><circle class="ns" cx="57.5" cy="21.5" r="1.4"/><path class="ft" d="M18 35v3M32 35v3"/></svg></div><span>Grupo experimental</span></div></div>
@@ -731,7 +758,7 @@ footer p{max-width:none}
     <section id="eletronica" style="padding-top:0">
       <div class="head">
         <span class="eyebrow">Eletrônica</span>
-        <h2>A placa que reúne os <span class="grad"> sensores da caixa máxima transparência</span></h2>
+        <h2>A placa que reúne os <span class="grad"> sensores da caixa - máxima transparência</span></h2>
         <p>Esta é a placa usada para validar o circuito. Ela junta o controlador ESP32-CAN, a câmera térmica Xtherm II T2S, o sensor de cor TCS3200 e os demais sensores de ambiente, luz, som e peso. Toda a placa usa conectores de encaixe rápido (push-in): os sensores e módulos entram e saem sem solda e sem ferramenta, o que facilita trocar uma peça, fazer manutenção e retirar a eletrônica antes da limpeza da caixa. Arraste para girar e toque nos números para ver o que cada peça faz.</p>
       </div>
       <div class="pcbv joined" id="pcbbox">
@@ -778,7 +805,7 @@ footer p{max-width:none}
         </tbody></table></div></details>
       <p class="pnote">Modelo ilustrativo gerado a partir da lista de componentes: a posição e o formato das peças são simplificados e não substituem o projeto da placa. A câmera Xtherm II T2S substituiu o sensor AMG8833 que aparecia no Quadro 2.</p>
       <div class="card fx" style="margin-top:1.4rem;gap:.8rem">
-        <h3>Duas câmeras, uma imagem só</h3>
+        <h3><span class="grad verde">Duas câmeras, uma imagem só</span></h3>
         <p>A placa tem dois sensores ópticos: a câmera comum do ESP32-CAM, que vê a cena como o olho humano, e a câmera térmica Xtherm II T2S, que mede o calor. As duas imagens são sobrepostas, com a térmica por cima e com transparência ajustável, e uma completa a outra.</p>
         <p>Isso resolve um problema prático da termografia: urina e fezes recém-eliminadas também saem quentes e, na imagem térmica sozinha, podem ser confundidas com o animal. Na imagem comum, porém, elas não têm forma de rato. Cruzando as duas, o sistema mede a temperatura só onde o calor coincide com o contorno do animal e descarta as manchas quentes do piso.</p>
         <p>As manchas descartadas da termografia não são perdidas: o sistema conta cada episódio de micção e de defecação, com horário e área aproximada da mancha. Frequência de urina e de fezes é um indicador de saúde, de estresse e de consumo de água e ração, então o que seria ruído na medida de temperatura vira um dado a mais sobre o animal.</p>
@@ -892,12 +919,40 @@ footer p{max-width:none}
         <button type="button" data-f="all" aria-pressed="true">Todas</button>
         <button type="button" data-f="A" aria-pressed="false">Carga A</button>
         <button type="button" data-f="B" aria-pressed="false">Carga B</button>
-        <button type="button" data-f="low" aria-pressed="false">Folga abaixo de 2</button>
+        <button type="button" data-f="low" aria-pressed="false">Coeficiente de segurança abaixo de 2</button>
         <span class="gcount" id="gcount"></span>
       </div>
         <div class="gal" id="gal"></div>
         </div>
       </details>
+      <div class="card matcompare" id="matcompare">
+        <div>
+          <span class="eyebrow">Materiais de impress&atilde;o</span>
+          <h3>Compare outros materiais com o ABS</h3>
+          <p>Escolha uma pe&ccedil;a e um material para estimar a mudan&ccedil;a na resist&ecirc;ncia e na flexibilidade.</p>
+        </div>
+        <div class="matfields">
+          <label for="matselect">Material
+            <select id="matselect"></select>
+          </label>
+          <label for="matcase">Pe&ccedil;a e carga simulada em ABS
+            <select id="matcase"></select>
+          </label>
+          <label for="matstrength">Resist&ecirc;ncia de refer&ecirc;ncia do filamento (MPa)
+            <input id="matstrength" type="number" min="1" max="500" step="0.1" inputmode="decimal">
+          </label>
+          <label for="matmodulus">M&oacute;dulo de elasticidade (GPa)
+            <input id="matmodulus" type="number" min="0.1" max="100" step="0.01" inputmode="decimal">
+          </label>
+        </div>
+        <div class="matmetrics" aria-live="polite">
+          <div class="matmetric"><span>Resist&ecirc;ncia relativa ao ABS</span><strong id="matres"></strong><small id="matresnote"></small></div>
+          <div class="matmetric"><span>Folga estimada nesta carga</span><strong id="matsafety"></strong><small id="matsafetynote"></small></div>
+          <div class="matmetric"><span>Flexibilidade estimada</span><strong id="matflex"></strong><small id="matflexnote"></small></div>
+        </div>
+        <p class="matnote" id="matnote"></p>
+        <p class="matrefs">Valores iniciais de fichas t&eacute;cnicas: <a href="https://forward-am.com/material-portfolio/ultrafuse-filaments-for-fused-filaments-fabrication-fff/standard-filaments/ultrafuse-pla/" target="_blank" rel="noopener">PLA</a>, <a href="https://prusament.com/wp-content/uploads/2022/10/PETG_Prusament_TDS_2021_10_EN.pdf" target="_blank" rel="noopener">PETG</a>, <a href="https://forward-am.com/material-portfolio/ultrafuse-filaments-for-fused-filaments-fabrication-fff/standard-filaments/ultrafuse-abs/" target="_blank" rel="noopener">ABS</a>, <a href="https://3dfila.com.br/wp-content/uploads/2023/03/FT_TRITANHT-FI05_PT_REV02.pdf" target="_blank" rel="noopener">Tritan HT</a>, <a href="https://move.forward-am.com/hubfs/AES%20Documentation/Engineering%20Filaments/PA/TDS/Ultrafuse_PA_TDS_EN_v2.2.pdf" target="_blank" rel="noopener">N&aacute;ilon</a> e <a href="https://www.3dxtech.com/products/thermax-ppsu-1" target="_blank" rel="noopener">PPSU</a>. Use os dados do fabricante do filamento que ser&aacute; impresso.</p>
+      </div>
       <div class="card" id="ar" style="margin-top:1.4rem;gap:.7rem">
         <div><span class="tag ok">Concluído</span></div>
         <h3>Fluxo de ar simulado com o filtro HEPA</h3>
@@ -908,7 +963,7 @@ footer p{max-width:none}
           <div class="stat"><b>27 Pa</b><span>com o filtro saturado: mínimo que o ventilador deve vencer</span></div>
           <div class="stat"><b>1,9 cm/s</b><span>velocidade mediana na altura dos animais (modo positivo)</span></div>
         </div>
-        <p><b>Ventilação positiva.</b> O ar renova toda a caixa-moradia e chega aos animais com velocidade baixa, bem abaixo das correntes de ar que o <i>Guide for the Care and Use of Laboratory Animals</i> pede para evitar. O jato da entrada lateral chega a 2,4 m/s, mas fica no alto, longe do fundo. Para espalhar esse jato, desenhamos um difusor de encaixe: uma meia esfera com 87 furos que reduz a velocidade de passagem pela metade.</p>
+        <p><b>Ventilação positiva.</b> O ar renova toda a caixa-moradia e chega aos animais com velocidade baixa, bem abaixo das correntes de ar que o <i>Guide for the Care and Use of Laboratory Animals</i> pede para evitar. O jato da entrada lateral chega a 2,4 m/s, mas fica no alto, longe do fundo. O difusor de encaixe foi fabricado com 87 furos para reduzir o jato. Na simulação CFD, a velocidade máxima caiu de 1,82 para 0,37 m/s; a perda de carga subiu de 13,4 para 14,9 Pa. A fração de ar quase parado nos 10 cm junto ao fundo passou de 9,6% para 10,3%.</p>
         <p><b>Ventilação negativa.</b> A pressão interna fica abaixo da sala, como deve ser para contenção, mas o ar perto do fundo quase não se move (mediana de 0,1 cm/s). A solução proposta é puxar o ar por uma abertura na parte de baixo da caixa, aproveitando a abertura inferior que muitas caixas já têm.</p>
         <details class="galbox" id="galar" style="margin-top:.6rem">
           <summary>
@@ -917,7 +972,7 @@ footer p{max-width:none}
           </summary>
           <div class="galbody"><div class="gal" id="galar2"></div></div>
         </details>
-        <div class="chips"><span class="chip">OpenFOAM</span><span class="chip">Ventilação positiva</span><span class="chip">Ventilação negativa</span><span class="chip">Filtro HEPA limpo e saturado</span><span class="chip">Difusor de encaixe</span></div>
+        <div class="chips"><span class="chip">OpenFOAM</span><span class="chip">Ventilação positiva sem difusor</span><span class="chip">Ventilação negativa</span><span class="chip">Filtro HEPA limpo e saturado</span><span class="chip">Difusor de encaixe</span></div>
       </div>
       <div class="card" style="margin-top:1rem;gap:.7rem">
         <div><span class="tag wip">Em andamento</span></div>
@@ -983,7 +1038,21 @@ footer p{max-width:none}
         <article class="mb"><div class="tmav"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCADwAPADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1TOGpwXGTnj0qMfSpVO7jNcR0DByOgB7UbjnBYU4/Lz+HNNxxzjJpAhwII680BscnnmkxnAFDYwPbsaCiRSCBg0/I4pgG0ZHf1p60iR3Xt+NJvCDJPBoJCgmsDXPEw00PFZWk19e7DtjjHyjA/ibsKqwjfMyRhmdwqKNxLnAVR3JrG/4TDT5JBFaSC5YkgEZwT7HHNeYP441W81dYtVsZxHC+JrZ1KwIeMcdCO+Tmr83j2PAlSNVlXcCqQruXKnO09+O/aq5Qudxqetam6OttHHbqnDzzt8qj0UDqfqcciqeneINUtpxZ6jc2gklO6HCHDqBzyf4un615nq/ju71S2CJcSRhcnY45JGOBjqOc/UCsPUPFfiLXbRYLi5WTaVeJg3zjHAKgDI64PanyA2fSFrex3MCzowaMjn2/GpxLG0hAdTj3r520z4ma5oyGCW5M6FQm3yQ2CONw9TjGfpT1+IHiMMJm1a7R8nbE7AK2OgC44z9aXIFz6Hzlc549utMx8wxzzXnvhP4rWVzp4/te7tormN9uAQGkHrgdBz1ravfHOnWVvJcNK8jAZSOIbiR149T7+lKzA6vOAc00AHOKxPDHjHS/FlvI9hKTJGB5kbrtYfhW4B6/pSGAqRdzJgYAqMfXB96XcccUyRMfhSg4GcZoycetNbnigYuc9RSKDkUvGBQjAGgA9yOKARSE96OuO1NDQEk96QsR+NB6/wBaTtyMf1oArYBA5zSqSO3Sgdc9jRg9hUAObp3+tAU55zjsaOo5/nTxwMA0AJ1HQc0bScnHApQOetL04HFIAQkjpzThRj2oJ20wMvxLq1toelXWoXThIbePzHbP4YHvzXzze/EOfVdUJurnV7O1uMeWltL5YGf75z2FdX8evHcUmmjQLFDNmZJZ5B93A6IPXJ5rwmG/Ul/PmZ5W3eVITjnpkemK2hDS5Dep6V4itDp0iXWj3F7Npk0QWQSyM5iI6gtyCp6jmq2i6rpqQSR3wRoyrKNpB2E+45z7YOc1x2l6xdaaW3OkoJwwnUSBs/7J4q7N4lhSRBb20CkNlvJj2Ec9KuwrM72ewtQSF/eCZC6FVbJ74xj5R05J/A1mX1/I1qbC5sVkE2Bstzt34HHTp/n3qppV3ZWV5JHq6sFlXMZLEggjOOv4Eeta0sNndOJNMlilkiUMC0u5wO/AHQ96B2OZliggdnhtTC8Yx1LbT6Z6/lVW0aGbzHvJnEsjhInZcoreuK3mthcXENvPmS5lbEcSj+I9eBz+dbH/AAhMT30NpLGi5AbC53ZBbjv8x9xii4mjmWhWKLzGsXW4YeWTj5RjoFI9sD6HNbWganPZQN/acB8iWQi3uGj5jcY4bnKjnqK6K6XSNCt/Kv7RbmEZLpGVV1flcgjOD09vlHTiqennSPEdpc2EV6bPaY5XFwp5bBU8Dr0U59zUsYtn4n/4RfU49Thh2zmTbMrMcSrnBH/1+a9z0PXbPxBYxXtoSEkBJQkbkPcHHevGh4Ju54YL6zuLTULSUFQQwZdw4I56cBfzBNX44JfA0lnq8N2Ynkwk9ui5RgBjDeh9+lS4lI9n7UvOMGqGkanb6zp8d5buNjDJGc7T6fyq8pyM5wKgYvUcUn3/AE49aAMnjrTehPegVh2Dj+lJ9TRnNHegYEZFGccUnGKXtQAnHqKToPWnZ4prYBwDTAgwRgGpAATg8e9IDt44IpM5zxipAVeX46Cn4x2qNN27PWnZOPr2pASLjPb8aQjn0pF9DTulIAyB171h+NNftvDPhu/1O5kCqiBF55JbjAHc1uE8HFfM/wC0h4uXUfEEWj29y7x2CkSIOESQ4yfdsceg475q4xu7CbscH408VSeKtVa4jhW2iGEWFDhUAzjnueetZ+j6Q2rXK220JsbDZHT8qqeHdCvfE2qQ6bYxs8krYJxwo7k19U/Dn4W6T4NswXjS6vGwXldc4PoKzxmLjh426nTgsHKvK/Q8x034Fvqtqn2UiAMM+fcLt5/H/Cs/VPhD4q0Am3WK0ukfj7TApb8MdjX0+sW8ADgeg6VatNOhLh3GW7E9q8eGZ1Wz16mBoxR8w2PgbWtPtmFvZ3M8qcurqu1f+At1+tWvD1zq9pf/AGOXTIrcK2G+VYxu7byvJ6Gvo3VNBgvclQI5SMeYCQfyrM0vwHYwTtPLmdO6sOG+vr1NddLGyfxI554Om1eLPI59MnS+/t+RLNGjOEEecJ24/wAffNa/hhZNd02ZIriKORpWbzJmYyEntjGeue/Fes6h4O07UtNe3jtETK4BXivOovh9q3hvVxcaReRb+stpefcnxxujYfdP1reWJTRzxwqTutTjvEngWW606SWFJkmQMr7suHYHsR0I/KvI9Rhv9IuFZ/PS4i4JwRvU89O1fWWl6rd3181rc2otbkjDRyjcCQOoIGDxV268LaZq0I/tPSrS5BXa2U7e1c6zD2TtNaG88Apq8XZnzP4S8daloUUslpcSiGYrOUGGG4Z7Hjpu/IVq3niqLW4pJUtilyi/Mqt8khHU+xI/UCuh+IHwQuNLV9Q8MqslrC/mGzP3gvcA9x7V5LZ3csGou0YMe0lSjg/K30/z3r0qNenWXNE8ytQnSdpHtHwk8Yxx6l/Z003lxXeCA7YG7oP8K9oU8fMCpHavk3RUjuruCO3lBnBJVVIAJxnoevNfR/gbX7fXdGiZCVmjVVeMn7px29qqSszNHSD9aTFLkAdPpSE1IwHWjjPrSZwMjoKRj8oPQ0ALnrS9QKQZ64ooAB7fWkzzS5IHoKbuIOKYCAc470djjrTuO9IcbRWYxFTIGaXHIz0o47cH6UoHJOcj0oEKAR9KBz9aPQUuaY7jLm4W0t5Z3IAiRnJPoAT/AEr4nv0fUrq8ur1iweV5VLD5gzEnbnGTjPNfWPxNvJbXwfeCIcygRM/91W4J+uK+bLexfVNVjHlogWQIARwi+1aRfKrkW5mkeofBzwxb6JoUV2Yl+03Q3uxHIXsK9YtpV29ScVxHhydYIYo1ICL8o711lvJwuBgd/evmcY3ObbPq8HFQgkjbgl+tX4JsEc1lQsDjbV2JTkZ61zU0a1YpmgWDNuJOT2oWXyuuTk1CqMR7+tKoYLtbqO/aupJo43FFmK6bnCkEfrT3ZZVAkiV/qM1Xgxuxk9atAgL04rRN2MppJ6FQwW0BLxQRxk91UCmO6EHFTzgH5lBAPrVJuQcjHNc9Xc2pq5BIGJIIBX3rxP43fD5FtpfEGkQCOXIaeNFwGI/iHvivbJCSME1l6xClzp8sDgsrqQe/alhazpVE0a1qMakGmfIlhM2YtreXdIAZMDqvqMentXs3w+1/7PqtgSp8q4QQMV6Z4wTjv3//AF15d4q8NTaZr81rA53K7GFxwRz39sV0Hgd5lZYbh5vtcTrNvZyu11fGAOO2fyFfWXUo3PlpR5XY+mVIIHPPr60ZHrTIpRNGsg43DJX09qfjn61mNCkkcetJnng80e1IAD+FAAc+oNINxPFHQdQaUdOSOPSgQdBzzTQOM5oPTrSBefrVDJCT25pvTnrTuQOppM9MVkMNo60Jk8ce9B45oX9aaEGO9KoHSgqOtKDgfSmB5/8AFqVrq20/SlIjSeR3d3OBhADgn05P5V4vpdx9qv18oKkceWVj1xnk+7Hj6CvTPjVrEsN9YQojbYoXkVsfxHIP5DH515DoDyPfLBGS2MFm9Pb/AD6U5aQHT+NHr3hmUyqoYYO7tXeWEKkBGOccda898OsYpCqqSxIAwO9eg6fNDaD/AEmVUZ+RuOK+fxEW3ofSYd2jqbMMWwYAzirUb9c1lyeIdNgwDdw59Nwp0XiHTZSNl3C24cYcVEaMlrY3dSL0ubUFwOh9asF8twMisEXsTSDbIDk4696uJeZYfNmrvbQidG+qNJcRtkHANPaXYvBrNmucIQOvqKgi1BXPzNzRcj2DerNJ5GfqagkBNRteRIm95EVf7zMAPzpi6jY54vbcn2kBrOdNsatEJQcVnahtEBJODnGavS3EEvCTxMfRXBP5Vl6mN0ZToOhz3rnUeVm6d46HlHiWK3vNYHmbIbhVYRSZwr54AJ9f/r1zdvFFpmoPdzRyyHBA8tMmNuhBBPTOMVr+O4jZ3bQuq9S0LMe/bkdf/wBdY5uvtltHMskfmKy7wTwQOMjuRnj8q+owzvTR8vio2qM+htJuEutNtJYgFV4lbj6Vb9jjHasbwlcC68N6fMFVSYRwnAGCeK1s471oYXH5x1z60u7GTxTFbHXikDde+aAHMwI4xg0A4zgmmE5I4xSg5oQB1PrTgADjP5UzI9hSgg9OaqwEmMEE9KCBjNO9RjNJjPHQjtWYxo6+vtTieM45o4x7+tAI9qADAI64pxXjimgcUo579KYHk/x1s1+z6bcsPlDtG2O4xkD8xmvIPAML3ur3jrg8AD2r3j4z6fJeeEHljRne2kEwCjsAcn8q8g+F2l3EF/KkqpbrIilGdxyMncQM5Jx0omm4MqjpUR21q8tgjTopLrjLE7UQ+57n2GTVe8166uiSbh5SRz+7wn4D0qXWb4yExRBViUbVUdFHoKyRfWOnx7rybJByEjGXb6elYwpRSu1c9CVRt2vYqXkV7K0TTI00IxmNZjHkflQ9uFR5bGS9s5VGVjmmWRD7ZAB5rL1nxxMtyYrfTUtgmBmViW6Z5pltdatfRXFwWYC3IWQI33cjjjArplSfRaHN7SN7J6nX+GvF+oW8i296vKnGc9fSvRtL1Ka9lhkXGzoSOleFm9domMeGcLuDAfdI9q9X+H2m/wBqaLBeXuq6lGpJASOfykGD04GT+deXi6Khqz18JiJNcu52Oq3L28DPhiAPmNef634o1F98NihQJ8rTDn5u4A9u5/nXaeMhNp2i3d5b6hcTC2gLKkhRwSPUgA/rXk+teIJdHgW0tIQ7ovX1PUk/iSajCwTd0rl16snG17DG17UI7pZLm3F6y/8AP4rOp/AcD8q6nQPGMjSKHsIokPVUhwo+nFeaTeIdVhK3lxdmJCcDbFuQn0zj+tdN4c8aWlyFV7+2Scn7ksRRW/EH+lehVg5JtRPMikp35j1W2u9L1BStzZWr5PEnlBSP+BAAiiZG0hBNHNLc6fkb0c73gT+8rdSo7g546VzQv4L+3a2fME0i/KVfckg/2W6H+db3hx5FhNtKd0YXaFYdsYIryKtLrsenCT6HE/Gu08vTYbzHyI4UMuOeOMGvL9HuftkjFVQRwoPMTgBYz1x684z716d4+tVh8MG81K6luovOe1m3Md/BManOcYBUHGBXlXhk28epQQ+axEqtC2Pu/NwR78Yr1sHZU7I8bG3lUu1Y+j/h3cx3Hha1eHftUsh3nknNdMB3P6Vn6FpaaPo9nZogjEcSg4GMnHNaQwBzn61szkE2k80bcdePf1oo6j3z1NAhWVSOuKYBk8YpSe2DSBTnv+dAC7T14/GkycUu0+tBBXmqGTDnmnHH40wUAnt+VZjHYHpTSPalwT1o649aYCDgZFL0FLikFAHCfEvxFdWAg0y0mSJ7mNmYnBLDOMDIryzwZYGDxRch9rMrKihRgKXRsYH1AruPjhY/Ppd8AflDJnPfINcr4YsnmvLiVGImuVjI2jo6ZII+uawlNxbR6UKKdKMkX9egkgkcoN2e5GK5GDRhc34uZpZN4bIOeFNe3L4bt9YtluACwkXoP4T3Htg5BFZx+G7TllZti5+Vo128ehqI46MVY2lhHJ8x5zeeGNO1C4S9ubos6rhyhUZx0OCOtU0sxYQT29o8zpM29jnJY9OTXr9t8M7GAr5oEoHTPStX/hENORQDGpA/hwMUnmFO1rlxwOt0eGafoNxcM2HKZXnccHac/wCB/KvePAWiw2FjbxDDCPKrnoBnr9T61z/iC2jlvLDR7KGHzmcFxGuHjgU7iSewZgAPxrs/C0ZR0idSNpxXNiq6quNkb0aDpRm7kPj/AE23fSNQ3nywYWVyvAIIwM/iRXh99otxe2aX4ilSOUbjsUlFz2Jx19u1fRPiK0S9E1vIMrKhU/lXE+G5ksGk0C8gCxeYfL3L8pZskp9T94euTUUq7o3SRPsvaxi2zx1NGk1OzXTbmXyoFbcr7RkGug8PeAI9JntZEuYLy3ifzBE8O0lv9o5PH0r1uXwjpdwGKwKNw7dqzbjwBHu/0a4kjHpniuqOYuztuQ8HTk7yPOb3w5qdleyXFkFaGRt/2RDhU/3R1FeheGf3lms1yDA6qC7SHkDHP/66LLwYYJN1wzSr/sHaw+h61pXkcc0S6DazOzMAbs/eaKH0J7M3Qe2TWE8Yql+ZGqo+z+FnnXxRhR/hvHMIyjTzxzMrDkb2LEH865L4W/DSJ9St9d1O6lW1hHmRISAjYII59K9T+Ieirr+kNprStDH5iHKDOAD/AIVVt7GK00mHT7diYrcBAWPJqIYnlpWh3Kp4JVKyc1okdXa6rY3szxW1wrSLyVzV7IA6nFcJ4XikuPEjlSQkEJLn1OcAV3PUDGa7cHUcovmODN8PTo1FydR5AI68ilCgZOaQtnrSAkDjFdZ5IpwMdfrRgdz2pGI6HNOT8DQAnUHsaGzjHX2xSDaDzS8nvViJsY7/AI0YxzSdKXPpzWZQmPxpQB16EUmBn1pQef8AGgBO/BpevJpOM0UAcf8AFTRjqnhrzkBZrV9/HYHAJ/lXDeDoy+uW8RB2r2/D/wDVXsl/ax31jcWzjKSxMh/EV434enay1hJpfl2oQT/tdD/KuTErqepgZ80OXsesNbyadMbqyjEiTENcW2cFzjG9Owb1B4b61chujcqzW4MqocNtU5H1U8j8q5f/AISFZwQsn5U9tZV1G7y3OMZcZI+hrytHpI9lUna8WdG00jHlJP8Avk1zXiDxtY6PDKVlSaaMf6pDuOfQkcD3zz7Vn3N2rZY5IwQRJLI4/JmI/SuK167juHC7QY4uQqgBcA9hV0qUPUJOUVrY9C8HWmrNHPrWsqi3d/tIGOYoh91QOw7/AM67LR/+PlCAQd1cTB4/sXs45AM7gMAdBW1pniq2uNkkT7STjFLVSu0Pk5oOMTr9SG+Yn2rj/E+ktcxtdQxM7pgSqpIMifh3B5BHNasuuRqnmSSjB/OqUXiez3splU+v0pzkm7mdKlKCsZ+j63MzBfOFzGQMhjtmT/2Vx+R+vWt19TEUQkWC+lPTYsAz/wChV53qdyI7ye4twVj3lkx6Vr6ProuI1y+TUy0Wxq6Kk7pnRi61a/lCqkemwZ5diJJnHoF+6v45+lXILK2020ZLfIyS7u53PIx6sx7n39h6VmJehtuM1ZW9VlALcnjmsnPSwOhbVGZrNpJdw+RG+2WUbQ47N61naXDuTyLogzINre5Fb13KqtE+DlW/OorPQ1eb7TMXWWQljk/pRHVWRtRmo3uN0zR4dOkkljB3zYDH261pJnHQk0j4RvLGcL396BkDrXt4OHLT1Pmszre0rehJt9MUHPakHPNL2NdR5wjDuM/lSgelNGf1oIxQA9unI5pMHPWlAOOcmk4Jx0qkBL17Cjkcijp1o9SKgYgODyMUucUnTnr7UoxgCgBQaAc9aPajGT/hTsA7IAIxnA4HrXh1+vk3jEAKpdzj+6c817iB9T7VwfxN0e0isotUigCXBnCOykjcCD26ZyBzWFaDkro6sLWUG49zkLe8MI8xyFXpk+tTjV8cA9eRWdOGNgwz8w647VAYpGjR9p2DHevO5Ls9j27S0NK81iWRAkA3MT17e9Nj0yOfS7u8YtlVO32bFYeu63Fo1pulJj3DHAyTTfD3i2O+sWsoLyCeJs/KeGUn2PNdMKVldHLOtKbszDurXO2ZZJInXnKkj8a1/DuvatYSoJXNzB/tD5h+P+NWm0a4nbMYjLEkggitO18PXaxhWgR2GDuJ4xVylBqzJpxqp3iaV3r91dokMPyM65y3JA/lRpOh3N7qUUrtIwJALE4AHfAqE6DfvfbbaFnWXG4g4yP/AK1eh6HpkmlWaI68gEE5yc1i3BKx0t1ZPW5U1vRlaIvGpVQAPpjvXK2u61nAizlz1xwTXZX+qIqmHAyBk88Z9a4mbUYF1DykcMA24bHDfUVHImhqpOD1OktrvKj5/m+tMlv5I5lAJzuqlbjzpR5XG3rj0rUNqrzqoHAUnntXBKNnY7VWurmlau1w9srYyzjg10Dv9miJkZXkJyP8K5iGGVrqBI3MZ3YDryRgGttYSGBd2kbpuJ/pXVhsM5+90OHEYyNO6e4DLZZsZPJ+tPAA4oCcdqdtPoPzr2UktEeBKTk7sTp9aXpjJ4p235eSMmhhyOlMQ3Hr0p3GDgfnS47f0ox60AAAFCjPYYpcelAU4zigB5zmmkEc08/pTcjPWkMOnFJg04fWkoAKBwcUveimA4ccjGK57x3ZfbPC16FQs0IWdcdflOT+ldCCQOCKjljSeJ4pOUdSrA9wRg/zqWrqwRdnc8NlbzrE4AOe+a1vDtmt/p0xZC+AcegOKzXt5dKvLvS7ldr20hX6+hH1BFXvCN79ju3tGfCyN09a82cWkezCSdjAvPDV5rmorbvbktHyAeg96zNR+FNxFL9qtYFDp82VO0g/1r20xpBIjmMDP8WOM+9LqMaFfMUfeHIAxULEyjsdMaMGtTxKHStXtlUhxu5OG7+ma6Cz1LVra0jHkztMc7lhYMo+m4iumnfTpHIlcRseoIxzS2cWn+Yo+0oQvXtxWvtIvVo66UKaXuyKOnap4gcZW1uQ+MjcVGeOnHSrM1l4puYvNkLQg/wK7FvzPFdda61pVhGEW8VAfQVfh1KwlwxuPMzyMiolOC2Rbcdmzy2T4Z634hmL6teXX2XgeWZiq4HbYOp+tV9U+H0Xh66hl0+Hy4hhWVSa9qi/fKCqlVPTIxWbqdnFO4WSMMB0571z/WZX8jCpTi0cz4a01oInlnYhtuEU84FaUEgYyOxBJOOR6U+5nNnA0QQE9sd6gLLZ2qs4G7qf8+tY6ybZn8KsXNNk8zVGjBB8uNmIHvgVudecVz3g5XmgvNRfnzpdiE/3V6/r/KuiGMZx+Ne5h4ONNI8HEz56jYo/SkC9e1Kc59aXOQK3MLBjpQMk8inbaApxQAmOKMYFLiigBKUUH6U4DigLiU0470/bng4NJt70gE796UUmM8dKUgrjpigA79KVcikOT70D5T0oELnjp070nX8KcCf8ik5FAHAfE7RHZIdbt1/1QEVxg8kZ+Vj6gcj8RXnIumt72K4BYBW5wf1r6Bnt47qCSCZA8UqlGU9CDwRXh/inw7L4Y1NrSYiSGVTJbydSyZxg+46GuerT6nTRqdD07RNWg1GxAkwW2g7ffHWtC4tN8I2BM44x0ryDwt4hbS7oRTFsOwH0APavX9Dvo7y2+bBaTLA9Q30rz6tJx2PUoVrvU5i+8NC5uA8iAMDUll4WEUmPKMgzwMdq7hbeM87FqzFHGuOx9qyjUnsdMlDdHMJ4LtZyreSEx04Faln4btLTAEQJHc81uggDsMUpGTkc0Sbe5CnboVUj2BQFDeufSqV3DEH8wrzj+7xWpI6xIxbgjtXPa1qq20THeOwC9Cc1EYaWJdTUw7lPtOoEsOE5I9Oax/Et6UC20T5Zm2kD+H61ovqEdrC5ZwGKnJx6c1gWivquoG4kCGNhhMjn3PNawjy6voTJueiO+0G3W20KxiXPEK59yeSfzrR7Dp9K+f8AVvirq/gb4l39g8j3Oljys2ztlU3RqSV9Oc9K9z0fV7XXdNhv7Ni0co6H7yn0Ne3BPkTPFqw5ZMug9Cc0fSlX3o6nGDTMxcHvQOOho/z1oxQAelLS4xSjFNIQmOaVcdKOp64pR15P5UrDE7ZGaOduM0vftijb1Pp2pIkbyKUnd1yMetBUUmPr+NFhgpI70pJo7UnIGc9aADj1pD+lHH/6qAKYEd1dRWVtLdXEqxQxIXkdjwqgZJr588UeOoPHfi7daxyx2i2RS28zAJ2tksR75qz+0T8RDuHhXTZ2CRfNesp++/8ADH9B1PuR6V5jp17JY+KdKjfGzaIfwK4/nVyp+5qbYdJtyfQ7B2d+dxSVOfTJrsvDXjS4jgjhbC+UwUgjp9K5a6t/MfcDtIqBdyn5Mxyngkf1rhaUlY6VeEj3nTPFUVwuDIFkGM7uRmt5dYiMSkkEnHQ5+lfPVjrstvJmYOBzk9dvvXUaX4paZ1/0lGXHBLc8e1ck6Guh2U619z19dVgmxslPXHFS/wBppGW3PyOuBn9a8oHi94HO2VCo+8QwH4Yph8bSzJ5Vt5kzdgoyv0HvWapM0dRWPQte8RwwpksXUAkoeQ1cLJrL6rP9qlciJeFU5yTWY73WohRePmPP+rLcsfcelXEjErEEFQM4A6e1a2SMtWyB2lvp9qZEWclSc5/wrf0a0JlVgPkA/P3qrZ2qmII20ng5HrXSaVaiNA2O2AT6Vx16ulkdmHp2dz5x+OtssPxBunGFZreF89/u4z+le1/CLUG/4R3TBcFQbmAfMOAz9gffiuJ+OvgWfW0fxLp2XuLKIRTRjndEMnI9xmr/AIVmksPh7aM2ROLaNhz9w9VP8q+hwNSNSlCK32OP6q/37lokr/ie2Y/GnAcZqno2oRaxpdtfRMrCZAWwfutjkH8auY4705KzszxE76gOvSndeQv6UAHp6+1KFyfSkMOg9Bj86QH1GacF55pQoHpQA0lcDj8xSjGOmPenYHUYx2pCBgU0MYp7HvTj+JoC49ePXvSgeg4pCGn1pBz9KcVyvTFDmOFPMldI0A5Z2Cj8zQtQGlcd8fWjOQCa5TXPij4c0cMsU738y5+S3GVB/wB48flXnviD45avOpj0mxh08HjzGPmv+GQAPyreOHqS6GbqRR7TcTRWsTTTyRwxgEl5GCgD6mvHvHHx1hhinsfDSFnGVa+k6D3Rf6n8q8o1nX9U1qZpdSv7m7duT5khI/AdKwrp8fL268V0QwqjrIzdRvYxNcuJbm8LSOzO5LMzHJJJ61paislvrFncFt2x4jn06VkFftWqIh6FgPwrf1S38+JpV4Ij3gf7p/8ArVNRXZ1UE1Sb8z1JkDorjblhznpVSeDJDDjaccd6d4Yv1vtPjDEcqM1sfYjIrZw2M4JHSvBcuV2Z63IpK6MOJFLfKWVzxyOB/wDXrUtEXA3Rocc5wKhms3hfcDx9P51Z08B2GOO+AcZNEp6BGFmXorW32hxbxrjuV5q3FblVA2hfbdz+lEFuZAG2nAJyevFXVIiAB4IGDxnNYuZsoBb28aEFpAxPO0dq1IFB2sFIH3fudfes6Eq8iqDnrhduQa3bS3bCkAIPcZrGpM2hTuOghTIAyM8jjJNb8KC3gJ44H5mqlnEkZBP3vU1NczARE9h/OuCb5nY64rlWhXt4UksNRknAdSjZBHbFcHrLwxacIYQAZTtI6ABf8iu5u3MekCDIWS4O5yeyg5/wFeY3WoDU9QvmRAsNvI0CY6E5+Y/yr6bIsM7qoznx2KVLBVF1lZIXw14lvvD1wZLZg6HiSJydrD6f1r1TRPG2lawmJZBZT5/1czcH6H/GvG1Qo24EkZIrQtxvwB1Hr1r6Wrg4Vdep8RCrKJ7uAGUFSCOzDBFOxxXjun6lqFgBNZXcsJBwQG4P1FdVYfEaWMKmpWIcd5YDg/8AfJ4/WvPq5fUj8Op0RxEXuduRznvShSTnOap6brem6uu6zu43bujHaw/A/wBKv4x14NcUoOOjN009ho9hSEAnn8MU7GO9IOKkoTrVTVNWsdGt/Ov7lIF7A8s30HU1weufE6ecyW+jwm3TOBcPjeR6gdB+prip3lvJWmuJHldjlmdiS3vXoUcBKWs9DmniEtInaaz8VZmVo9JsxFzgTz/MceoXp+dcHquo6jrEpmvrya4Y9N7HAHoB0AqYRZAwentTHgZQASPoRzXpQw0KeyOaVSUt2YlxAQDwTjpWPcwlyeMfjW/ettBX+Ju/oKx7v5RginISMC7XYTxWPdSDP4dK273LAgc1h3KY3EnJ9a55I1RmaJD5uo7ycKuSc11EVut2iHO1mDRgH0OawvD8KmWaR/4TxXcaTYLdWNrc5AcOOMdga8+T1Z9LgsNz0Ul2bKPhO9ezAhbqPl69xXpWl3aXKgMeTXnF7bfZrkTKhTzD8y/3TXSaJfY27uCD1FeXjKXLJoxwdW8TtpbNpU4AbPpVIac0Um7btPtV3Tpg4BB9q1PsnmruD4H0zXl81j01FMrW3+qClsA+1XI4YmG47T9Tmqr2rRPgOpz3zT/LmCZ3gj2qW7lpF0KqDagGPpV62kOcnisZWlbAYbvw61YUXEmEUBc92bp+AqJI2SsbT6gkWATnPAA61ZtZFnbL4Crzk9KxrfSWmYKCWPd+P0//AF1Y1aRbCKOztlUuxHmsOSB6UUqHtZcqNaFJ1Z8iKviO8SNJ78yHZGhCp04A4H4n+ded6Cjw6OI7pWS5mZpWyvD5OSR+dXvGl5PO6afC5BklErEHgIP8Sf0q4lsj2ixP91VAB9K+7wFK2i2SsfM57NQjGmk03dv8jJCfNjrV62BByBmoxE0MpWUZP8LD+IetWEbgAcV6aVj5xssRtsOMcNgZ/GpmU4wece9UwW2spye9XImE8St68H8KokjaPHI4A9+lbOl+LtX0nagn+0wD/llP82B7HqKy2wu04BFKTn37ZqJ0oTVpIpSa2O8074h6bcuI72CSzY4w+d6fj3rpraeC8iEtrNHPH/fjIavGygcnjmnW8lxZSCa2lkhdTncjbTXn1Mti/g0OiGJa0kYUfLY2YFWlVuvAplvFkgkY49as7SVzgc9q9BROcjMZ2jnr2BqGePcB8x4qy5wCSwx2yaqyBskAjPsaGByPiFb3S7h9Rj33Fu3EkfUxY43L6j1FVt5u4VdMhSM5xiusuRsQ7txGOfeufeBipPTPb0rGUbMtMwrtAowRjHpWJdRFmOBXUTWvzEEZ+lUbjT2YZwcGsZK5pFnO+HoRtuWc8AnjPsa9H8FwLc2M3mAhQuR7DHWuO0DSWa2upiuAGbkjtWnN4hOg+H7nyDtmnXygfbnJ/WvJmrt27n2uFth4QnUWnK/nc7jxZ4fju9NtdZtOY7hSXx08wcHPp0NYGm25wCBwTz7VqfAbxEPEPh/UvCl24kurdjd2iMeZFP30HqR1FQ6/b3PhrWlIiMtnKR5mPvA/3seuOo9q0xtD2tJVYdD57Bz5arpvZ7G/pLeXtAbHtmuotE3DDMCD+Fc5ZQw3UaTwuHRhlSPSuks8eWqENxzwK+WqI+jhFpWZaGn7kycgDpmoWtpCCqAt2rUjZtoUkH3qxFCrHnH4CsXKxqkY8GkyEhnJ+npWzZ6aCFwOntWha2RkIwh2/wA6m17UrXwrpLXk+zzOkaE43H/61RGMqklGINpWRlazq2n+F4YBdXEUE90/lwrIwUM39PauL1nUJ4I7qVmGM8Enrz1rx/4o65c+ILyTU7uUtPuAVAfkjXPGP88V3Xhiebxr4VtTI5UrGiSHPLFTyT+FfSYXDKlFW6bmlDEKEp4eS1mlYILW4urr7bNwty6quf4UAyB+VdA38+9MmiSG9htYzkRKZCfTPH8qlC4BAJOO9fRYCLVK76nynEc08Y4Rd1FJCSW8c8e1xwOcjsfaqzxm3bB5UDhvX61dHAyF57k0rxeahUjrx92u6x4RmvdRxozMwGOueKZ4f1S21BrmO3fzFjYEsPu5Oeh6HpVK48FR398zahqF1Pa5ytso2J7hiOSK6WC3gtoY4oI0jjQYVEACqPpUK9w0IJPmH0/WlAzxU8keBjAOaiCqMAEkj2qwHquVBzjmneWCSDwT3p0YBHXgHkU8qS3GDjp60yG9T//Z" alt="Foto de Rafael Guerra Lund" width="104" height="104" loading="lazy" decoding="async"></div><h3>Rafael Guerra Lund</h3><span class="rl">Orientador · Consultor científico</span><p>Orientador do projeto de mestrado e consultor científico do Biotério Forte.</p><a class="in" href="https://www.linkedin.com/in/rafael-guerra-lund-9637b334/" target="_blank" rel="noopener" aria-label="LinkedIn de Rafael Guerra Lund"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg><span>LinkedIn</span></a></article>
       </div>
       <div class="carc"><button type="button" class="cb" id="tprev" aria-label="Anterior"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dots" id="tdots" aria-hidden="true"></div><button type="button" class="cb" id="tnext" aria-label="Próximo"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
-    </section>
+          <div class="supportmarks" aria-label="Institui&ccedil;&otilde;es apoiadoras">
+        <p class="support-label">Apoio institucional</p>
+        <div class="support-logos">
+          <a class="support-logo" href="https://www.gov.br/cnpq/pt-br" target="_blank" rel="noopener noreferrer" aria-label="CNPq, Conselho Nacional de Desenvolvimento Cient&iacute;fico e Tecnol&oacute;gico">
+            <img src="img/apoio/cnpq.png" alt="CNPq">
+          </a>
+          <a class="support-logo" href="https://www.finep.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="Finep, Financiadora de Estudos e Projetos">
+            <img src="img/apoio/finep.png" alt="Finep &mdash; Inova&ccedil;&atilde;o e Pesquisa">
+          </a>
+          <a class="support-logo" href="https://www.fapemat.mt.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="FAPEMAT, Funda&ccedil;&atilde;o de Amparo &agrave; Pesquisa do Estado de Mato Grosso">
+            <img src="img/apoio/fapemat.jpg" alt="FAPEMAT e Governo de Mato Grosso">
+          </a>
+        </div>
+      </div>
+</section>
   </main>
 
   <footer>
@@ -1016,13 +1085,14 @@ function build(id,L){var g=document.getElementById(id),last=null;L.forEach(funct
  b.onclick=function(){show(L,n)};g.appendChild(b)})}
 var AR=[
 {id:'ar_3d',t:'Caminho do ar',s:'Positiva · filtro limpo',p:'Linhas de corrente em 3D: o ar entra pela conexão lateral, percorre a caixa-moradia e sai pelos furos da sobretampa com o filtro HEPA.',k:'ok',v:'15,7 Pa'},
-{id:'pos_limpo',t:'Ventilação positiva',s:'Filtro limpo',p:'Perda de carga de 15,7 Pa e pressão interna de +12,8 Pa. O jato da entrada chega a 2,36 m/s no alto; a 3 cm do fundo a velocidade mediana é de 1,8 cm/s.',k:'ok',v:'+12,8 Pa'},
-{id:'pos_sat',t:'Ventilação positiva',s:'Filtro saturado',p:'Com o filtro no fim da vida útil, a perda de carga sobe para 27,0 Pa e a pressão interna para +24,1 Pa. O ventilador deve vencer pelo menos esse valor. A velocidade junto aos animais quase não muda.',k:'ok',v:'+24,1 Pa'},
+{id:'pos_limpo',t:'Ventilação positiva sem difusor',s:'Filtro limpo',p:'Perda de carga de 15,7 Pa e pressão interna de +12,8 Pa. O jato da entrada chega a 2,36 m/s no alto; a 3 cm do fundo a velocidade mediana é de 1,8 cm/s.',k:'ok',v:'+12,8 Pa'},
+{id:'pos_sat',t:'Ventilação positiva sem difusor',s:'Filtro saturado',p:'Com o filtro no fim da vida útil, a perda de carga sobe para 27,0 Pa e a pressão interna para +24,1 Pa. O ventilador deve vencer pelo menos esse valor. A velocidade junto aos animais quase não muda.',k:'ok',v:'+24,1 Pa'},
 {id:'neg_limpo',t:'Ventilação negativa',s:'Filtro limpo',p:'O ar entra pelo filtro e sai pela conexão lateral. A caixa fica a −12,8 Pa, mas o ar perto do fundo quase não se move (mediana de 0,1 cm/s): a saída precisa ficar mais baixa.',k:'mid',v:'−12,8 Pa'},
 {id:'neg_sat',t:'Ventilação negativa',s:'Filtro saturado',p:'Com o filtro saturado, a caixa fica a −24,0 Pa e a perda de carga é de 26,6 Pa. O fundo continua com ar quase parado (mediana de 0,4 cm/s).',k:'mid',v:'−24,0 Pa'},
 {id:'zona',t:'Ar na altura dos animais',s:'Positiva · 0 a 10 cm do fundo',p:'Distribuição da velocidade do ar onde os animais ficam. A mediana fica perto de 2 cm/s com o filtro limpo e de 1,7 cm/s com o filtro saturado, longe das correntes de ar que o Guide recomenda evitar.',k:'ok',v:'1,9 cm/s'},
-{id:'difusor',t:'Difusor de encaixe',s:'Proposta para a entrada lateral',p:'Meia esfera de 84 mm com 87 furos de 6 mm, encaixada por pressão no furo da carenagem. A área dos furos é 2,2 vezes a do furo, o que reduz a velocidade média de passagem de 0,42 para 0,19 m/s. O efeito no escoamento ainda será simulado.',k:'mid',v:'Proposta'}];
-AR.forEach(function(i){i.f='sim/ar/f/'+i.id+'.jpg';i.th='sim/ar/t/'+i.id+'.jpg'});
+{id:'difusor',t:'Difusor de encaixe',s:'Pe\u00e7a fabricada para a entrada lateral',p:'Meia esfera de 84 mm com 87 furos de 6 mm, encaixada por press\u00e3o no furo da carenagem. A compara\u00e7\u00e3o CFD com e sem o difusor est\u00e1 no card ao lado.',k:'ok',v:'Homogeneização do jato de ar'},
+{id:'difusor_cfd',t:'Efeito do difusor',s:'Simula\u00e7\u00e3o com e sem difusor',p:'Na ventila\u00e7\u00e3o positiva com filtro limpo, o difusor reduziu a velocidade m\u00e1xima do jato de 1,82 para 0,37 m/s. A perda de carga subiu de 13,4 para 14,9 Pa; a fra\u00e7\u00e3o de ar quase parado (< 0,5 cm/s) nos 10 cm junto ao fundo passou de 9,6% para 10,3%.',k:'ok',v:'CFD'}];
+AR.forEach(function(i){i.f=i.id==='difusor_cfd'?'sim/ar/f/Figura_26_cfd_difusor_comparacao.png':'sim/ar/f/'+i.id+'.jpg';i.th=i.id==='difusor_cfd'?'sim/ar/t/difusor_cfd.jpg':'sim/ar/t/'+i.id+'.jpg'});
 build('galar2',AR);
 var PL=[
 {id:'projeto_1',g:'Projeto',t:'Projeto 3D',s:'Vista em perspectiva',p:'Modelo 3D da placa de validação com os módulos de sensores, o controlador e os conectores de borne.',k:'n',v:'Projeto'},
@@ -1405,7 +1475,7 @@ function draw(now){
 var frames=0;
 /* interface */
 var cap=document.getElementById('vcap'),leg=document.getElementById('legend');
-var CAP={v2:'V2 montada, em ABS. Arraste para girar, escolha as peças na engrenagem, no canto superior direito, e use “Abrir peças” (o ícone de olho, no celular) para ver o conjunto desmontado. Malha simplificada para a web.',
+var CAP={v2:'V2 montada. Arraste para girar, escolha as peças na engrenagem, no canto superior direito, e use “Abrir peças” (o ícone de olho, no celular) para ver o conjunto desmontado. Malha simplificada para a web.',
  v1:'V1 montada, em PLA. V1 montada em PLA, na posição definida pelo autor no modelador 3D. Arraste para girar e marque as peças que quer ver.'};
 function legend(){leg.innerHTML='';var S=SETS[cur],order=[],byG={};
   S.parts.forEach(function(p){if(!byG[p.g]){byG[p.g]=[];order.push(p.g)}byG[p.g].push(p)});
@@ -1478,16 +1548,17 @@ function render(){
   list=GAL.filter(function(i){return flt==='all'||flt===i.caso||(flt==='low'&&i.fs<2&&!i.inox)});
   g.innerHTML='';cnt.textContent=list.length+' de '+GAL.length;
   list.forEach(function(i,n){
-    var b=document.createElement('button');b.type='button';b.className='gcard';
-    b.innerHTML='<img loading="lazy" src="sim/t/'+i.id+'.jpg" alt="Tensões na peça '+i.peca+', carga '+i.caso+'"><div class="gmeta"><h3>'+i.peca+'</h3><p>Carga '+i.caso+': '+i.carga+'</p><div class="grow">'+(i.inox?'<span class="fs ref">Aço inox</span>':'<span class="fs '+cls(i.fs)+'">Folga '+f1(i.fs)+'</span>')+'<span>'+f1(i.d)+' mm · '+f1(i.vm)+' MPa</span></div></div>';
-    b.onclick=function(){show(n)};g.appendChild(b)});
+    var b=document.createElement('article');b.className='gcard';
+    b.innerHTML='<div class="gvisual"><button type="button" class="gsim" aria-label="Ampliar imagem de tens&otilde;es: '+i.peca+', carga '+i.caso+'"><img loading="lazy" src="sim/t/'+i.id+'.jpg" alt="Tens&otilde;es na pe&ccedil;a '+i.peca+', carga '+i.caso+'"></button><button type="button" class="gforce" aria-label="Ampliar imagem de aplica&ccedil;&atilde;o de for&ccedil;a: '+i.peca+', carga '+i.caso+'" title="Ampliar aplica&ccedil;&atilde;o de for&ccedil;a"><img loading="lazy" src="sim/cc/'+i.id+'.jpg" alt=""><span>For&ccedil;a</span></button></div><div class="gmeta"><h3>'+i.peca+'</h3><p>Carga '+i.caso+': '+i.carga+'</p><div class="grow">'+(i.inox?'<span class="fs ref">A&ccedil;o inox</span>':'<span class="fs '+cls(i.fs)+'">Folga '+f1(i.fs)+'</span>')+'<span>'+f1(i.d)+' mm &middot; '+f1(i.vm)+' MPa</span></div></div>';
+    b.querySelector('.gsim').onclick=function(){show(n,0)};
+    b.querySelector('.gforce').onclick=function(){show(n,1)};g.appendChild(b)});
 }
 document.getElementById('gtools').addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(!b)return;flt=b.dataset.f;
   Array.prototype.forEach.call(this.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b)});render()});
 var lb=document.getElementById('lb');
 var mode=0;function setm(m){mode=m;document.getElementById('lbm1').setAttribute('aria-pressed',m===0);document.getElementById('lbm2').setAttribute('aria-pressed',m===1);if(!lb.hidden)show(pos)}
 document.getElementById('lbm1').onclick=function(){setm(0)};document.getElementById('lbm2').onclick=function(){setm(1)};
-function show(n){pos=(n+list.length)%list.length;var i=list[pos];var im=document.getElementById('lbimg');im.src=(mode?'sim/cc/':'sim/f/')+i.id+'.jpg';im.alt=(mode?'Apoios (azul) e forças (vermelho) na peça ':'Tensões na peça ')+i.peca+', carga '+i.caso;
+function show(n,m){pos=(n+list.length)%list.length;if(typeof m==='number')mode=m;document.getElementById('lbm1').setAttribute('aria-pressed',mode===0);document.getElementById('lbm2').setAttribute('aria-pressed',mode===1);var i=list[pos];var im=document.getElementById('lbimg');im.src=(mode?'sim/cc/':'sim/f/')+i.id+'.jpg';im.alt=(mode?'Apoios (azul) e forças (vermelho) na peça ':'Tensões na peça ')+i.peca+', carga '+i.caso;
   document.getElementById('lbt').textContent=i.peca+' · carga '+i.caso;
   document.getElementById('lbp').textContent=i.carga+'. '+meta(i)+'. Folga no pico '+f1(i.fs)+', no percentil 99,5 '+f1(i.fsp)+'.'+(i.conv?'':' A solução não convergiu por completo; trate o valor como indicativo.')+(i.inox?' Esta peça será comprada pronta em aço inoxidável; a simulação em ABS fica só como referência.':'')+(mode?' Em azul, a região fixada (apoio); em vermelho, onde a força foi aplicada, com seta de direção e valor. Serve também de guia para montar a peça na máquina de ensaio.':'');
   lb.hidden=false}
@@ -1496,6 +1567,54 @@ document.getElementById('lbx').onclick=hide;document.getElementById('lbprev').on
 lb.addEventListener('click',function(e){if(e.target===lb)hide()});
 addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(pos-1);if(e.key==='ArrowRight')show(pos+1)});
 render();
+})();
+(function(){
+var materials=[
+  {id:'pla',name:'PLA',strength:34.7,modulus:2.308},
+  {id:'petg',name:'PETG',strength:47,modulus:1.5},
+  {id:'abs',name:'ABS (base atual)',strength:40,modulus:1.958},
+  {id:'tritan',name:'Tritan HT',strength:56,modulus:1.56},
+  {id:'nylon',name:'Náilon (PA)',strength:61.4,modulus:2.419},
+  {id:'psu',name:'PSU / PPSU (referência PPSU)',strength:55,modulus:2.31}
+];
+var materialSelect=document.getElementById('matselect');
+var caseSelect=document.getElementById('matcase');
+var strengthInput=document.getElementById('matstrength');
+var modulusInput=document.getElementById('matmodulus');
+var cases=GAL.filter(function(i){return !i.inox});
+materials.forEach(function(m){var o=document.createElement('option');o.value=m.id;o.textContent=m.name;materialSelect.appendChild(o)});
+cases.forEach(function(i,n){var o=document.createElement('option');o.value=n;o.textContent=i.peca+' · '+(i.caso==='Montagem'?'Montagem':'Carga '+i.caso)+': '+i.carga;caseSelect.appendChild(o)});
+function format(v){return Number(v).toLocaleString('pt-BR',{maximumFractionDigits:2})}
+function percent(v){return (v>0?'+':v<0?'−':'')+format(Math.abs(v))+'%'}
+function update(){
+  var material=materials.filter(function(m){return m.id===materialSelect.value})[0];
+  var item=cases[Number(caseSelect.value)];
+  var strength=Number(strengthInput.value),modulus=Number(modulusInput.value);
+  var valid=material&&item&&Number.isFinite(strength)&&strength>0&&Number.isFinite(modulus)&&modulus>0;
+  if(!valid){['matres','matsafety','matflex'].forEach(function(id){document.getElementById(id).textContent='—'});return}
+  var strengthRatio=strength/40;
+  var estimatedSafety=item.fs*strengthRatio;
+  var displacement=item.d*1.958/modulus;
+  var flexibilityDelta=(1.958/modulus-1)*100;
+  document.getElementById('matres').textContent=percent((strengthRatio-1)*100);
+  document.getElementById('matresnote').textContent=format(strength)+' MPa; ABS do projeto: 40 MPa';
+  document.getElementById('matsafety').textContent=format(estimatedSafety);
+  document.getElementById('matsafetynote').textContent='ABS: '+format(item.fs)+' nesta carga';
+  document.getElementById('matflex').textContent=percent(flexibilityDelta);
+  document.getElementById('matflexnote').textContent='Deformação: '+format(item.d)+' mm no ABS → '+format(displacement)+' mm estimados';
+  document.getElementById('matnote').textContent=(item.conv?'':'A simulação ABS deste caso não convergiu totalmente. ')+
+    'Base: ABS do projeto, 40 MPa e E=1,958 GPa. Reescala linear: folga pela resistência de referência e deslocamento pelo módulo E; não recalcula tensões. Valores FDM variam com marca, orientação, infill, processo e umidade; trate como triagem e confirme na ficha do filamento.';
+}
+function selectMaterial(){
+  var material=materials.filter(function(m){return m.id===materialSelect.value})[0];
+  strengthInput.value=material.strength;modulusInput.value=material.modulus;
+  var baseline=material.id==='abs';strengthInput.disabled=baseline;modulusInput.disabled=baseline;
+  update();
+}
+materialSelect.addEventListener('change',selectMaterial);
+caseSelect.addEventListener('change',update);
+strengthInput.addEventListener('input',update);modulusInput.addEventListener('input',update);
+selectMaterial();
 })();
 document.getElementById('copy').addEventListener('click',function(){
   var t=document.getElementById('mail-text').textContent,b=this;
