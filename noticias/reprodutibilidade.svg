@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="92" y1="48" x2="1094" y2="758" gradientUnits="userSpaceOnUse"><stop stop-color="#102342"/><stop offset="1" stop-color="#182B55"/></linearGradient>
+    <linearGradient id="paper" x1="260" y1="164" x2="665" y2="603" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#dce9fb"/></linearGradient>
+    <linearGradient id="warn" x1="766" y1="128" x2="1074" y2="433" gradientUnits="userSpaceOnUse"><stop stop-color="#ffd84e"/><stop offset="1" stop-color="#f04c55"/></linearGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="#a9c5f3" stroke-opacity=".08"/></pattern>
+    <filter id="shadow" x="186" y="108" width="570" height="586" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="19"/></filter>
+  </defs>
+  <rect width="1200" height="760" rx="34" fill="url(#bg)"/>
+  <rect width="1200" height="760" rx="34" fill="url(#grid)"/>
+  <circle cx="1032" cy="181" r="214" fill="#f04c55" fill-opacity=".1"/>
+  <circle cx="133" cy="704" r="216" fill="#498dff" fill-opacity=".13"/>
+  <rect x="230" y="139" width="472" height="500" rx="28" fill="#061226" fill-opacity=".5" filter="url(#shadow)"/>
+  <rect x="246" y="124" width="440" height="500" rx="28" fill="url(#paper)"/>
+  <rect x="283" y="160" width="88" height="29" rx="14.5" fill="#e8effb"/>
+  <text x="327" y="180" text-anchor="middle" fill="#466080" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.4">MÉTODO</text>
+  <path d="M283 221H605" stroke="#b9c9de" stroke-width="2"/>
+  <path d="M283 250H584" stroke="#cbd7e6" stroke-width="9" stroke-linecap="round"/>
+  <path d="M283 279H623" stroke="#cbd7e6" stroke-width="9" stroke-linecap="round"/>
+  <path d="M283 308H541" stroke="#cbd7e6" stroke-width="9" stroke-linecap="round"/>
+  <rect x="283" y="353" width="322" height="120" rx="16" fill="#fff2e9" stroke="#ffc6a5" stroke-width="2"/>
+  <circle cx="320" cy="392" r="17" fill="#ffe0ce"/>
+  <path d="M320 382V394M320 402V403" stroke="#dc4c3a" stroke-width="3.5" stroke-linecap="round"/>
+  <text x="350" y="391" fill="#9a3c31" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700">CAIXA-MORADIA</text>
+  <text x="350" y="418" fill="#815b58" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="500">modelo · material · dimensões</text>
+  <text x="283" y="525" fill="#102342" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="700">O método precisa ser</text>
+  <text x="283" y="557" fill="#102342" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="700">possível de reproduzir.</text>
+  <rect x="283" y="581" width="143" height="24" rx="12" fill="#e9f0fb"/>
+  <text x="354" y="598" text-anchor="middle" fill="#315fe9" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1">DBCA · 5.8-D-I</text>
+  <path d="M737 300H836" stroke="#c2d5f5" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 11"/>
+  <circle cx="784" cy="300" r="12" fill="#ffd84e"/>
+  <g transform="translate(811 194)">
+    <path d="M31 79 151 25l120 54-120 56L31 79Z" fill="#fff" fill-opacity=".92" stroke="#b5cff2" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31 79v117l120 58V135L31 79Z" fill="#dce9fb" stroke="#b5cff2" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M151 135v119l120-58V79l-120 56Z" fill="#b9d2f2" stroke="#b5cff2" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M65 95v91m37-75v94m37-77v96" stroke="#7699c8" stroke-opacity=".75" stroke-width="4"/>
+    <path d="M180 148v70m37-87v89m37-106v88" stroke="#7699c8" stroke-opacity=".8" stroke-width="4"/>
+    <circle cx="120" cy="97" r="10" fill="#f2a900" stroke="#fff" stroke-width="4"/>
+    <circle cx="187" cy="170" r="9" fill="#e54a54" stroke="#fff" stroke-width="4"/>
+    <path d="M16 220H128" stroke="#ffd84e" stroke-width="3" stroke-linecap="round"/>
+    <path d="m16 220 11-7m-11 7 11 7m101-7-11-7m11 7-11 7" stroke="#ffd84e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M296 76v128" stroke="#86b3ff" stroke-width="3" stroke-linecap="round"/>
+    <path d="m296 76-7 11m7-11 7 11m-7 117-7-11m7 11 7-11" stroke="#86b3ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="783" y="588" width="324" height="62" rx="18" fill="url(#warn)"/>
+  <text x="945" y="627" text-anchor="middle" fill="#382821" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="1">DADO + CONTEXTO = CIÊNCIA</text>
+</svg>

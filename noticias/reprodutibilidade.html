@@ -1,0 +1,1798 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Analisamos a base pública de teses e dissertações brasileiras com modelos animais: a omissão das dimensões e do modelo da caixa-moradia cria uma crise silenciosa de reprodutibilidade.">
+  <link rel="canonical" href="https://bioterioforte.com.br/noticias/reprodutibilidade.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Biotério Forte">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Ranking não sustenta ciência. A crise silenciosa da reprodutibilidade | Biotério Forte">
+  <meta property="og:description" content="Sem o dado da caixa-moradia e o cumprimento da DBCA (Item 5, subitem 8-D-I), o estudo não é reprodutível. Ranking não sustenta ciência se o método não puder ser auditado.">
+  <meta property="og:image" content="https://bioterioforte.com.br/noticias/reprodutibilidade.svg">
+  <title>Ranking não sustenta ciência. A crise silenciosa da reprodutibilidade | Biotério Forte</title>
+
+  <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & PALETA (LIGHT / DARK)
+       ========================================================================== */
+    :root {
+      color-scheme: light;
+      --bg: #f3f8fe;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --fg: #0e2238;
+      --muted: #566b82;
+      --line: #dbe7f5;
+      --blue: #2f6fe4;
+      --blue-soft: rgba(47, 111, 228, 0.08);
+      --chip: #e8f1fc;
+      --ok: #14804f;
+      --ok-soft: rgba(20, 128, 79, 0.12);
+      --warn: #d97706;
+      --warn-soft: rgba(217, 119, 6, 0.12);
+      --danger: #dc2626;
+      --danger-soft: rgba(220, 38, 38, 0.10);
+      --grid-line: rgba(47, 111, 228, 0.045);
+      --shadow-card: 0 12px 36px -10px rgba(14, 34, 56, 0.08);
+      --header-bg: rgba(243, 248, 254, 0.82);
+      --display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+    }
+
+    html.dark {
+      color-scheme: dark;
+      --bg: #0a1626;
+      --surface: #102036;
+      --surface-soft: #0d1b2f;
+      --fg: #e8f1fc;
+      --muted: #92a8c2;
+      --line: #1d3350;
+      --blue: #6ea3ff;
+      --blue-soft: rgba(110, 163, 255, 0.12);
+      --chip: #17304d;
+      --ok: #5fd09a;
+      --ok-soft: rgba(95, 208, 154, 0.14);
+      --warn: #fbbf24;
+      --warn-soft: rgba(251, 191, 36, 0.14);
+      --danger: #f87171;
+      --danger-soft: rgba(248, 113, 113, 0.14);
+      --grid-line: rgba(110, 163, 255, 0.045);
+      --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.45);
+      --header-bg: rgba(10, 22, 38, 0.82);
+    }
+
+    /* ==========================================================================
+       RESET & BASE EDITORIAL
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font: 400 16px/1.68 var(--body);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grade técnica sutil de laboratório no fundo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Luz ambiente radial suave no topo */
+    .ambient-glow {
+      position: fixed;
+      top: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(820px, 120vw);
+      height: 440px;
+      background: radial-gradient(ellipse at center, rgba(47, 111, 228, 0.13) 0%, rgba(220, 38, 38, 0.04) 48%, transparent 72%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .wrap {
+      width: min(100% - 40px, 960px);
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       BARRA DE PROGRESSO DE LEITURA FIXA
+       ========================================================================== */
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 100;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ca8a04, #dc2626, var(--blue));
+      border-radius: 0 999px 999px 0;
+      transition: width 0.08s ease-out;
+    }
+
+    /* ==========================================================================
+       CABEÇALHO STICKY (header.wrap.top)
+       ========================================================================== */
+    .header-shell {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    header.wrap.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-block: 0.95rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font: 700 1.12rem var(--display);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.28);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .brand:hover .brand-icon {
+      transform: scale(1.06) rotate(-3deg);
+    }
+
+    .brand-pulse {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid var(--bg);
+      animation: pulseDot 2.4s infinite;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .back-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .back:hover .back-arrow {
+      transform: translateX(-3px);
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.12);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.94);
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun { display: block; }
+    html.dark .icon-moon { display: none; }
+
+    /* ==========================================================================
+       HERO EDITORIAL
+       ========================================================================== */
+    main {
+      padding-block: clamp(2.8rem, 7vw, 5.5rem) clamp(4rem, 9vw, 6.5rem);
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.42rem 0.9rem;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5);
+      animation: radarPing 2.2s infinite;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      max-width: 19ch;
+      margin: 1.15rem 0 1.25rem;
+      font-size: clamp(2.25rem, 6.4vw, 4.15rem);
+      font-weight: 700;
+    }
+
+    .headline-gradient {
+      background: linear-gradient(95deg, #ca8a04 0%, #ea580c 48%, #dc2626 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html.dark .headline-gradient {
+      background-image: linear-gradient(95deg, #ffd43b 0%, #fb923c 50%, #ff6262 100%);
+    }
+
+    .intro {
+      max-width: 47rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 2.2vw, 1.16rem);
+      line-height: 1.72;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    /* ==========================================================================
+       BENTO GRID DE MÉTRICAS (3 CARDS COM SPOTLIGHT)
+       ========================================================================== */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 2.6rem 0 1.25rem;
+    }
+
+    .spotlight-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.3rem, 3.2vw, 1.85rem);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease;
+    }
+
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--blue-soft),
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .spotlight-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(47, 111, 228, 0.45);
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .stat-icon.alert {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .stat-icon.norm {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .stat-tag {
+      font: 500 0.72rem var(--mono);
+      padding: 0.24rem 0.6rem;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    .stat-tag.alert {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border-color: rgba(220, 38, 38, 0.22);
+    }
+
+    .stat-value {
+      display: block;
+      font: 700 clamp(1.9rem, 4.4vw, 2.65rem)/1.05 var(--display);
+      letter-spacing: -0.03em;
+      color: var(--blue);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-value.mono-val {
+      font-family: var(--mono);
+      font-size: clamp(1.55rem, 3.6vw, 2.1rem);
+    }
+
+    .stat-value.alert-val {
+      color: var(--danger);
+    }
+
+    .stat-desc {
+      display: block;
+      margin-top: 0.65rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       AUDITOR INTERATIVO DE REPRODUTIBILIDADE (DBCA 5.8-D-I) + SVG ISOMÉTRICO
+       ========================================================================== */
+    .auditor-panel {
+      margin: 1.25rem 0 3rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.35rem, 4vw, 2.1rem);
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.35s ease;
+    }
+
+    .auditor-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .auditor-title-group h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 3vw, 1.55rem);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-live {
+      font: 500 0.72rem var(--mono);
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid rgba(47, 111, 228, 0.24);
+    }
+
+    .auditor-subtitle {
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* Banner dinâmico de status da auditoria */
+    .audit-status-banner {
+      margin-top: 1.25rem;
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid rgba(220, 38, 38, 0.28);
+      background: var(--danger-soft);
+      transition: background-color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .audit-status-banner.partial {
+      border-color: rgba(217, 119, 6, 0.32);
+      background: var(--warn-soft);
+    }
+
+    .audit-status-banner.valid {
+      border-color: rgba(20, 128, 79, 0.35);
+      background: var(--ok-soft);
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--danger);
+      flex-shrink: 0;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.16);
+    }
+
+    .audit-status-banner.partial .status-dot {
+      background: var(--warn);
+      box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.18);
+    }
+
+    .audit-status-banner.valid .status-dot {
+      background: var(--ok);
+      box-shadow: 0 0 0 4px rgba(20, 128, 79, 0.2);
+    }
+
+    .status-label {
+      font: 700 0.96rem var(--display);
+      color: var(--danger);
+      transition: color 0.3s ease;
+    }
+
+    .audit-status-banner.partial .status-label {
+      color: var(--warn);
+    }
+
+    .audit-status-banner.valid .status-label {
+      color: var(--ok);
+    }
+
+    .status-caption {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .score-pill {
+      font: 600 0.82rem var(--mono);
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--fg);
+      white-space: nowrap;
+    }
+
+    /* Grid interno: Switches à esquerda + Ilustração SVG técnica à direita */
+    .auditor-body {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 1.5rem;
+      margin-top: 1.35rem;
+      align-items: center;
+    }
+
+    .switch-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .switch-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      padding: 0.82rem 1rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .switch-item:hover {
+      border-color: var(--blue);
+      transform: translateX(2px);
+    }
+
+    .switch-item.checked {
+      border-color: rgba(20, 128, 79, 0.42);
+      background: var(--ok-soft);
+    }
+
+    .switch-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+    }
+
+    .switch-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .switch-meta {
+      font: 400 0.76rem var(--mono);
+      color: var(--muted);
+    }
+
+    /* Toggle Switch acessível */
+    .toggle-control {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle-control input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: var(--line);
+      transition: background-color 0.25s ease;
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .toggle-control input:checked + .toggle-track {
+      background: var(--ok);
+    }
+
+    .toggle-control input:checked + .toggle-track .toggle-thumb {
+      transform: translateX(20px);
+    }
+
+    /* Painel SVG Técnico Isométrico */
+    .svg-stage {
+      background: linear-gradient(155deg, var(--surface-soft) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svg-cage {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      animation: floatCage 6.5s ease-in-out infinite;
+    }
+
+    .svg-sensor-node {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .svg-sensor-node.inactive {
+      opacity: 0.28;
+    }
+
+    .svg-stage-caption {
+      margin-top: 0.5rem;
+      font: 500 0.74rem var(--mono);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       CORPO DO ARTIGO EDITORIAL
+       ========================================================================== */
+    article {
+      max-width: 48rem;
+    }
+
+    .section-block {
+      margin-top: 2.8rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.55rem;
+      font: 600 0.76rem var(--mono);
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    article h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.5rem, 3.6vw, 2rem);
+    }
+
+    article p,
+    article li,
+    .note {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    article p {
+      margin: 0.95rem 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.74;
+    }
+
+    article strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    /* Lista de perguntas críticas */
+    .inquiry-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.35rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .inquiry-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.95rem 1.15rem;
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--fg);
+      font-size: 0.97rem;
+      line-height: 1.6;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .inquiry-list li:hover {
+      transform: translateX(4px);
+      border-color: rgba(47, 111, 228, 0.4);
+    }
+
+    .inquiry-bullet {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      background: var(--danger-soft);
+      color: var(--danger);
+      font: 700 0.8rem var(--mono);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* Card Normativo Destacado (DBCA Item 5, subitem 8-D-I) */
+    .norm-callout {
+      margin: 1.5rem 0;
+      padding: 1.35rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      box-shadow: var(--shadow-card);
+    }
+
+    .norm-callout-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .norm-code {
+      font: 600 0.82rem var(--mono);
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      background: var(--chip);
+      color: var(--blue);
+    }
+
+    .norm-badge {
+      font: 500 0.74rem var(--mono);
+      color: var(--ok);
+      background: var(--ok-soft);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    .norm-callout p {
+      margin: 0;
+      color: var(--fg);
+      font-size: 0.98rem;
+    }
+
+    /* Destaque Biotério Forte V2 */
+    .v2-highlight {
+      margin: 1.6rem 0;
+      padding: 1.35rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+    }
+
+    .v2-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font: 600 0.76rem var(--mono);
+      padding: 0.32rem 0.75rem;
+      border-radius: 999px;
+      background: var(--ok-soft);
+      color: var(--ok);
+      border: 1px solid rgba(20, 128, 79, 0.28);
+      margin-bottom: 0.75rem;
+    }
+
+    .v2-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      animation: pulseDot 2s infinite;
+    }
+
+    .v2-highlight p {
+      margin: 0;
+      color: var(--fg);
+    }
+
+    /* ==========================================================================
+       BLOCO DE CONVERSÃO / CTA & TRECHO COPIÁVEL DBCA
+       ========================================================================== */
+    .cta-box {
+      margin-top: 2.8rem;
+      padding: clamp(1.4rem, 4vw, 2rem);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+    }
+
+    .cta-box h2 {
+      margin-top: 0;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.4rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 48px;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--fg);
+      font-size: 0.93rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue);
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .button.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #ffffff;
+      box-shadow: 0 8px 22px -6px rgba(47, 111, 228, 0.5);
+    }
+
+    html.dark .button.primary {
+      color: #081220;
+    }
+
+    .button.primary:hover {
+      filter: brightness(1.07);
+    }
+
+    .reply-address {
+      margin-top: 1.1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .reply-address a {
+      color: var(--blue);
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+
+    /* Janela Expansível Estilo Linear / Lovable (details.email-copy) */
+    details.email-copy {
+      margin-top: 1.8rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    details.email-copy summary {
+      list-style: none;
+      padding: 1rem 1.25rem;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--fg);
+      transition: background-color 0.2s ease;
+    }
+
+    details.email-copy summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.email-copy summary:hover {
+      background: var(--chip);
+    }
+
+    .window-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .window-dots {
+      display: inline-flex;
+      gap: 5px;
+    }
+
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .window-dots span:nth-child(1) { background: #f87171; }
+    .window-dots span:nth-child(2) { background: #fbbf24; }
+    .window-dots span:nth-child(3) { background: #34d399; }
+
+    .copy-snippet-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.48rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--blue);
+      font: 600 0.8rem var(--body);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .copy-snippet-btn:hover {
+      border-color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .copy-snippet-btn:active {
+      transform: scale(0.96);
+    }
+
+    .email-body {
+      padding: 1.25rem 1.35rem 1.45rem;
+    }
+
+    .template-quote {
+      margin: 0;
+      padding: 1.1rem 1.2rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px dashed var(--line);
+      font: 400 0.88rem/1.7 var(--mono);
+      color: var(--fg);
+      white-space: pre-wrap;
+    }
+
+    .template-hint {
+      margin: 0.85rem 0 0;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    /* ==========================================================================
+       RODAPÉ
+       ========================================================================== */
+    .footer-shell {
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer.wrap.footer {
+      padding-block: 1.6rem 2.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    footer.wrap.footer a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer.wrap.footer a:hover {
+      color: var(--blue);
+    }
+
+    /* ==========================================================================
+       TOAST FEEDBACK & ANIMAÇÕES
+       ========================================================================== */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.8rem 1.15rem;
+      border-radius: 14px;
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+      transform: translateY(90px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    @keyframes radarPing {
+      0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.55); }
+      70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+    }
+
+    @keyframes floatCage {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE & PREFERS-REDUCED-MOTION
+       ========================================================================== */
+    @media (max-width: 780px) {
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+      .auditor-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header.wrap.top {
+        flex-wrap: wrap;
+      }
+      .intro,
+      article p,
+      article li,
+      .note {
+        text-align: left;
+        hyphens: none;
+      }
+      .cta .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .svg-cage,
+      .brand-pulse,
+      .eyebrow-dot,
+      .v2-badge-dot {
+        animation: none;
+      }
+      .spotlight-card,
+      .button,
+      .switch-item,
+      .inquiry-list li {
+        transition: none;
+      }
+    }
+  </style>
+
+  <!-- Evita flash de tema incorreto antes da pintura -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('bf-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Barra de progresso de leitura fixa -->
+  <div class="progress-track" aria-hidden="true">
+    <div id="progress-fill" class="progress-fill"></div>
+  </div>
+
+  <!-- Luz ambiente suave no topo -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Cabeçalho -->
+  <div class="header-shell">
+    <header class="wrap top">
+      <a class="brand" href="../index.html">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="12" rx="3"></rect>
+            <path d="M7 10h10M7 14h6"></path>
+          </svg>
+          <span class="brand-pulse"></span>
+        </span>
+        <span>Biotério Forte</span>
+      </a>
+
+      <div class="header-actions">
+        <a class="back" href="../index.html#noticias">
+          <span class="back-arrow" aria-hidden="true">←</span>
+          <span>Voltar às notícias</span>
+        </a>
+
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="Alternar tema claro ou escuro" title="Alternar tema">
+          <!-- Sol (modo escuro ativo) -->
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- Lua (modo claro ativo) -->
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <main class="wrap">
+
+    <!-- Hero Editorial -->
+    <section class="reveal is-visible">
+      <div class="eyebrow-badge">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>EDITORIAL · RIGOR &amp; REPRODUTIBILIDADE</span>
+      </div>
+
+      <h1>
+        <span class="headline-gradient">Ranking não sustenta ciência.</span> A crise silenciosa da reprodutibilidade.
+      </h1>
+
+      <p class="intro">
+        Analisamos a base pública de teses e dissertações brasileiras que utilizam modelos animais. O padrão que encontramos não é apenas preocupante — é estrutural: a grande maioria simplesmente omite o modelo, o material e as dimensões da caixa-moradia utilizada no experimento.
+      </p>
+    </section>
+
+    <!-- 3 Cards de Métricas / Normas com Spotlight -->
+    <section class="stat-grid reveal" aria-label="Indicadores normativos e de reprodutibilidade">
+      <!-- Card 1 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon norm" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </span>
+          <span class="stat-tag">CONCEA / Norma</span>
+        </div>
+        <b class="stat-value mono-val">DBCA · 5.8-D-I</b>
+        <span class="stat-desc">Item normativo que exige descrição rigorosa de alojamento e ambiente</span>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon alert" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </span>
+          <span class="stat-tag alert">Falha crítica</span>
+        </div>
+        <b class="stat-value alert-val">0%</b>
+        <span class="stat-desc">Reprodutibilidade garantida quando dimensão, polímero e lotação são omitidos</span>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+            </svg>
+          </span>
+          <span class="stat-tag">Microclima</span>
+        </div>
+        <b class="stat-value">3 Variáveis</b>
+        <span class="stat-desc">Luminosidade, temperatura e umidade exigidas para avaliação das CEUAs</span>
+      </div>
+    </section>
+
+    <!-- Infográfico Interativo: Auditor de Reprodutibilidade Metodológica -->
+    <section class="auditor-panel reveal" aria-label="Auditor de Reprodutibilidade Metodológica DBCA">
+      <div class="auditor-header">
+        <div class="auditor-title-group">
+          <h2>
+            <span>Auditor de Reprodutibilidade Metodológica</span>
+            <span class="pill-live">DBCA · Item 5, subitem 8-D-I</span>
+          </h2>
+          <p class="auditor-subtitle">
+            Simule o que acontece com a auditabilidade de um estudo ao documentar — ou omitir — cada variável de alojamento na seção <em>Materiais e Métodos</em>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Banner dinâmico de diagnóstico -->
+      <div id="audit-banner" class="audit-status-banner" role="status" aria-live="polite">
+        <div class="status-indicator">
+          <span class="status-dot" aria-hidden="true"></span>
+          <div>
+            <span id="audit-status-title" class="status-label">Risco Alto: Ruído Ambiental Invisível / Não Auditável</span>
+            <span id="audit-status-desc" class="status-caption">Nenhum parâmetro básico de alojamento foi declarado. Impossível replicar com segurança.</span>
+          </div>
+        </div>
+        <span id="audit-score" class="score-pill">0 / 5 critérios</span>
+      </div>
+
+      <div class="auditor-body">
+        <!-- Lista de 5 Switches Interativos -->
+        <div class="switch-list" id="auditor-switches">
+          <label class="switch-item" data-sensor="sensor-cage">
+            <span class="switch-text">
+              <span class="switch-title">1. Modelo e material da caixa-moradia</span>
+              <span class="switch-meta">Ex.: IVC ou convencional · Policarbonato (PC), PSU, PPSU, PP</span>
+            </span>
+            <span class="toggle-control">
+              <input type="checkbox" class="audit-checkbox">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </span>
+          </label>
+
+          <label class="switch-item" data-sensor="sensor-dims">
+            <span class="switch-text">
+              <span class="switch-title">2. Dimensões exatas (C × L × A) e lotação</span>
+              <span class="switch-meta">Área útil por animal (cm²) e densidade por caixa</span>
+            </span>
+            <span class="toggle-control">
+              <input type="checkbox" class="audit-checkbox">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </span>
+          </label>
+
+          <label class="switch-item" data-sensor="sensor-light">
+            <span class="switch-text">
+              <span class="switch-title">3. Fotoperíodo e luminosidade</span>
+              <span class="switch-meta">Ciclo claro/escuro (ex.: 12h/12h) e intensidade em lux</span>
+            </span>
+            <span class="toggle-control">
+              <input type="checkbox" class="audit-checkbox">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </span>
+          </label>
+
+          <label class="switch-item" data-sensor="sensor-climate">
+            <span class="switch-text">
+              <span class="switch-title">4. Temperatura e umidade controladas</span>
+              <span class="switch-meta">Faixa térmica (°C) e umidade relativa (%) na sala/rack</span>
+            </span>
+            <span class="toggle-control">
+              <input type="checkbox" class="audit-checkbox">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </span>
+          </label>
+
+          <label class="switch-item" data-sensor="sensor-telemetry">
+            <span class="switch-text">
+              <span class="switch-title">5. Monitoramento contínuo rastreável</span>
+              <span class="switch-meta">Registro microambiental auditável no nível da caixa</span>
+            </span>
+            <span class="toggle-control">
+              <input type="checkbox" class="audit-checkbox">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Ilustração Vetorial Técnica Isométrica SVG -->
+        <div class="svg-stage">
+          <svg class="svg-cage" viewBox="0 0 380 255" role="img" aria-label="Esquema técnico isométrico de caixa-moradia com sensores de temperatura, umidade, luminosidade e cotas de espaço">
+            <defs>
+              <linearGradient id="isoTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.24"></stop>
+                <stop offset="100%" stop-color="#6ea3ff" stop-opacity="0.08"></stop>
+              </linearGradient>
+              <linearGradient id="isoBody" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.15"></stop>
+                <stop offset="100%" stop-color="#14804f" stop-opacity="0.06"></stop>
+              </linearGradient>
+            </defs>
+
+            <!-- Plano base técnico -->
+            <ellipse cx="190" cy="206" rx="115" ry="15" fill="rgba(47, 111, 228, 0.10)"></ellipse>
+
+            <!-- Corpo da caixa-moradia -->
+            <g id="sensor-cage" class="svg-sensor-node inactive">
+              <polygon points="92,122 190,162 288,122 288,168 190,204 92,168" fill="url(#isoBody)" stroke="#2f6fe4" stroke-width="1.8" stroke-linejoin="round"></polygon>
+              <line x1="190" y1="162" x2="190" y2="204" stroke="#2f6fe4" stroke-width="1.8"></line>
+              <!-- Tampa -->
+              <polygon points="86,106 190,66 294,106 190,146" fill="url(#isoTop)" stroke="#2f6fe4" stroke-width="2" stroke-linejoin="round"></polygon>
+              <polygon points="86,106 190,146 190,157 86,117" fill="#2f6fe4" fill-opacity="0.18" stroke="#2f6fe4" stroke-width="1.5" stroke-linejoin="round"></polygon>
+              <polygon points="294,106 190,146 190,157 294,117" fill="#2f6fe4" fill-opacity="0.10" stroke="#2f6fe4" stroke-width="1.5" stroke-linejoin="round"></polygon>
+            </g>
+
+            <!-- Cotas dimensionais C x L x A -->
+            <g id="sensor-dims" class="svg-sensor-node inactive">
+              <!-- Comprimento -->
+              <line x1="86" y1="180" x2="185" y2="218" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 2"></line>
+              <text x="108" y="216" fill="#64748b" font-family="JetBrains Mono, monospace" font-size="10">C (cm)</text>
+              <!-- Largura -->
+              <line x1="195" y1="218" x2="294" y2="180" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 2"></line>
+              <text x="248" y="216" fill="#64748b" font-family="JetBrains Mono, monospace" font-size="10">L (cm)</text>
+              <!-- Altura -->
+              <line x1="308" y1="106" x2="308" y2="168" stroke="#64748b" stroke-width="1.2"></line>
+              <line x1="303" y1="106" x2="313" y2="106" stroke="#64748b" stroke-width="1.2"></line>
+              <line x1="303" y1="168" x2="313" y2="168" stroke="#64748b" stroke-width="1.2"></line>
+              <text x="318" y="141" fill="#64748b" font-family="JetBrains Mono, monospace" font-size="10">A (cm)</text>
+            </g>
+
+            <!-- Sensor 1: Luminosidade (Lux) -->
+            <g id="sensor-light" class="svg-sensor-node inactive">
+              <circle cx="88" cy="48" r="16" fill="rgba(217, 119, 6, 0.14)" stroke="#d97706" stroke-width="1.5"></circle>
+              <circle cx="88" cy="48" r="5" fill="#d97706"></circle>
+              <path d="M88 26v4M88 66v4M66 48h4M106 48h4" stroke="#d97706" stroke-width="1.6" stroke-linecap="round"></path>
+              <line x1="101" y1="58" x2="144" y2="90" stroke="#d97706" stroke-width="1.2" stroke-dasharray="3 3"></line>
+              <text x="48" y="18" fill="#d97706" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">LUX / FOTOPERÍODO</text>
+            </g>
+
+            <!-- Sensor 2: Temperatura & Umidade (°C / %UR) -->
+            <g id="sensor-climate" class="svg-sensor-node inactive">
+              <circle cx="292" cy="48" r="16" fill="rgba(47, 111, 228, 0.14)" stroke="#2f6fe4" stroke-width="1.5"></circle>
+              <path d="M292 40v10a3 3 0 1 0 0 4" stroke="#2f6fe4" stroke-width="1.8" stroke-linecap="round" fill="none"></path>
+              <line x1="278" y1="58" x2="236" y2="90" stroke="#2f6fe4" stroke-width="1.2" stroke-dasharray="3 3"></line>
+              <text x="242" y="18" fill="#2f6fe4" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">TEMP °C · UMIDADE %</text>
+            </g>
+
+            <!-- Sensor 3: Módulo Central Biotério Forte V2 (Telemetria) -->
+            <g id="sensor-telemetry" class="svg-sensor-node inactive">
+              <polygon points="154,96 190,82 226,96 190,111" fill="rgba(20, 128, 79, 0.24)" stroke="#14804f" stroke-width="1.8"></polygon>
+              <circle cx="190" cy="96" r="4.5" fill="#14804f"></circle>
+              <path d="M180 73a15 15 0 0 1 20 0M174 66a23 23 0 0 1 32 0" stroke="#14804f" stroke-width="1.6" stroke-linecap="round" fill="none"></path>
+              <text x="136" y="244" fill="#14804f" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">TELEMETRIA AUDITÁVEL V2</text>
+            </g>
+          </svg>
+          <span class="svg-stage-caption">Ative os switches ao lado para iluminar cada camada de rastreabilidade</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Corpo do Artigo -->
+    <article>
+
+      <!-- Seção 01 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">01 · Diagnóstico Metodológico</span>
+        <h2>O elefante branco dentro da sala de experimentação</h2>
+        <p>
+          Não importa o fator de impacto da revista. Não importa o prestígio da instituição ou a posição no ranking internacional. Se um artigo ou tese não informa onde e como o animal viveu durante o estudo, <strong>o experimento é impossível de reproduzir</strong>.
+        </p>
+
+        <ul class="inquiry-list">
+          <li>
+            <span class="inquiry-bullet" aria-hidden="true">?</span>
+            <span>Como saber se o animal sofreu estresse crônico por superlotação ou restrição de espaço?</span>
+          </li>
+          <li>
+            <span class="inquiry-bullet" aria-hidden="true">?</span>
+            <span>Como garantir que a ventilação, o microclima ou o tipo de polímero não enviesaram um marcador fisiológico ou comportamental?</span>
+          </li>
+          <li>
+            <span class="inquiry-bullet" aria-hidden="true">?</span>
+            <span>Como outro laboratório no país vai replicar o protocolo se o ambiente primário do modelo é uma incógnita?</span>
+          </li>
+        </ul>
+
+        <p>
+          Quando a caixa-moradia desaparece da seção de <em>Materiais e Métodos</em>, a variável ambiental vira <strong>ruído invisível</strong>. E ruído invisível destrói a confiabilidade do dado.
+        </p>
+      </section>
+
+      <!-- Seção 02 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">02 · Exigência Regulatória</span>
+        <h2>Não é opinião. É norma.</h2>
+        <p>
+          O rigor básico de alojamento não é um detalhe opcional de engenharia. É exigência regulatória explícita no ordenamento científico brasileiro.
+        </p>
+
+        <div class="norm-callout">
+          <div class="norm-callout-header">
+            <span class="norm-code">DBCA · Item 5, subitem 8-D-I</span>
+            <span class="norm-badge">Avaliação obrigatória pelas CEUAs</span>
+          </div>
+          <p>
+            A <strong>Diretriz Brasileira para o Cuidado e a Utilização de Animais em Atividades de Ensino ou de Pesquisa Científica (DBCA)</strong> exige que condições de alojamento e fatores ambientais — incluindo <strong>luminosidade, temperatura e umidade</strong> — sejam rigorosamente descritos e avaliados pelas CEUAs.
+          </p>
+        </div>
+
+        <p>
+          O que está no papel da diretriz, porém, não está chegando ao texto final das pesquisas. O protocolo existe na aprovação ética, mas evapora na publicação científica.
+        </p>
+      </section>
+
+      <!-- Seção 03 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">03 · Auditoria &amp; Infraestrutura</span>
+        <h2>A era do excesso de volume e da falta de auditoria</h2>
+        <p>
+          Vivemos a era do excesso de publicações e da falta de rigor básico. Cobra-se volume em velocidade recorde, enquanto as condições reais em que o modelo biológico foi mantido permanecem opacas.
+        </p>
+        <p>
+          Prestígio institucional não blinda um resultado mal documentado. <strong>Ranking não sustenta ciência se o método não puder ser auditado.</strong>
+        </p>
+
+        <div class="v2-highlight">
+          <div class="v2-badge">
+            <span class="v2-badge-dot" aria-hidden="true"></span>
+            <span>Biotério Forte V2 · Infraestrutura Auditável</span>
+          </div>
+          <p>
+            É exatamente por isso que estamos desenvolvendo o <strong>Biotério Forte V2</strong>: uma tampa inteligente de monitoramento térmico e microambiental projetada para transformar condições de alojamento em <strong>dados rastreáveis, padronizados e auditáveis</strong> na rotina real de pesquisa.
+          </p>
+        </div>
+      </section>
+
+      <!-- Bloco de Conversão / CTA -->
+      <section class="cta-box reveal">
+        <h2>A ciência precisa de dados auditáveis na bancada</h2>
+        <p>Compartilhe sua experi?ncia com o registro das caixas, dos materiais e das condi??es de alojamento.</p>
+
+        <div class="cta">
+          <a class="button primary" href="mailto:founder@thotiacorp.com.br?subject=Di%C3%A1logo%20-%20Reprodutibilidade%20e%20Biot%C3%A9rio%20Forte&amp;body=Ol%C3%A1%2C%20li%20o%20editorial%20sobre%20a%20crise%20silenciosa%20da%20reprodutibilidade%20e%20gostaria%20de%20participar%20do%20mapeamento%20t%C3%A9cnico.%0A%0AInstitui%C3%A7%C3%A3o%3A%0ACargo%2FAtua%C3%A7%C3%A3o%20(Biot%C3%A9rio%2C%20CEUA%20ou%20Pesquisa)%3A%0ACidade%2FEstado%3A%0A">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>Participar do mapeamento técnico</span>
+          </a>
+
+          <a class="button" href="https://wa.me/5566996675486?text=Ol%C3%A1%2C%20li%20o%20editorial%20sobre%20reprodutibilidade%20e%20quero%20conversar%20sobre%20o%20Biot%C3%A9rio%20Forte." target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>Falar direto no WhatsApp</span>
+          </a>
+        </div>
+
+        <p class="reply-address">
+          Ou envie sua contribuição técnica diretamente para <a href="mailto:founder@thotiacorp.com.br">founder@thotiacorp.com.br</a>.
+        </p>
+
+        <!-- Janela Expansível com Trecho Padrão DBCA para Materiais e Métodos -->
+        <details class="email-copy" open>
+          <summary>
+            <span class="window-title-wrap">
+              <span class="window-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </span>
+              <span>Modelo auditável: parágrafo padrão para Materiais e Métodos (DBCA)</span>
+            </span>
+
+            <button id="copy-dbca-btn" class="copy-snippet-btn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copy-dbca-label">Copiar trecho padrão para Materiais e Métodos (DBCA)</span>
+            </button>
+          </summary>
+
+          <div class="email-body">
+            <pre id="dbca-template-text" class="template-quote">"Os animais foram alojados em caixas-moradia [modelo/sistema: ex. microisoladores ventilados IVC ou caixas abertas convencionais], fabricadas em [material: ex. polissulfona (PSU) / policarbonato (PC) / polipropileno (PP)], marca/modelo [fabricante], com dimensões internas de [C × L × A cm] (área útil de [X] cm²), mantendo densidade máxima de [N] animais por caixa. Em conformidade com a DBCA (Item 5, subitem 8-D-I) e protocolo aprovado pela CEUA/[Instituição] (nº [protocolo]), as condições ambientais foram mantidas sob fotoperíodo de [12h claro / 12h escuro] ([X] lux no nível da rack), temperatura controlada em [22 ± 2 °C] e umidade relativa entre [45% e 65%], com monitoramento contínuo rastreável."</pre>
+            <p class="template-hint">
+              Copie e adapte os campos entre colchetes na sua próxima tese, dissertação ou manuscrito científico.
+            </p>
+          </div>
+        </details>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Rodapé -->
+  <div class="footer-shell">
+    <footer class="wrap footer">
+      <a href="../index.html#noticias">Biotério Forte · Notícias</a>
+      <a href="rebioterio.html">← Edição anterior: 26 contatos. 2 respostas.</a>
+    </footer>
+  </div>
+
+  <!-- Toast discreto de confirmação -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-msg">Trecho padrão copiado!</span>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      /* 1. Alternância de tema Claro/Escuro */
+      var themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          var isDark = document.documentElement.classList.toggle('dark');
+          try {
+            localStorage.setItem('bf-theme', isDark ? 'dark' : 'light');
+          } catch (e) {}
+        });
+      }
+
+      /* 2. Barra de progresso de leitura */
+      var progressFill = document.getElementById('progress-fill');
+      function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        if (progressFill) {
+          progressFill.style.width = pct + '%';
+        }
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      /* 3. Efeito Spotlight nos cards */
+      document.querySelectorAll('.spotlight-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      /* 4. Revelação suave no scroll */
+      var revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      /* 5. Auditor de Reprodutibilidade Metodológica (Switches + SVG Dinâmico) */
+      var switchItems = document.querySelectorAll('.switch-item');
+      var auditBanner = document.getElementById('audit-banner');
+      var auditTitle = document.getElementById('audit-status-title');
+      var auditDesc = document.getElementById('audit-status-desc');
+      var auditScore = document.getElementById('audit-score');
+
+      function updateAuditorState() {
+        var checkedCount = 0;
+        switchItems.forEach(function (item) {
+          var cb = item.querySelector('.audit-checkbox');
+          var sensorId = item.getAttribute('data-sensor');
+          var sensorNode = sensorId ? document.getElementById(sensorId) : null;
+          var isChecked = cb && cb.checked;
+
+          item.classList.toggle('checked', Boolean(isChecked));
+          if (sensorNode) {
+            sensorNode.classList.toggle('inactive', !isChecked);
+          }
+          if (isChecked) {
+            checkedCount++;
+          }
+        });
+
+        auditScore.textContent = checkedCount + ' / 5 critérios';
+        auditBanner.classList.remove('partial', 'valid');
+
+        if (checkedCount === 0) {
+          auditTitle.textContent = 'Risco Alto: Ruído Ambiental Invisível / Não Auditável';
+          auditDesc.textContent = 'Nenhum parâmetro básico de alojamento foi declarado. Impossível replicar com segurança.';
+        } else if (checkedCount < 5) {
+          auditBanner.classList.add('partial');
+          auditTitle.textContent = 'Rastreabilidade Parcial: Lacunas Metodológicas Detectadas';
+          auditDesc.textContent = 'Faltam ' + (5 - checkedCount) + ' critério(s) exigido(s) para eliminar variáveis ocultas de microclima e espaço.';
+        } else {
+          auditBanner.classList.add('valid');
+          auditTitle.textContent = 'Protocolo Auditável e Reprodutível';
+          auditDesc.textContent = 'Todos os requisitos da DBCA (Item 5, subitem 8-D-I) e telemetria de alojamento estão documentados.';
+        }
+      }
+
+      switchItems.forEach(function (item) {
+        var cb = item.querySelector('.audit-checkbox');
+        if (cb) {
+          cb.addEventListener('change', updateAuditorState);
+        }
+      });
+      updateAuditorState();
+
+      /* 6. Toast & Cópia do Trecho Padrão DBCA */
+      var toast = document.getElementById('toast');
+      var toastMsg = document.getElementById('toast-msg');
+      var toastTimer;
+
+      function showToast(message) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2800);
+      }
+
+      var copyDbcaBtn = document.getElementById('copy-dbca-btn');
+      var copyDbcaLabel = document.getElementById('copy-dbca-label');
+      var dbcaTemplateText = document.getElementById('dbca-template-text');
+
+      if (copyDbcaBtn && dbcaTemplateText) {
+        copyDbcaBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          var text = dbcaTemplateText.textContent.trim();
+          var textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          try {
+            document.execCommand('copy');
+            if (copyDbcaLabel) {
+              copyDbcaLabel.textContent = 'Copiado!';
+            }
+            showToast('Trecho padrão DBCA copiado para a área de transferência!');
+            setTimeout(function () {
+              if (copyDbcaLabel) {
+                copyDbcaLabel.textContent = 'Copiar trecho padrão para Materiais e Métodos (DBCA)';
+              }
+            }, 2400);
+          } catch (err) {
+            showToast('Selecione o texto manualmente para copiar.');
+          }
+          document.body.removeChild(textarea);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

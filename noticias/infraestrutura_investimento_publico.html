@@ -1,0 +1,1954 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Uma caixa Biotério Forte V2 custa R$ 50 mil; equipamentos importados passam de R$ 100 mil. Leia a análise e simule o investimento por parque.">
+  <link rel="canonical" href="https://bioterioforte.com.br/noticias/infraestrutura_investimento_publico.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Biotério Forte">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Dinheiro público no ralo. De que adianta formar os melhores pesquisadores se falta infraestrutura na bancada? | Biotério Forte">
+  <meta property="og:description" content="Compare o custo informado de R$ 50 mil por caixa Biotério Forte V2 com equipamentos importados acima de R$ 100 mil e estime o investimento por parque.">
+  <meta property="og:image" content="https://bioterioforte.com.br/noticias/infraestrutura-publica.svg">
+  <title>Dinheiro público no ralo. De que adianta formar os melhores pesquisadores se falta infraestrutura na bancada? | Biotério Forte</title>
+
+  <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & PALETA EDITORIAL (LIGHT / DARK)
+       ========================================================================== */
+    :root {
+      color-scheme: light;
+      --bg: #f3f8fe;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --fg: #0e2238;
+      --muted: #566b82;
+      --line: #dbe7f5;
+      --blue: #2f6fe4;
+      --blue-soft: rgba(47, 111, 228, 0.08);
+      --chip: #e8f1fc;
+      --ok: #14804f;
+      --ok-soft: rgba(20, 128, 79, 0.12);
+      --warn: #d97706;
+      --warn-soft: rgba(217, 119, 6, 0.12);
+      --danger: #dc2626;
+      --danger-soft: rgba(220, 38, 38, 0.10);
+      --grid-line: rgba(47, 111, 228, 0.045);
+      --shadow-card: 0 12px 36px -10px rgba(14, 34, 56, 0.08);
+      --header-bg: rgba(243, 248, 254, 0.84);
+      --display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+    }
+
+    html.dark {
+      color-scheme: dark;
+      --bg: #0a1626;
+      --surface: #102036;
+      --surface-soft: #0d1b2f;
+      --fg: #e8f1fc;
+      --muted: #92a8c2;
+      --line: #1d3350;
+      --blue: #6ea3ff;
+      --blue-soft: rgba(110, 163, 255, 0.12);
+      --chip: #17304d;
+      --ok: #5fd09a;
+      --ok-soft: rgba(95, 208, 154, 0.14);
+      --warn: #fbbf24;
+      --warn-soft: rgba(251, 191, 36, 0.14);
+      --danger: #f87171;
+      --danger-soft: rgba(248, 113, 113, 0.14);
+      --grid-line: rgba(110, 163, 255, 0.045);
+      --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.45);
+      --header-bg: rgba(10, 22, 38, 0.84);
+    }
+
+    /* ==========================================================================
+       RESET & ESTRUTURA BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font: 400 16px/1.68 var(--body);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Padrão sutil de grade técnica de laboratório */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Luz ambiente radial suave no topo */
+    .ambient-glow {
+      position: fixed;
+      top: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(840px, 125vw);
+      height: 450px;
+      background: radial-gradient(ellipse at center, rgba(220, 38, 38, 0.08) 0%, rgba(47, 111, 228, 0.11) 48%, transparent 74%);
+      filter: blur(42px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .wrap {
+      width: min(100% - 40px, 960px);
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       BARRA DE PROGRESSO DE LEITURA FIXA
+       ========================================================================== */
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 100;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ca8a04, #dc2626, var(--blue));
+      border-radius: 0 999px 999px 0;
+      transition: width 0.08s ease-out;
+    }
+
+    /* ==========================================================================
+       CABEÇALHO STICKY
+       ========================================================================== */
+    .header-shell {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    header.wrap.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-block: 0.95rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font: 700 1.12rem var(--display);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.28);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .brand:hover .brand-icon {
+      transform: scale(1.06) rotate(-3deg);
+    }
+
+    .brand-pulse {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid var(--bg);
+      animation: pulseDot 2.4s infinite;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .back-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .back:hover .back-arrow {
+      transform: translateX(-3px);
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.12);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.94);
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun { display: block; }
+    html.dark .icon-moon { display: none; }
+
+    /* ==========================================================================
+       HERO EDITORIAL
+       ========================================================================== */
+    main {
+      padding-block: clamp(2.8rem, 7vw, 5.5rem) clamp(4rem, 9vw, 6.5rem);
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.42rem 0.9rem;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5);
+      animation: radarPing 2.2s infinite;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      max-width: 21ch;
+      margin: 1.15rem 0 1.25rem;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700;
+    }
+
+    .headline-gradient {
+      background: linear-gradient(95deg, #ca8a04 0%, #ea580c 48%, #dc2626 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html.dark .headline-gradient {
+      background-image: linear-gradient(95deg, #ffd43b 0%, #fb923c 50%, #ff6262 100%);
+    }
+
+    .intro {
+      max-width: 48rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 2.2vw, 1.16rem);
+      line-height: 1.72;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    /* ==========================================================================
+       3 CARDS DE MÉTRICAS COM SPOTLIGHT E CONTADORES
+       ========================================================================== */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 2.6rem 0 1.35rem;
+    }
+
+    .spotlight-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.3rem, 3.2vw, 1.85rem);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease;
+    }
+
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--blue-soft),
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .spotlight-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(47, 111, 228, 0.45);
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .stat-icon.alert {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .stat-icon.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .stat-tag {
+      font: 500 0.72rem var(--mono);
+      padding: 0.24rem 0.6rem;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    .stat-tag.alert {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border-color: rgba(220, 38, 38, 0.22);
+    }
+
+    .stat-tag.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+      border-color: rgba(20, 128, 79, 0.24);
+    }
+
+    .stat-value {
+      display: block;
+      font: 700 clamp(1.85rem, 4.2vw, 2.55rem)/1.05 var(--display);
+      letter-spacing: -0.03em;
+      color: var(--blue);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-value.alert-val {
+      color: var(--danger);
+    }
+
+    .stat-value.ok-val {
+      color: var(--ok);
+    }
+
+    .stat-desc {
+      display: block;
+      margin-top: 0.65rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       SIMULADOR INTERATIVO DE EFICIÊNCIA DO RECURSO PÚBLICO
+       ========================================================================== */
+    .simulator-panel {
+      margin: 1.35rem 0 3rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.35rem, 4vw, 2.1rem);
+      box-shadow: var(--shadow-card);
+    }
+
+    .sim-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sim-header h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 3vw, 1.55rem);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-live {
+      font: 500 0.72rem var(--mono);
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid rgba(47, 111, 228, 0.24);
+    }
+
+    .sim-subtitle {
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* Controles superiores: Segmented Toggle + Range Slider */
+    .sim-controls {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.25rem;
+      margin-top: 1.35rem;
+      padding: 1.15rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      align-items: center;
+    }
+
+    .mode-switch-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .control-label {
+      font: 600 0.78rem var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .segmented-control {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem;
+      padding: 0.3rem;
+      border-radius: 14px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+    }
+
+    .seg-btn {
+      padding: 0.65rem 0.85rem;
+      border: none;
+      border-radius: 11px;
+      background: transparent;
+      color: var(--muted);
+      font: 600 0.84rem var(--body);
+      cursor: pointer;
+      transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.15s ease;
+      text-align: center;
+    }
+
+    .seg-btn:hover {
+      color: var(--fg);
+    }
+
+    .seg-btn.active-danger {
+      background: var(--surface);
+      color: var(--danger);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.14);
+    }
+
+    .seg-btn.active-ok {
+      background: var(--surface);
+      color: var(--ok);
+      box-shadow: 0 4px 12px rgba(20, 128, 79, 0.15);
+    }
+
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .slider-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .slider-readout {
+      font: 700 0.95rem var(--mono);
+      color: var(--blue);
+    }
+
+    input[type="range"].park-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--line);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"].park-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 3px solid var(--surface);
+      box-shadow: 0 2px 8px rgba(47, 111, 228, 0.45);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    input[type="range"].park-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.14);
+    }
+
+    input[type="range"].park-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 3px solid var(--surface);
+      box-shadow: 0 2px 8px rgba(47, 111, 228, 0.45);
+      cursor: pointer;
+    }
+
+    .slider-ticks {
+      display: flex;
+      justify-content: space-between;
+      font: 400 0.72rem var(--mono);
+      color: var(--muted);
+    }
+
+    /* Corpo principal do simulador: Métricas + Barra Empilhada à esquerda, SVG à direita */
+    .sim-workspace {
+      display: grid;
+      grid-template-columns: 1.2fr 0.95fr;
+      gap: 1.5rem;
+      margin-top: 1.35rem;
+      align-items: center;
+    }
+
+    .allocation-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .budget-summary-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .mini-kpi {
+      padding: 0.85rem 0.95rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+    }
+
+    .mini-kpi-label {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .mini-kpi-value {
+      display: block;
+      font: 700 1.05rem var(--mono);
+      color: var(--fg);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mini-kpi-value.good {
+      color: var(--ok);
+    }
+
+    .mini-kpi-value.bad {
+      color: var(--danger);
+    }
+
+    /* Barra empilhada visual de alocação do orçamento */
+    .stacked-bar-wrap {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+    }
+
+    .stacked-bar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+    }
+
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+    }
+
+    .stacked-bar {
+      width: 100%;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--chip);
+      overflow: hidden;
+      display: flex;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .bar-seg-active {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--ok));
+      transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .bar-seg-waste {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f59e0b, var(--danger));
+      transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sim-diagnostic-note {
+      margin: 0;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      border: 1px solid rgba(220, 38, 38, 0.25);
+      background: var(--danger-soft);
+      color: var(--fg);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .sim-diagnostic-note.modular-ok {
+      border-color: rgba(20, 128, 79, 0.32);
+      background: var(--ok-soft);
+    }
+
+    .sim-assumptions {
+      max-width: 70rem;
+      margin: 0.85rem auto 2rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Palco SVG Isométrico Comparativo */
+    .svg-stage {
+      background: linear-gradient(155deg, var(--surface-soft) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svg-architecture {
+      width: 100%;
+      max-width: 330px;
+      height: auto;
+      animation: floatCage 6.5s ease-in-out infinite;
+    }
+
+    .arch-layer {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .arch-layer.hidden-layer {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .svg-stage-caption {
+      margin-top: 0.55rem;
+      font: 500 0.74rem var(--mono);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       CORPO DO ARTIGO EDITORIAL
+       ========================================================================== */
+    article {
+      max-width: 48rem;
+    }
+
+    .section-block {
+      margin-top: 2.9rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.55rem;
+      font: 600 0.76rem var(--mono);
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    article h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.5rem, 3.6vw, 2rem);
+    }
+
+    article p,
+    article li,
+    .note {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    article p {
+      margin: 0.95rem 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.74;
+    }
+
+    article strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    /* Lista de pontos críticos */
+    .bottleneck-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.35rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .bottleneck-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.95rem 1.15rem;
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--fg);
+      font-size: 0.97rem;
+      line-height: 1.6;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .bottleneck-list li:hover {
+      transform: translateX(4px);
+      border-color: rgba(47, 111, 228, 0.4);
+    }
+
+    .bottleneck-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--danger-soft);
+      color: var(--danger);
+      font: 700 0.76rem var(--mono);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* Callout de Impacto Orçamentário */
+    .budget-callout {
+      margin: 1.5rem 0;
+      padding: 1.35rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--danger);
+      box-shadow: var(--shadow-card);
+    }
+
+    .budget-callout-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .callout-code {
+      font: 600 0.8rem var(--mono);
+      padding: 0.28rem 0.68rem;
+      border-radius: 8px;
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .budget-callout p {
+      margin: 0;
+      color: var(--fg);
+      font-size: 0.98rem;
+    }
+
+    /* Destaque Soberania Científica & Biotério Forte V2 */
+    .v2-highlight {
+      margin: 1.6rem 0;
+      padding: 1.4rem 1.55rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+    }
+
+    .v2-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font: 600 0.76rem var(--mono);
+      padding: 0.32rem 0.75rem;
+      border-radius: 999px;
+      background: var(--ok-soft);
+      color: var(--ok);
+      border: 1px solid rgba(20, 128, 79, 0.28);
+      margin-bottom: 0.8rem;
+    }
+
+    .v2-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      animation: pulseDot 2s infinite;
+    }
+
+    .v2-highlight p {
+      margin: 0;
+      color: var(--fg);
+    }
+
+    /* ==========================================================================
+       BLOCO DE CONVERSÃO / CTA & CHECKLIST COPIÁVEL
+       ========================================================================== */
+    .cta-box {
+      margin-top: 2.9rem;
+      padding: clamp(1.4rem, 4vw, 2rem);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+    }
+
+    .cta-box h2 {
+      margin-top: 0;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.4rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 48px;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--fg);
+      font-size: 0.93rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue);
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .button.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #ffffff;
+      box-shadow: 0 8px 22px -6px rgba(47, 111, 228, 0.5);
+    }
+
+    html.dark .button.primary {
+      color: #081220;
+    }
+
+    .button.primary:hover {
+      filter: brightness(1.07);
+    }
+
+    .reply-address {
+      margin-top: 1.1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .reply-address a {
+      color: var(--blue);
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+
+    /* Janela Expansível Estilo Linear / Lovable */
+    details.email-copy {
+      margin-top: 1.8rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    details.email-copy summary {
+      list-style: none;
+      padding: 1rem 1.25rem;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--fg);
+      transition: background-color 0.2s ease;
+    }
+
+    details.email-copy summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.email-copy summary:hover {
+      background: var(--chip);
+    }
+
+    .window-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .window-dots {
+      display: inline-flex;
+      gap: 5px;
+    }
+
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .window-dots span:nth-child(1) { background: #f87171; }
+    .window-dots span:nth-child(2) { background: #fbbf24; }
+    .window-dots span:nth-child(3) { background: #34d399; }
+
+    .copy-snippet-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.48rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--blue);
+      font: 600 0.8rem var(--body);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .copy-snippet-btn:hover {
+      border-color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .copy-snippet-btn:active {
+      transform: scale(0.96);
+    }
+
+    .email-body {
+      padding: 1.25rem 1.35rem 1.45rem;
+    }
+
+    .template-quote {
+      margin: 0;
+      padding: 1.15rem 1.25rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px dashed var(--line);
+      font: 400 0.86rem/1.72 var(--mono);
+      color: var(--fg);
+      white-space: pre-wrap;
+    }
+
+    .template-hint {
+      margin: 0.85rem 0 0;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    /* ==========================================================================
+       RODAPÉ
+       ========================================================================== */
+    .footer-shell {
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer.wrap.footer {
+      padding-block: 1.6rem 2.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    footer.wrap.footer a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer.wrap.footer a:hover {
+      color: var(--blue);
+    }
+
+    /* ==========================================================================
+       TOAST & ANIMAÇÕES
+       ========================================================================== */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.8rem 1.15rem;
+      border-radius: 14px;
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+      transform: translateY(90px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    @keyframes radarPing {
+      0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.55); }
+      70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+    }
+
+    @keyframes floatCage {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE & ACESSIBILIDADE
+       ========================================================================== */
+    @media (max-width: 800px) {
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+      .sim-controls,
+      .sim-workspace {
+        grid-template-columns: 1fr;
+      }
+      .budget-summary-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header.wrap.top {
+        flex-wrap: wrap;
+      }
+      .intro,
+      article p,
+      article li,
+      .note {
+        text-align: left;
+        hyphens: none;
+      }
+      .cta .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .svg-architecture,
+      .brand-pulse,
+      .eyebrow-dot,
+      .v2-badge-dot {
+        animation: none;
+      }
+      .spotlight-card,
+      .button,
+      .bottleneck-list li,
+      .bar-seg-active,
+      .bar-seg-waste {
+        transition: none;
+      }
+    }
+  </style>
+
+  <!-- Evita flash de tema antes da pintura inicial -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('bf-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Barra de progresso de leitura fixa no topo -->
+  <div class="progress-track" aria-hidden="true">
+    <div id="progress-fill" class="progress-fill"></div>
+  </div>
+
+  <!-- Luz ambiente suave -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Cabeçalho -->
+  <div class="header-shell">
+    <header class="wrap top">
+      <a class="brand" href="../index.html">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="12" rx="3"></rect>
+            <path d="M7 10h10M7 14h6"></path>
+          </svg>
+          <span class="brand-pulse"></span>
+        </span>
+        <span>Biotério Forte</span>
+      </a>
+
+      <div class="header-actions">
+        <a class="back" href="../index.html#noticias">
+          <span class="back-arrow" aria-hidden="true">←</span>
+          <span>Voltar às notícias</span>
+        </a>
+
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="Alternar tema claro ou escuro" title="Alternar tema">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <main class="wrap">
+
+    <!-- Hero Section -->
+    <section class="reveal is-visible">
+      <div class="eyebrow-badge">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>EDITORIAL · INFRAESTRUTURA &amp; INVESTIMENTO PÚBLICO</span>
+      </div>
+
+      <h1>
+        <span class="headline-gradient">Dinheiro público no ralo.</span> De que adianta formar os melhores pesquisadores se falta infraestrutura na bancada?
+      </h1>
+
+      <p class="intro">
+        Formamos doutores de nível internacional e aprovamos projetos competitivos nas agências de fomento. Mas, na hora de executar o experimento <em>in vivo</em>, o recurso escorre pela falta de infraestrutura básica nos biotérios: equipamentos importados encostados sem peça de reposição, caixas fora de padrão e ambientes sem controle real.
+      </p>
+    </section>
+
+    <!-- 3 Cards de Métricas com Spotlight e Contadores Animados -->
+    <section class="stat-grid reveal" aria-label="Indicadores de retorno e infraestrutura científica">
+      <!-- Card 1 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon alert" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+            </svg>
+          </span>
+          <span class="stat-tag alert">Paralisia operacional</span>
+        </div>
+        <b class="stat-value alert-val"><span class="count-up" data-target="100">0</span>% Travado</b>
+        <span class="stat-desc">O retorno de um edital quando o equipamento importado para por falta de peça</span>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </span>
+          <span class="stat-tag">Custeio &amp; Padrão</span>
+        </div>
+        <b class="stat-value"><span class="count-up" data-target="3">0</span> Gargalos</b>
+        <span class="stat-desc">Câmbio, manutenção proprietária e caixas incompatíveis travando a pesquisa</span>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon ok" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </span>
+          <span class="stat-tag ok">Soberania</span>
+        </div>
+        <b class="stat-value ok-val"><span class="count-up" data-target="1">0</span> Solução</b>
+        <span class="stat-desc">Engenharia nacional modular compatível com o parque instalado no Brasil</span>
+      </div>
+    </section>
+
+    <!-- COMPONENTE INTERATIVO: Simulador de Eficiência do Recurso Público -->
+    <section class="simulator-panel reveal" aria-label="Simulador de Eficiência do Recurso Público">
+      <div class="sim-header">
+        <div>
+          <h2>
+            <span>Estimador de Investimento por Parque</span>
+            <span class="pill-live">Comparação de custo</span>
+          </h2>
+          <p class="sim-subtitle">
+            Compare a estimativa de investimento por parque: uma caixa do <strong>Biotério Forte V2 custa R$ 50.000</strong>; equipamentos importados passam de <strong>R$ 100.000 por caixa</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Controles do Simulador -->
+      <div class="sim-controls">
+        <div class="mode-switch-group">
+          <span class="control-label">Arquitetura de Infraestrutura</span>
+          <div class="segmented-control" role="tablist" aria-label="Selecione o modelo de infraestrutura">
+            <button id="btn-mode-imported" class="seg-btn active-danger" type="button" role="tab" aria-selected="true">
+              Modelo Importado Engessado
+            </button>
+            <button id="btn-mode-modular" class="seg-btn" type="button" role="tab" aria-selected="false">
+              Infraestrutura Modular V2
+            </button>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="park-slider" class="control-label">Caixas no parque / projeto</label>
+            <span id="park-readout" class="slider-readout">80 caixas · acima de R$ 8.000.000</span>
+          </div>
+          <input id="park-slider" class="park-slider" type="range" min="20" max="200" step="10" value="80">
+          <div class="slider-ticks">
+            <span>20 caixas</span>
+            <span>100 caixas</span>
+            <span>200 caixas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workspace de Resultados + Ilustração SVG -->
+      <div class="sim-workspace">
+        <div class="allocation-card">
+          <div class="budget-summary-row">
+            <div class="mini-kpi">
+              <span class="mini-kpi-label">Investimento total estimado</span>
+              <strong id="kpi-total" class="mini-kpi-value">&gt; R$ 8.000.000</strong>
+            </div>
+            <div class="mini-kpi">
+              <span class="mini-kpi-label">Custo por caixa</span>
+              <strong id="kpi-active" class="mini-kpi-value bad">&gt; R$ 100.000</strong>
+            </div>
+            <div class="mini-kpi">
+              <span class="mini-kpi-label">Economia mínima vs. importados</span>
+              <strong id="kpi-waste" class="mini-kpi-value bad">Selecione o Biotério Forte V2</strong>
+            </div>
+          </div>
+
+          <!-- Barra empilhada de alocação -->
+          <div class="stacked-bar-wrap">
+            <div class="stacked-bar-legend">
+              <span class="legend-item">
+                <span class="legend-dot" style="background: var(--ok);"></span>
+                <span id="legend-active-label">Custo importado: acima de R$ 100 mil por caixa</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-dot" style="background: var(--danger);"></span>
+                <span id="legend-waste-label">Economia mínima vs. preço importado</span>
+              </span>
+            </div>
+            <div class="stacked-bar" aria-hidden="true">
+              <div id="bar-active" class="bar-seg-active" style="width: 100%;"></div>
+              <div id="bar-waste" class="bar-seg-waste" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <p id="sim-diagnostic" class="sim-diagnostic-note">
+            <strong>Referência de custo:</strong> equipamentos importados passam de R$ 100.000 por caixa. Para 80 caixas, o investimento ultrapassa R$ 8.000.000; o valor real pode ser maior.
+          </p>
+        </div>
+
+        <!-- Ilustração Vetorial Isométrica Comparativa -->
+        <div class="svg-stage">
+          <svg class="svg-architecture" viewBox="0 0 380 255" role="img" aria-label="Esquema comparativo entre sistema proprietário travado e arquitetura modular nacional Biotério Forte V2">
+            <defs>
+              <linearGradient id="modTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#14804f" stop-opacity="0.28"></stop>
+                <stop offset="100%" stop-color="#2f6fe4" stop-opacity="0.16"></stop>
+              </linearGradient>
+              <linearGradient id="baseBody" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.15"></stop>
+                <stop offset="100%" stop-color="#2f6fe4" stop-opacity="0.05"></stop>
+              </linearGradient>
+              <linearGradient id="lockedTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#dc2626" stop-opacity="0.22"></stop>
+                <stop offset="100%" stop-color="#d97706" stop-opacity="0.10"></stop>
+              </linearGradient>
+            </defs>
+
+            <!-- Sombra base -->
+            <ellipse cx="190" cy="212" rx="115" ry="15" fill="rgba(47, 111, 228, 0.10)"></ellipse>
+
+            <!-- Parque de caixas existente (base comum em ambos os cenários) -->
+            <polygon points="94,132 190,170 286,132 286,176 190,210 94,176" fill="url(#baseBody)" stroke="#2f6fe4" stroke-width="1.8" stroke-linejoin="round"></polygon>
+            <line x1="190" y1="170" x2="190" y2="210" stroke="#2f6fe4" stroke-width="1.8"></line>
+            <text x="122" y="232" fill="#566b82" font-family="JetBrains Mono, monospace" font-size="9.5">PARQUE DE CAIXAS EXISTENTE</text>
+
+            <!-- CAMADA A: Sistema Importado Fechado / Travado -->
+            <g id="arch-imported" class="arch-layer">
+              <!-- Tampa proprietária rachada / bloqueada -->
+              <polygon points="88,112 190,74 292,112 190,150" fill="url(#lockedTop)" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 3" stroke-linejoin="round"></polygon>
+              <polygon points="88,112 190,150 190,162 88,124" fill="rgba(220, 38, 38, 0.16)" stroke="#dc2626" stroke-width="1.5" stroke-linejoin="round"></polygon>
+              <polygon points="292,112 190,150 190,162 292,124" fill="rgba(220, 38, 38, 0.10)" stroke="#dc2626" stroke-width="1.5" stroke-linejoin="round"></polygon>
+
+              <!-- Ícone de alerta / cadeado / dólar -->
+              <circle cx="190" cy="44" r="18" fill="rgba(220, 38, 38, 0.14)" stroke="#dc2626" stroke-width="1.8"></circle>
+              <path d="M184 38l12 12M196 38l-12 12" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round"></path>
+              <line x1="190" y1="62" x2="190" y2="96" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="3 3"></line>
+
+              <text x="92" y="18" fill="#dc2626" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">PEÇA IMPORTADA EM DÓLAR · TRAVADO</text>
+            </g>
+
+            <!-- CAMADA B: Arquitetura Modular Biotério Forte V2 -->
+            <g id="arch-modular" class="arch-layer hidden-layer">
+              <!-- Setas de acoplamento universal -->
+              <path d="M112 110v14M107 119l5 5 5-5" stroke="#14804f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+              <path d="M268 110v14M263 119l5 5 5-5" stroke="#14804f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+
+              <!-- Módulo inteligente Biotério Forte V2 acoplado -->
+              <polygon points="88,92 190,54 292,92 190,130" fill="url(#modTop)" stroke="#14804f" stroke-width="2" stroke-linejoin="round"></polygon>
+              <polygon points="88,92 190,130 190,142 88,104" fill="rgba(20, 128, 79, 0.22)" stroke="#14804f" stroke-width="1.6" stroke-linejoin="round"></polygon>
+              <polygon points="292,92 190,130 190,142 292,104" fill="rgba(47, 111, 228, 0.16)" stroke="#14804f" stroke-width="1.6" stroke-linejoin="round"></polygon>
+
+              <!-- Cartucho HEPA + Núcleo de Telemetria -->
+              <polygon points="154,84 190,70 226,84 190,98" fill="rgba(20, 128, 79, 0.26)" stroke="#14804f" stroke-width="1.6"></polygon>
+              <circle cx="190" cy="84" r="4.5" fill="#14804f"></circle>
+              <path d="M179 44a16 16 0 0 1 22 0M173 37a24 24 0 0 1 34 0" stroke="#14804f" stroke-width="1.7" stroke-linecap="round" fill="none"></path>
+
+              <text x="86" y="18" fill="#14804f" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">ENCAIXE UNIVERSAL · HEPA · TELEMETRIA V2</text>
+            </g>
+          </svg>
+          <span id="svg-caption" class="svg-stage-caption">Cenário atual: sistema proprietário vulnerável à falta de peça</span>
+        </div>
+      </div>
+    </section>
+    <p class="sim-assumptions"><strong>Premissas do comparador:</strong> R$ 50.000 por caixa do Biotério Forte V2 e mais de R$ 100.000 por equipamento importado, conforme valores informados pelo projeto. O comparador mostra custo de aquisição estimado; não representa retorno financeiro medido.</p>
+
+    <!-- Corpo do Artigo Editorial (Estilo Jeb Blount) -->
+    <article>
+
+      <!-- Seção 1 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">01 · Capital Humano vs. Bancada</span>
+        <h2>Talento sem estrutura é desperdício orçamentário</h2>
+        <p>
+          O Brasil investe anos — e bilhões de reais — formando mestres, doutores e pós-doutores capazes de competir em qualquer centro de pesquisa do mundo. Aprovamos projetos rigorosos nas agências de fomento, validamos hipóteses complexas e desenhamos protocolos de alto valor científico.
+        </p>
+        <p>
+          Mas, quando o experimento sai do papel e entra no biotério, o pesquisador encontra outra realidade: salas operando no improviso, caixas sem padronização dimensional e sistemas críticos parados aguardando manutenção inviável. <strong>Não existe retorno sobre investimento científico quando o talento humano é freado pela infraestrutura básica.</strong>
+        </p>
+
+        <div class="budget-callout">
+          <div class="budget-callout-header">
+            <span class="callout-code">Efeito Dominó no Orçamento Público</span>
+          </div>
+          <p>
+            Cada mês de atraso por falha de alojamento ou repetição de ensaio por variação ambiental consome bolsa de pesquisa, reagente importado, tempo de equipe técnica e animais de experimentação — multiplicando o custo real de cada dado publicado.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção 2 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">02 · O Gargalo do Custeio</span>
+        <h2>A armadilha do edital que compra, mas não sustenta</h2>
+        <p>
+          Quem gerencia laboratório público conhece bem esse ciclo: aprova-se um edital de capital, compra-se um rack ventilado importado em dólar e inaugura-se a sala com foto oficial. Dois anos depois, começa a conta que ninguém colocou na planilha.
+        </p>
+
+        <ul class="bottleneck-list">
+          <li>
+            <span class="bottleneck-badge" aria-hidden="true">01</span>
+            <span><strong>Consumíveis proprietários em moeda estrangeira:</strong> filtros específicos, vedações e sensores exclusivos que exigem importação direta a cada ciclo de troca.</span>
+          </li>
+          <li>
+            <span class="bottleneck-badge" aria-hidden="true">02</span>
+            <span><strong>Tampas trincadas e encaixes incompatíveis:</strong> quando uma peça quebra ou deforma na autoclavagem, não serve em outra marca — e o conjunto inteiro perde vedação.</span>
+          </li>
+          <li>
+            <span class="bottleneck-badge" aria-hidden="true">03</span>
+            <span><strong>Assistência técnica distante e lenta:</strong> meses de espera por cotação, desembaraço alfandegário e visita técnica enquanto cronogramas de teses estouram.</span>
+          </li>
+        </ul>
+
+        <p>
+          O resultado está visível nos corredores de universidades e institutos por todo o país: o <strong>"cemitério de equipamentos"</strong>. Patrimônio público de alto valor encostado por falta de uma peça de reposição ou de um contrato de custeio compatível com a realidade brasileira.
+        </p>
+      </section>
+
+      <!-- Seção 3 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">03 · Engenharia &amp; Soberania</span>
+        <h2>Infraestrutura nacional não é improviso. É soberania científica.</h2>
+        <p>
+          Resolver o gargalo dos biotérios brasileiros não passa por importar mais caixas-pretas dependentes de dólar. Passa por desenvolver engenharia nacional de precisão, desenhada para dialogar com o parque instalado que as instituições já possuem.
+        </p>
+
+        <div class="v2-highlight">
+          <div class="v2-badge">
+            <span class="v2-badge-dot" aria-hidden="true"></span>
+            <span>Biotério Forte V2 · Arquitetura Modular Nacional</span>
+          </div>
+          <p>
+            É essa lacuna que o <strong>Biotério Forte V2</strong> ataca na raiz: compatibilidade universal com caixas padrão do ecossistema nacional, filtração local de alta eficiência, monitoramento térmico e microambiental contínuo, manutenção acessível no Brasil e custo previsível em reais.
+          </p>
+        </div>
+
+        <p>
+          Quando o pesquisador tem ambiente auditável, peça de reposição local e dado contínuo da caixa-moradia, o dinheiro público deixa de escorrer pelo ralo e volta a produzir ciência reprodutível.
+        </p>
+      </section>
+
+      <!-- Call to Action (CTA) -->
+      <section class="cta-box reveal">
+        <h2>Vamos tirar equipamentos do corredor e colocar dados na bancada</h2>
+        <p>Converse com nossa equipe sobre a infraestrutura do seu biot?rio e o Biot?rio Forte V2.</p>
+
+        <div class="cta">
+          <a class="button primary" href="mailto:founder@thotiacorp.com.br?subject=Diagn%C3%B3stico%20de%20Infraestrutura%20-%20Biot%C3%A9rio%20Forte%20V2&amp;body=Ol%C3%A1%2C%20li%20o%20editorial%20sobre%20infraestrutura%20e%20investimento%20p%C3%BAblico%20e%20gostaria%20de%20conversar%20sobre%20o%20Biot%C3%A9rio%20Forte%20V2.%0A%0AInstitui%C3%A7%C3%A3o%2FUnidade%3A%0ACidade%2FEstado%3A%0ATamanho%20estimado%20do%20parque%20de%20caixas%3A%0APrincipal%20gargalo%20atual%3A%0A">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>Solicitar diagnóstico institucional por e-mail</span>
+          </a>
+
+          <a class="button" href="https://wa.me/5566996675486?text=Ol%C3%A1%2C%20li%20o%20editorial%20sobre%20infraestrutura%20nos%20biot%C3%A9rios%20e%20quero%20conversar%20sobre%20o%20Biot%C3%A9rio%20Forte%20V2." target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>Conversar pelo WhatsApp</span>
+          </a>
+        </div>
+
+        <p class="reply-address">
+          Ou escreva diretamente para <a href="mailto:founder@thotiacorp.com.br">founder@thotiacorp.com.br</a>.
+        </p>
+
+        <!-- Janela Expansível com Checklist Copiável para Editais e Coordenação -->
+        <details class="email-copy" open>
+          <summary>
+            <span class="window-title-wrap">
+              <span class="window-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </span>
+              <span>Checklist de Eficiência para Editais e Coordenação de Biotérios</span>
+            </span>
+
+            <button id="copy-checklist-btn" class="copy-snippet-btn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copy-checklist-label">Copiar checklist</span>
+            </button>
+          </summary>
+
+          <div class="email-body">
+            <pre id="checklist-template-text" class="template-quote">CHECKLIST DE EFICIÊNCIA E SUSTENTABILIDADE DE INFRAESTRUTURA (BIOTÉRIOS):
+[ ] 1. Custo Total de Propriedade (TCO): O projeto prevê 3 anos de filtros, vedações e manutenção em moeda local sem dependência cambial?
+[ ] 2. Compatibilidade de Parque: As tampas e módulos dialogam com as dimensões das caixas-moradia já existentes na instituição?
+[ ] 3. Tempo de Reposição (SLA): Peças críticas possuem fornecimento nacional imediato, evitando racks parados por desembaraço alfandegário?
+[ ] 4. Rastreabilidade DBCA / CEUA: O sistema gera registro contínuo e auditável de temperatura, umidade e microclima por unidade de alojamento?
+[ ] 5. Continuidade Experimental: A infraestrutura protege o investimento em bolsas e reagentes contra perdas por variação ambiental não detectada?</pre>
+            <p class="template-hint">
+              Use este checklist ao estruturar justificativas técnicas em editais de infraestrutura, planos de adequação ou termos de referência.
+            </p>
+          </div>
+        </details>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Rodapé -->
+  <div class="footer-shell">
+    <footer class="wrap footer">
+      <a href="../index.html#noticias">Biotério Forte · Notícias</a>
+      <a href="reprodutibilidade.html">← Edição anterior: A crise silenciosa da reprodutibilidade</a>
+    </footer>
+  </div>
+
+  <!-- Toast discreto de confirmação -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-msg">Checklist copiado para a área de transferência!</span>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      /* 1. Alternância de tema Claro/Escuro */
+      var themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          var isDark = document.documentElement.classList.toggle('dark');
+          try {
+            localStorage.setItem('bf-theme', isDark ? 'dark' : 'light');
+          } catch (e) {}
+        });
+      }
+
+      /* 2. Barra de progresso de leitura */
+      var progressFill = document.getElementById('progress-fill');
+      function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        if (progressFill) {
+          progressFill.style.width = pct + '%';
+        }
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      /* 3. Efeito Spotlight nos cards */
+      document.querySelectorAll('.spotlight-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      /* 4. Contadores animados (Count-Up) */
+      function animateCountUp(el) {
+        var target = parseFloat(el.dataset.target);
+        var duration = 1200;
+        var startTime = performance.now();
+
+        function step(now) {
+          var elapsed = now - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 4);
+          el.textContent = Math.round(target * eased);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      /* 5. IntersectionObserver para revelação suave e gatilho dos contadores */
+      var countersTriggered = false;
+      var revealEls = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              if (!countersTriggered && entry.target.querySelector('.count-up')) {
+                countersTriggered = true;
+                document.querySelectorAll('.count-up').forEach(animateCountUp);
+              }
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+        document.querySelectorAll('.count-up').forEach(animateCountUp);
+      }
+
+      /* 6. Simulador de Eficiência do Recurso Público */
+      var currentMode = 'imported'; // 'imported' | 'modular'
+      var btnImported = document.getElementById('btn-mode-imported');
+      var btnModular = document.getElementById('btn-mode-modular');
+      var parkSlider = document.getElementById('park-slider');
+      var parkReadout = document.getElementById('park-readout');
+
+      var kpiTotal = document.getElementById('kpi-total');
+      var kpiActive = document.getElementById('kpi-active');
+      var kpiWaste = document.getElementById('kpi-waste');
+
+      var legendActive = document.getElementById('legend-active-label');
+      var legendWaste = document.getElementById('legend-waste-label');
+      var barActive = document.getElementById('bar-active');
+      var barWaste = document.getElementById('bar-waste');
+      var simDiagnostic = document.getElementById('sim-diagnostic');
+
+      var archImported = document.getElementById('arch-imported');
+      var archModular = document.getElementById('arch-modular');
+      var svgCaption = document.getElementById('svg-caption');
+
+      function formatBRL(value) {
+        return 'R$ ' + Math.round(value).toLocaleString('pt-BR');
+      }
+
+      function updateSimulator() {
+        var cages = parseInt(parkSlider.value, 10);
+        var importedUnitCost = 100000; // Piso informado; o custo importado passa desse valor.
+        var localUnitCost = 50000;
+        var isImported = currentMode === 'imported';
+        var unitCost = isImported ? importedUnitCost : localUnitCost;
+        var totalBudget = cages * unitCost;
+        var savings = cages * (importedUnitCost - localUnitCost);
+        var activePct = isImported ? 100 : 50;
+        var wastePct = 100 - activePct;
+        var prefix = isImported ? '> ' : '';
+
+        parkReadout.textContent = cages + ' caixas · ' + prefix + formatBRL(totalBudget);
+        kpiTotal.textContent = prefix + formatBRL(totalBudget);
+        kpiActive.textContent = prefix + formatBRL(unitCost);
+        kpiWaste.textContent = isImported ? 'Selecione o Biotério Forte V2' : '> ' + formatBRL(savings) + ' (≥50%)';
+
+        barActive.style.width = activePct + '%';
+        barWaste.style.width = wastePct + '%';
+
+        if (currentMode === 'imported') {
+          btnImported.classList.add('active-danger');
+          btnImported.setAttribute('aria-selected', 'true');
+          btnModular.classList.remove('active-ok');
+          btnModular.setAttribute('aria-selected', 'false');
+
+          kpiActive.className = 'mini-kpi-value bad';
+          kpiWaste.className = 'mini-kpi-value bad';
+
+          legendActive.textContent = 'Custo importado (piso de R$ 100 mil por caixa)';
+          legendWaste.textContent = 'O valor real supera esse piso';
+          legendActive.previousElementSibling.style.background = 'var(--danger)';
+          legendWaste.previousElementSibling.style.background = 'var(--warn)';
+          barActive.style.background = 'linear-gradient(90deg,#f59e0b,var(--danger))';
+          barWaste.style.background = 'linear-gradient(90deg,#f59e0b,var(--danger))';
+
+          simDiagnostic.classList.remove('modular-ok');
+          simDiagnostic.innerHTML = '<strong>Referência de custo:</strong> equipamentos importados passam de <strong>R$ 100.000 por caixa</strong>. Para ' + cages + ' caixas, o investimento ultrapassa <strong>' + formatBRL(totalBudget) + '</strong>; o valor real pode ser maior.';
+
+          archImported.classList.remove('hidden-layer');
+          archModular.classList.add('hidden-layer');
+          svgCaption.textContent = 'Referência importada: mais de R$ 100 mil por caixa';
+        } else {
+          btnModular.classList.add('active-ok');
+          btnModular.setAttribute('aria-selected', 'true');
+          btnImported.classList.remove('active-danger');
+          btnImported.setAttribute('aria-selected', 'false');
+
+          kpiActive.className = 'mini-kpi-value good';
+          kpiWaste.className = 'mini-kpi-value good';
+
+          legendActive.textContent = 'Biotério Forte V2: R$ 50 mil por caixa';
+          legendWaste.textContent = 'Economia mínima de 50% vs. piso importado';
+          legendActive.previousElementSibling.style.background = 'var(--ok)';
+          legendWaste.previousElementSibling.style.background = 'var(--blue)';
+          barActive.style.background = 'linear-gradient(90deg,var(--blue),var(--ok))';
+          barWaste.style.background = 'linear-gradient(90deg,var(--ok),#22c55e)';
+
+          simDiagnostic.classList.add('modular-ok');
+          simDiagnostic.innerHTML = '<strong>Comparação de aquisição:</strong> ' + cages + ' caixas do Biotério Forte V2 custam <strong>' + formatBRL(totalBudget) + '</strong>. Pelo piso de R$ 100.000 por equipamento importado, a diferença é superior a <strong>' + formatBRL(savings) + '</strong> (mais de 50%); o custo importado real pode ampliar essa diferença.';
+
+          archImported.classList.add('hidden-layer');
+          archModular.classList.remove('hidden-layer');
+          svgCaption.textContent = 'Biotério Forte V2: R$ 50 mil por caixa, mais de 50% abaixo do piso importado';
+        }
+      }
+
+      if (btnImported && btnModular && parkSlider) {
+        btnImported.addEventListener('click', function () {
+          currentMode = 'imported';
+          updateSimulator();
+        });
+        btnModular.addEventListener('click', function () {
+          currentMode = 'modular';
+          updateSimulator();
+        });
+        parkSlider.addEventListener('input', updateSimulator);
+        updateSimulator();
+      }
+
+      /* 7. Toast & Cópia do Checklist */
+      var toast = document.getElementById('toast');
+      var toastMsg = document.getElementById('toast-msg');
+      var toastTimer;
+
+      function showToast(message) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2800);
+      }
+
+      var copyChecklistBtn = document.getElementById('copy-checklist-btn');
+      var copyChecklistLabel = document.getElementById('copy-checklist-label');
+      var checklistTemplateText = document.getElementById('checklist-template-text');
+
+      if (copyChecklistBtn && checklistTemplateText) {
+        copyChecklistBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          var text = checklistTemplateText.textContent.trim();
+          var textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          try {
+            document.execCommand('copy');
+            if (copyChecklistLabel) {
+              copyChecklistLabel.textContent = 'Copiado!';
+            }
+            showToast('Checklist de eficiência copiado!');
+            setTimeout(function () {
+              if (copyChecklistLabel) {
+                copyChecklistLabel.textContent = 'Copiar checklist';
+              }
+            }, 2400);
+          } catch (err) {
+            showToast('Selecione o texto manualmente para copiar.');
+          }
+          document.body.removeChild(textarea);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

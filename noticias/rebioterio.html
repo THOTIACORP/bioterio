@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="26 contatos por e-mail, 2 respostas. O Biotério Forte apresenta o desafio e abre espaço para conversar com a comunidade REBIOTERIO.">
+  <link rel="canonical" href="https://bioterioforte.com.br/noticias/rebioterio.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Biotério Forte">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="26 contatos. 2 respostas. O diálogo precisa avançar. | Biotério Forte">
+  <meta property="og:description" content="O retorno por e-mail foi de 7,7%. Um sinal para tornar a comunicação do projeto mais clara e abrir novas conversas com biotérios.">
+  <meta property="og:image" content="https://bioterioforte.com.br/noticias/rebioterio.svg">
+  <title>26 contatos. 2 respostas. O diálogo precisa avançar. | Biotério Forte</title>
+
+  <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'soft': '0 10px 40px -10px rgba(14, 34, 56, 0.08)',
+            'soft-dark': '0 10px 40px -10px rgba(0, 0, 0, 0.45)',
+            'glow-blue': '0 0 28px -4px rgba(47, 111, 228, 0.35)',
+            'glow-emerald': '0 0 24px -4px rgba(20, 128, 79, 0.4)',
+          },
+          animation: {
+            'float-slow': 'float 7s ease-in-out infinite',
+            'pulse-subtle': 'pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pulseSubtle: {
+              '0%, 100%': { opacity: 1 },
+              '50%': { opacity: 0.55 },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos base e micromovimentos estilo Lovable */
+    :root {
+      --bg-grid-light: rgba(47, 111, 228, 0.045);
+      --bg-grid-dark: rgba(110, 163, 255, 0.04);
+    }
+
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .news-layout {
+      box-sizing: border-box;
+      width: min(100%, 1000px);
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .news-article-copy {
+      width: 100%;
+      max-width: none;
+    }
+
+    /* Padrão sutil de grade técnica de laboratório */
+    .bg-tech-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, var(--bg-grid-light) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bg-grid-light) 1px, transparent 1px);
+    }
+    .dark .bg-tech-grid {
+      background-image: 
+        linear-gradient(to right, var(--bg-grid-dark) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bg-grid-dark) 1px, transparent 1px);
+    }
+
+    /* Gradiente expressivo no título */
+    .headline-gradient {
+      background: linear-gradient(105deg, #ca8a04 0%, #ea580c 48%, #dc2626 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .dark .headline-gradient {
+      background: linear-gradient(105deg, #fde047 0%, #fb923c 50%, #f87171 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Animações de revelação no scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Efeito de brilho radial interativo nos cards */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(47, 111, 228, 0.08),
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .dark .spotlight-card::before {
+      background: radial-gradient(
+        420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(110, 163, 255, 0.12),
+        transparent 70%
+      );
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Transição suave do acordeão do e-mail */
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .accordion-content.collapsed {
+      grid-template-rows: 0fr;
+    }
+    .accordion-inner {
+      overflow: hidden;
+    }
+
+    /* Justificação limpa mantendo legibilidade editorial */
+    .editorial-text {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+    @media (max-width: 640px) {
+      .editorial-text {
+        text-align: left;
+        hyphens: none;
+      }
+    }
+  </style>
+
+  <!-- Script inicial para evitar flash de tema errado -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('bf-theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+
+<body class="bg-[#f3f8fe] dark:bg-[#081220] text-[#0e2238] dark:text-[#e8f1fc] transition-colors duration-300 selection:bg-blue-500/20 selection:text-blue-700 dark:selection:text-blue-300 relative overflow-x-hidden">
+
+  <!-- Barra de progresso de leitura no topo -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-transparent pointer-events-none">
+    <div id="reading-progress" class="h-full w-0 bg-gradient-to-r from-blue-600 via-indigo-500 to-emerald-500 transition-[width] duration-100 ease-out rounded-r-full"></div>
+  </div>
+
+  <!-- Luzes ambientais sutis de fundo -->
+  <div class="fixed inset-0 bg-tech-grid pointer-events-none z-0 opacity-80"></div>
+  <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[780px] h-[420px] rounded-full bg-blue-500/10 dark:bg-blue-500/15 blur-[120px] pointer-events-none z-0"></div>
+  <div class="fixed top-[45%] -right-48 w-[520px] h-[520px] rounded-full bg-amber-500/5 dark:bg-amber-400/5 blur-[130px] pointer-events-none z-0"></div>
+
+  <!-- Cabeçalho flutuante estilo SaaS editorial -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#f3f8fe]/80 dark:bg-[#081220]/80 border-b border-[#dbe7f5]/80 dark:border-[#1d3350]/80 transition-colors duration-300">
+    <div class="news-layout h-16 flex items-center justify-between gap-4">
+      <a href="../index.html" class="group inline-flex items-center gap-2.5 font-display font-bold text-lg tracking-tight text-[#0e2238] dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg">
+        <span class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#2f6fe4] to-blue-700 dark:from-[#6ea3ff] dark:to-blue-600 flex items-center justify-center text-white shadow-sm group-hover:scale-105 group-hover:rotate-3 transition-transform duration-300">
+          <!-- Ícone técnico estilizado Biotério Forte -->
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="12" rx="3" />
+            <path d="M7 10h10M7 14h6" />
+          </svg>
+        </span>
+        <span>Biotério Forte</span>
+      </a>
+
+      <div class="flex items-center gap-3 sm:gap-4">
+        <a href="../index.html#noticias" class="group inline-flex items-center gap-1.5 text-sm font-medium text-[#566b82] dark:text-[#92a8c2] hover:text-[#2f6fe4] dark:hover:text-[#6ea3ff] transition-colors py-2 px-2.5 rounded-lg hover:bg-blue-500/5">
+          <span class="inline-block transition-transform duration-200 group-hover:-translate-x-1">←</span>
+          <span>Voltar às notícias</span>
+        </a>
+
+        <!-- Botão de alternância de tema Claro/Escuro -->
+        <button id="theme-toggle" type="button" aria-label="Alternar tema claro ou escuro" title="Alternar tema" class="p-2.5 rounded-xl border border-[#dbe7f5] dark:border-[#1d3350] bg-white/80 dark:bg-[#102036]/80 text-[#566b82] dark:text-[#92a8c2] hover:text-[#2f6fe4] dark:hover:text-[#6ea3ff] hover:border-blue-400/50 transition-all duration-200 active:scale-95 shadow-xs">
+          <!-- Ícone Sol (visível no modo escuro) -->
+          <svg class="w-4 h-4 hidden dark:block transition-transform duration-300 rotate-0 hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- Ícone Lua (visível no modo claro) -->
+          <svg class="w-4 h-4 block dark:hidden transition-transform duration-300 hover:-rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="news-layout relative z-10 pt-12 pb-20 sm:pt-20 sm:pb-28">
+
+    <!-- Hero Section -->
+    <section class="reveal is-visible">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e8f1fc] dark:bg-[#152a45] border border-blue-200/70 dark:border-blue-800/60 text-[#2f6fe4] dark:text-[#6ea3ff] text-xs font-semibold uppercase tracking-widest mb-6 shadow-xs">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#2f6fe4] dark:bg-[#6ea3ff] animate-ping"></span>
+        <span>Newsletter · Rede REBIOTERIO</span>
+      </div>
+
+      <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-[3.85rem] leading-[1.06] tracking-[-0.03em] text-[#0e2238] dark:text-white max-w-3xl">
+        <span class="headline-gradient">26 contatos. 2 respostas.</span> Ciência brasileira precisa avançar no diálogo
+      </h1>
+
+      <p class="mt-6 text-lg sm:text-xl leading-relaxed text-[#566b82] dark:text-[#92a8c2] max-w-3xl editorial-text">
+        Nosso primeiro balanço de contatos por e-mail disponíveis da REBIOTERIO terminou com duas respostas. O número chama atenção e deixa uma pergunta direta: estamos conseguindo explicar o projeto com clareza suficiente? Ou as instituições não estão preparadas para responder pesquisadores ?
+      </p>
+    </section>
+
+    <!-- Bento Grid de Métricas + Visualização Interativa -->
+    <section aria-label="Resumo dos contatos por e-mail" class="mt-10 sm:mt-14 reveal">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Card Métrica 1 -->
+        <div class="spotlight-card group rounded-3xl bg-white/90 dark:bg-[#102036]/90 backdrop-blur-md border border-[#dbe7f5] dark:border-[#1d3350] p-6 sm:p-7 shadow-soft dark:shadow-soft-dark hover:-translate-y-1 transition-all duration-300">
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-blue-50 dark:bg-blue-950/70 text-[#2f6fe4] dark:text-[#6ea3ff] group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <span class="text-xs font-mono font-medium text-[#566b82] dark:text-[#92a8c2] bg-[#f3f8fe] dark:bg-[#0a1626] px-2.5 py-1 rounded-full border border-[#dbe7f5] dark:border-[#1d3350]">100% envios</span>
+          </div>
+          <div class="font-display font-bold text-5xl sm:text-6xl text-[#2f6fe4] dark:text-[#6ea3ff] tabular-nums tracking-tight">
+            <span class="count-up" data-target="26">0</span>
+          </div>
+          <p class="mt-2.5 text-sm font-medium text-[#566b82] dark:text-[#92a8c2]">
+            contatos disponíveis por e-mail
+          </p>
+        </div>
+
+        <!-- Card Métrica 2 -->
+        <div class="spotlight-card group rounded-3xl bg-white/90 dark:bg-[#102036]/90 backdrop-blur-md border border-[#dbe7f5] dark:border-[#1d3350] p-6 sm:p-7 shadow-soft dark:shadow-soft-dark hover:-translate-y-1 transition-all duration-300">
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-[#14804f] dark:text-[#5fd09a] group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[#14804f] dark:text-[#5fd09a] bg-emerald-500/10 px-2.5 py-1 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#14804f] dark:bg-[#5fd09a]"></span>
+              Ativos
+            </span>
+          </div>
+          <div class="font-display font-bold text-5xl sm:text-6xl text-[#14804f] dark:text-[#5fd09a] tabular-nums tracking-tight">
+            <span class="count-up" data-target="2">0</span>
+          </div>
+          <p class="mt-2.5 text-sm font-medium text-[#566b82] dark:text-[#92a8c2]">
+            respostas recebidas
+          </p>
+        </div>
+
+        <!-- Card Métrica 3 -->
+        <div class="spotlight-card group rounded-3xl bg-white/90 dark:bg-[#102036]/90 backdrop-blur-md border border-[#dbe7f5] dark:border-[#1d3350] p-6 sm:p-7 shadow-soft dark:shadow-soft-dark hover:-translate-y-1 transition-all duration-300">
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>
+              </svg>
+            </span>
+            <span class="text-xs font-mono font-medium text-amber-700 dark:text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-full">Taxa de retorno</span>
+          </div>
+          <div class="font-display font-bold text-5xl sm:text-6xl text-[#0e2238] dark:text-white tabular-nums tracking-tight">
+            <span class="count-up" data-target="7.7" data-decimals="1">0,0</span><span class="text-3xl sm:text-4xl text-[#2f6fe4] dark:text-[#6ea3ff]">%</span>
+          </div>
+          <p class="mt-2.5 text-sm font-medium text-[#566b82] dark:text-[#92a8c2]">
+            retorno nesta rodada
+          </p>
+        </div>
+      </div>
+
+      <!-- Visualização Interativa: Matriz dos 26 Contatos vs 2 Respostas -->
+      <div class="mt-4 rounded-3xl bg-white/90 dark:bg-[#102036]/90 backdrop-blur-md border border-[#dbe7f5] dark:border-[#1d3350] p-6 sm:p-7 shadow-soft dark:shadow-soft-dark">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <h2 class="font-display font-semibold text-base sm:text-lg text-[#0e2238] dark:text-white flex items-center gap-2">
+              <span>Panorama visual da rodada</span>
+              <span class="text-xs font-normal font-sans px-2 py-0.5 rounded-md bg-blue-500/10 text-[#2f6fe4] dark:text-[#6ea3ff]">Interativo</span>
+            </h2>
+            <p id="matrix-status-text" class="text-xs sm:text-sm text-[#566b82] dark:text-[#92a8c2] mt-0.5">
+              Passe o cursor ou toque nos 26 nós de contato para inspecionar o alcance desta rodada.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs font-medium shrink-0">
+            <span class="inline-flex items-center gap-1.5 text-[#14804f] dark:text-[#5fd09a]">
+              <span class="w-3 h-3 rounded-sm bg-[#14804f] dark:bg-[#5fd09a] shadow-glow-emerald"></span>
+              2 Respondidos
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-[#566b82] dark:text-[#92a8c2]">
+              <span class="w-3 h-3 rounded-sm bg-[#dbe7f5] dark:bg-[#1d3350]"></span>
+              24 Sem retorno
+            </span>
+          </div>
+        </div>
+
+        <!-- Grid gerado via JS com 26 elementos interativos -->
+        <div id="contacts-matrix" class="grid grid-cols-13 sm:grid-cols-13 gap-2 sm:gap-2.5" style="grid-template-columns: repeat(13, minmax(0, 1fr));"></div>
+
+        <!-- Barra proporcional animada -->
+        <div class="mt-5 pt-4 border-t border-[#dbe7f5]/70 dark:border-[#1d3350]/70">
+          <div class="flex justify-between text-xs font-mono text-[#566b82] dark:text-[#92a8c2] mb-1.5">
+            <span>Proporção de resposta (2 / 26)</span>
+            <span class="font-semibold text-[#14804f] dark:text-[#5fd09a]">7,7%</span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-[#e8f1fc] dark:bg-[#0a1626] overflow-hidden p-0.5">
+            <div id="ratio-bar" class="h-full rounded-full bg-gradient-to-r from-[#2f6fe4] to-[#14804f] dark:from-[#6ea3ff] dark:to-[#5fd09a] transition-all duration-1000 ease-out" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artigo Editorial -->
+    <article class="news-article-copy mt-14 sm:mt-16 space-y-12">
+
+      <!-- Seção 1 -->
+      <section class="reveal space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-[#2f6fe4] dark:text-[#6ea3ff] font-mono text-xs font-bold">01</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl tracking-tight text-[#0e2238] dark:text-white">
+            Um dado pequeno que aponta um desafio grande
+          </h2>
+        </div>
+        <p class="text-base sm:text-[1.06rem] leading-relaxed text-[#566b82] dark:text-[#92a8c2] editorial-text">
+          Entre 26 contatos disponíveis por e-mail considerados nesta rodada, recebemos 2 respostas: 7,7% do total. É o registro de um canal e de uma rodada específica. Não mede o interesse da REBIOTERIO nem representa uma pesquisa com a comunidade.
+        </p>
+        <p class="text-base sm:text-[1.06rem] leading-relaxed text-[#566b82] dark:text-[#92a8c2] editorial-text">
+          Mas acende um alerta para nós: a comunicação ainda precisa melhorar. Se a proposta não fica clara, se o próximo passo não é simples ou se a mensagem não chega à pessoa certa, uma solução relevante pode nem ganhar a conversa que merece.
+        </p>
+      </section>
+
+      <!-- Seção 2 + Ilustração Técnica SVG de Caixa Moradia / Biotério Forte V2 -->
+      <section class="reveal space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/10 text-[#2f6fe4] dark:text-[#6ea3ff] font-mono text-xs font-bold">02</span>
+            <h2 class="font-display font-bold text-2xl sm:text-3xl tracking-tight text-[#0e2238] dark:text-white">
+              Requisito mínimo não é ponto de chegada
+            </h2>
+          </div>
+
+          <!-- Badge interativo de status -->
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/25">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            Biotério Forte V2 · Em validação
+          </span>
+        </div>
+
+        <p class="text-base sm:text-[1.06rem] leading-relaxed text-[#566b82] dark:text-[#92a8c2] editorial-text">
+          Um equipamento para pesquisa precisa cumprir requisitos mínimos de qualidade e segurança. Isso é obrigatório. Só que qualidade técnica, sozinha, não garante aderência à rotina de um biotério. Para construir algo útil, também precisamos ouvir quem trabalha no ambiente, entender as prioridades e explicar a proposta sem ruído.
+        </p>
+        <p class="text-base sm:text-[1.06rem] leading-relaxed text-[#566b82] dark:text-[#92a8c2] editorial-text">
+          O Biotério Forte V2 está em validação. O próximo passo é aproximar o protótipo de quem poderá avaliá-lo na prática: apresentar com clareza o que ele faz, o que ainda está sendo testado e que tipo de colaboração buscamos.
+        </p>
+
+        <!-- Ilustração Vetorial Interativa: Esquema Técnico de Caixa Moradia & Validação V2 -->
+        <div class="mt-6 rounded-3xl bg-gradient-to-br from-white via-[#f8fbff] to-[#ebf3fe] dark:from-[#102036] dark:via-[#0d1b2e] dark:to-[#132844] border border-[#dbe7f5] dark:border-[#1d3350] p-5 sm:p-7 shadow-soft dark:shadow-soft-dark overflow-hidden relative group">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div class="md:col-span-7">
+              <!-- SVG técnico isométrico limpo representando uma caixa moradia / unidade de alojamento -->
+              <svg viewBox="0 0 420 230" class="w-full h-auto animate-float-slow select-none" role="img" aria-label="Ilustração esquemática de caixa moradia para pesquisa em biotério">
+                <defs>
+                  <linearGradient id="cageTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#6ea3ff" stop-opacity="0.08"/>
+                  </linearGradient>
+                  <linearGradient id="cageBody" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.14"/>
+                    <stop offset="100%" stop-color="#14804f" stop-opacity="0.06"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Grade de referência isométrica -->
+                <g stroke="currentColor" class="text-blue-500/15 dark:text-blue-400/15" stroke-width="1" stroke-dasharray="3 3">
+                  <line x1="40" y1="185" x2="380" y2="185" />
+                  <line x1="70" y1="45" x2="70" y2="195" />
+                </g>
+
+                <!-- Sombra base -->
+                <ellipse cx="210" cy="188" rx="125" ry="16" fill="currentColor" class="text-blue-900/10 dark:text-black/40" />
+
+                <!-- Corpo inferior da caixa moradia (isométrico) -->
+                <polygon points="105,110 210,152 315,110 315,156 210,192 105,156" fill="url(#cageBody)" stroke="#2f6fe4" stroke-width="1.8" stroke-linejoin="round" />
+                <line x1="210" y1="152" x2="210" y2="192" stroke="#2f6fe4" stroke-width="1.8" />
+
+                <!-- Tampa / microisolador ventilado -->
+                <polygon points="98,94 210,54 322,94 210,136" fill="url(#cageTop)" stroke="#2f6fe4" stroke-width="2" stroke-linejoin="round" />
+                <polygon points="98,94 210,136 210,148 98,106" fill="#2f6fe4" fill-opacity="0.18" stroke="#2f6fe4" stroke-width="1.6" stroke-linejoin="round" />
+                <polygon points="322,94 210,136 210,148 322,106" fill="#2f6fe4" fill-opacity="0.10" stroke="#2f6fe4" stroke-width="1.6" stroke-linejoin="round" />
+
+                <!-- Filtro superior / fluxo de ar -->
+                <polygon points="168,85 210,70 252,85 210,101" fill="#14804f" fill-opacity="0.18" stroke="#14804f" stroke-width="1.5" />
+                <path d="M210 30 L210 62 M203 55 L210 63 L217 55" stroke="#14804f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+                <!-- Cotas dimensionais (C x L x A) -->
+                <!-- Cota Comprimento -->
+                <line x1="98" y1="168" x2="205" y2="206" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 2" />
+                <text x="122" y="203" fill="currentColor" class="text-[10px] font-mono fill-[#566b82] dark:fill-[#92a8c2]">C (cm)</text>
+
+                <!-- Cota Largura -->
+                <line x1="215" y1="206" x2="322" y2="168" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 2" />
+                <text x="275" y="203" fill="currentColor" class="text-[10px] font-mono fill-[#566b82] dark:fill-[#92a8c2]">L (cm)</text>
+
+                <!-- Cota Altura -->
+                <line x1="336" y1="94" x2="336" y2="156" stroke="#64748b" stroke-width="1.2" />
+                <line x1="331" y1="94" x2="341" y2="94" stroke="#64748b" stroke-width="1.2" />
+                <line x1="331" y1="156" x2="341" y2="156" stroke="#64748b" stroke-width="1.2" />
+                <text x="346" y="129" fill="currentColor" class="text-[10px] font-mono fill-[#566b82] dark:fill-[#92a8c2]">A (cm)</text>
+
+                <!-- Pontos de telemetria / validação -->
+                <circle cx="210" cy="85" r="4" fill="#14804f" />
+                <circle cx="152" cy="128" r="3.5" fill="#2f6fe4" />
+                <circle cx="268" cy="128" r="3.5" fill="#2f6fe4" />
+              </svg>
+            </div>
+
+            <div class="md:col-span-5 space-y-3">
+              <div class="text-xs font-mono uppercase tracking-wider text-[#2f6fe4] dark:text-[#6ea3ff] font-semibold">
+                Mapeamento Técnico
+              </div>
+              <h3 class="font-display font-bold text-lg text-[#0e2238] dark:text-white leading-snug">
+                Compatibilidade real com a rotina do biotério
+              </h3>
+              <ul class="space-y-2 text-xs sm:text-sm text-[#566b82] dark:text-[#92a8c2]">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#2f6fe4] dark:bg-[#6ea3ff]"></span>
+                  <span>Tipologia (convencional ou IVC)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#2f6fe4] dark:bg-[#6ea3ff]"></span>
+                  <span>Dimensões exatas (C × L × A)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#2f6fe4] dark:bg-[#6ea3ff]"></span>
+                  <span>Polímero (PC, PSU, PPSU, PP)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#14804f] dark:bg-[#5fd09a]"></span>
+                  <span>Taxa média de lotação</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 3 + Card de Ação / CTA -->
+      <section class="reveal space-y-5">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-500/10 text-[#14804f] dark:text-[#5fd09a] font-mono text-xs font-bold">03</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl tracking-tight text-[#0e2238] dark:text-white">
+            A conversa pode começar com uma resposta
+          </h2>
+        </div>
+
+        <p class="text-base sm:text-[1.06rem] leading-relaxed text-[#566b82] dark:text-[#92a8c2] editorial-text">
+          Você faz parte de uma instituição que mantém biotério? A consulta está aberta a você, seja ou não da REBIOTERIO. Conte qual caixa é usada na sua unidade e ajude a aproximar o desenvolvimento das condições reais de pesquisa.
+        </p>
+
+        <!-- Painel Interativo de Participação (CTA) -->
+        <div class="mt-6 rounded-3xl bg-white dark:bg-[#102036] border border-[#dbe7f5] dark:border-[#1d3350] p-6 sm:p-8 shadow-soft dark:shadow-soft-dark space-y-6">
+          <div class="flex flex-wrap gap-3">
+            <!-- Botão Primário Original (Mailto pré-preenchido) -->
+            <a href="mailto:founder@thotiacorp.com.br?subject=Resposta%20-%20Consulta%20T%C3%A9cnica%20sobre%20caixas%20moradia&amp;body=Institui%C3%A7%C3%A3o%3A%0ACidade%2FEstado%3A%0AV%C3%ADnculo%20com%20a%20REBIOTERIO%20(sim%2Fn%C3%A3o)%3A%0A%0A1.%20Caixa%20mais%20utilizada%3A%0A2.%20Dimens%C3%B5es%20(C%20x%20L%20x%20A)%3A%0A3.%20Material%3A%0A4.%20Marca%20e%20modelo%3A%0A5.%20Taxa%20m%C3%A9dia%20de%20lota%C3%A7%C3%A3o%3A%0A"
+               class="group inline-flex items-center justify-center gap-2.5 min-h-[48px] px-5 py-3 rounded-full bg-[#2f6fe4] hover:bg-blue-600 dark:bg-[#6ea3ff] dark:hover:bg-blue-400 text-white dark:text-[#081220] font-semibold text-sm shadow-glow-blue transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]">
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>Responder à consulta por e-mail</span>
+            </a>
+
+            <!-- Botão WhatsApp Original -->
+            <a href="https://wa.me/5566996675486?text=Ol%C3%A1%2C%20trabalho%20com%20biot%C3%A9rio%20e%20quero%20conversar%20sobre%20o%20Biot%C3%A9rio%20Forte."
+               target="_blank"
+               rel="noopener"
+               class="group inline-flex items-center justify-center gap-2.5 min-h-[48px] px-5 py-3 rounded-full bg-[#f3f8fe] dark:bg-[#152a45] hover:bg-emerald-50 dark:hover:bg-emerald-950/50 text-[#0e2238] dark:text-white border border-[#dbe7f5] dark:border-[#1d3350] hover:border-emerald-400/60 font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]">
+              <svg class="w-4 h-4 text-[#14804f] dark:text-[#5fd09a] transition-transform duration-200 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+              <span>Falar pelo WhatsApp</span>
+            </a>
+
+            <!-- Botão Extra: Assistente Rápido de Resposta -->
+            <button id="toggle-quick-form" type="button"
+                    class="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-3 rounded-full bg-transparent hover:bg-blue-500/5 text-[#2f6fe4] dark:text-[#6ea3ff] border border-dashed border-[#2f6fe4]/40 dark:border-[#6ea3ff]/40 font-semibold text-sm transition-all duration-200 active:scale-[0.98]">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              <span>Preencher rápido aqui</span>
+            </button>
+          </div>
+
+          <!-- Formulário rápido expansível (estilo Lovable) -->
+          <div id="quick-form-drawer" class="hidden pt-4 border-t border-[#dbe7f5] dark:border-[#1d3350] space-y-4">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold text-[#0e2238] dark:text-white">
+                Gerador rápido de resposta técnica (1 minuto)
+              </p>
+              <span class="text-xs text-[#566b82] dark:text-[#92a8c2]">Gera o e-mail pronto ou copia o texto</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm">
+              <div>
+                <label class="block text-xs font-medium text-[#566b82] dark:text-[#92a8c2] mb-1">Instituição / Unidade</label>
+                <input id="qf-instituicao" type="text" placeholder="Ex.: Biotério Central - UF..." class="w-full px-3.5 py-2.5 rounded-xl bg-[#f3f8fe] dark:bg-[#0a1626] border border-[#dbe7f5] dark:border-[#1d3350] text-[#0e2238] dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-[#566b82] dark:text-[#92a8c2] mb-1">Cidade / Estado e Vínculo REBIOTERIO</label>
+                <input id="qf-local" type="text" placeholder="Ex.: São Paulo/SP · Sim" class="w-full px-3.5 py-2.5 rounded-xl bg-[#f3f8fe] dark:bg-[#0a1626] border border-[#dbe7f5] dark:border-[#1d3350] text-[#0e2238] dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-[#566b82] dark:text-[#92a8c2] mb-1">1. Caixa mais utilizada</label>
+                <input id="qf-caixa" type="text" placeholder="Ex.: Microisolador ventilado IVC" class="w-full px-3.5 py-2.5 rounded-xl bg-[#f3f8fe] dark:bg-[#0a1626] border border-[#dbe7f5] dark:border-[#1d3350] text-[#0e2238] dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-[#566b82] dark:text-[#92a8c2] mb-1">2. Dimensões (C × L × A em cm)</label>
+                <input id="qf-dimensoes" type="text" placeholder="Ex.: 30 x 20 x 13 cm" class="w-full px-3.5 py-2.5 rounded-xl bg-[#f3f8fe] dark:bg-[#0a1626] border border-[#dbe7f5] dark:border-[#1d3350] text-[#0e2238] dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-[#566b82] dark:text-[#92a8c2] mb-1">3. Material e 4. Marca/Modelo</label>
+                <input id="qf-material" type="text" placeholder="Ex.: Polissulfona (PSU) · Alesco / Tecniplast" class="w-full px-3.5 py-2.5 rounded-xl bg-[#f3f8fe] dark:bg-[#0a1626] border border-[#dbe7f5] dark:border-[#1d3350] text-[#0e2238] dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-[#566b82] dark:text-[#92a8c2] mb-1">5. Taxa média de lotação</label>
+                <input id="qf-lotacao" type="text" placeholder="Ex.: 4 a 5 camundongos por caixa" class="w-full px-3.5 py-2.5 rounded-xl bg-[#f3f8fe] dark:bg-[#0a1626] border border-[#dbe7f5] dark:border-[#1d3350] text-[#0e2238] dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <button id="qf-send-email" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#2f6fe4] hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold transition-all active:scale-95">
+                <span>Abrir no app de e-mail</span>
+                <span>↗</span>
+              </button>
+              <button id="qf-copy-text" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#e8f1fc] dark:bg-[#17304d] hover:bg-blue-200/70 dark:hover:bg-blue-900/60 text-[#0e2238] dark:text-white text-xs sm:text-sm font-semibold transition-all active:scale-95">
+                <span id="qf-copy-label">Copiar resposta formatada</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Endereço direto com botão de copiar -->
+          <div class="flex flex-wrap items-center gap-2 text-sm text-[#566b82] dark:text-[#92a8c2]">
+            <span>Ou envie sua resposta diretamente para</span>
+            <a href="mailto:founder@thotiacorp.com.br" class="font-semibold text-[#2f6fe4] dark:text-[#6ea3ff] underline decoration-blue-400/40 underline-offset-4 hover:decoration-blue-500">
+              founder@thotiacorp.com.br
+            </a><span>.</span>
+            <button id="copy-email-btn" type="button" title="Copiar endereço de e-mail" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f3f8fe] dark:bg-[#0a1626] hover:bg-[#e8f1fc] dark:hover:bg-[#17304d] border border-[#dbe7f5] dark:border-[#1d3350] text-xs font-medium text-[#0e2238] dark:text-[#e8f1fc] transition-all active:scale-95">
+              <svg class="w-3.5 h-3.5 text-[#2f6fe4] dark:text-[#6ea3ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span id="copy-email-text">Copiar e-mail</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Nota metodológica original -->
+        <div class="rounded-2xl p-4 sm:p-5 bg-[#e8f1fc]/80 dark:bg-[#132640]/80 border border-[#dbe7f5] dark:border-[#1d3350] flex items-start gap-3.5 text-sm text-[#566b82] dark:text-[#92a8c2]">
+          <svg class="w-5 h-5 text-[#2f6fe4] dark:text-[#6ea3ff] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <p class="editorial-text leading-relaxed">
+            Os números acima são um balanço dos contatos por e-mail disponíveis considerados nesta rodada, não uma avaliação do interesse da rede REBIOTERIO.
+          </p>
+        </div>
+
+        <!-- Cartão de E-mail Enviado (Estilo janela SaaS / Linear moderna, aberto por padrão) -->
+        <div class="mt-8 rounded-3xl bg-white dark:bg-[#102036] border border-[#dbe7f5] dark:border-[#1d3350] shadow-soft dark:shadow-soft-dark overflow-hidden">
+          <!-- Barra superior da janela -->
+          <div id="email-accordion-trigger" role="button" tabindex="0" aria-expanded="true" class="w-full px-5 sm:px-6 py-4 bg-[#f8fbff] dark:bg-[#0c192b] border-b border-[#dbe7f5] dark:border-[#1d3350] flex items-center justify-between gap-4 cursor-pointer select-none hover:bg-[#eff5fd] dark:hover:bg-[#11223a] transition-colors">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="hidden sm:flex items-center gap-1.5 shrink-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+              </div>
+              <span class="font-display font-semibold text-sm sm:text-base text-[#0e2238] dark:text-white truncate">
+                E-mail enviado: consulta técnica sobre caixas moradia
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <button id="copy-template-btn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-[#152a45] border border-[#dbe7f5] dark:border-[#1d3350] text-xs font-medium text-[#566b82] dark:text-[#92a8c2] hover:text-[#2f6fe4] dark:hover:text-[#6ea3ff] transition-all active:scale-95">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span id="copy-template-text">Copiar texto</span>
+              </button>
+
+              <span id="accordion-chevron" class="p-1.5 rounded-lg text-[#566b82] dark:text-[#92a8c2] transition-transform duration-300 rotate-180">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- Corpo expansível do e-mail original -->
+          <div id="email-accordion-body" class="accordion-content">
+            <div class="accordion-inner">
+              <div id="original-email-content" class="p-5 sm:p-7 space-y-4 text-sm sm:text-[0.96rem] leading-relaxed text-[#566b82] dark:text-[#92a8c2]">
+                <div class="pb-4 border-b border-[#dbe7f5]/70 dark:border-[#1d3350]/70">
+                  <p class="text-[#0e2238] dark:text-white">
+                    <strong class="font-semibold">Assunto:</strong> Consulta Técnica: Tipologia e Especificações de Caixas Moradia para Roedores em Pesquisa
+                  </p>
+                </div>
+
+                <p>Prezados Responsáveis e Coordenadores dos Biotérios,</p>
+                <p>Espero que este e-mail os encontre bem.</p>
+
+                <p class="pt-4 editorial-text">
+                  Estamos realizando um levantamento técnico de dados sobre as infraestruturas de alojamento de roedores em biotérios de pesquisa no Brasil para subsidiar o dimensionamento e desenvolvimento de soluções tecnológicas aplicadas à experimentação animal.
+                </p>
+
+                <p>Gostaria de solicitar a gentileza de responder a este breve questionário (ou retornar este e-mail com as informações disponíveis):</p>
+
+                <ul class="space-y-3 pl-1 pt-2">
+                  <li class="flex items-start gap-3 p-3 rounded-2xl bg-[#f3f8fe]/70 dark:bg-[#0a1626]/70 border border-[#dbe7f5]/60 dark:border-[#1d3350]/60">
+                    <span class="font-mono text-xs font-bold text-[#2f6fe4] dark:text-[#6ea3ff] mt-1">01</span>
+                    <span class="editorial-text"><b class="text-[#0e2238] dark:text-[#e8f1fc]">Qual a caixa moradia mais utilizada para alojamento e pesquisa com roedores em sua unidade?</b> (Ex.: Caixa aberta convencional, microisolador ventilado IVC, etc.)</span>
+                  </li>
+                  <li class="flex items-start gap-3 p-3 rounded-2xl bg-[#f3f8fe]/70 dark:bg-[#0a1626]/70 border border-[#dbe7f5]/60 dark:border-[#1d3350]/60">
+                    <span class="font-mono text-xs font-bold text-[#2f6fe4] dark:text-[#6ea3ff] mt-1">02</span>
+                    <span class="editorial-text"><b class="text-[#0e2238] dark:text-[#e8f1fc]">Quais as dimensões exatas da caixa (Comprimento x Largura x Altura em cm)?</b></span>
+                  </li>
+                  <li class="flex items-start gap-3 p-3 rounded-2xl bg-[#f3f8fe]/70 dark:bg-[#0a1626]/70 border border-[#dbe7f5]/60 dark:border-[#1d3350]/60">
+                    <span class="font-mono text-xs font-bold text-[#2f6fe4] dark:text-[#6ea3ff] mt-1">03</span>
+                    <span class="editorial-text"><b class="text-[#0e2238] dark:text-[#e8f1fc]">Qual é o material de fabricação da caixa?</b> (Ex.: Policarbonato - PC, Polissulfona - PSU, Polifenilsulfona - PPSU, Polipropileno - PP, etc.)</span>
+                  </li>
+                  <li class="flex items-start gap-3 p-3 rounded-2xl bg-[#f3f8fe]/70 dark:bg-[#0a1626]/70 border border-[#dbe7f5]/60 dark:border-[#1d3350]/60">
+                    <span class="font-mono text-xs font-bold text-[#2f6fe4] dark:text-[#6ea3ff] mt-1">04</span>
+                    <span class="editorial-text"><b class="text-[#0e2238] dark:text-[#e8f1fc]">Qual a marca e modelo comercial da caixa/sistema (se aplicável)?</b> (Ex.: Allentown, Tecniplast, ALESCO, Insight, etc.)</span>
+                  </li>
+                  <li class="flex items-start gap-3 p-3 rounded-2xl bg-[#f3f8fe]/70 dark:bg-[#0a1626]/70 border border-[#dbe7f5]/60 dark:border-[#1d3350]/60">
+                    <span class="font-mono text-xs font-bold text-[#2f6fe4] dark:text-[#6ea3ff] mt-1">05</span>
+                    <span class="editorial-text"><b class="text-[#0e2238] dark:text-[#e8f1fc]">Qual a taxa média de lotação por caixa adotada rotineiramente em sua unidade?</b></span>
+                  </li>
+                </ul>
+
+                <p class="pt-4 editorial-text">
+                  A sua colaboração é fundamental para mapearmos o padrão dimensional e material utilizado no ecossistema científico nacional.
+                </p>
+                <p>Agradeço desde já pela atenção e apoio a esta iniciativa.</p>
+
+                <div class="pt-2">
+                  <p>Atenciosamente,</p>
+                  <p class="font-display font-semibold text-[#0e2238] dark:text-white text-base mt-0.5">Ronnei Borges Peres</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <section aria-labelledby="next-step-title" class="mt-12 sm:mt-16 reveal">
+      <div class="relative overflow-hidden rounded-[2rem] border border-blue-200 dark:border-[#24446b] bg-gradient-to-br from-[#0e2238] via-[#123a69] to-[#14532d] p-6 sm:p-9 text-white shadow-[0_24px_70px_-28px_rgba(14,34,56,0.7)]">
+        <div aria-hidden="true" class="absolute -right-12 -top-16 h-56 w-56 rounded-full bg-emerald-400/20 blur-3xl"></div>
+        <div class="relative grid gap-7 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-emerald-200">
+              <span class="h-2 w-2 rounded-full bg-[#39ff88] shadow-[0_0_12px_#39ff88]"></span>
+              Próximo passo · contato por telefone
+            </span>
+            <h2 id="next-step-title" class="mt-5 font-display text-3xl font-bold leading-tight sm:text-4xl">A conversa continua, agora mais perto.</h2>
+            <p class="mt-4 max-w-3xl text-sm leading-7 text-blue-100 sm:text-base">
+              O pr&#243;ximo passo &#233; falar por telefone com os biot&#233;rios, apresentar o levantamento e ouvir quem conhece a rotina das unidades.
+            </p>
+            <p class="mt-5 font-display text-lg font-bold text-[#39ff88] sm:text-xl">Somos brasileiros e nunca desistimos.</p>
+          </div>
+          <a href="mailto:founder@thotiacorp.com.br?subject=Telefone%20institucional%20de%20biot%C3%A9rio&amp;body=Institui%C3%A7%C3%A3o%3A%0ACidade%2FEstado%3A%0ATelefone%20institucional%3A%0APessoa%20ou%20setor%20respons%C3%A1vel%3A%0AMelhor%20hor%C3%A1rio%20para%20contato%3A" class="group inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#39ff88] px-5 py-3.5 font-bold text-[#052b19] shadow-[0_12px_30px_-12px_rgba(57,255,136,0.8)] transition hover:-translate-y-0.5 hover:bg-[#65ffa2] focus:outline-none focus:ring-4 focus:ring-emerald-300/40">
+            <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.08 9.92a16 16 0 0 0 6 6l1.29-1.27a2 2 0 0 1 2.11-.45c.9.34 1.84.57 2.8.69A2 2 0 0 1 22 16.92Z"/></svg>
+            <span>Indicar telefone institucional</span>
+            <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="relative z-10 border-t border-[#dbe7f5] dark:border-[#1d3350] bg-white/40 dark:bg-[#0a1626]/40 backdrop-blur-sm">
+    <div class="news-layout py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#566b82] dark:text-[#92a8c2]">
+      <a href="../index.html#noticias" class="font-medium hover:text-[#2f6fe4] dark:hover:text-[#6ea3ff] transition-colors">
+        Biotério Forte · Notícias
+      </a>
+      <span class="font-mono text-xs opacity-75">REBIOTERIO · Consulta Técnica</span>
+    </div>
+  </footer>
+
+  <!-- Toast de feedback discreto (sem alert) -->
+  <div id="toast-notification" role="status" aria-live="polite" class="fixed bottom-6 right-6 z-50 translate-y-16 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0e2238] dark:bg-white text-white dark:text-[#0e2238] text-sm font-medium shadow-xl">
+    <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    <span id="toast-message">Copiado para a área de transferência!</span>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Alternância de tema Claro/Escuro
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('bf-theme', isDark ? 'dark' : 'light');
+      });
+
+      // 2. Barra de progresso de leitura
+      const progressBar = document.getElementById('reading-progress');
+      const updateReadingProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        progressBar.style.width = `${progress}%`;
+      };
+      window.addEventListener('scroll', updateReadingProgress, { passive: true });
+      updateReadingProgress();
+
+      // 3. Efeito Spotlight nos cards (micromovimento de luz seguindo o cursor)
+      document.querySelectorAll('.spotlight-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // 4. Animação de contagem (Count-Up) + Barra de proporção
+      const animateCountUp = (el) => {
+        const target = parseFloat(el.dataset.target);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const duration = 1300;
+        const startTime = performance.now();
+
+        const step = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out quart
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const current = target * eased;
+          el.textContent = current.toFixed(decimals).replace('.', ',');
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target.toFixed(decimals).replace('.', ',');
+          }
+        };
+        requestAnimationFrame(step);
+      };
+
+      // 5. Matriz visual interativa dos 26 contatos (2 respondidos vs 24 sem retorno)
+      const matrixContainer = document.getElementById('contacts-matrix');
+      const matrixStatusText = document.getElementById('matrix-status-text');
+      const defaultStatus = matrixStatusText.textContent;
+      const respondedIndices = new Set([0, 1]); // 2 primeiros nós destacados como respostas recebidas
+
+      for (let i = 0; i < 26; i++) {
+        const isResponded = respondedIndices.has(i);
+        const node = document.createElement('button');
+        node.type = 'button';
+        node.setAttribute('aria-label', isResponded ? `Contato #${i + 1}: Resposta recebida` : `Contato #${i + 1}: Aguardando retorno`);
+        node.className = isResponded
+          ? 'aspect-square rounded-lg bg-[#14804f] dark:bg-[#5fd09a] shadow-glow-emerald hover:scale-115 focus:scale-115 transition-all duration-200 cursor-pointer flex items-center justify-center text-white dark:text-[#081220]'
+          : 'aspect-square rounded-lg bg-[#e8f1fc] dark:bg-[#17304d] hover:bg-blue-300/70 dark:hover:bg-blue-700/60 hover:scale-110 focus:scale-110 transition-all duration-200 cursor-pointer';
+
+        if (isResponded) {
+          node.innerHTML = `<svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+        }
+
+        const showInfo = () => {
+          matrixStatusText.innerHTML = isResponded
+            ? `<span class="font-semibold text-[#14804f] dark:text-[#5fd09a]">Contato #${i + 1} de 26:</span> Resposta técnica recebida nesta rodada.`
+            : `<span class="font-semibold text-[#2f6fe4] dark:text-[#6ea3ff]">Contato #${i + 1} de 26:</span> E-mail enviado · sem retorno nesta rodada.`;
+        };
+
+        node.addEventListener('mouseenter', showInfo);
+        node.addEventListener('focus', showInfo);
+        node.addEventListener('click', showInfo);
+        matrixContainer.appendChild(node);
+      }
+
+      matrixContainer.addEventListener('mouseleave', () => {
+        matrixStatusText.textContent = defaultStatus;
+      });
+
+      // 6. IntersectionObserver para animações de revelação e gatilho dos contadores
+      let countersStarted = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+
+            if (!countersStarted && entry.target.querySelector('.count-up')) {
+              countersStarted = true;
+              document.querySelectorAll('.count-up').forEach(animateCountUp);
+              setTimeout(() => {
+                const ratioBar = document.getElementById('ratio-bar');
+                if (ratioBar) ratioBar.style.width = '7.7%';
+              }, 200);
+            }
+          }
+        });
+      }, { threshold: 0.14 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // 7. Função auxiliar de Toast & Clipboard compatível com iframe
+      const toastEl = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      let toastTimer;
+
+      const showToast = (msg) => {
+        toastMsg.textContent = msg;
+        toastEl.classList.remove('translate-y-16', 'opacity-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.classList.add('translate-y-16', 'opacity-0');
+        }, 2800);
+      };
+
+      const copyToClipboard = (text, successMsg) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showToast(successMsg);
+        } catch (err) {
+          showToast('Não foi possível copiar automaticamente.');
+        }
+        document.body.removeChild(textarea);
+      };
+
+      // Copiar endereço de e-mail
+      document.getElementById('copy-email-btn').addEventListener('click', () => {
+        copyToClipboard('founder@thotiacorp.com.br', 'E-mail founder@thotiacorp.com.br copiado!');
+        const label = document.getElementById('copy-email-text');
+        label.textContent = 'Copiado!';
+        setTimeout(() => { label.textContent = 'Copiar e-mail'; }, 2200);
+      });
+
+      // Copiar texto do e-mail enviado
+      document.getElementById('copy-template-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const emailText = document.getElementById('original-email-content').innerText.trim();
+        copyToClipboard(emailText, 'Texto da consulta técnica copiado!');
+        const label = document.getElementById('copy-template-text');
+        label.textContent = 'Copiado!';
+        setTimeout(() => { label.textContent = 'Copiar texto'; }, 2200);
+      });
+
+      // 8. Acordeão do E-mail Enviado (inicia aberto, alterna suavemente)
+      const accordionTrigger = document.getElementById('email-accordion-trigger');
+      const accordionBody = document.getElementById('email-accordion-body');
+      const accordionChevron = document.getElementById('accordion-chevron');
+
+      const toggleAccordion = () => {
+        const isCollapsed = accordionBody.classList.toggle('collapsed');
+        accordionTrigger.setAttribute('aria-expanded', String(!isCollapsed));
+        accordionChevron.classList.toggle('rotate-180', !isCollapsed);
+      };
+
+      accordionTrigger.addEventListener('click', toggleAccordion);
+      accordionTrigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleAccordion();
+        }
+      });
+
+      // 9. Drawer de Preenchimento Rápido da Resposta
+      const toggleQuickFormBtn = document.getElementById('toggle-quick-form');
+      const quickFormDrawer = document.getElementById('quick-form-drawer');
+
+      toggleQuickFormBtn.addEventListener('click', () => {
+        quickFormDrawer.classList.toggle('hidden');
+      });
+
+      const buildFormattedReply = () => {
+        const inst = document.getElementById('qf-instituicao').value.trim();
+        const local = document.getElementById('qf-local').value.trim();
+        const caixa = document.getElementById('qf-caixa').value.trim();
+        const dim = document.getElementById('qf-dimensoes').value.trim();
+        const mat = document.getElementById('qf-material').value.trim();
+        const lot = document.getElementById('qf-lotacao').value.trim();
+
+        return `Instituição: ${inst}\nCidade/Estado e Vínculo REBIOTERIO: ${local}\n\n1. Caixa mais utilizada: ${caixa}\n2. Dimensões (C x L x A): ${dim}\n3. Material / 4. Marca e modelo: ${mat}\n5. Taxa média de lotação: ${lot}\n`;
+      };
+
+      document.getElementById('qf-send-email').addEventListener('click', () => {
+        const body = encodeURIComponent(buildFormattedReply());
+        const subject = encodeURIComponent('Resposta - Consulta Técnica sobre caixas moradia');
+        window.location.href = `mailto:founder@thotiacorp.com.br?subject=${subject}&body=${body}`;
+      });
+
+      document.getElementById('qf-copy-text').addEventListener('click', () => {
+        copyToClipboard(buildFormattedReply(), 'Resposta formatada copiada!');
+        const label = document.getElementById('qf-copy-label');
+        label.textContent = 'Copiado!';
+        setTimeout(() => { label.textContent = 'Copiar resposta formatada'; }, 2200);
+      });
+    });
+  </script>
+</body>
+</html>

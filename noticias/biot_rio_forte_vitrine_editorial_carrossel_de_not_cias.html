@@ -1,0 +1,1877 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Vitrine editorial do Biotério Forte: explore nossas análises sobre diálogo científico na REBIOTERIO, rigor metodológico DBCA e infraestrutura nos biotérios brasileiros.">
+  <title>Notícias & Editoriais | Biotério Forte</title>
+
+  <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & PALETA BIOTÉRIO FORTE (LIGHT / DARK)
+       ========================================================================== */
+    :root {
+      color-scheme: light;
+      --bg: #f3f8fe;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --fg: #0e2238;
+      --muted: #566b82;
+      --line: #dbe7f5;
+      --blue: #2f6fe4;
+      --blue-soft: rgba(47, 111, 228, 0.08);
+      --chip: #e8f1fc;
+      --ok: #14804f;
+      --ok-soft: rgba(20, 128, 79, 0.12);
+      --warn: #d97706;
+      --warn-soft: rgba(217, 119, 6, 0.12);
+      --danger: #dc2626;
+      --danger-soft: rgba(220, 38, 38, 0.10);
+      --grid-line: rgba(47, 111, 228, 0.045);
+      --shadow-card: 0 12px 36px -10px rgba(14, 34, 56, 0.08);
+      --shadow-active: 0 22px 48px -12px rgba(47, 111, 228, 0.22);
+      --header-bg: rgba(243, 248, 254, 0.84);
+      --display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+    }
+
+    html.dark {
+      color-scheme: dark;
+      --bg: #0a1626;
+      --surface: #102036;
+      --surface-soft: #0d1b2f;
+      --fg: #e8f1fc;
+      --muted: #92a8c2;
+      --line: #1d3350;
+      --blue: #6ea3ff;
+      --blue-soft: rgba(110, 163, 255, 0.13);
+      --chip: #17304d;
+      --ok: #5fd09a;
+      --ok-soft: rgba(95, 208, 154, 0.14);
+      --warn: #fbbf24;
+      --warn-soft: rgba(251, 191, 36, 0.14);
+      --danger: #f87171;
+      --danger-soft: rgba(248, 113, 113, 0.14);
+      --grid-line: rgba(110, 163, 255, 0.045);
+      --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.45);
+      --shadow-active: 0 24px 52px -12px rgba(0, 0, 0, 0.65);
+      --header-bg: rgba(10, 22, 38, 0.84);
+    }
+
+    /* ==========================================================================
+       RESET & ESTRUTURA BASE
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font: 400 16px/1.65 var(--body);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Padrão sutil de grade técnica de laboratório */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Luz ambiente radial suave no topo */
+    .ambient-glow {
+      position: fixed;
+      top: -190px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(940px, 130vw);
+      height: 460px;
+      background: radial-gradient(ellipse at center, rgba(47, 111, 228, 0.13) 0%, rgba(202, 138, 4, 0.05) 48%, transparent 74%);
+      filter: blur(44px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grad {
+      background: linear-gradient(90deg, #2fd89a 0%, #3cc7c4 45%, #6aa8ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    .wrap {
+      width: min(100% - 40px, 1120px);
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       CABEÇALHO STICKY
+       ========================================================================== */
+    .header-shell {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    header.wrap.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-block: 0.95rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font: 700 1.12rem var(--display);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.28);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .brand:hover .brand-icon {
+      transform: scale(1.06) rotate(-3deg);
+    }
+
+    .brand-pulse {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid var(--bg);
+      animation: pulseDot 2.4s infinite;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.48rem 0.85rem;
+      border-radius: 10px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-pill:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.12);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.94);
+    }
+
+    .icon-sun {
+      display: none;
+    }
+
+    .icon-moon {
+      display: block;
+    }
+
+    html.dark .icon-sun {
+      display: block;
+    }
+
+    html.dark .icon-moon {
+      display: none;
+    }
+
+    /* ==========================================================================
+       SEÇÃO VITRINE EDITORIAL (#noticias)
+       ========================================================================== */
+    main {
+      padding-block: clamp(2.8rem, 6vw, 4.8rem) clamp(4rem, 8vw, 6rem);
+    }
+
+    .showcase-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .showcase-intro {
+      max-width: 42rem;
+    }
+
+    @media (min-width: 900px) {
+      .showcase-header {
+        display: block;
+      }
+
+      .showcase-intro {
+        max-width: none;
+      }
+
+      .showcase-intro h1 {
+        white-space: nowrap;
+        font-size: clamp(2.4rem, 4.1vw, 3.45rem);
+      }
+
+      .carousel-controls-top {
+        justify-content: flex-end;
+        margin-top: 1.2rem;
+      }
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.42rem 0.9rem;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 0 rgba(47, 111, 228, 0.5);
+      animation: radarPing 2.2s infinite;
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.025em;
+      font-size: clamp(2.1rem, 5vw, 3.45rem);
+      margin: 1rem 0 0.85rem;
+    }
+
+    .headline-gradient {
+      background: linear-gradient(95deg, #ca8a04 0%, #ea580c 48%, #dc2626 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html.dark .headline-gradient {
+      background-image: linear-gradient(95deg, #ffd43b 0%, #fb923c 50%, #ff6262 100%);
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
+      line-height: 1.68;
+    }
+
+    /* Controles de Navegação do Carrossel (Setas + Status Autoplay) */
+    .carousel-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .autoplay-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.52rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font: 500 0.76rem var(--mono);
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .autoplay-pill:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .autoplay-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      transition: background-color 0.2s ease;
+    }
+
+    .autoplay-pill.paused .autoplay-dot {
+      background: var(--warn);
+    }
+
+    .nav-arrow-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--fg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-arrow-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .nav-arrow-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* ==========================================================================
+       TRILHO DO CARROSSEL (DESKTOP 3 COLUNAS COM DESTAQUE ATIVO / MOBILE SNAP)
+       ========================================================================== */
+    .carousel-viewport {
+      position: relative;
+      padding-block: 0.75rem 1.25rem;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1.25rem;
+      align-items: stretch;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 0.75rem 0 1.25rem;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Card Editorial Lovable com Spotlight */
+    .news-card {
+      flex: 0 0 calc((100% - 2.5rem) / 3);
+      scroll-snap-align: center;
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.15rem;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      cursor: pointer;
+      transition:
+        transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.32s ease,
+        box-shadow 0.38s ease,
+        opacity 0.32s ease;
+    }
+
+    /* Efeito Spotlight seguindo o cursor */
+    .news-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          var(--blue-soft),
+          transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .news-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Estado de destaque do Card Ativo no Carrossel */
+    .news-card.is-active {
+      border-color: rgba(47, 111, 228, 0.65);
+      box-shadow: var(--shadow-active);
+      transform: translateY(-6px) scale(1.015);
+      z-index: 2;
+    }
+
+    html.dark .news-card.is-active {
+      border-color: rgba(110, 163, 255, 0.6);
+    }
+
+    .news-card:not(.is-active):hover {
+      transform: translateY(-4px);
+      border-color: rgba(47, 111, 228, 0.4);
+    }
+
+    /* Barra superior indicadora do card ativo */
+    .active-indicator-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3.5px;
+      background: linear-gradient(90deg, #ca8a04, #dc2626, var(--blue));
+      opacity: 0;
+      transform: scaleX(0.35);
+      transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .news-card.is-active .active-indicator-bar {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    /* Palco da Ilustração SVG dentro do Card */
+    .card-visual-stage {
+      position: relative;
+      z-index: 1;
+      height: 168px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(155deg, var(--surface-soft) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      padding: 0.95rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .card-stage-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .edition-index {
+      font: 600 0.72rem var(--mono);
+      color: var(--muted);
+    }
+
+    .metric-pill {
+      font: 600 0.72rem var(--mono);
+      padding: 0.24rem 0.62rem;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    .metric-pill.alert {
+      color: var(--danger);
+      background: var(--danger-soft);
+      border-color: rgba(220, 38, 38, 0.22);
+    }
+
+    .metric-pill.ok {
+      color: var(--ok);
+      background: var(--ok-soft);
+      border-color: rgba(20, 128, 79, 0.24);
+    }
+
+    /* Ilustrações SVG internas com micro-animações elásticas */
+    .card-svg {
+      width: 100%;
+      height: 112px;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .news-card:hover .card-svg,
+    .news-card.is-active .card-svg {
+      transform: scale(1.04) translateY(-2px);
+    }
+
+    .svg-elastic-part {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+      transform-origin: center;
+    }
+
+    .news-card.is-active .svg-elastic-part,
+    .news-card:hover .svg-elastic-part {
+      transform: translateY(-3px);
+    }
+
+    /* Corpo textual do Card */
+    .card-body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+    }
+
+    .card-tag {
+      align-self: flex-start;
+      font: 600 0.71rem var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-soft);
+      padding: 0.26rem 0.65rem;
+      border-radius: 8px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.24rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      transition: color 0.2s ease;
+    }
+
+    .news-card:hover .card-title,
+    .news-card.is-active .card-title {
+      color: var(--blue);
+    }
+
+    .card-excerpt {
+      margin: 0;
+      font-size: 0.91rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* Rodapé de Ações do Card */
+    .card-footer {
+      position: relative;
+      z-index: 1;
+      padding-top: 0.95rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .quick-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 40px;
+      padding: 0.5rem 0.85rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      color: var(--fg);
+      font: 600 0.82rem var(--body);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .quick-read-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .quick-read-btn:active {
+      transform: scale(0.96);
+    }
+
+    .full-article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      min-height: 40px;
+      padding: 0.5rem 0.9rem;
+      border-radius: 12px;
+      background: var(--blue);
+      color: #ffffff;
+      font: 600 0.82rem var(--body);
+      text-decoration: none;
+      box-shadow: 0 6px 16px -6px rgba(47, 111, 228, 0.55);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    html.dark .full-article-link {
+      color: #081220;
+    }
+
+    .full-article-link.consulting-cta {
+      background: #39ff88;
+      color: #052b19;
+      box-shadow: 0 6px 18px -6px rgba(20, 220, 105, 0.72);
+    }
+
+    .full-article-link:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .link-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .full-article-link:hover .link-arrow {
+      transform: translateX(3px);
+    }
+
+    /* ==========================================================================
+       INDICADORES INFERIORES (DOTS + BARRA DE PROGRESSO DO SLIDE)
+       ========================================================================== */
+    .carousel-pagination {
+      margin-top: 1.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .dots-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .carousel-dot {
+      height: 10px;
+      width: 10px;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      background: var(--line);
+      cursor: pointer;
+      transition: width 0.32s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease;
+    }
+
+    .carousel-dot:hover {
+      background: var(--muted);
+    }
+
+    .carousel-dot.is-active {
+      width: 34px;
+      background: var(--blue);
+    }
+
+    .keyboard-hint {
+      font: 400 0.78rem var(--mono);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .kbd-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 22px;
+      padding-inline: 0.35rem;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-size: 0.72rem;
+      color: var(--fg);
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .kbd-key:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .kbd-key:active {
+      transform: scale(0.94);
+    }
+
+    /* ==========================================================================
+       MODAL / DRAWER DE LEITURA RÁPIDA ("Leitura rápida")
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(8, 18, 32, 0.62);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-dialog {
+      width: min(100%, 660px);
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.4rem, 4vw, 2.1rem);
+      box-shadow: 0 28px 70px -15px rgba(0, 0, 0, 0.45);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+
+    .modal-backdrop.open .modal-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-close-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+
+    .modal-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.45rem, 3.4vw, 1.95rem);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin: 0 0 0.85rem;
+    }
+
+    .modal-metric-box {
+      padding: 0.85rem 1.05rem;
+      border-radius: var(--radius-md);
+      background: var(--chip);
+      border: 1px solid var(--line);
+      font: 500 0.84rem var(--mono);
+      color: var(--blue);
+      margin-bottom: 1.15rem;
+    }
+
+    .modal-summary {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.72;
+      margin: 0 0 1.15rem;
+    }
+
+    .modal-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .modal-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.78rem 0.95rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      font-size: 0.91rem;
+      line-height: 1.55;
+      color: var(--fg);
+    }
+
+    .modal-bullet-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      margin-top: 0.48rem;
+      flex-shrink: 0;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ==========================================================================
+       RODAPÉ
+       ========================================================================== */
+    .footer-shell {
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer.wrap.footer {
+      padding-block: 1.6rem 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    footer.wrap.footer a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer.wrap.footer a:hover {
+      color: var(--blue);
+    }
+
+    /* ==========================================================================
+       ANIMAÇÕES & RESPONSIVIDADE (SNAP-SCROLL NO MOBILE / TABLET)
+       ========================================================================== */
+    @keyframes pulseDot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.85);
+      }
+    }
+
+    @keyframes radarPing {
+      0% {
+        box-shadow: 0 0 0 0 rgba(47, 111, 228, 0.55);
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(47, 111, 228, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(47, 111, 228, 0);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        gap: 1rem;
+        padding-bottom: 0.65rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .news-card {
+        flex: 0 0 min(86vw, 420px);
+        scroll-snap-align: center;
+      }
+
+      .news-card.is-active {
+        transform: none;
+      }
+
+      .keyboard-hint {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .card-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .quick-read-btn,
+      .full-article-link {
+        justify-content: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .news-card,
+      .card-svg,
+      .svg-elastic-part,
+      .carousel-dot,
+      .modal-backdrop,
+      .modal-dialog {
+        transition: none;
+      }
+
+      .brand-pulse,
+      .eyebrow-dot {
+        animation: none;
+      }
+    }
+
+    html.embed,
+    html.embed body {
+      background: transparent;
+    }
+
+    html.embed body::before,
+    html.embed .ambient-glow,
+    html.embed .progress-track,
+    html.embed .header-shell,
+    html.embed .footer-shell {
+      display: none !important;
+    }
+
+    html.embed main {
+      padding-block: 0.5rem 1.25rem;
+    }
+  </style>
+
+  <!-- Evita flash de tema antes da pintura inicial -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('bf-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) { }
+    })();
+  </script>
+  <script>
+    if (new URLSearchParams(window.location.search).has('embed')) {
+      document.documentElement.classList.add('embed');
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- Luz ambiente radial -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Cabeçalho -->
+  <div class="header-shell">
+    <header class="wrap top">
+      <a class="brand" href="index.html">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="12" rx="3"></rect>
+            <path d="M7 10h10M7 14h6"></path>
+          </svg>
+          <span class="brand-pulse"></span>
+        </span>
+        <span>Biotério Forte</span>
+      </a>
+
+      <div class="header-actions">
+        <a class="nav-pill" href="consultoria.html">Consultoria Técnica</a>
+
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="Alternar tema claro ou escuro"
+          title="Alternar tema">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+            </path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Vitrine Editorial & Carrossel (#noticias) -->
+  <main id="noticias" class="wrap">
+    <div class="showcase-header">
+      <div class="showcase-intro">
+        <div class="eyebrow-badge">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span>EDITORIAL &amp; NOTÍCIAS · BIOTÉRIO FORTE</span>
+        </div>
+        <h1>
+          Notícias <span class="grad"> tudo que você precisa saber</span>
+        </h1>
+        <p class="lead">
+          Explore nossa série editorial sobre comunicação científica, rigor regulatório na DBCA e infraestrutura
+          nacional para pesquisa com roedores.
+        </p>
+      </div>
+
+      <!-- Controles do Carrossel -->
+      <div class="carousel-controls-top" aria-label="Controles de navegação do carrossel">
+        <button id="autoplay-toggle" class="autoplay-pill" type="button" aria-pressed="true"
+          title="Alternar rotação automática">
+          <span class="autoplay-dot" aria-hidden="true"></span>
+          <span id="autoplay-label">Autoplay ativo</span>
+        </button>
+
+        <button id="prev-slide" class="nav-arrow-btn" type="button" aria-label="Notícia anterior" title="Anterior (←)">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <button id="next-slide" class="nav-arrow-btn" type="button" aria-label="Próxima notícia" title="Próxima (→)">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Três cards visíveis; o próximo fica à direita no carrossel. -->
+    <div class="carousel-viewport" id="carousel-viewport">
+      <div class="carousel-track" id="carousel-track" role="region" aria-roledescription="carrossel"
+        aria-label="Destaques editoriais Biotério Forte">
+
+        <!-- ================================================================
+             CARD 01: 26 contatos. 2 respostas.
+             ================================================================ -->
+        <article class="news-card spotlight-card is-active" data-index="0" tabindex="0"
+          aria-label="Edição 01: 26 contatos. 2 respostas. O diálogo precisa avançar.">
+          <span class="active-indicator-bar" aria-hidden="true"></span>
+
+          <div class="card-visual-stage">
+            <div class="card-stage-top">
+              <span class="edition-index">EDIÇÃO 01 · MAPEAMENTO</span>
+              <span class="metric-pill">7,7% de retorno</span>
+            </div>
+
+            <!-- SVG Minimalista: Matriz de 26 nós (13x2) com 2 destacados em verde -->
+            <svg class="card-svg" viewBox="0 0 320 110" role="img"
+              aria-label="Matriz visual de 26 contatos com 2 nós respondidos em destaque">
+              <!-- Linha guia sutil -->
+              <rect x="14" y="14" width="292" height="82" rx="12" fill="rgba(47, 111, 228, 0.04)"
+                stroke="rgba(47, 111, 228, 0.16)" stroke-dasharray="3 3"></rect>
+
+              <!-- 26 Nós (13 colunas x 2 linhas) -->
+              <g class="svg-elastic-part">
+                <!-- Nó 1 (Respondido) -->
+                <rect x="26" y="28" width="16" height="16" rx="4" fill="#14804f"></rect>
+                <polyline points="30,36 33,39 39,33" fill="none" stroke="#ffffff" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"></polyline>
+                <!-- Nó 2 (Respondido) -->
+                <rect x="48" y="28" width="16" height="16" rx="4" fill="#14804f"></rect>
+                <polyline points="52,36 55,39 61,33" fill="none" stroke="#ffffff" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"></polyline>
+
+                <!-- Nós 3 a 13 (Linha superior) -->
+                <rect x="70" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="92" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="114" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="136" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="158" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="180" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="202" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="224" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="246" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="268" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="290" y="28" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+
+                <!-- Nós 14 a 26 (Linha inferior) -->
+                <rect x="26" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="48" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="70" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="92" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="114" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="136" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="158" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="180" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="202" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="224" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="246" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="268" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+                <rect x="290" y="52" width="16" height="16" rx="4" fill="rgba(47, 111, 228, 0.18)"></rect>
+              </g>
+
+              <text x="26" y="86" fill="#566b82" font-family="JetBrains Mono, monospace" font-size="9.5">2 RESPONDIDOS ·
+                24 SEM RETORNO</text>
+            </svg>
+          </div>
+
+          <div class="card-body">
+            <span class="card-tag">REDE REBIOTERIO</span>
+            <h2 class="card-title">26 contatos. 2 respostas. O diálogo precisa avançar...</h2>
+            <p class="card-excerpt">
+              Nosso primeiro balanço de contatos por e-mail disponíveis da REBIOTERIO terminou com duas respostas. Um
+              alerta direto para aproximar tecnologia e rotina real de biotério.
+            </p>
+          </div>
+
+          <div class="card-footer">
+            <button type="button" class="quick-read-btn" data-modal-index="0">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Leitura rápida</span>
+            </button>
+
+            <a class="full-article-link" href="rebioterio.html" target="_top">
+              <span>Ler artigo completo</span>
+              <span class="link-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ================================================================
+             CARD 02: Ranking não sustenta ciência.
+             ================================================================ -->
+        <article class="news-card spotlight-card" data-index="1" tabindex="0"
+          aria-label="Edição 02: Ranking não sustenta ciência. A crise silenciosa da reprodutibilidade.">
+          <span class="active-indicator-bar" aria-hidden="true"></span>
+
+          <div class="card-visual-stage">
+            <div class="card-stage-top">
+              <span class="edition-index">EDIÇÃO 02 · NORMA</span>
+              <span class="metric-pill alert">0% auditável sem caixa</span>
+            </div>
+
+            <!-- SVG Isométrico: Caixa-moradia com cotas C x L x A -->
+            <svg class="card-svg" viewBox="0 0 320 110" role="img"
+              aria-label="Ilustração isométrica de caixa-moradia com cotas dimensionais C, L e A">
+              <g class="svg-elastic-part">
+                <!-- Corpo da caixa isométrica -->
+                <polygon points="88,48 160,74 232,48 232,78 160,100 88,78" fill="rgba(47, 111, 228, 0.14)"
+                  stroke="#2f6fe4" stroke-width="1.6" stroke-linejoin="round"></polygon>
+                <line x1="160" y1="74" x2="160" y2="100" stroke="#2f6fe4" stroke-width="1.6"></line>
+
+                <!-- Tampa -->
+                <polygon points="84,38 160,14 236,38 160,62" fill="rgba(47, 111, 228, 0.24)" stroke="#2f6fe4"
+                  stroke-width="1.7" stroke-linejoin="round"></polygon>
+
+                <!-- Cotas dimensionais C, L, A -->
+                <line x1="84" y1="86" x2="155" y2="106" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3 2">
+                </line>
+                <text x="96" y="104" fill="#dc2626" font-family="JetBrains Mono, monospace" font-size="9"
+                  font-weight="600">C (cm)</text>
+
+                <line x1="165" y1="106" x2="236" y2="86" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3 2">
+                </line>
+                <text x="206" y="104" fill="#dc2626" font-family="JetBrains Mono, monospace" font-size="9"
+                  font-weight="600">L (cm)</text>
+
+                <line x1="248" y1="38" x2="248" y2="78" stroke="#14804f" stroke-width="1.3"></line>
+                <line x1="244" y1="38" x2="252" y2="38" stroke="#14804f" stroke-width="1.3"></line>
+                <line x1="244" y1="78" x2="252" y2="78" stroke="#14804f" stroke-width="1.3"></line>
+                <text x="256" y="61" fill="#14804f" font-family="JetBrains Mono, monospace" font-size="9"
+                  font-weight="600">A (cm)</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="card-body">
+            <span class="card-tag">RIGOR &amp; DBCA 5.8-D-I</span>
+            <h2 class="card-title">Ranking não sustenta ciência. A crise silenciosa da reprodutibilidade...</h2>
+            <p class="card-excerpt">
+              Teses e dissertações omitem o modelo e as dimensões da caixa-moradia. Sem cumprir o Item 5, subitem 8-D-I
+              da DBCA, a variável ambiental enviesa o dado.
+            </p>
+          </div>
+
+          <div class="card-footer">
+            <button type="button" class="quick-read-btn" data-modal-index="1">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Leitura rápida</span>
+            </button>
+
+            <a class="full-article-link" href="reprodutibilidade.html" target="_top">
+              <span>Ler artigo completo</span>
+              <span class="link-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ================================================================
+             CARD 03: Dinheiro público no ralo.
+             ================================================================ -->
+        <article class="news-card spotlight-card" data-index="2" tabindex="0"
+          aria-label="Edição 03: R$ 50 mil por caixa; importados passam de R$ 100 mil.">
+          <span class="active-indicator-bar" aria-hidden="true"></span>
+
+          <div class="card-visual-stage">
+            <div class="card-stage-top">
+              <span class="edition-index">EDIÇÃO 03 · SOBERANIA</span>
+              <span class="metric-pill ok">R$ 50 mil vs. &gt; R$ 100 mil</span>
+            </div>
+
+            <!-- SVG Isométrico: Tampa modular Biotério Forte V2 com sensores e HEPA -->
+            <svg class="card-svg" viewBox="0 0 320 110" role="img"
+              aria-label="Ilustração isométrica da tampa modular Biotério Forte V2 com cartucho HEPA e sensores">
+              <!-- Base do parque existente -->
+              <polygon points="88,58 160,84 232,58 232,86 160,106 88,86" fill="rgba(47, 111, 228, 0.12)"
+                stroke="#2f6fe4" stroke-width="1.5" stroke-linejoin="round"></polygon>
+              <line x1="160" y1="84" x2="160" y2="106" stroke="#2f6fe4" stroke-width="1.5"></line>
+
+              <!-- Módulo inteligente V2 acoplando por cima -->
+              <g class="svg-elastic-part">
+                <polygon points="84,38 160,14 236,38 160,62" fill="rgba(20, 128, 79, 0.22)" stroke="#14804f"
+                  stroke-width="1.8" stroke-linejoin="round"></polygon>
+                <!-- Cartucho HEPA + Telemetria -->
+                <polygon points="134,34 160,25 186,34 160,43" fill="rgba(20, 128, 79, 0.30)" stroke="#14804f"
+                  stroke-width="1.5"></polygon>
+                <circle cx="160" cy="34" r="3.5" fill="#14804f"></circle>
+                <!-- Ondas de telemetria -->
+                <path d="M150 11a14 14 0 0 1 20 0" stroke="#14804f" stroke-width="1.6" stroke-linecap="round"
+                  fill="none"></path>
+                <!-- Setas de encaixe universal -->
+                <path d="M104 48v10M100 54l4 4 4-4" stroke="#14804f" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none"></path>
+                <path d="M216 48v10M212 54l4 4 4-4" stroke="#14804f" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none"></path>
+              </g>
+            </svg>
+          </div>
+
+          <div class="card-body">
+            <span class="card-tag">INFRAESTRUTURA &amp; ORÇAMENTO</span>
+            <h2 class="card-title">R$ 50 mil por caixa. Mais de R$ 100 mil nos importados !!!</h2>
+            <p class="card-excerpt">
+              A matéria compara o investimento informado para o Biotério Forte V2 com equipamentos importados e inclui
+              um simulador para estimar o custo por parque.
+            </p>
+          </div>
+
+          <div class="card-footer">
+            <button type="button" class="quick-read-btn" data-modal-index="2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Leitura rápida</span>
+            </button>
+
+            <a class="full-article-link" href="infraestrutura_investimento_publico.html" target="_top">
+              <span>Ler artigo completo</span>
+              <span class="link-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ================================================================
+             CARD 04: Consultoria científica e engenharia experimental.
+             ================================================================ -->
+        <article class="news-card spotlight-card" data-index="3" tabindex="0"
+          aria-label="Edição 04: Consultoria científica e engenharia experimental para pesquisa com roedores.">
+          <span class="active-indicator-bar" aria-hidden="true"></span>
+          <div class="card-visual-stage">
+            <div class="card-stage-top">
+              <span class="edition-index">EDIÇÃO 04 · CONSULTORIA</span>
+              <span class="metric-pill">4 frentes técnicas</span>
+            </div>
+            <svg class="card-svg" viewBox="0 0 320 110" role="img"
+              aria-label="Quatro áreas integradas: desenho experimental, conformidade CEUA e DBCA, engenharia de biotérios e telemetria">
+              <g class="svg-elastic-part">
+                <path d="M160 20v14M160 77v14M88 55h18m108 0h18" stroke="#94a8c3" stroke-width="2"
+                  stroke-dasharray="3 3" />
+                <rect x="36" y="26" width="76" height="28" rx="9" fill="rgba(47,111,228,.12)" stroke="#2f6fe4"
+                  stroke-width="1.5" />
+                <rect x="208" y="26" width="76" height="28" rx="9" fill="rgba(20,128,79,.12)" stroke="#14804f"
+                  stroke-width="1.5" />
+                <rect x="36" y="58" width="76" height="28" rx="9" fill="rgba(220,38,38,.1)" stroke="#dc2626"
+                  stroke-width="1.5" />
+                <rect x="208" y="58" width="76" height="28" rx="9" fill="rgba(47,111,228,.1)" stroke="#2f6fe4"
+                  stroke-width="1.5" />
+                <circle cx="72" cy="40" r="5" fill="#2f6fe4" />
+                <path d="M64 49h16" stroke="#2f6fe4" stroke-width="2" stroke-linecap="round" />
+                <path d="m235 40 5 5 10-11" stroke="#14804f" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M57 72h30m-30 7h20" stroke="#dc2626" stroke-width="2" stroke-linecap="round" />
+                <path d="M232 76h28m-21-7 21 7-21 7" stroke="#2f6fe4" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <circle cx="160" cy="55" r="18" fill="var(--surface)" stroke="#dbe7f5" stroke-width="2" />
+                <path d="M151 55h18m-9-9v18" stroke="#2f6fe4" stroke-width="2.4" stroke-linecap="round" />
+              </g>
+              <text x="74" y="101" text-anchor="middle" fill="#566b82" font-family="JetBrains Mono,monospace"
+                font-size="7">DESENHO</text>
+              <text x="246" y="101" text-anchor="middle" fill="#566b82" font-family="JetBrains Mono,monospace"
+                font-size="7">ENGENHARIA</text>
+            </svg>
+          </div>
+          <div class="card-body">
+            <span class="card-tag">CONSULTORIA CIENTÍFICA</span>
+            <h2 class="card-title">Engenharia experimental para sua pesquisa com roedores...</h2>
+            <p class="card-excerpt">Desenho experimental, adequação CEUA/DBCA, engenharia de biotérios e monitoramento
+              não invasivo em uma consultoria integrada.</p>
+          </div>
+          <div class="card-footer">
+            <button type="button" class="quick-read-btn" data-modal-index="3">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Leitura rápida</span>
+            </button>
+            <a class="full-article-link consulting-cta" href="consultoria_cientifica__engenharia_experimental.html"
+              target="_top">
+              <span>Ver consultoria</span><span class="link-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Paginação Inferior (Dots + Dica de Teclado) -->
+    <div class="carousel-pagination">
+      <div class="dots-group" role="tablist" aria-label="Selecionar notícia em destaque">
+        <button class="carousel-dot is-active" type="button" data-dot="0" aria-label="Notícia 1 de 4"
+          aria-selected="true"></button>
+        <button class="carousel-dot" type="button" data-dot="1" aria-label="Notícia 2 de 4"
+          aria-selected="false"></button>
+        <button class="carousel-dot" type="button" data-dot="2" aria-label="Notícia 3 de 4"
+          aria-selected="false"></button>
+        <button class="carousel-dot" type="button" data-dot="3" aria-label="Notícia 4 de 4"
+          aria-selected="false"></button>
+      </div>
+
+      <span class="keyboard-hint">
+        <span>Navegue com as setas</span>
+        <button class="kbd-key" id="footer-prev-slide" type="button" aria-label="Not&iacute;cia anterior" title="Not&iacute;cia anterior">&larr;</button>
+        <button class="kbd-key" id="footer-next-slide" type="button" aria-label="Pr&oacute;xima not&iacute;cia" title="Pr&oacute;xima not&iacute;cia">&rarr;</button>
+      </span>
+    </div>
+  </main>
+
+  <!-- Modal / Drawer de Pré-Visualização Rápida -->
+  <div id="quick-read-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-top">
+        <span id="modal-tag" class="card-tag">REDE REBIOTERIO</span>
+        <button id="modal-close" class="modal-close-btn" type="button" aria-label="Fechar pré-visualização">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <h2 id="modal-title" class="modal-title">Título da Notícia</h2>
+      <div id="modal-metric" class="modal-metric-box">Indicador</div>
+      <p id="modal-summary" class="modal-summary">Resumo editorial.</p>
+
+      <ul id="modal-bullets" class="modal-bullets"></ul>
+
+      <div class="modal-actions">
+        <button id="modal-secondary-close" type="button" class="quick-read-btn">Voltar à vitrine</button>
+        <a id="modal-full-link" class="full-article-link" href="#">
+          <span>Ler artigo completo</span>
+          <span class="link-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <div class="footer-shell">
+    <footer class="wrap footer">
+      <span>Biotério Forte · Engenharia &amp; Ciência Experimental</span>
+      <a href="consultoria_cientifica__engenharia_experimental.html">Precisa de suporte técnico no seu projeto? Fale com
+        nossa consultoria →</a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      /* 1. Alternância de tema Claro/Escuro */
+      var themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          var isDark = document.documentElement.classList.toggle('dark');
+          try {
+            localStorage.setItem('bf-theme', isDark ? 'dark' : 'light');
+          } catch (e) { }
+        });
+      }
+
+      /* 2. Efeito Spotlight seguindo o mouse em cada card */
+      document.querySelectorAll('.spotlight-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      /* 3. Dados estruturados para o Modal de Leitura Rápida */
+      var articlesData = [
+        {
+          tag: 'REDE REBIOTERIO · EDIÇÃO 01',
+          title: '26 contatos. 2 respostas. O diálogo precisa avançar...',
+          metric: 'Balanço da rodada: 26 contatos disponíveis · 2 respostas · 7,7% de retorno',
+          summary: 'Nosso primeiro levantamento técnico por e-mail junto a contatos disponíveis da REBIOTERIO terminou com apenas duas respostas. O dado não mede o interesse da comunidade, mas acende um alerta sobre ruído de comunicação entre quem desenvolve tecnologia e quem opera o biotério.',
+          bullets: [
+            'Requisito técnico mínimo não basta: um equipamento só ganha aderência quando dialoga com a rotina real de manejo e autoclavagem.',
+            'O Biotério Forte V2 está em fase de validação prática e busca mapear tipologias, polímeros (PC, PSU, PPSU, PP) e dimensões exatas (C × L × A).',
+            'Consulta aberta a qualquer biotério brasileiro (vinculado ou não à REBIOTERIO) para aproximar engenharia e bancada.'
+          ],
+          href: 'rebioterio.html'
+        },
+        {
+          tag: 'RIGOR & DBCA 5.8-D-I · EDIÇÃO 02',
+          title: 'Ranking não sustenta ciência. A crise silenciosa da reprodutibilidade...',
+          metric: 'Exigência normativa: DBCA · Item 5, subitem 8-D-I (Luminosidade, Temperatura e Umidade)',
+          summary: 'Analisando a base pública de teses e dissertações com modelos animais, constatamos que a grande maioria omite o modelo, o material e as dimensões da caixa-moradia. Sem esses dados na seção Materiais e Métodos, o estudo se torna impossível de auditar ou replicar.',
+          bullets: [
+            'Superlotação, restrição de espaço e microclima não monitorado geram estresse crônico e enviesam marcadores fisiológicos e comportamentais.',
+            'A DBCA exige descrição rigorosa das condições de alojamento e fatores ambientais para avaliação das CEUAs — mas o dado evapora na publicação.',
+            'Inclui auditor interativo de reprodutibilidade e parágrafo padrão copiável em 1 clique para teses e manuscritos.'
+          ],
+          href: 'reprodutibilidade.html'
+        },
+        {
+          tag: 'INFRAESTRUTURA & ORÇAMENTO · EDIÇÃO 03',
+          title: 'R$ 50 mil por caixa. Mais de R$ 100 mil nos importados !!!',
+          metric: 'Biotério Forte V2: R$ 50.000 · Equipamentos importados: acima de R$ 100.000 por caixa',
+          summary: 'A matéria compara os valores informados para as caixas e apresenta um simulador de investimento por parque. A estimativa considera o custo de aquisição, não um retorno financeiro medido.',
+          bullets: [
+            'A armadilha do custeio: editais compram racks fechados em moeda estrangeira, mas não sustentam filtros proprietários e manutenção alfandegária.',
+            'O "cemitério de equipamentos" nos corredores reduz a capacidade instalada e atrasa cronogramas de pós-graduação.',
+            'O Biotério Forte V2 oferece encaixe universal no parque existente, cartucho HEPA local e telemetria contínua com custo previsível em reais.'
+          ],
+          href: 'infraestrutura_investimento_publico.html'
+        },
+        {
+          tag: 'CONSULTORIA CIENTÍFICA · EDIÇÃO 04',
+          title: 'Engenharia experimental para sua pesquisa com roedores...',
+          metric: '4 frentes integradas: desenho experimental, CEUA/DBCA, engenharia e telemetria',
+          summary: 'Consultoria técnica para desenho experimental, conformidade CEUA/DBCA, infraestrutura de biotérios e monitoramento não invasivo, da bancada à engenharia experimental.',
+          bullets: [
+            'Estruturação de protocolos pré-clínicos, cálculo amostral e adequação ao Item 5, subitem 8-D-I da DBCA.',
+            'Engenharia para caixas-moradia, fluxo de ar, microambiente, telemetria e necessidades de infraestrutura.',
+            'Briefing técnico para instituições, laboratórios e equipes de P&D que planejam ou validam pesquisa com roedores.'
+          ],
+          href: 'consultoria_cientifica__engenharia_experimental.html'
+        }
+      ];
+
+      /* 4. Lógica do Carrossel Interativo */
+      var track = document.getElementById('carousel-track');
+      var viewport = document.getElementById('carousel-viewport');
+      var firstCard = track && track.querySelector('.news-card[data-index="0"]');
+      var lastCard = track && track.querySelector('.news-card[data-index="3"]');
+      if (firstCard && lastCard && articlesData.length > 1) {
+        track.insertBefore(lastCard, firstCard);
+        articlesData.unshift(articlesData.pop());
+      }
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.news-card'));
+      cards.forEach(function (card, index) {
+        card.setAttribute('data-index', index);
+        var quickReadButton = card.querySelector('.quick-read-btn[data-modal-index]');
+        if (quickReadButton) quickReadButton.setAttribute('data-modal-index', index);
+      });
+      var dots = Array.prototype.slice.call(document.querySelectorAll('.carousel-dot'));
+      var prevBtn = document.getElementById('prev-slide');
+      var nextBtn = document.getElementById('next-slide');
+      var footerPrevBtn = document.getElementById('footer-prev-slide');
+      var footerNextBtn = document.getElementById('footer-next-slide');
+      var autoplayBtn = document.getElementById('autoplay-toggle');
+      var autoplayLabel = document.getElementById('autoplay-label');
+
+      var activeIndex = 0;
+      var autoplayEnabled = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var isHovering = false;
+      var modalOpen = false;
+      var autoplayTimer = null;
+
+      function setActiveSlide(index, shouldScroll) {
+        var total = cards.length;
+        activeIndex = ((index % total) + total) % total;
+
+        cards.forEach(function (card, idx) {
+          var active = idx === activeIndex;
+          card.classList.toggle('is-active', active);
+          card.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+
+        dots.forEach(function (dot, idx) {
+          var active = idx === activeIndex;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        if (shouldScroll && track && cards[activeIndex]) {
+          var targetCard = cards[activeIndex];
+          var offsetLeft = targetCard.offsetLeft - (track.clientWidth - targetCard.clientWidth) / 2;
+          track.scrollTo({ left: Math.max(0, offsetLeft), behavior: 'smooth' });
+        }
+      }
+
+      function startAutoplay() {
+        clearInterval(autoplayTimer);
+        if (!autoplayEnabled || isHovering || modalOpen) return;
+        autoplayTimer = setInterval(function () {
+          setActiveSlide(activeIndex + 1, true);
+        }, 5200);
+      }
+
+      function updateAutoplayUI() {
+        if (!autoplayBtn || !autoplayLabel) return;
+        autoplayBtn.classList.toggle('paused', !autoplayEnabled);
+        autoplayBtn.setAttribute('aria-pressed', autoplayEnabled ? 'true' : 'false');
+        autoplayLabel.textContent = autoplayEnabled ? 'Autoplay ativo' : 'Autoplay pausado';
+      }
+
+      if (autoplayBtn) {
+        autoplayBtn.addEventListener('click', function () {
+          autoplayEnabled = !autoplayEnabled;
+          updateAutoplayUI();
+          if (autoplayEnabled) {
+            startAutoplay();
+          } else {
+            clearInterval(autoplayTimer);
+          }
+        });
+        updateAutoplayUI();
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          setActiveSlide(activeIndex - 1, true);
+          startAutoplay();
+        });
+      }
+
+      if (footerPrevBtn) {
+        footerPrevBtn.addEventListener('click', function () {
+          setActiveSlide(activeIndex - 1, true);
+          startAutoplay();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          setActiveSlide(activeIndex + 1, true);
+          startAutoplay();
+        });
+      }
+
+      if (footerNextBtn) {
+        footerNextBtn.addEventListener('click', function () {
+          setActiveSlide(activeIndex + 1, true);
+          startAutoplay();
+        });
+      }
+
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var idx = parseInt(dot.getAttribute('data-dot'), 10);
+          setActiveSlide(idx, true);
+          startAutoplay();
+        });
+      });
+
+      cards.forEach(function (card, idx) {
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('a') || e.target.closest('button')) return;
+          var articleLink = card.querySelector('.full-article-link');
+          if (articleLink) window.top.location.assign(articleLink.href);
+        });
+
+        card.addEventListener('keydown', function (e) {
+          if (e.target !== card || e.key !== 'Enter') return;
+          e.preventDefault();
+          var articleLink = card.querySelector('.full-article-link');
+          if (articleLink) window.top.location.assign(articleLink.href);
+        });
+
+        card.addEventListener('focus', function () {
+          setActiveSlide(idx, false);
+        });
+      });
+
+      /* Pausa autoplay no hover */
+      if (viewport) {
+        viewport.addEventListener('mouseenter', function () {
+          isHovering = true;
+          clearInterval(autoplayTimer);
+        });
+        viewport.addEventListener('mouseleave', function () {
+          isHovering = false;
+          startAutoplay();
+        });
+      }
+
+      /* Sincroniza dot ativo durante snap-scroll no mobile/tablet */
+      var scrollDebounce;
+      if (track) {
+        track.addEventListener('scroll', function () {
+          clearTimeout(scrollDebounce);
+          scrollDebounce = setTimeout(function () {
+            var trackCenter = track.scrollLeft + track.clientWidth / 2;
+            var closestIdx = 0;
+            var minDist = Infinity;
+
+            cards.forEach(function (card, idx) {
+              var cardCenter = card.offsetLeft + card.clientWidth / 2;
+              var dist = Math.abs(trackCenter - cardCenter);
+              if (dist < minDist) {
+                minDist = dist;
+                closestIdx = idx;
+              }
+            });
+
+            if (closestIdx !== activeIndex) {
+              setActiveSlide(closestIdx, false);
+            }
+          }, 80);
+        }, { passive: true });
+      }
+
+      /* Suporte a teclado ← → e Escape para modal */
+      document.addEventListener('keydown', function (e) {
+        if (modalOpen) {
+          if (e.key === 'Escape') closeModal();
+          return;
+        }
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+
+        if (e.key === 'ArrowLeft') {
+          setActiveSlide(activeIndex - 1, true);
+          startAutoplay();
+        } else if (e.key === 'ArrowRight') {
+          setActiveSlide(activeIndex + 1, true);
+          startAutoplay();
+        }
+      });
+
+      /* 5. Modal de Leitura Rápida */
+      var modalBackdrop = document.getElementById('quick-read-modal');
+      var modalCloseBtn = document.getElementById('modal-close');
+      var modalSecCloseBtn = document.getElementById('modal-secondary-close');
+      var modalTag = document.getElementById('modal-tag');
+      var modalTitle = document.getElementById('modal-title');
+      var modalMetric = document.getElementById('modal-metric');
+      var modalSummary = document.getElementById('modal-summary');
+      var modalBullets = document.getElementById('modal-bullets');
+      var modalFullLink = document.getElementById('modal-full-link');
+      var lastFocusedTrigger = null;
+
+      function openModal(index, triggerEl) {
+        var data = articlesData[index];
+        if (!data || !modalBackdrop) return;
+
+        lastFocusedTrigger = triggerEl || document.activeElement;
+        setActiveSlide(index, false);
+
+        modalTag.textContent = data.tag;
+        modalTitle.textContent = data.title;
+        modalMetric.textContent = data.metric;
+        modalSummary.textContent = data.summary;
+        modalFullLink.setAttribute('href', data.href);
+        modalFullLink.setAttribute('target', '_top');
+
+        modalBullets.innerHTML = '';
+        data.bullets.forEach(function (bulletText) {
+          var li = document.createElement('li');
+          li.innerHTML = '<span class="modal-bullet-dot" aria-hidden="true"></span><span>' + bulletText + '</span>';
+          modalBullets.appendChild(li);
+        });
+
+        modalOpen = true;
+        clearInterval(autoplayTimer);
+        modalBackdrop.classList.add('open');
+        modalBackdrop.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        if (modalCloseBtn) modalCloseBtn.focus();
+      }
+
+      function closeModal() {
+        if (!modalBackdrop) return;
+        modalOpen = false;
+        modalBackdrop.classList.remove('open');
+        modalBackdrop.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        startAutoplay();
+
+        if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
+          lastFocusedTrigger.focus();
+        }
+      }
+
+      document.querySelectorAll('.quick-read-btn[data-modal-index]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var idx = parseInt(btn.getAttribute('data-modal-index'), 10);
+          openModal(idx, btn);
+        });
+      });
+
+      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+      if (modalSecCloseBtn) modalSecCloseBtn.addEventListener('click', closeModal);
+
+      if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', function (e) {
+          if (e.target === modalBackdrop) closeModal();
+        });
+      }
+
+      /* Inicializa carrossel */
+      setActiveSlide(0, false);
+      startAutoplay();
+    });
+  </script>
+</body>
+
+</html>

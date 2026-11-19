@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="88" y1="57" x2="1094" y2="746" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#102B51"/><stop offset="1" stop-color="#2467C8"/>
+    </linearGradient>
+    <linearGradient id="card" x1="326" y1="178" x2="754" y2="579" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/><stop offset="1" stop-color="#DDEBFC"/>
+    </linearGradient>
+    <linearGradient id="reply" x1="789" y1="279" x2="1007" y2="496" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#61F2AE"/><stop offset="1" stop-color="#22C881"/>
+    </linearGradient>
+    <filter id="shadow" x="233" y="112" width="568" height="553" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#B9D5FB" fill-opacity=".24"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="760" rx="34" fill="url(#bg)"/>
+  <rect width="1200" height="760" rx="34" fill="url(#dots)"/>
+  <circle cx="1030" cy="119" r="176" fill="#62A4FF" fill-opacity=".12"/>
+  <circle cx="172" cy="668" r="238" fill="#0A1D39" fill-opacity=".22"/>
+  <path d="M557 375C658 375 697 375 793 375" stroke="#B9D5FB" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 16"/>
+  <circle cx="674" cy="375" r="17" fill="#B9D5FB" fill-opacity=".38"/>
+  <circle cx="731" cy="375" r="9" fill="#B9D5FB" fill-opacity=".7"/>
+  <rect x="273" y="152" width="488" height="477" rx="38" fill="#071A34" fill-opacity=".45" filter="url(#shadow)"/>
+  <rect x="292" y="147" width="448" height="482" rx="34" fill="url(#card)"/>
+  <rect x="334" y="189" width="72" height="72" rx="22" fill="#D8E8FD"/>
+  <path d="M353 211H387C390.314 211 393 213.686 393 217V240C393 243.314 390.314 246 387 246H353C349.686 246 347 243.314 347 240V217C347 213.686 349.686 211 353 211Z" stroke="#2467C8" stroke-width="4"/>
+  <path d="M349 216L370 232L391 216" stroke="#2467C8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="334" y="347" fill="#102B51" font-family="Inter,Arial,sans-serif" font-size="112" font-weight="700" letter-spacing="-7">26</text>
+  <text x="342" y="393" fill="#566B82" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="600" letter-spacing="2">CONTATOS POR E-MAIL</text>
+  <path d="M340 430H692" stroke="#C8D9EE" stroke-width="2"/>
+  <text x="340" y="490" fill="#102B51" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="600">A conversa precisa</text>
+  <text x="340" y="527" fill="#102B51" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="600">chegar mais longe.</text>
+  <text x="340" y="574" fill="#566B82" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="500">REBIOTERIO · BIOTÉRIO FORTE</text>
+  <circle cx="891" cy="375" r="139" fill="#072246" fill-opacity=".4"/>
+  <circle cx="891" cy="352" r="113" fill="url(#reply)"/>
+  <path d="M835 336H947C953.627 336 959 341.373 959 348V408C959 414.627 953.627 420 947 420H835C828.373 420 823 414.627 823 408V348C823 341.373 828.373 336 835 336Z" stroke="#073B35" stroke-width="6"/>
+  <path d="M828 344L891 389L954 344" stroke="#073B35" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="891" cy="512" r="31" fill="#F8FBFF"/>
+  <path d="M876 512L886 522L907 500" stroke="#168D5C" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="891" y="580" text-anchor="middle" fill="#F8FBFF" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="600" letter-spacing="2">2 RESPOSTAS</text>
+  <text x="892" y="693" text-anchor="middle" fill="#DDEBFC" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="600" letter-spacing="3">O PRÓXIMO PASSO É CONVERSAR</text>
+</svg>

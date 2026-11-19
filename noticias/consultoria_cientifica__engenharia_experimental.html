@@ -1,0 +1,2045 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consultoria especializada em pesquisa com roedores, desenho experimental, conformidade CEUA/DBCA, engenharia de biotérios e monitoramento não invasivo. Fale com quem entende.">
+  <link rel="canonical" href="https://bioterioforte.com.br/noticias/consultoria_cientifica__engenharia_experimental.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Biotério Forte">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Não arrisque anos de bancada no improviso. Fale com quem entende. | Biotério Forte">
+  <meta property="og:description" content="Consultoria técnica de ponta a ponta para pesquisa in vivo com roedores: desenho experimental, CEUA/DBCA, infraestrutura de biotérios e telemetria não invasiva.">
+  <title>Consultoria em Pesquisa com Roedores · Fale com quem entende | Biotério Forte</title>
+
+  <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & PALETA CIENTÍFICA (LIGHT / DARK)
+       ========================================================================== */
+    :root {
+      color-scheme: light;
+      --bg: #f3f8fe;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --fg: #0e2238;
+      --muted: #566b82;
+      --line: #dbe7f5;
+      --blue: #2f6fe4;
+      --blue-soft: rgba(47, 111, 228, 0.08);
+      --chip: #e8f1fc;
+      --ok: #14804f;
+      --ok-soft: rgba(20, 128, 79, 0.12);
+      --warn: #d97706;
+      --warn-soft: rgba(217, 119, 6, 0.12);
+      --danger: #dc2626;
+      --danger-soft: rgba(220, 38, 38, 0.10);
+      --grid-line: rgba(47, 111, 228, 0.045);
+      --shadow-card: 0 12px 36px -10px rgba(14, 34, 56, 0.08);
+      --header-bg: rgba(243, 248, 254, 0.84);
+      --display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+    }
+
+    html.dark {
+      color-scheme: dark;
+      --bg: #0a1626;
+      --surface: #102036;
+      --surface-soft: #0d1b2f;
+      --fg: #e8f1fc;
+      --muted: #92a8c2;
+      --line: #1d3350;
+      --blue: #6ea3ff;
+      --blue-soft: rgba(110, 163, 255, 0.12);
+      --chip: #17304d;
+      --ok: #5fd09a;
+      --ok-soft: rgba(95, 208, 154, 0.14);
+      --warn: #fbbf24;
+      --warn-soft: rgba(251, 191, 36, 0.14);
+      --danger: #f87171;
+      --danger-soft: rgba(248, 113, 113, 0.14);
+      --grid-line: rgba(110, 163, 255, 0.045);
+      --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.45);
+      --header-bg: rgba(10, 22, 38, 0.84);
+    }
+
+    /* ==========================================================================
+       RESET & BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font: 400 16px/1.68 var(--body);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grade técnica sutil de laboratório */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Luz ambiente radial suave no topo */
+    .ambient-glow {
+      position: fixed;
+      top: -190px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(880px, 125vw);
+      height: 460px;
+      background: radial-gradient(ellipse at center, rgba(47, 111, 228, 0.14) 0%, rgba(202, 138, 4, 0.05) 48%, transparent 74%);
+      filter: blur(44px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .wrap {
+      width: min(100% - 40px, 960px);
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       BARRA DE PROGRESSO DE LEITURA FIXA
+       ========================================================================== */
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 100;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ca8a04, #dc2626, var(--blue));
+      border-radius: 0 999px 999px 0;
+      transition: width 0.08s ease-out;
+    }
+
+    /* ==========================================================================
+       CABEÇALHO STICKY
+       ========================================================================== */
+    .header-shell {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    header.wrap.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-block: 0.95rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font: 700 1.08rem var(--display);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.28);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .brand:hover .brand-icon {
+      transform: scale(1.06) rotate(-3deg);
+    }
+
+    .brand-pulse {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid var(--bg);
+      animation: pulseDot 2.4s infinite;
+    }
+
+    .brand-sub {
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .back:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .back-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .back:hover .back-arrow {
+      transform: translateX(-3px);
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.12);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.94);
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun { display: block; }
+    html.dark .icon-moon { display: none; }
+
+    /* ==========================================================================
+       HERO SECTION & BOTÕES TÁTEIS
+       ========================================================================== */
+    main {
+      padding-block: clamp(2.8rem, 7vw, 5.2rem) clamp(4rem, 9vw, 6.5rem);
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.44rem 0.95rem;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 0 rgba(20, 128, 79, 0.5);
+      animation: radarPing 2.2s infinite;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      max-width: none;
+      margin: 1.15rem 0 1.25rem;
+      font-size: clamp(2.2rem, 5.8vw, 3.95rem);
+      font-weight: 700;
+    }
+
+    .headline-gradient {
+      background: linear-gradient(95deg, #ca8a04 0%, #ea580c 48%, #dc2626 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html.dark .headline-gradient {
+      background-image: linear-gradient(95deg, #ffd43b 0%, #fb923c 50%, #ff6262 100%);
+    }
+
+    .intro {
+      max-width: none;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 2.1vw, 1.16rem);
+      line-height: 1.72;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+      margin-top: 1.85rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 50px;
+      padding: 0.8rem 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--fg);
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue);
+      box-shadow: 0 8px 20px -8px rgba(47, 111, 228, 0.25);
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .button.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #ffffff;
+      box-shadow: 0 10px 26px -6px rgba(47, 111, 228, 0.48);
+    }
+
+    html.dark .button.primary {
+      color: #081220;
+    }
+
+    .button.primary:hover {
+      filter: brightness(1.07);
+    }
+
+    .button.whatsapp {
+      border-color: var(--ok);
+      background: var(--ok);
+      color: #ffffff;
+      box-shadow: 0 10px 26px -6px rgba(20, 128, 79, 0.42);
+    }
+
+    html.dark .button.whatsapp {
+      color: #071910;
+    }
+
+    .button.whatsapp:hover {
+      filter: brightness(1.06);
+    }
+
+    /* ==========================================================================
+       TRUST / AUTHORITY STRIP (3 SPOTLIGHT CARDS)
+       ========================================================================== */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 2.6rem 0 1.4rem;
+    }
+
+    .spotlight-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.3rem, 3vw, 1.8rem);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease;
+    }
+
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--blue-soft),
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .spotlight-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(47, 111, 228, 0.45);
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .stat-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .stat-icon.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .stat-icon.warn {
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    .stat-tag {
+      font: 500 0.72rem var(--mono);
+      padding: 0.24rem 0.6rem;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    .stat-value {
+      display: block;
+      font: 700 clamp(1.95rem, 4.2vw, 2.65rem)/1.04 var(--display);
+      letter-spacing: -0.03em;
+      color: var(--blue);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-value.ok-val {
+      color: var(--ok);
+    }
+
+    .stat-desc {
+      display: block;
+      margin-top: 0.6rem;
+      color: var(--muted);
+      font-size: 0.91rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       DIAGNÓSTICO RÁPIDO INTERATIVO + ESQUEMA ISOMÉTRICO SVG (4 PILARES)
+       ========================================================================== */
+    .diagnostic-panel {
+      margin: 1.5rem 0 3.2rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.35rem, 4vw, 2.15rem);
+      box-shadow: var(--shadow-card);
+    }
+
+    .diag-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .diag-header h2 {
+      margin: 0;
+      font-size: clamp(1.3rem, 3vw, 1.65rem);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-live {
+      font: 500 0.72rem var(--mono);
+      padding: 0.24rem 0.65rem;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid rgba(47, 111, 228, 0.24);
+    }
+
+    .diag-subtitle {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    /* Seletor de Perfil (Segmented Tabs) */
+    .profile-selector {
+      margin-top: 1.35rem;
+    }
+
+    .control-label {
+      display: block;
+      font: 600 0.76rem var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+    }
+
+    .profile-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.45rem;
+      padding: 0.35rem;
+      border-radius: 16px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+    }
+
+    .profile-tab {
+      padding: 0.72rem 0.85rem;
+      border: none;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      font: 600 0.85rem var(--body);
+      cursor: pointer;
+      transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+      text-align: center;
+    }
+
+    .profile-tab:hover {
+      color: var(--fg);
+    }
+
+    .profile-tab.active {
+      background: var(--surface);
+      color: var(--blue);
+      box-shadow: 0 4px 14px rgba(14, 34, 56, 0.08);
+    }
+
+    /* Workspace: Gargalos à esquerda + Palco SVG Isométrico à direita */
+    .diag-workspace {
+      display: grid;
+      grid-template-columns: 1.2fr 0.95fr;
+      gap: 1.5rem;
+      margin-top: 1.35rem;
+      align-items: start;
+    }
+
+    .bottleneck-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .check-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      padding: 0.82rem 1rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .check-card:hover {
+      border-color: var(--blue);
+      transform: translateX(3px);
+    }
+
+    .check-card.selected {
+      border-color: rgba(47, 111, 228, 0.5);
+      background: var(--blue-soft);
+    }
+
+    .check-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+    }
+
+    .check-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .check-meta {
+      font: 400 0.75rem var(--mono);
+      color: var(--muted);
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      border: 2px solid var(--line);
+      background: var(--surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: transparent;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .check-card input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .check-card.selected .check-box {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #ffffff;
+    }
+
+    /* Palco SVG Isométrico dos 4 Pilares */
+    .svg-stage {
+      background: linear-gradient(155deg, var(--surface-soft) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svg-pillars {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      animation: floatCage 6.5s ease-in-out infinite;
+    }
+
+    .pillar-layer {
+      transition: opacity 0.35s ease, filter 0.35s ease;
+    }
+
+    .pillar-layer.dimmed {
+      opacity: 0.26;
+    }
+
+    .svg-stage-caption {
+      margin-top: 0.5rem;
+      font: 500 0.74rem var(--mono);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Roadmap Dinâmico & Ações em 1 Clique */
+    .roadmap-output {
+      margin-top: 1.45rem;
+      padding: 1.25rem 1.35rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--surface-soft) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .roadmap-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .roadmap-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font: 600 0.78rem var(--mono);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: var(--ok-soft);
+      color: var(--ok);
+      border: 1px solid rgba(20, 128, 79, 0.28);
+    }
+
+    .risk-tag {
+      font: 500 0.78rem var(--mono);
+      color: var(--warn);
+      background: var(--warn-soft);
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .roadmap-summary {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--fg);
+    }
+
+    .roadmap-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      padding-top: 0.35rem;
+    }
+
+    .btn-sm {
+      min-height: 42px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.86rem;
+    }
+
+    /* ==========================================================================
+       SEÇÕES PERSUASIVAS DE AUTORIDADE & ESCOPO
+       ========================================================================== */
+    .editorial-section {
+      margin-top: 3.4rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.55rem;
+      font: 600 0.76rem var(--mono);
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .editorial-section h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.55rem, 3.6vw, 2.15rem);
+      max-width: none;
+    }
+
+    .editorial-lead {
+      max-width: none;
+      margin: 0 0 1.4rem;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.74;
+    }
+
+    .editorial-lead strong {
+      color: var(--fg);
+    }
+
+    /* Contraste: Consultoria Genérica vs. Vivência de Bancada */
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.35rem;
+    }
+
+    .contrast-card {
+      padding: 1.35rem 1.45rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+    }
+
+    .contrast-card.bad {
+      border-top: 3px solid var(--danger);
+    }
+
+    .contrast-card.good {
+      border-top: 3px solid var(--ok);
+    }
+
+    .contrast-header {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font: 700 1rem var(--display);
+      margin-bottom: 0.85rem;
+    }
+
+    .contrast-card.bad .contrast-header { color: var(--danger); }
+    .contrast-card.good .contrast-header { color: var(--ok); }
+
+    .contrast-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .contrast-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.55;
+    }
+
+    /* Grid de 4 Áreas de Atuação */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+      margin-top: 1.4rem;
+    }
+
+    .pillar-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .pillar-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .pillar-num {
+      font: 700 0.78rem var(--mono);
+      padding: 0.28rem 0.65rem;
+      border-radius: 8px;
+      background: var(--chip);
+      color: var(--blue);
+    }
+
+    .pillar-card h3 {
+      margin: 0;
+      font-size: 1.18rem;
+      color: var(--fg);
+    }
+
+    .pillar-card p {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .pillar-deliverable {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--line);
+      font: 500 0.78rem var(--mono);
+      color: var(--ok);
+    }
+
+    /* Grid de Qualificação ("Para quem é esta consultoria") */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.35rem;
+    }
+
+    .audience-card {
+      padding: 1.35rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .audience-tag {
+      align-self: flex-start;
+      font: 600 0.72rem var(--mono);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .audience-card h3 {
+      margin: 0.2rem 0 0;
+      font-size: 1.1rem;
+    }
+
+    .audience-card p {
+      margin: 0;
+      font-size: 0.91rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* ==========================================================================
+       SEÇÃO FINAL DE CONVERSÃO & GERADOR DE BRIEFING
+       ========================================================================== */
+    .booking-box {
+      margin-top: 3.5rem;
+      padding: clamp(1.5rem, 4.5vw, 2.35rem);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, var(--surface) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+    }
+
+    .booking-header {
+      max-width: 44rem;
+    }
+
+    .booking-header h2 {
+      margin: 0.5rem 0 0.85rem;
+      font-size: clamp(1.6rem, 3.8vw, 2.25rem);
+    }
+
+    .booking-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.68;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+      align-items: start;
+    }
+
+    .briefing-form {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .form-title {
+      margin: 0;
+      font: 700 1.05rem var(--display);
+      color: var(--fg);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .field-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 0.72rem 0.9rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      color: var(--fg);
+      font: 400 0.92rem var(--body);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-soft);
+      outline: none;
+    }
+
+    textarea.field-input {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.25rem;
+    }
+
+    .direct-channels {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .direct-channels h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .direct-channels p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .channel-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .guarantee-note {
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px dashed var(--line);
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       RODAPÉ & TOAST
+       ========================================================================== */
+    .footer-shell {
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer.wrap.footer {
+      padding-block: 1.6rem 2.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    footer.wrap.footer a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer.wrap.footer a:hover {
+      color: var(--blue);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.8rem 1.15rem;
+      border-radius: 14px;
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+      transform: translateY(90px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    @keyframes radarPing {
+      0% { box-shadow: 0 0 0 0 rgba(20, 128, 79, 0.55); }
+      70% { box-shadow: 0 0 0 8px rgba(20, 128, 79, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(20, 128, 79, 0); }
+    }
+
+    @keyframes floatCage {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE & ACESSIBILIDADE
+       ========================================================================== */
+    @media (max-width: 840px) {
+      .stat-grid,
+      .profile-tabs,
+      .audience-grid {
+        grid-template-columns: 1fr;
+      }
+      .diag-workspace,
+      .contrast-grid,
+      .pillars-grid,
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header.wrap.top {
+        flex-wrap: wrap;
+      }
+      .hero-cta-row .button,
+      .form-actions .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .svg-pillars,
+      .brand-pulse,
+      .eyebrow-dot {
+        animation: none;
+      }
+      .spotlight-card,
+      .button,
+      .check-card {
+        transition: none;
+      }
+    }
+  </style>
+
+  <!-- Evita flash de tema antes da pintura inicial -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('bf-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Barra de progresso de leitura fixa -->
+  <div class="progress-track" aria-hidden="true">
+    <div id="progress-fill" class="progress-fill"></div>
+  </div>
+
+  <!-- Luz ambiente suave -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Cabeçalho -->
+  <div class="header-shell">
+    <header class="wrap top">
+      <a class="brand" href="../index.html">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="12" rx="3"></rect>
+            <path d="M7 10h10M7 14h6"></path>
+          </svg>
+          <span class="brand-pulse"></span>
+        </span>
+        <span>Biotério Forte <span class="brand-sub">· Consultoria</span></span>
+      </a>
+
+      <div class="header-actions">
+        <a class="back" href="../index.html">
+          <span class="back-arrow" aria-hidden="true">←</span>
+          <span>Voltar ao início</span>
+        </a>
+
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="Alternar tema claro ou escuro" title="Alternar tema">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <main class="wrap">
+
+    <!-- 1. HERO SECTION -->
+    <section class="reveal is-visible">
+      <div class="eyebrow-badge">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>CONSULTORIA ESPECIALIZADA · PESQUISA IN VIVO &amp; BIOTÉRIOS</span>
+      </div>
+
+      <h1>
+        Não arrisque anos de bancada no improviso. <span class="headline-gradient">Fale com quem entende</span> de pesquisa com roedores.
+      </h1>
+
+      <p class="intro">
+        Um protocolo mal desenhado, uma pendência travada na CEUA ou uma variável ambiental ignorada dentro da caixa-moradia custam meses de trabalho, bolsas de pesquisa e poder estatístico. Atuamos lado a lado com pesquisadores, coordenadores de biotérios e equipes de P&amp;D para transformar experimentos em dados sólidos, auditáveis e reprodutíveis.
+      </p>
+
+      <div class="hero-cta-row">
+        <a class="button primary" href="#diagnostico">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          <span>Agendar Diagnóstico Técnico</span>
+        </a>
+
+        <a class="button" href="#atuacao">
+          <span>Explorar Áreas de Atuação</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- TRUST / AUTHORITY STRIP (3 SPOTLIGHT CARDS) -->
+    <section class="stat-grid reveal" aria-label="Pilares de autoridade técnica">
+      <!-- Card 1 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+          </span>
+          <span class="stat-tag">Visão Integrada</span>
+        </div>
+        <b class="stat-value"><span class="count-up" data-target="360">0</span>°</b>
+        <span class="stat-desc">Da bancada à engenharia de biotério, CAD/FEM e prototipagem</span>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon ok" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </span>
+          <span class="stat-tag">Regulatório</span>
+        </div>
+        <b class="stat-value ok-val">DBCA</b>
+        <span class="stat-desc">Conformidade rigorosa CEUA, CONCEA e princípios 3Rs</span>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="spotlight-card">
+        <div class="stat-top">
+          <span class="stat-icon warn" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </span>
+          <span class="stat-tag">Rigor Científico</span>
+        </div>
+        <b class="stat-value"><span class="count-up" data-target="100">0</span>%</b>
+        <span class="stat-desc">Foco em reprodutibilidade experimental e dado auditável</span>
+      </div>
+    </section>
+
+    <!-- 2. INTERACTIVE "DIAGNÓSTICO RÁPIDO DO SEU PROJETO" -->
+    <section id="diagnostico" class="diagnostic-panel reveal" aria-label="Diagnóstico Rápido do Seu Projeto">
+      <div class="diag-header">
+        <div>
+          <h2>
+            <span>Diagnóstico Rápido do Seu Projeto</span>
+            <span class="pill-live">Interativo · Escopo Sob Medida</span>
+          </h2>
+          <p class="diag-subtitle">
+            Selecione seu perfil e marque os gargalos que estão travando seu experimento ou biotério para gerar um plano de ação imediato.
+          </p>
+        </div>
+      </div>
+
+      <!-- Seletor de Perfil -->
+      <div class="profile-selector">
+        <span class="control-label">1. Qual é o seu perfil de atuação?</span>
+        <div class="profile-tabs" role="tablist" aria-label="Perfil do solicitante">
+          <button type="button" class="profile-tab active" data-profile="Pesquisador / Pós-Graduação" role="tab" aria-selected="true">
+            Pesquisador / Pós-Graduação
+          </button>
+          <button type="button" class="profile-tab" data-profile="Coordenação de Biotério / CEUA" role="tab" aria-selected="false">
+            Coordenação de Biotério / CEUA
+          </button>
+          <button type="button" class="profile-tab" data-profile="Startup / P&D Pré-Clínico" role="tab" aria-selected="false">
+            Startup / P&amp;D Pré-Clínico
+          </button>
+        </div>
+      </div>
+
+      <!-- Checkboxes + Ilustração Isométrica SVG -->
+      <div class="diag-workspace">
+        <div>
+          <span class="control-label">2. Onde está o gargalo hoje? (marque um ou mais)</span>
+          <div class="bottleneck-checks" id="bottleneck-list">
+            <label class="check-card selected" data-pillar="pillar-ceua">
+              <input type="checkbox" class="diag-checkbox" value="Submissão ou exigências na CEUA" checked>
+              <span class="check-info">
+                <span class="check-title">Submissão ou exigências na CEUA</span>
+                <span class="check-meta">Adequação normativa DBCA / CONCEA e justificativa ética</span>
+              </span>
+              <span class="check-box" aria-hidden="true">✓</span>
+            </label>
+
+            <label class="check-card selected" data-pillar="pillar-ceua">
+              <input type="checkbox" class="diag-checkbox" value="Desenho experimental e cálculo amostral (3Rs)" checked>
+              <span class="check-info">
+                <span class="check-title">Desenho experimental e cálculo amostral (3Rs)</span>
+                <span class="check-meta">Poder estatístico, redução de viés e grupos experimentais</span>
+              </span>
+              <span class="check-box" aria-hidden="true">✓</span>
+            </label>
+
+            <label class="check-card" data-pillar="pillar-housing">
+              <input type="checkbox" class="diag-checkbox" value="Padronização de caixas-moradia e microclima">
+              <span class="check-info">
+                <span class="check-title">Padronização de caixas-moradia e microclima</span>
+                <span class="check-meta">Dimensões (C×L×A), densidade, ventilação e engenharia CAD/FEM</span>
+              </span>
+              <span class="check-box" aria-hidden="true">✓</span>
+            </label>
+
+            <label class="check-card" data-pillar="pillar-telemetry">
+              <input type="checkbox" class="diag-checkbox" value="Termografia, sensores e monitoramento não invasivo">
+              <span class="check-info">
+                <span class="check-title">Termografia, sensores e monitoramento não invasivo</span>
+                <span class="check-meta">Coleta contínua sem estresse de manejo ou ruído térmico</span>
+              </span>
+              <span class="check-box" aria-hidden="true">✓</span>
+            </label>
+
+            <label class="check-card" data-pillar="pillar-audit">
+              <input type="checkbox" class="diag-checkbox" value="Captação de fomento / Parecer técnico de infraestrutura">
+              <span class="check-info">
+                <span class="check-title">Captação de fomento / Parecer técnico de infraestrutura</span>
+                <span class="check-meta">Editais, especificações de compra e blindagem de publicação</span>
+              </span>
+              <span class="check-box" aria-hidden="true">✓</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Ilustração Vetorial Isométrica dos 4 Pilares -->
+        <div class="svg-stage">
+          <svg class="svg-pillars" viewBox="0 0 380 265" role="img" aria-label="Esquema técnico isométrico dos 4 pilares da consultoria Biotério Forte">
+            <defs>
+              <linearGradient id="cTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.24"></stop>
+                <stop offset="100%" stop-color="#6ea3ff" stop-opacity="0.08"></stop>
+              </linearGradient>
+              <linearGradient id="cBody" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.14"></stop>
+                <stop offset="100%" stop-color="#14804f" stop-opacity="0.06"></stop>
+              </linearGradient>
+            </defs>
+
+            <!-- Sombra base -->
+            <ellipse cx="190" cy="218" rx="115" ry="15" fill="rgba(47, 111, 228, 0.10)"></ellipse>
+
+            <!-- PILAR 2: Microambiente & Caixa-Moradia (Base isométrica) -->
+            <g id="pillar-housing" class="pillar-layer dimmed">
+              <polygon points="94,132 190,170 286,132 286,176 190,210 94,176" fill="url(#cBody)" stroke="#2f6fe4" stroke-width="1.8" stroke-linejoin="round"></polygon>
+              <line x1="190" y1="170" x2="190" y2="210" stroke="#2f6fe4" stroke-width="1.8"></line>
+              <polygon points="88,116 190,78 292,116 190,154" fill="url(#cTop)" stroke="#2f6fe4" stroke-width="2" stroke-linejoin="round"></polygon>
+              <polygon points="88,116 190,154 190,165 88,127" fill="#2f6fe4" fill-opacity="0.18" stroke="#2f6fe4" stroke-width="1.5" stroke-linejoin="round"></polygon>
+              <polygon points="292,116 190,154 190,165 292,127" fill="#2f6fe4" fill-opacity="0.10" stroke="#2f6fe4" stroke-width="1.5" stroke-linejoin="round"></polygon>
+              <text x="112" y="238" fill="#2f6fe4" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">MICROAMBIENTE &amp; CAD/FEM</text>
+            </g>
+
+            <!-- PILAR 1: Protocolo & CEUA / DBCA (Nó Superior Esquerdo) -->
+            <g id="pillar-ceua" class="pillar-layer">
+              <circle cx="84" cy="52" r="18" fill="rgba(20, 128, 79, 0.15)" stroke="#14804f" stroke-width="1.8"></circle>
+              <path d="M77 52l5 5 10-10" stroke="#14804f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+              <line x1="99" y1="64" x2="144" y2="96" stroke="#14804f" stroke-width="1.4" stroke-dasharray="3 3"></line>
+              <text x="34" y="22" fill="#14804f" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">PROTOCOLO &amp; CEUA</text>
+            </g>
+
+            <!-- PILAR 3: Telemetria & Termografia (Nó Central Superior) -->
+            <g id="pillar-telemetry" class="pillar-layer dimmed">
+              <polygon points="154,106 190,92 226,106 190,120" fill="rgba(217, 119, 6, 0.24)" stroke="#d97706" stroke-width="1.8"></polygon>
+              <circle cx="190" cy="106" r="4.5" fill="#d97706"></circle>
+              <path d="M179 78a16 16 0 0 1 22 0M173 70a24 24 0 0 1 34 0" stroke="#d97706" stroke-width="1.7" stroke-linecap="round" fill="none"></path>
+              <text x="130" y="56" fill="#d97706" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">TERMOGRAFIA &amp; SENSORES</text>
+            </g>
+
+            <!-- PILAR 4: Auditabilidade & Publicação / Fomento (Nó Superior Direito) -->
+            <g id="pillar-audit" class="pillar-layer dimmed">
+              <circle cx="296" cy="52" r="18" fill="rgba(47, 111, 228, 0.15)" stroke="#2f6fe4" stroke-width="1.8"></circle>
+              <rect x="289" y="44" width="14" height="16" rx="2" stroke="#2f6fe4" stroke-width="1.8" fill="none"></rect>
+              <line x1="292" y1="49" x2="300" y2="49" stroke="#2f6fe4" stroke-width="1.6"></line>
+              <line x1="292" y1="54" x2="298" y2="54" stroke="#2f6fe4" stroke-width="1.6"></line>
+              <line x1="281" y1="64" x2="236" y2="96" stroke="#2f6fe4" stroke-width="1.4" stroke-dasharray="3 3"></line>
+              <text x="236" y="22" fill="#2f6fe4" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">FOMENTO &amp; AUDITORIA</text>
+            </g>
+          </svg>
+          <span class="svg-stage-caption">Camadas técnicas iluminadas conforme os gargalos selecionados</span>
+        </div>
+      </div>
+
+      <!-- Saída Dinâmica do Roadmap & Envio em 1 Clique -->
+      <div class="roadmap-output" aria-live="polite">
+        <div class="roadmap-top">
+          <span id="roadmap-profile-badge" class="roadmap-badge">Escopo: Pesquisador / Pós-Graduação</span>
+          <span id="roadmap-risk-tag" class="risk-tag">Risco mitigado: Reprovação ética &amp; viés amostral</span>
+        </div>
+
+        <p id="roadmap-summary-text" class="roadmap-summary">
+          <strong>Plano recomendado:</strong> Revisão completa do delineamento experimental com cálculo amostral alinhado aos 3Rs e blindagem documental do protocolo para aprovação sem pendências na CEUA (DBCA).
+        </p>
+
+        <div class="roadmap-actions">
+          <a id="diag-whatsapp-btn" class="button whatsapp btn-sm" href="#" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>Enviar este diagnóstico no WhatsApp</span>
+          </a>
+
+          <a id="diag-email-btn" class="button primary btn-sm" href="#">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>Solicitar proposta por e-mail</span>
+          </a>
+
+          <button id="diag-copy-btn" class="button btn-sm" type="button">
+            <span id="diag-copy-label">Copiar escopo técnico</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SEÇÃO EDITORIAL 1: POR QUE FALAR COM QUEM VIVE O PROBLEMA -->
+    <section class="editorial-section reveal">
+      <span class="section-kicker">01 · Vivência Real de Bancada</span>
+      <h2>Orientação teórica interna não resolve gargalo de bancada</h2>
+      <p class="editorial-lead">
+        Quem já conduziu pesquisa <em>in vivo</em> sabe: o que derruba um experimento raramente é a hipótese científica — é a execução mal controlada. <strong>Variáveis ambientais invisíveis, estresse de manejo, superlotação não percebida e protocolos frágeis destroem meses de coleta antes mesmo da análise estatística.</strong>
+      </p>
+
+      <div class="contrast-grid">
+        <div class="contrast-card bad">
+          <div class="contrast-header">
+            <span aria-hidden="true">✕</span>
+            <span>O custo do improviso e do vício</span>
+          </div>
+          <ul class="contrast-list">
+            <li><span>•</span><span>Protocolos devolvidos pela CEUA por falhas na justificativa amostral ou na descrição de alojamento (DBCA).</span></li>
+            <li><span>•</span><span>Ruído térmico, luminoso ou de ventilação alterando marcadores fisiológicos e comportamentais sem que ninguém perceba.</span></li>
+            <li><span>•</span><span>Compra de equipamentos incompatíveis ou dependentes de insumos importados travados no orçamento.</span></li>
+          </ul>
+        </div>
+
+        <div class="contrast-card good">
+          <div class="contrast-header">
+            <span aria-hidden="true">✓</span>
+            <span>Consultoria Biotério Forte</span>
+          </div>
+          <ul class="contrast-list">
+            <li><span>•</span><span>Delineamento blindado desde o primeiro dia, alinhado às diretrizes do CONCEA e às exigências de periódicos internacionais.</span></li>
+            <li><span>•</span><span>Engenharia aplicada ao microambiente: dimensionamento real de caixas, fluxos e monitoramento não invasivo.</span></li>
+            <li><span>•</span><span>Acompanhamento direto com quem projeta hardware, software e protocolos para biotérios brasileiros.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SEÇÃO EDITORIAL 2: ONDE ATUAMOS PARA BLINDAR SUA PESQUISA (4 PILARES) -->
+    <section id="atuacao" class="editorial-section reveal">
+      <span class="section-kicker">02 · Escopo Técnico Especializado</span>
+      <h2>Onde atuamos para blindar sua pesquisa</h2>
+      <p class="editorial-lead">
+        Integramos ciência experimental, conformidade regulatória e engenharia de precisão em quatro frentes práticas de consultoria.
+      </p>
+
+      <div class="pillars-grid">
+        <!-- Pilar 1 -->
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-card-top">
+            <span class="pillar-num">PILAR 01</span>
+          </div>
+          <h3>Desenho Experimental &amp; Adequação CEUA/DBCA</h3>
+          <p>
+            Estruturação completa de protocolos pré-clínicos, cálculo amostral rigoroso (3Rs), controle de variáveis confundidoras e adequação normativa ao Item 5, subitem 8-D-I da DBCA.
+          </p>
+          <span class="pillar-deliverable">Entrega: Protocolo auditável &amp; parecer técnico CEUA</span>
+        </div>
+
+        <!-- Pilar 2 -->
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-card-top">
+            <span class="pillar-num">PILAR 02</span>
+          </div>
+          <h3>Engenharia &amp; Padronização de Alojamento</h3>
+          <p>
+            Dimensionamento de caixas-moradia, densidade populacional, barreiras sanitárias, modelagem 3D CAD/FEM e prototipagem de adaptações sob medida para o parque instalado da sua unidade.
+          </p>
+          <span class="pillar-deliverable">Entrega: Projeto dimensional, CAD/FEM &amp; especificação</span>
+        </div>
+
+        <!-- Pilar 3 -->
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-card-top">
+            <span class="pillar-num">PILAR 03</span>
+          </div>
+          <h3>Monitoramento Não Invasivo &amp; Ciência de Dados</h3>
+          <p>
+            Implantação de telemetria microambiental contínua, termografia infravermelha e visão computacional para capturar sinais térmicos e comportamentais sem abrir a caixa ou estressar o animal.
+          </p>
+          <span class="pillar-deliverable">Entrega: Pipeline de dados contínuos &amp; métricas</span>
+        </div>
+
+        <!-- Pilar 4 -->
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-card-top">
+            <span class="pillar-num">PILAR 04</span>
+          </div>
+          <h3>Estruturação de Projetos &amp; Editais de Fomento</h3>
+          <p>
+            Elaboração de justificativas técnicas de infraestrutura, termos de referência para compra inteligente (sem armadilhas cambiais) e validação pré-clínica para startups e grupos de pesquisa.
+          </p>
+          <span class="pillar-deliverable">Entrega: Memorial técnico &amp; viabilidade para fomento</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SEÇÃO EDITORIAL 3: PARA QUEM É ESTA CONSULTORIA -->
+    <section class="editorial-section reveal">
+      <span class="section-kicker">03 · Qualificação</span>
+      <h2>Para quem é esta consultoria</h2>
+      <p class="editorial-lead">
+        Atendemos demandas pontuais de diagnóstico até o acompanhamento completo de implantação e validação experimental.
+      </p>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <span class="audience-tag">Academia &amp; Pós</span>
+          <h3>Mestrandos, Doutorandos e PIs</h3>
+          <p>
+            Para quem precisa destravar a aprovação na CEUA, fortalecer a seção de <em>Materiais e Métodos</em> e garantir que o experimento não seja invalidado por ruído ambiental.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <span class="audience-tag">Gestão Institucional</span>
+          <h3>Coordenadores de Biotérios e CEUAs</h3>
+          <p>
+            Para unidades que buscam modernizar infraestrutura, padronizar caixas-moradia, auditar microclima e adequar instalações às exigências do CONCEA/CIUCA com orçamento previsível.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <span class="audience-tag">Inovação &amp; Mercado</span>
+          <h3>Startups, Healthtechs e P&amp;D</h3>
+          <p>
+            Para equipes que estão validando dispositivos médicos, fármacos ou biomateriais em modelos murinos e precisam de rigor regulatório e engenharia experimental de alto nível.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. DIRECT CONVERSION & BOOKING SECTION -->
+    <section id="agendar" class="booking-box reveal" aria-label="Agendar consultoria técnica">
+      <div class="booking-header">
+        <span class="eyebrow-badge">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span>CONVERSA DIRETA COM ESPECIALISTAS</span>
+        </span>
+        <h2>Pronto para blindar seu próximo experimento?</h2>
+        <p>
+          Preencha o briefing rápido abaixo ou chame nossa equipe diretamente no WhatsApp. Você fala direto com quem projeta e valida soluções reais para pesquisa com roedores.
+        </p>
+      </div>
+
+      <div class="booking-grid">
+        <!-- Gerador de Briefing de Consultoria -->
+        <form id="briefing-form" class="briefing-form" novalidate>
+          <h3 class="form-title">Gerador de Briefing de Consultoria</h3>
+
+          <div class="field-group">
+            <label for="bf-institution">Instituição, Laboratório ou Empresa</label>
+            <input id="bf-institution" class="field-input" type="text" placeholder="Ex.: Programa de Pós-Graduação / Biotério Central / Startup">
+          </div>
+
+          <div class="field-group">
+            <label for="bf-urgency">Prazo ou Urgência do Projeto</label>
+            <select id="bf-urgency" class="field-input">
+              <option value="Imediata (submissão CEUA / experimento em andamento)">Imediata (submissão CEUA / experimento em andamento)</option>
+              <option value="Curto prazo (próximos 30 a 60 dias)">Curto prazo (próximos 30 a 60 dias)</option>
+              <option value="Planejamento (edital de fomento / adequação de biotério)">Planejamento (edital de fomento / adequação de biotério)</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="bf-objective">Descreva brevemente seu objetivo ou desafio técnico</label>
+            <textarea id="bf-objective" class="field-input" placeholder="Ex.: Precisamos adequar o protocolo de alojamento à DBCA, definir o modelo de caixa-moradia e estruturar o monitoramento térmico do ensaio..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button id="send-briefing-wa" class="button whatsapp" type="button">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              <span>Enviar briefing no WhatsApp</span>
+            </button>
+
+            <button id="send-briefing-email" class="button primary" type="button">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>Enviar por E-mail</span>
+            </button>
+
+            <button id="copy-briefing-btn" class="button" type="button">
+              <span id="copy-briefing-label">Copiar briefing</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Canais Diretos -->
+        <div class="direct-channels">
+          <h3>Atendimento Técnico Direto</h3>
+          <p>Prefere ir direto ao ponto? Fale com a equipe t?cnica sobre seu projeto com roedores.</p>
+
+          <div class="channel-stack">
+            <a class="button whatsapp" href="https://wa.me/5566996675486?text=Ol%C3%A1%2C%20vim%20pela%20p%C3%A1gina%20de%20Consultoria%20do%20Biot%C3%A9rio%20Forte%20e%20gostaria%20de%20agendar%20um%20diagn%C3%B3stico%20t%C3%A9cnico%20para%20meu%20projeto%20com%20roedores." target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              <span>Falar agora pelo WhatsApp</span>
+            </a>
+
+            <a class="button" href="mailto:founder@thotiacorp.com.br?subject=Consultoria%20T%C3%A9cnica%20-%20Pesquisa%20com%20Roedores%20%7C%20Biot%C3%A9rio%20Forte">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>founder@thotiacorp.com.br</span>
+            </a>
+          </div>
+
+          <div class="guarantee-note">
+            <strong>Sigilo científico garantido:</strong> Todas as informações compartilhadas sobre protocolos, linhagens, dispositivos ou desenhos experimentais são tratadas sob confidencialidade técnica desde o primeiro contato.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <div class="footer-shell">
+    <footer class="wrap footer">
+      <span>Biotério Forte · Consultoria Científica &amp; Engenharia Experimental</span>
+      <a href="../index.html">← Voltar ao início</a>
+    </footer>
+  </div>
+
+  <!-- Toast discreto de confirmação -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-msg">Copiado para a área de transferência!</span>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      /* 1. Alternância de tema Claro/Escuro */
+      var themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          var isDark = document.documentElement.classList.toggle('dark');
+          try {
+            localStorage.setItem('bf-theme', isDark ? 'dark' : 'light');
+          } catch (e) {}
+        });
+      }
+
+      /* 2. Barra de progresso de leitura */
+      var progressFill = document.getElementById('progress-fill');
+      function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        if (progressFill) {
+          progressFill.style.width = pct + '%';
+        }
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      /* 3. Efeito Spotlight nos cards */
+      document.querySelectorAll('.spotlight-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      /* 4. Contadores animados (Count-Up) */
+      function animateCountUp(el) {
+        var target = parseFloat(el.dataset.target);
+        var duration = 1200;
+        var startTime = performance.now();
+
+        function step(now) {
+          var elapsed = now - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 4);
+          el.textContent = Math.round(target * eased);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      var countersTriggered = false;
+      var revealEls = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              if (!countersTriggered && entry.target.querySelector('.count-up')) {
+                countersTriggered = true;
+                document.querySelectorAll('.count-up').forEach(animateCountUp);
+              }
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+        document.querySelectorAll('.count-up').forEach(animateCountUp);
+      }
+
+      /* 5. Função auxiliar de Clipboard & Toast */
+      var toast = document.getElementById('toast');
+      var toastMsg = document.getElementById('toast-msg');
+      var toastTimer;
+
+      function showToast(message) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2800);
+      }
+
+      function copyText(text, toastMessage, btnLabelEl, resetLabel) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+          document.execCommand('copy');
+          if (btnLabelEl) btnLabelEl.textContent = 'Copiado!';
+          showToast(toastMessage);
+          if (btnLabelEl && resetLabel) {
+            setTimeout(function () {
+              btnLabelEl.textContent = resetLabel;
+            }, 2400);
+          }
+        } catch (err) {
+          showToast('Não foi possível copiar automaticamente.');
+        }
+        document.body.removeChild(textarea);
+      }
+
+      /* 6. Diagnóstico Rápido Interativo (Perfis + Gargalos + SVG + Links Dinâmicos) */
+      var selectedProfile = 'Pesquisador / Pós-Graduação';
+      var profileTabs = document.querySelectorAll('.profile-tab');
+      var checkCards = document.querySelectorAll('.check-card');
+
+      var badgeEl = document.getElementById('roadmap-profile-badge');
+      var riskTagEl = document.getElementById('roadmap-risk-tag');
+      var summaryEl = document.getElementById('roadmap-summary-text');
+
+      var diagWaBtn = document.getElementById('diag-whatsapp-btn');
+      var diagEmailBtn = document.getElementById('diag-email-btn');
+      var diagCopyBtn = document.getElementById('diag-copy-btn');
+      var diagCopyLabel = document.getElementById('diag-copy-label');
+
+      var currentDiagMessage = '';
+
+      function updateDiagnostic() {
+        var activeBottlenecks = [];
+        var activePillars = new Set();
+
+        checkCards.forEach(function (card) {
+          var cb = card.querySelector('.diag-checkbox');
+          var pillarId = card.getAttribute('data-pillar');
+          var isChecked = cb && cb.checked;
+
+          card.classList.toggle('selected', Boolean(isChecked));
+          if (isChecked && cb) {
+            activeBottlenecks.push(cb.value);
+            if (pillarId) activePillars.add(pillarId);
+          }
+        });
+
+        // Atualiza camadas do SVG Isométrico
+        ['pillar-ceua', 'pillar-housing', 'pillar-telemetry', 'pillar-audit'].forEach(function (id) {
+          var layer = document.getElementById(id);
+          if (layer) {
+            layer.classList.toggle('dimmed', !activePillars.has(id));
+          }
+        });
+
+        badgeEl.textContent = 'Escopo: ' + selectedProfile;
+
+        if (activeBottlenecks.length === 0) {
+          riskTagEl.textContent = 'Diagnóstico exploratório completo';
+          summaryEl.innerHTML = '<strong>Plano recomendado:</strong> Reunião técnica de 30 minutos para mapear o estágio atual do projeto (' + selectedProfile + '), identificar gargalos ocultos de alojamento ou protocolo e definir o escopo ideal.';
+        } else {
+          riskTagEl.textContent = activeBottlenecks.length + ' frente(s) prioritária(s) mapeada(s)';
+          summaryEl.innerHTML = '<strong>Plano recomendado para ' + selectedProfile + ':</strong> Atuação focada em <strong>' + activeBottlenecks.join(' + ') + '</strong>, com entregáveis técnicos auditáveis e cronograma alinhado à execução da sua bancada.';
+        }
+
+        var listText = activeBottlenecks.length > 0
+          ? activeBottlenecks.map(function (item, idx) { return (idx + 1) + '. ' + item; }).join('\n')
+          : '• Diagnóstico geral de projeto e infraestrutura';
+
+        currentDiagMessage =
+          'Olá, equipe Biotério Forte! Gostaria de agendar um diagnóstico técnico de consultoria.\n\n' +
+          'Perfil: ' + selectedProfile + '\n' +
+          'Frentes prioritárias:\n' + listText;
+
+        var waUrl = 'https://wa.me/5566996675486?text=' + encodeURIComponent(currentDiagMessage);
+        var mailUrl = 'mailto:founder@thotiacorp.com.br?subject=' +
+          encodeURIComponent('Diagnóstico de Consultoria (' + selectedProfile + ') | Biotério Forte') +
+          '&body=' + encodeURIComponent(currentDiagMessage);
+
+        if (diagWaBtn) diagWaBtn.setAttribute('href', waUrl);
+        if (diagEmailBtn) diagEmailBtn.setAttribute('href', mailUrl);
+      }
+
+      profileTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          profileTabs.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          selectedProfile = tab.getAttribute('data-profile') || 'Pesquisador / Pós-Graduação';
+          updateDiagnostic();
+        });
+      });
+
+      checkCards.forEach(function (card) {
+        var cb = card.querySelector('.diag-checkbox');
+        if (cb) {
+          cb.addEventListener('change', updateDiagnostic);
+        }
+      });
+
+      if (diagCopyBtn) {
+        diagCopyBtn.addEventListener('click', function () {
+          copyText(currentDiagMessage, 'Escopo técnico copiado!', diagCopyLabel, 'Copiar escopo técnico');
+        });
+      }
+
+      updateDiagnostic();
+
+      /* 7. Gerador Final de Briefing de Consultoria */
+      var bfInstitution = document.getElementById('bf-institution');
+      var bfUrgency = document.getElementById('bf-urgency');
+      var bfObjective = document.getElementById('bf-objective');
+
+      var sendBriefingWa = document.getElementById('send-briefing-wa');
+      var sendBriefingEmail = document.getElementById('send-briefing-email');
+      var copyBriefingBtn = document.getElementById('copy-briefing-btn');
+      var copyBriefingLabel = document.getElementById('copy-briefing-label');
+
+      function buildFinalBriefing() {
+        var inst = (bfInstitution && bfInstitution.value.trim()) ? bfInstitution.value.trim() : 'Não informada';
+        var urg = (bfUrgency && bfUrgency.value) ? bfUrgency.value : 'A definir';
+        var obj = (bfObjective && bfObjective.value.trim()) ? bfObjective.value.trim() : 'Gostaria de conversar sobre consultoria técnica para pesquisa com roedores.';
+
+        return (
+          'Olá, equipe Biotério Forte! Segue meu briefing para consultoria técnica:\n\n' +
+          '• Perfil: ' + selectedProfile + '\n' +
+          '• Instituição / Empresa: ' + inst + '\n' +
+          '• Urgência: ' + urg + '\n' +
+          '• Objetivo / Desafio técnico: ' + obj
+        );
+      }
+
+      if (sendBriefingWa) {
+        sendBriefingWa.addEventListener('click', function () {
+          var msg = buildFinalBriefing();
+          window.open('https://wa.me/5566996675486?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+        });
+      }
+
+      if (sendBriefingEmail) {
+        sendBriefingEmail.addEventListener('click', function () {
+          var msg = buildFinalBriefing();
+          var subject = encodeURIComponent('Briefing de Consultoria | Biotério Forte');
+          window.location.href = 'mailto:founder@thotiacorp.com.br?subject=' + subject + '&body=' + encodeURIComponent(msg);
+        });
+      }
+
+      if (copyBriefingBtn) {
+        copyBriefingBtn.addEventListener('click', function () {
+          copyText(buildFinalBriefing(), 'Briefing de consultoria copiado!', copyBriefingLabel, 'Copiar briefing');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

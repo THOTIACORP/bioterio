@@ -217,6 +217,19 @@ section{padding-block:4.5rem}
 .tag.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .tag.wip{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
 .partners ul{margin:0;padding-left:1.1rem;color:var(--muted);font-size:.95rem;display:flex;flex-direction:column;gap:.35rem}
+ .news-card{color:inherit;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s;display:grid;grid-template-columns:minmax(240px,.9fr) minmax(0,1.1fr);gap:0;padding:0;overflow:hidden;max-width:900px}
+ .news-card:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 12px 30px -20px color-mix(in srgb,var(--blue) 65%,transparent)}
+ .news-cover{display:block;width:100%;height:100%;min-height:260px;object-fit:cover;background:#102c54}
+ .news-body{display:flex;flex-direction:column;gap:.8rem;padding:clamp(1.2rem,3vw,2rem)}
+ .news-card .news-meta{display:flex;align-items:center;justify-content:space-between;gap:1rem;color:var(--muted);font-size:.82rem}
+ .news-card .news-count{display:flex;gap:.55rem;align-items:baseline;color:var(--blue);font-variant-numeric:tabular-nums}
+ .news-card .news-count b{font:700 1.8rem/1 var(--display)}
+ .news-card .read-more{margin-top:.2rem;color:var(--blue);font-weight:600;font-size:.9rem}
+ .news-headline-gradient{background:linear-gradient(90deg,#ca8a04,#dc2626);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+ :root[data-theme="dark"] .news-headline-gradient{background-image:linear-gradient(90deg,#ffd43b,#ff6262)}
+ @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .news-headline-gradient{background-image:linear-gradient(90deg,#ffd43b,#ff6262)}}
+ #noticias.news-embed{padding-block:2.2rem 0}
+ .news-showcase-frame{display:block;width:100%;height:900px;border:0;overflow:hidden}
 .band{background:var(--accent);color:var(--accent-fg);border-radius:32px;padding:clamp(2rem,6vw,4rem);text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.2rem;position:relative;overflow:hidden;isolation:isolate}
 .band::before{content:"";position:absolute;z-index:-1;inset:auto -10% -60% -10%;height:100%;background:radial-gradient(50% 60% at 30% 60%,#3b82f6,transparent 70%),radial-gradient(50% 60% at 75% 70%,#7dd3fc,transparent 70%);opacity:.5}
 .band p{max-width:none;opacity:.85}
@@ -771,7 +784,7 @@ footer p{max-width:none}
       <ol class="pbleg" id="pbleg" hidden></ol>
       <details class="galbox joined" id="galpl">
         <summary>
-          <span class="galbar"><span><b>Ver fotos da placa de validação</b><small>Primeiro o projeto, depois a placa real. Os sensores encaixam e desencaixam sem solda.</small></span><span class="galchev" aria-hidden="true"></span></span>
+          <span class="galbar"><span><b class="grad">Ver fotos da placa de validação</b><small>Primeiro o projeto, depois a placa real. Os sensores encaixam e desencaixam sem solda.</small></span><span class="galchev" aria-hidden="true"></span></span>
         </summary>
         <div class="galbody"><div class="gal" id="galpl2"></div></div>
       </details>
@@ -912,7 +925,7 @@ footer p{max-width:none}
       <details class="galbox" id="galbox">
         <summary>
           <span class="galhero"><img src="sim/destaque.jpg" alt="Mapa de tensão de von Mises do protetor da placa sob 100 N no topo" loading="lazy"><span class="galtag">Protetor da placa · 100 N no topo · folga 18</span></span>
-          <span class="galbar"><span><b>Ver as 56 simulações</b><small>Clique para abrir a galeria com filtros e imagens ampliadas</small></span><span class="galchev" aria-hidden="true"></span></span>
+          <span class="galbar"><span><b class="grad">Ver as 56 simulações</b><small>Clique para abrir a galeria com filtros e imagens ampliadas</small></span><span class="galchev" aria-hidden="true"></span></span>
         </summary>
         <div class="galbody">
         <div class="gtools" id="gtools" role="group" aria-label="Filtros">
@@ -928,7 +941,7 @@ footer p{max-width:none}
       <div class="card matcompare" id="matcompare">
         <div>
           <span class="eyebrow">Materiais de impress&atilde;o</span>
-          <h3>Compare outros materiais com o ABS</h3>
+          <h3><span class="grad verde">Compare outros materiais com o ABS</span></h3>
           <p>Escolha uma pe&ccedil;a e um material para estimar a mudan&ccedil;a na resist&ecirc;ncia e na flexibilidade.</p>
         </div>
         <div class="matfields">
@@ -985,10 +998,25 @@ footer p{max-width:none}
       </div>
     </section>
 
+    <section id="faq">
+      <div class="head faqhead">
+        <span class="pill neon" style="margin-bottom:0">Perguntas frequentes</span>
+        <h2 class="grad quente">Dúvidas técnicas e institucionais</h2>
+      </div>
+      <div class="faql">
+        <details class="faqi"><summary>O sistema exige a troca das estantes ventiladas atuais do laboratório?<span class="faqx" aria-hidden="true"></span></summary>
+          <p>Não. O Biotério Forte V2 foi projetado com encaixe modular compatível com as caixas-moradia padrão usadas na rede REBIOTERIO, permitindo modernizar a infraestrutura existente sem descartar estantes ou caixas.</p></details>
+        <details class="faqi"><summary>Como funciona a higienização e a esterilização das tampas?<span class="faqx" aria-hidden="true"></span></summary>
+          <p>O módulo eletrônico e óptico sai sem ferramentas, graças aos conectores de encaixe rápido. Sem ele, a estrutura em ABS e os alojamentos do filtro passam pela lavagem e desinfecção química de rotina do biotério. O que pode ir à autoclave depende do material da peça. O ABS não deve ir à autoclave, porque amolece acima de cerca de 86 °C. O Tritan HT, usado na versão transparente, aguenta mais calor (transição vítrea de 99 °C e deflexão térmica de 100 a 110 °C), mas ainda fica abaixo dos 121 °C de um ciclo comum de autoclave, por isso só deve ser autoclavado depois de testes prévios. A versão compatível com autoclave está em desenvolvimento, como descrito em Resultados.</p></details>
+        <details class="faqi"><summary>O projeto pode ser adquirido com verba de editais de fomento (FINEP, CNPq, FAPs)?<span class="faqx" aria-hidden="true"></span></summary>
+          <p>Sim. Fornecemos memorial descritivo técnico completo, justificativa de alinhamento aos princípios dos 3Rs (Refinamento) e suporte documental para inclusão em projetos de pesquisa e de infraestrutura multiusuário.</p></details>
+      </div>
+ </section>
+
     <section id="parcerias" class="partners">
       <div class="head">
         <span class="eyebrow">Parcerias</span>
-        <h2>Três formas de entrar no projeto</h2>
+        <h2>Três formas de <span class="grad verde">entrar no projeto</span></h2>
         <p>Estamos na fase de levar o protótipo para uso real. Procuramos quem queira testar, produzir ou apoiar.</p>
       </div>
       <div class="grid3">
@@ -1000,22 +1028,6 @@ footer p{max-width:none}
           <ul><li>Escala do piloto e novos ensaios</li><li>Ensaios mecânicos para validar o modelo</li><li>Formação de pessoas</li></ul></div>
       </div>
     </section>
-
-    <section id="faq">
-      <div class="head faqhead">
-        <span class="pill neon" style="margin-bottom:0">Perguntas frequentes</span>
-        <h2>Dúvidas técnicas e institucionais</h2>
-      </div>
-      <div class="faql">
-        <details class="faqi"><summary>O sistema exige a troca das estantes ventiladas atuais do laboratório?<span class="faqx" aria-hidden="true"></span></summary>
-          <p>Não. O Biotério Forte V2 foi projetado com encaixe modular compatível com as caixas-moradia padrão usadas na rede REBIOTERIO, permitindo modernizar a infraestrutura existente sem descartar estantes ou caixas.</p></details>
-        <details class="faqi"><summary>Como funciona a higienização e a esterilização das tampas?<span class="faqx" aria-hidden="true"></span></summary>
-          <p>O módulo eletrônico e óptico sai sem ferramentas, graças aos conectores de encaixe rápido. Sem ele, a estrutura em ABS e os alojamentos do filtro passam pela lavagem e desinfecção química de rotina do biotério. O que pode ir à autoclave depende do material da peça. O ABS não deve ir à autoclave, porque amolece acima de cerca de 86 °C. O Tritan HT, usado na versão transparente, aguenta mais calor (transição vítrea de 99 °C e deflexão térmica de 100 a 110 °C), mas ainda fica abaixo dos 121 °C de um ciclo comum de autoclave, por isso só deve ser autoclavado depois de testes prévios. A versão compatível com autoclave está em desenvolvimento, como descrito em Resultados.</p></details>
-        <details class="faqi"><summary>O projeto pode ser adquirido com verba de editais de fomento (FINEP, CNPq, FAPs)?<span class="faqx" aria-hidden="true"></span></summary>
-          <p>Sim. Fornecemos memorial descritivo técnico completo, justificativa de alinhamento aos princípios dos 3Rs (Refinamento) e suporte documental para inclusão em projetos de pesquisa e de infraestrutura multiusuário.</p></details>
-      </div>
-    </section>
-
     <section id="contato" style="padding-block:1rem 0">
       <div class="band">
         <span class="eyebrow" style="color:inherit;opacity:.7">Contato</span>
@@ -1039,21 +1051,24 @@ footer p{max-width:none}
         <article class="mb"><div class="tmav"><img src="equipe/leonardo.jpg" alt="Foto de Leonardo Rodrigues" width="104" height="104" loading="lazy" decoding="async"></div><h3>Leonardo Rodrigues</h3><span class="rl">Engenheiro de Software </span><p>Bolsista desenvolvedor de softwares do projeto Biot&eacute;rio Forte.</p><a class="in" href="https://www.linkedin.com/in/leonardorodrisantos/" target="_blank" rel="noopener" aria-label="LinkedIn de Leonardo Rodrigues"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg><span>LinkedIn</span></a></article>
       </div>
       <div class="carc"><button type="button" class="cb" id="tprev" aria-label="Anterior"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dots" id="tdots" aria-hidden="true"></div><button type="button" class="cb" id="tnext" aria-label="Próximo"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
-          <div class="supportmarks" aria-label="Institui&ccedil;&otilde;es apoiadoras">
-        <p class="support-label">Apoio institucional</p>
-        <div class="support-logos">
-          <a class="support-logo" href="https://www.gov.br/cnpq/pt-br" target="_blank" rel="noopener noreferrer" aria-label="CNPq, Conselho Nacional de Desenvolvimento Cient&iacute;fico e Tecnol&oacute;gico">
-            <img src="img/apoio/cnpq.png" alt="CNPq">
-          </a>
-          <a class="support-logo" href="https://www.finep.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="Finep, Financiadora de Estudos e Projetos">
-            <img src="img/apoio/finep.png" alt="Finep &mdash; Inova&ccedil;&atilde;o e Pesquisa">
-          </a>
-          <a class="support-logo" href="https://www.fapemat.mt.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="FAPEMAT, Funda&ccedil;&atilde;o de Amparo &agrave; Pesquisa do Estado de Mato Grosso">
-            <img src="img/apoio/fapemat.jpg" alt="FAPEMAT e Governo de Mato Grosso">
-          </a>
-        </div>
+    </section>
+    <section id="noticias" class="news-embed" aria-label="Vitrine editorial de notícias">
+      <iframe class="news-showcase-frame" id="news-showcase-frame" src="noticias/biot_rio_forte_vitrine_editorial_carrossel_de_not_cias.html?embed=1" title="Vitrine editorial e carrossel de notícias do Biotério Forte" loading="lazy"></iframe>
+    </section>
+    <div class="supportmarks" aria-label="Institui&ccedil;&otilde;es apoiadoras">
+      <p class="support-label">Apoio institucional</p>
+      <div class="support-logos">
+        <a class="support-logo" href="https://www.gov.br/cnpq/pt-br" target="_blank" rel="noopener noreferrer" aria-label="CNPq, Conselho Nacional de Desenvolvimento Cient&iacute;fico e Tecnol&oacute;gico">
+          <img src="img/apoio/cnpq.png" alt="CNPq">
+        </a>
+        <a class="support-logo" href="https://www.finep.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="Finep, Financiadora de Estudos e Projetos">
+          <img src="img/apoio/finep.png" alt="Finep &mdash; Inova&ccedil;&atilde;o e Pesquisa">
+        </a>
+        <a class="support-logo" href="https://www.fapemat.mt.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="FAPEMAT, Funda&ccedil;&atilde;o de Amparo &agrave; Pesquisa do Estado de Mato Grosso">
+          <img src="img/apoio/fapemat.jpg" alt="FAPEMAT e Governo de Mato Grosso">
+        </a>
       </div>
-</section>
+    </div>
   </main>
 
   <footer>
@@ -1928,6 +1943,9 @@ var ab=cx*n*30,h=ab*mi/60,fte=h/176;document.getElementById('mvy').textContent='
 document.getElementById('mvhs').textContent='de trabalho técnico por mês'+(fte>=0.1?', cerca de '+f(fte,1)+(fte>=1.95?' pessoas':' pessoa')+' em tempo integral':'');
 var p=n*mi/1440*100;document.getElementById('mvc').textContent=(p<1?f(p,1):f(Math.round(p)))+'%'}
 [r,b,m].forEach(function(e){e.addEventListener('input',u)});u()})();
+</script>
+<script>
+(function(){var f=document.getElementById('news-showcase-frame');if(!f)return;function fit(){try{var d=f.contentDocument;if(d)f.style.height=Math.max(d.documentElement.scrollHeight,d.body.scrollHeight)+'px'}catch(e){}}f.addEventListener('load',function(){fit();try{var d=f.contentDocument,R=f.contentWindow.ResizeObserver;if(R&&d)new R(fit).observe(d.documentElement)}catch(e){}});window.addEventListener('resize',fit)})();
 </script>
 </body>
 </html>
