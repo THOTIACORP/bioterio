@@ -9,9 +9,9 @@
   <meta property="og:site_name" content="Biotério Forte">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Imprimimos a V1 em PLA com o LabMaer (UFR) e levamos para a Campus Party. O jogo mudou. | Biotério Forte">
-    <meta property="og:image" content="https://bioterioforte.com.br/img/V1/IMG-20220713-WA0010.jpg">
-  <meta property="og:image:alt" content="Protótipo V1 do Biotério Forte impresso em PLA">
-  <meta name="twitter:image" content="https://bioterioforte.com.br/img/V1/IMG-20220713-WA0010.jpg">
+    <meta property="og:image" content="https://bioterioforte.com.br/img/cp/363302183_6406956789395811_2084076505473637957_n.jpg">
+  <meta property="og:image:alt" content="Estande do Biotério Forte com o protótipo V1 na Campus Party">
+  <meta name="twitter:image" content="https://bioterioforte.com.br/img/cp/363302183_6406956789395811_2084076505473637957_n.jpg">
   <meta name="twitter:card" content="summary_large_image">
 <meta property="og:description" content="Com auxílio externo da UFR, a primeira versão física do Biotério Forte ganhou forma em PLA e foi à Campus Party Brasil com a tese de IA, sensores e redução de até 3/4 no uso de animais.">
   <title>Imprimimos a V1 em PLA com o LabMaer (UFR) e levamos para a Campus Party | Biotério Forte</title>
@@ -1016,6 +1016,72 @@
       .unic-test-slide figcaption { left: .65rem; bottom: .65rem; font-size: .68rem; }
     }
 
+    .cp-gallery-carousel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, var(--surface-soft), var(--chip));
+    }
+    .cp-gallery-slide {
+      display: none;
+      position: relative;
+      min-height: clamp(360px, 55vw, 680px);
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .cp-gallery-slide.is-active { display: flex; }
+    .cp-gallery-carousel img {
+      display: block;
+      width: 100%;
+      height: clamp(360px, 55vw, 680px);
+      object-fit: contain;
+    }
+    .cp-gallery-slide figcaption {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      padding: .45rem .75rem;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(15,27,51,.78);
+      color: #fff;
+      font: 500 .76rem var(--body);
+      backdrop-filter: blur(8px);
+    }
+    .cp-gallery-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 50%;
+      background: rgba(15,27,51,.74);
+      color: #fff;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background .18s ease, transform .18s ease;
+    }
+    .cp-gallery-arrow:hover { background: var(--blue); transform: translateY(-50%) scale(1.06); }
+    .cp-gallery-arrow.prev { left: 1rem; }
+    .cp-gallery-arrow.next { right: 1rem; }
+    .cp-gallery-controls { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-top: .85rem; }
+    .cp-gallery-dots { display: flex; align-items: center; gap: .45rem; }
+    .cp-gallery-dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: var(--line); cursor: pointer; transition: width .2s ease, background .2s ease; }
+    .cp-gallery-dot.is-active { width: 28px; background: var(--blue); }
+    .cp-gallery-count { min-width: 3.5rem; color: var(--muted); font: 500 .76rem var(--mono); text-align: center; }
+    @media (max-width: 640px) {
+      .cp-gallery-slide, .cp-gallery-carousel img { height: min(118vw, 560px); min-height: 320px; }
+      .cp-gallery-arrow { width: 40px; height: 40px; }
+      .cp-gallery-arrow.prev { left: .65rem; }
+      .cp-gallery-arrow.next { right: .65rem; }
+      .cp-gallery-slide figcaption { left: .65rem; bottom: .65rem; font-size: .68rem; }
+    }
+
     .media-gallery-section {
       margin-top: 2.2rem;
       padding: 1.4rem;
@@ -1509,7 +1575,64 @@
         Com auxílio externo da Universidade Federal de Rondonópolis (UFR), por meio do LabMaer, tiramos a primeira concepção física do Biotério Forte do papel em impressão 3D PLA e levamos essa visão para a Campus Party Brasil — unindo hardware acessível, sensores multimodais e inteligência artificial da THOT IA CORP para reduzir em até 3/4 o uso de animais em pesquisa.
       </p>
     </section>
-
+ <section class="unic-test-card reveal" aria-label="Fotos da equipe do Biot&eacute;rio Forte na Campus Party Brasil">
+        <div class="gallery-top">
+          <div>
+            <span class="section-kicker">CAMPUS PARTY BRASIL &middot; 2023</span>
+            <h3>A equipe e a V1 no estande da Campus Party</h3>
+            <p>Registros da apresenta&ccedil;&atilde;o, do prot&oacute;tipo e das conversas com o p&uacute;blico durante o evento.</p>
+          </div>
+        </div>
+        <div class="cp-gallery-carousel" id="cp-gallery-carousel" role="region" aria-roledescription="carrossel" aria-label="Fotos da equipe na Campus Party Brasil">
+          <figure class="cp-gallery-slide is-active" aria-label="Foto 1 de 8" aria-hidden="false">
+            <img src="../img/cp/363302183_6406956789395811_2084076505473637957_n.jpg" alt="Vista geral do estande do Biot&eacute;rio Forte com a V1 na Campus Party" fetchpriority="high" decoding="async">
+            <figcaption>O estande do Biot&eacute;rio Forte e o prot&oacute;tipo V1</figcaption>
+          </figure>
+          <figure class="cp-gallery-slide" aria-label="Foto 2 de 8" aria-hidden="true">
+            <img src="../img/cp/363354288_6406956802729143_5740403472893384112_n.jpg" alt="Integrante da equipe ao lado da V1 e da identidade visual do Biot&eacute;rio Forte" loading="lazy" decoding="async">
+            <figcaption>Equipe e prot&oacute;tipo no espa&ccedil;o Campus Future</figcaption>
+          </figure>
+          <figure class="cp-gallery-slide" aria-label="Foto 3 de 8" aria-hidden="true">
+            <img src="../img/cp/363447993_6406956796062477_3538817021130443799_n.jpg" alt="Detalhe da V1 e do material de apresenta&ccedil;&atilde;o no estande" loading="lazy" decoding="async">
+            <figcaption>Detalhe da montagem apresentada ao p&uacute;blico</figcaption>
+          </figure>
+          <figure class="cp-gallery-slide" aria-label="Foto 4 de 8" aria-hidden="true">
+            <img src="../img/cp/363949776_6406956799395810_4067579961394706479_n.jpg" alt="Membro da equipe apresenta o projeto com a V1 e o material no notebook" loading="lazy" decoding="async">
+            <figcaption>Apresenta&ccedil;&atilde;o do projeto e dos m&oacute;dulos</figcaption>
+          </figure>
+          <figure class="cp-gallery-slide" aria-label="Foto 5 de 8" aria-hidden="true">
+            <img src="../img/cp/363966250_6406956812729142_6113006363825073933_n.jpg" alt="Estande do Biot&eacute;rio Forte e prot&oacute;tipo durante a Campus Party" loading="lazy" decoding="async">
+            <figcaption>O prot&oacute;tipo exposto durante o evento</figcaption>
+          </figure>
+          <figure class="cp-gallery-slide" aria-label="Foto 6 de 8" aria-hidden="true">
+            <img src="../img/cp/363967825_6406956792729144_1598431555010183986_n.jpg" alt="Equipe registra a participa&ccedil;&atilde;o na Campus Party junto ao estande" loading="lazy" decoding="async">
+            <figcaption>Registro da equipe na Campus Party</figcaption>
+          </figure>
+          <figure class="cp-gallery-slide" aria-label="Foto 7 de 8" aria-hidden="true">
+            <img src="../img/cp/364003782_6406956809395809_713859140554056138_n.jpg" alt="Banner do Biot&eacute;rio Forte, notebook com o artigo e caixa V1 no estande" loading="lazy" decoding="async">
+            <figcaption>Banner, artigo e V1 no estande</figcaption>
+          </figure>
+          <figure class="cp-gallery-slide" aria-label="Foto 8 de 8" aria-hidden="true">
+            <img src="../img/cp/364025167_6406956806062476_6699631416170600774_n.jpg" alt="Integrante da equipe em frente &agrave; identidade visual do Biot&eacute;rio Forte" loading="lazy" decoding="async">
+            <figcaption>Equipe representando o projeto no evento</figcaption>
+          </figure>
+          <button class="cp-gallery-arrow prev" id="cp-gallery-prev" type="button" aria-label="Foto anterior"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+          <button class="cp-gallery-arrow next" id="cp-gallery-next" type="button" aria-label="Pr&oacute;xima foto"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+        </div>
+        <div class="cp-gallery-controls" aria-label="Navega&ccedil;&atilde;o das fotos da Campus Party">
+          <span class="cp-gallery-count" id="cp-gallery-count" aria-live="polite">1 / 8</span>
+          <div class="cp-gallery-dots" role="group" aria-label="Selecionar foto da Campus Party">
+            <button class="cp-gallery-dot is-active" type="button" data-cp-slide="0" aria-label="Mostrar foto 1" aria-current="true"></button>
+            <button class="cp-gallery-dot" type="button" data-cp-slide="1" aria-label="Mostrar foto 2" aria-current="false"></button>
+            <button class="cp-gallery-dot" type="button" data-cp-slide="2" aria-label="Mostrar foto 3" aria-current="false"></button>
+            <button class="cp-gallery-dot" type="button" data-cp-slide="3" aria-label="Mostrar foto 4" aria-current="false"></button>
+            <button class="cp-gallery-dot" type="button" data-cp-slide="4" aria-label="Mostrar foto 5" aria-current="false"></button>
+            <button class="cp-gallery-dot" type="button" data-cp-slide="5" aria-label="Mostrar foto 6" aria-current="false"></button>
+            <button class="cp-gallery-dot" type="button" data-cp-slide="6" aria-label="Mostrar foto 7" aria-current="false"></button>
+            <button class="cp-gallery-dot" type="button" data-cp-slide="7" aria-label="Mostrar foto 8" aria-current="false"></button>
+          </div>
+        </div>
+      </section>
     <!-- 3 Cards de Métricas com Spotlight e Contadores Animados -->
     <section class="stat-grid reveal" aria-label="Destaques da concepção V1 e monitoramento por IA">
       <!-- Card 1 -->
@@ -1867,6 +1990,8 @@
         </div>
       </section>
 
+     
+
       <!-- Bloco de Conversão / CTA & Link do Artigo na Campus Party -->
       <section class="cta-box reveal">
         <h2>Quer ver o artigo completo, trocar ideia sobre IA ou validar no seu biotério?</h2>
@@ -1977,6 +2102,33 @@
       });
 
       /* 1. Alternância de tema Claro/Escuro persistente */
+      var cpSlides = Array.prototype.slice.call(document.querySelectorAll('.cp-gallery-slide'));
+      var cpDots = Array.prototype.slice.call(document.querySelectorAll('.cp-gallery-dot'));
+      var cpCount = document.getElementById('cp-gallery-count');
+      var cpIndex = 0;
+      function showCampusPhoto(index) {
+        if (!cpSlides.length) return;
+        cpIndex = (index + cpSlides.length) % cpSlides.length;
+        cpSlides.forEach(function (slide, i) {
+          var active = i === cpIndex;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        cpDots.forEach(function (dot, i) {
+          var active = i === cpIndex;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+        if (cpCount) cpCount.textContent = (cpIndex + 1) + ' / ' + cpSlides.length;
+      }
+      var cpPrev = document.getElementById('cp-gallery-prev');
+      var cpNext = document.getElementById('cp-gallery-next');
+      if (cpPrev) cpPrev.addEventListener('click', function () { showCampusPhoto(cpIndex - 1); });
+      if (cpNext) cpNext.addEventListener('click', function () { showCampusPhoto(cpIndex + 1); });
+      cpDots.forEach(function (dot) {
+        dot.addEventListener('click', function () { showCampusPhoto(parseInt(dot.getAttribute('data-cp-slide'), 10)); });
+      });
+
       var themeToggle = document.getElementById('theme-toggle');
       if (themeToggle) {
         themeToggle.addEventListener('click', function () {
