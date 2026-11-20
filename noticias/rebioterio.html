@@ -11,6 +11,9 @@
   <meta property="og:title" content="26 contatos. 2 respostas. O diálogo precisa avançar. | Biotério Forte">
   <meta property="og:description" content="O retorno por e-mail foi de 7,7%. Um sinal para tornar a comunicação do projeto mais clara e abrir novas conversas com biotérios.">
   <meta property="og:image" content="https://bioterioforte.com.br/noticias/rebioterio.svg">
+  <meta property="og:image:alt" content="Biotério Forte | rebioterio">
+  <meta name="twitter:image" content="https://bioterioforte.com.br/noticias/rebioterio.svg">
+  <meta name="twitter:card" content="summary_large_image">
   <title>26 contatos. 2 respostas. O diálogo precisa avançar. | Biotério Forte</title>
 
   <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
@@ -69,13 +72,19 @@
 
     .news-layout {
       box-sizing: border-box;
-      width: min(100%, 1000px);
+      width: min(100%, 1240px);
       margin-inline: auto;
       padding-inline: 20px;
     }
 
     .news-article-copy {
       width: 100%;
+      max-width: none;
+    }
+
+    .news-layout > section h1,
+    .news-layout > section > p,
+    .news-article-copy .max-w-3xl {
       max-width: none;
     }
 

@@ -8,7 +8,11 @@
     content="Vitrine editorial do Biotério Forte: explore nossas análises sobre diálogo científico na REBIOTERIO, rigor metodológico DBCA e infraestrutura nos biotérios brasileiros.">
   <title>Notícias & Editoriais | Biotério Forte</title>
 
-  <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
+    <meta property="og:image" content="https://bioterioforte.com.br/img/V1/IMG-20220713-WA0010.jpg">
+  <meta property="og:image:alt" content="Vitrine de notícias do projeto Biotério Forte">
+  <meta name="twitter:image" content="https://bioterioforte.com.br/img/V1/IMG-20220713-WA0010.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+<!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
@@ -446,6 +450,11 @@
       scroll-behavior: smooth;
       scrollbar-width: none;
       padding: 0.75rem 0 1.25rem;
+    }
+
+    .carousel-track::after {
+      content: "";
+      flex: 0 0 calc((100% - ((100% - 2.5rem) / 3)) / 2);
     }
 
     .carousel-track::-webkit-scrollbar {
@@ -1024,6 +1033,10 @@
         scroll-snap-align: center;
       }
 
+      .carousel-track::after {
+        flex-basis: calc((100% - min(86vw, 420px)) / 2);
+      }
+
       .news-card.is-active {
         transform: none;
       }
@@ -1501,21 +1514,63 @@
           </div>
         </article>
 
+        <article class="news-card spotlight-card" data-index="5" tabindex="0" aria-label="Not&iacute;cia: Biot&eacute;rio Forte premiado no Programa Centelha MT.">
+          <span class="active-indicator-bar" aria-hidden="true"></span>
+          <div class="card-visual-stage photo-stage"><img class="card-svg card-photo" src="../img/centelha/494700117_9590792584345533_4300117036275767202_n.jpg" alt="Equipe recebe o reconhecimento do Programa Centelha MT no palco" loading="lazy" decoding="async" style="object-position:center 40%"></div>
+          <div class="card-body">
+            <span class="card-tag">CENTELHA MT &middot; CONCEP&Ccedil;&Atilde;O V1</span>
+            <h2 class="card-title">Centelha MT reconhece a concep&ccedil;&atilde;o do Biot&eacute;rio Forte V1.</h2>
+            <p class="card-excerpt">O Centelha MT marcou a passagem do projeto te&oacute;rico para a concep&ccedil;&atilde;o da V1. A prototipagem em PLA e a V2 vieram depois.</p>
+          </div>
+          <div class="card-footer">
+            <button type="button" class="quick-read-btn" data-modal-index="5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span>Leitura r&aacute;pida</span>
+            </button>
+            <a class="full-article-link" href="biot_rio_forte_premia_o_no_programa_centelha_mt.html" target="_top">
+              <span>Ler artigo completo</span><span class="link-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="news-card spotlight-card" data-index="6" tabindex="0" aria-label="Not&iacute;cia: O que carne de alta qualidade tem a ver com ratos? IBeef -Tudo...">
+          <span class="active-indicator-bar" aria-hidden="true"></span>
+          <div class="card-visual-stage photo-stage"><img class="card-svg card-photo" src="../img/carne/493411490_9577433962348062_3587090506674268379_n%20(1).jpg" alt="Apresenta&ccedil;&atilde;o do Biot&eacute;rio Forte em evento do Senar Mato Grosso" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <span class="card-tag">ONE HEALTH &middot; AGROPECU&Aacute;RIA</span>
+            <h2 class="card-title">O que carne de alta qualidade tem a ver com ratos? IBeef - Tudo.</h2>
+            <p class="card-excerpt">A qualidade da pesquisa pr&eacute;-cl&iacute;nica tamb&eacute;m influencia protocolos veterin&aacute;rios, sanidade e produ&ccedil;&atilde;o animal.</p>
+          </div>
+          <div class="card-footer">
+            <button type="button" class="quick-read-btn" data-modal-index="6">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span>Leitura r&aacute;pida</span>
+            </button>
+            <a class="full-article-link" href="biot_rio_forte_o_que_carne_de_alta_qualidade_tem_a_ver_com_ratos.html" target="_top">
+              <span>Ler artigo completo</span><span class="link-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
       </div>
     </div>
 
     <!-- Paginação Inferior (Dots + Dica de Teclado) -->
     <div class="carousel-pagination">
       <div class="dots-group" role="tablist" aria-label="Selecionar notícia em destaque">
-        <button class="carousel-dot is-active" type="button" data-dot="0" aria-label="Not&iacute;cia 1 de 5"
+        <button class="carousel-dot is-active" type="button" data-dot="0" aria-label="Not&iacute;cia 1 de 7"
           aria-selected="true"></button>
-        <button class="carousel-dot" type="button" data-dot="1" aria-label="Not&iacute;cia 2 de 5"
+        <button class="carousel-dot" type="button" data-dot="1" aria-label="Not&iacute;cia 2 de 7"
           aria-selected="false"></button>
-        <button class="carousel-dot" type="button" data-dot="2" aria-label="Not&iacute;cia 3 de 5"
+        <button class="carousel-dot" type="button" data-dot="2" aria-label="Not&iacute;cia 3 de 7"
           aria-selected="false"></button>
-        <button class="carousel-dot" type="button" data-dot="3" aria-label="Not&iacute;cia 4 de 5"
+        <button class="carousel-dot" type="button" data-dot="3" aria-label="Not&iacute;cia 4 de 7"
           aria-selected="false"></button>
-        <button class="carousel-dot" type="button" data-dot="4" aria-label="Not&iacute;cia 5 de 5"
+        <button class="carousel-dot" type="button" data-dot="4" aria-label="Not&iacute;cia 5 de 7"
+          aria-selected="false"></button>
+        <button class="carousel-dot" type="button" data-dot="5" aria-label="Not&iacute;cia 6 de 7"
+          aria-selected="false"></button>
+        <button class="carousel-dot" type="button" data-dot="6" aria-label="Not&iacute;cia 7 de 7"
           aria-selected="false"></button>
       </div>
 
@@ -1655,13 +1710,39 @@
         href: 'biot_rio_forte_v1_em_pla_labmaer_ufr_campus_party_brasil.html'
       });
 
+      articlesData.push({
+        tag: 'CENTELHA MT \u00b7 CONCEP\u00c7\u00c3O V1',
+        title: 'Centelha MT reconhece a concep\u00e7\u00e3o do Biot\u00e9rio Forte V1.',
+        metric: 'Concep\u00e7\u00e3o do Biot\u00e9rio Forte V1 reconhecida pelo Programa Centelha MT',
+        summary: 'O Programa Centelha MT reconheceu a concep\u00e7\u00e3o inicial do Biot\u00e9rio Forte V1 e marcou a passagem do projeto da teoria ao desenvolvimento da primeira vers\u00e3o. A prototipagem em PLA e a V2 vieram depois.',
+        bullets: [
+          'O reconhecimento do Centelha MT foi pela concep\u00e7\u00e3o inicial da V1.',
+          'O fomento marcou a passagem do projeto te\u00f3rico ao desenvolvimento da primeira vers\u00e3o.',
+          'A prototipagem em PLA, a apresenta\u00e7\u00e3o na Campus Party e a evolu\u00e7\u00e3o para a V2 aconteceram depois.'
+        ],
+        href: 'biot_rio_forte_premia_o_no_programa_centelha_mt.html'
+      });
+
+      articlesData.push({
+        tag: 'ONE HEALTH \u00b7 AGROPECU\u00c1RIA',
+        title: 'O que carne de alta qualidade tem a ver com ratos? Tudo.',
+        metric: 'Pesquisa pr\u00e9-cl\u00ednica, sanidade animal e qualidade da carne',
+        summary: 'A qualidade da carne tamb\u00e9m depende da ci\u00eancia que orienta a sa\u00fade animal. O artigo conecta pesquisa pr\u00e9-cl\u00ednica em roedores, protocolos veterin\u00e1rios e a cadeia agropecu\u00e1ria.',
+        bullets: [
+          'Modelos murinos ajudam a estudar medicamentos, suplementos e protocolos veterin\u00e1rios antes de sua aplica\u00e7\u00e3o no rebanho.',
+          'Condi\u00e7\u00f5es experimentais bem controladas fortalecem a qualidade e a reprodutibilidade dos dados.',
+          'O artigo relata a apresenta\u00e7\u00e3o do Biot\u00e9rio Forte em encontros de divulga\u00e7\u00e3o agropecu\u00e1ria.'
+        ],
+        href: 'biot_rio_forte_o_que_carne_de_alta_qualidade_tem_a_ver_com_ratos.html'
+      });
+
       var track = document.getElementById('carousel-track');
       var viewport = document.getElementById('carousel-viewport');
       var firstCard = track && track.querySelector('.news-card[data-index="0"]');
-      var featuredCard = track && track.querySelector('.news-card[data-index="3"]');
+      var featuredCard = track && track.querySelector('.news-card[data-index="5"]');
       if (firstCard && featuredCard && articlesData.length > 3) {
         track.insertBefore(featuredCard, firstCard);
-        articlesData.unshift(articlesData.splice(3, 1)[0]);
+        articlesData.unshift(articlesData.splice(5, 1)[0]);
       }
       var cards = Array.prototype.slice.call(document.querySelectorAll('.news-card'));
       cards.forEach(function (card, index) {

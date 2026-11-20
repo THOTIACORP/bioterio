@@ -1,0 +1,1920 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O dia em que levamos o Biotério Forte para uma apresentação sobre qualidade da carne na agropecuária. Entenda por que os ratos são a porta de entrada de quase toda medicação, suplemento e protocolo veterinário.">
+  <link rel="canonical" href="https://bioterioforte.com.br/noticias/agropecuaria-qualidade-carne.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Biotério Forte">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="O que carne de alta qualidade tem a ver com ratos? Tudo. | Biotério Forte">
+    <meta property="og:image" content="https://bioterioforte.com.br/img/carne/493411490_9577433962348062_3587090506674268379_n%20(1).jpg">
+  <meta property="og:image:alt" content="Apresentação do Biotério Forte em evento agropecuário">
+  <meta name="twitter:image" content="https://bioterioforte.com.br/img/carne/493411490_9577433962348062_3587090506674268379_n%20(1).jpg">
+  <meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Os ratos são a porta de entrada de quase toda medicação, suplemento e protocolo veterinário antes de chegar ao rebanho. Conheça a conexão One Health entre biotério e pecuária.">
+  <title>O que carne de alta qualidade tem a ver com ratos? IBeef - Tudo | Biotério Forte</title>
+
+  <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & PALETA EDITORIAL (LIGHT / DARK)
+       ========================================================================== */
+    :root {
+      color-scheme: light;
+      --bg: #f3f8fe;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --fg: #0e2238;
+      --muted: #566b82;
+      --line: #dbe7f5;
+      --blue: #2f6fe4;
+      --blue-soft: rgba(47, 111, 228, 0.08);
+      --chip: #e8f1fc;
+      --ok: #14804f;
+      --ok-soft: rgba(20, 128, 79, 0.12);
+      --warn: #d97706;
+      --warn-soft: rgba(217, 119, 6, 0.12);
+      --danger: #dc2626;
+      --danger-soft: rgba(220, 38, 38, 0.10);
+      --grid-line: rgba(47, 111, 228, 0.045);
+      --shadow-card: 0 12px 36px -10px rgba(14, 34, 56, 0.08);
+      --header-bg: rgba(243, 248, 254, 0.84);
+      --display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+    }
+
+    html.dark {
+      color-scheme: dark;
+      --bg: #0a1626;
+      --surface: #102036;
+      --surface-soft: #0d1b2f;
+      --fg: #e8f1fc;
+      --muted: #92a8c2;
+      --line: #1d3350;
+      --blue: #6ea3ff;
+      --blue-soft: rgba(110, 163, 255, 0.12);
+      --chip: #17304d;
+      --ok: #5fd09a;
+      --ok-soft: rgba(95, 208, 154, 0.14);
+      --warn: #fbbf24;
+      --warn-soft: rgba(251, 191, 36, 0.14);
+      --danger: #f87171;
+      --danger-soft: rgba(248, 113, 113, 0.14);
+      --grid-line: rgba(110, 163, 255, 0.045);
+      --shadow-card: 0 14px 40px -10px rgba(0, 0, 0, 0.45);
+      --header-bg: rgba(10, 22, 38, 0.84);
+    }
+
+    /* ==========================================================================
+       RESET & ESTRUTURA BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font: 400 16px/1.68 var(--body);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grade técnica sutil de laboratório no fundo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Luz ambiente radial suave no topo */
+    .ambient-glow {
+      position: fixed;
+      top: -190px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(880px, 125vw);
+      height: 460px;
+      background: radial-gradient(ellipse at center, rgba(217, 119, 6, 0.12) 0%, rgba(47, 111, 228, 0.09) 48%, transparent 74%);
+      filter: blur(44px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .wrap {
+      width: min(100% - 40px, 1240px);
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       BARRA DE PROGRESSO DE LEITURA FIXA
+       ========================================================================== */
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 100;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ca8a04, #ea580c, #dc2626);
+      border-radius: 0 999px 999px 0;
+      transition: width 0.08s ease-out;
+    }
+
+    /* ==========================================================================
+       CABEÇALHO STICKY
+       ========================================================================== */
+    .header-shell {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    header.wrap.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-block: 0.95rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font: 700 1.12rem var(--display);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.28);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .brand:hover .brand-icon {
+      transform: scale(1.06) rotate(-3deg);
+    }
+
+    .brand-pulse {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid var(--bg);
+      animation: pulseDot 2.4s infinite;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .back:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .back-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .back:hover .back-arrow {
+      transform: translateX(-3px);
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+      box-shadow: 0 4px 12px rgba(47, 111, 228, 0.12);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.94);
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun { display: block; }
+    html.dark .icon-moon { display: none; }
+
+    /* ==========================================================================
+       HERO EDITORIAL
+       ========================================================================== */
+    main {
+      padding-block: clamp(2.8rem, 7vw, 5.2rem) clamp(4rem, 9vw, 6.5rem);
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.42rem 0.92rem;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 0 rgba(20, 128, 79, 0.5);
+      animation: radarPing 2.2s infinite;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      max-width: none;
+      margin: 1.15rem 0 1.25rem;
+      font-size: clamp(2.15rem, 5.8vw, 3.85rem);
+      font-weight: 700;
+    }
+
+    .headline-gradient {
+      background: linear-gradient(95deg, #2f6fe4 0%, #20bd86 52%, #14804f 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html.dark .headline-gradient {
+      background-image: linear-gradient(95deg, #82b1ff 0%, #52ddb0 52%, #39c77b 100%);
+    }
+
+    .intro {
+      max-width: none;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 2.2vw, 1.16rem);
+      line-height: 1.74;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    /* ==========================================================================
+       3 CARDS DE MÉTRICAS (.statbox COM SPOTLIGHT NO HOVER)
+       ========================================================================== */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 2.6rem 0 1.4rem;
+    }
+
+    .statbox {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.3rem, 3.2vw, 1.8rem);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease;
+    }
+
+    .statbox::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--blue-soft),
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .statbox:hover {
+      transform: translateY(-4px);
+      border-color: rgba(47, 111, 228, 0.45);
+    }
+
+    .statbox:hover::before {
+      opacity: 1;
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .stat-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .stat-icon.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .stat-icon.warn {
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    .stat-tag {
+      font: 500 0.72rem var(--mono);
+      padding: 0.24rem 0.6rem;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    .stat-value {
+      display: block;
+      font: 700 clamp(1.85rem, 4vw, 2.45rem)/1.05 var(--display);
+      letter-spacing: -0.03em;
+      color: var(--blue);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-value.ok-val {
+      color: var(--ok);
+    }
+
+    .stat-value.warn-val {
+      color: var(--warn);
+    }
+
+    .stat-desc {
+      display: block;
+      margin-top: 0.6rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       SIMULADOR DA CADEIA TRANSLACIONAL: DO BIOTÉRIO AO PASTO
+       ========================================================================== */
+    .translational-panel {
+      margin: 1.5rem 0 2.8rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.35rem, 4vw, 2.15rem);
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-header h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 3vw, 1.58rem);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-live {
+      font: 500 0.72rem var(--mono);
+      padding: 0.24rem 0.65rem;
+      border-radius: 999px;
+      background: var(--ok-soft);
+      color: var(--ok);
+      border: 1px solid rgba(20, 128, 79, 0.25);
+    }
+
+    .panel-subtitle {
+      margin: 0.42rem 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.58;
+    }
+
+    .control-group-wrap {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .control-label {
+      display: block;
+      font: 600 0.75rem var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .segmented-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.4rem;
+      padding: 0.35rem;
+      border-radius: 16px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+    }
+
+    .seg-btn {
+      padding: 0.72rem 0.8rem;
+      border: none;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      font: 600 0.82rem var(--body);
+      cursor: pointer;
+      transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+      text-align: center;
+    }
+
+    .seg-btn:hover {
+      color: var(--fg);
+    }
+
+    .seg-btn.active {
+      background: var(--surface);
+      color: var(--blue);
+      box-shadow: 0 4px 12px rgba(14, 34, 56, 0.08);
+    }
+
+    .focus-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .focus-pill {
+      padding: 0.52rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      color: var(--muted);
+      font: 600 0.82rem var(--body);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .focus-pill:hover {
+      border-color: var(--blue);
+      color: var(--fg);
+    }
+
+    .focus-pill.active {
+      border-color: var(--blue);
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    /* Workspace: Diagnóstico Técnico à esquerda + Diagrama Isométrico SVG à direita */
+    .sim-workspace {
+      display: grid;
+      grid-template-columns: 1.12fr 1fr;
+      gap: 1.45rem;
+      margin-top: 1.35rem;
+      align-items: stretch;
+    }
+
+    .diag-card {
+      padding: 1.3rem 1.4rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .diag-top-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .diag-kicker {
+      font: 600 0.74rem var(--mono);
+      padding: 0.26rem 0.65rem;
+      border-radius: 8px;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .diag-focus-tag {
+      font: 600 0.74rem var(--mono);
+      padding: 0.26rem 0.65rem;
+      border-radius: 8px;
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    .diag-card h3 {
+      margin: 0;
+      font-size: 1.24rem;
+      color: var(--fg);
+    }
+
+    .diag-card p {
+      margin: 0;
+      font-size: 0.93rem;
+      line-height: 1.66;
+      color: var(--muted);
+    }
+
+    .diag-risk-alert {
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      background: var(--danger-soft);
+      border-left: 3.5px solid var(--danger);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--fg);
+    }
+
+    .diag-risk-alert strong {
+      color: var(--danger);
+    }
+
+    .diag-indicators {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .indicator-chip {
+      font: 500 0.74rem var(--mono);
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--ok);
+    }
+
+    /* Palco SVG Isométrico da Cadeia Translacional */
+    .svg-stage {
+      background: linear-gradient(155deg, var(--surface-soft) 0%, var(--chip) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svg-chain {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      animation: floatCage 6.5s ease-in-out infinite;
+    }
+
+    .chain-node {
+      transition: opacity 0.35s ease;
+    }
+
+    .chain-node.dimmed {
+      opacity: 0.28;
+    }
+
+    .svg-stage-caption {
+      margin-top: 0.55rem;
+      font: 500 0.74rem var(--mono);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       CORPO DO ARTIGO EDITORIAL (ESTILO JEB BLOUNT)
+       ========================================================================== */
+    article {
+      max-width: none;
+    }
+
+    .section-block {
+      margin-top: 2.9rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.55rem;
+      font: 600 0.76rem var(--mono);
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    article h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.5rem, 3.6vw, 2rem);
+    }
+
+    article p,
+    article li,
+    .note {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    article p {
+      margin: 0.95rem 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.74;
+    }
+
+    article strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .callout-card {
+      margin: 1.5rem 0;
+      padding: 1.3rem 1.45rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--warn);
+      box-shadow: var(--shadow-card);
+    }
+
+    .callout-card.ok-border {
+      border-left-color: var(--ok);
+    }
+
+    .callout-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .callout-code {
+      font: 600 0.78rem var(--mono);
+      padding: 0.26rem 0.65rem;
+      border-radius: 8px;
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    .callout-card.ok-border .callout-code {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .callout-card p {
+      margin: 0;
+      color: var(--fg);
+      font-size: 0.97rem;
+    }
+
+    /* ==========================================================================
+       MOLDURA INTERATIVA DE FOTO DO EVENTO AGROPECUÁRIO
+       ========================================================================== */
+    .photo-showcase {
+      margin-top: 2.6rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(1.3rem, 3.8vw, 1.95rem);
+      box-shadow: var(--shadow-card);
+    }
+
+    .photo-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .photo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.34rem 0.8rem;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid rgba(47, 111, 228, 0.24);
+      font: 600 0.74rem var(--mono);
+    }
+
+    .event-photo-carousel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, var(--surface-soft), var(--chip));
+    }
+    .event-photo-slide {
+      display: none;
+      position: relative;
+      min-height: clamp(360px, 55vw, 680px);
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .event-photo-slide.is-active { display: flex; }
+    .event-photo-carousel img {
+      display: block;
+      width: 100%;
+      height: clamp(360px, 55vw, 680px);
+      object-fit: contain;
+    }
+    .event-photo-slide figcaption {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      padding: .45rem .75rem;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(15,27,51,.78);
+      color: #fff;
+      font: 500 .76rem var(--body);
+      backdrop-filter: blur(8px);
+    }
+    .event-photo-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 50%;
+      background: rgba(15,27,51,.74);
+      color: #fff;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background .18s ease, transform .18s ease;
+    }
+    .event-photo-arrow:hover { background: var(--blue); transform: translateY(-50%) scale(1.06); }
+    .event-photo-arrow.prev { left: 1rem; }
+    .event-photo-arrow.next { right: 1rem; }
+    .event-photo-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      margin-top: .85rem;
+    }
+    .event-photo-dots { display: flex; align-items: center; gap: .45rem; }
+    .event-photo-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: var(--line);
+      cursor: pointer;
+      transition: width .2s ease, background .2s ease;
+    }
+    .event-photo-dot.is-active { width: 28px; background: var(--blue); }
+    .event-photo-count {
+      min-width: 3.5rem;
+      color: var(--muted);
+      font: 500 .76rem var(--mono);
+      text-align: center;
+    }
+    @media (max-width: 640px) {
+      .event-photo-slide, .event-photo-carousel img { height: min(118vw, 560px); min-height: 320px; }
+      .event-photo-arrow { width: 40px; height: 40px; }
+      .event-photo-arrow.prev { left: .65rem; }
+      .event-photo-arrow.next { right: .65rem; }
+      .event-photo-slide figcaption { left: .65rem; bottom: .65rem; font-size: .68rem; }
+    }
+
+    /* ==========================================================================
+       CARD DE CITAÇÃO COPIÁVEL EM 1 CLIQUE + BLOCO DE CONVERSÃO / CTA
+       ========================================================================== */
+    .quote-drawer {
+      margin-top: 2rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .quote-drawer-top {
+      padding: 0.95rem 1.25rem;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--fg);
+    }
+
+    .window-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .window-dots {
+      display: inline-flex;
+      gap: 5px;
+    }
+
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .window-dots span:nth-child(1) { background: #f87171; }
+    .window-dots span:nth-child(2) { background: #fbbf24; }
+    .window-dots span:nth-child(3) { background: #34d399; }
+
+    .copy-snippet-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.48rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--blue);
+      font: 600 0.8rem var(--body);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .copy-snippet-btn:hover {
+      border-color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .quote-body {
+      padding: 1.25rem 1.35rem 1.4rem;
+    }
+
+    .quote-text {
+      margin: 0;
+      padding: 1.05rem 1.15rem;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      border: 1px dashed var(--line);
+      font: 400 0.87rem/1.7 var(--mono);
+      color: var(--fg);
+      white-space: pre-wrap;
+    }
+
+    .cta-box {
+      margin-top: 2.8rem;
+      padding: clamp(1.4rem, 4vw, 2rem);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+    }
+
+    .cta-box h2 {
+      margin-top: 0;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.4rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 48px;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--fg);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue);
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .button.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #ffffff;
+      box-shadow: 0 8px 22px -6px rgba(47, 111, 228, 0.5);
+    }
+
+    html.dark .button.primary {
+      color: #081220;
+    }
+
+    .button.primary:hover {
+      filter: brightness(1.07);
+    }
+
+    .button.whatsapp {
+      border-color: var(--ok);
+      background: var(--ok);
+      color: #ffffff;
+      box-shadow: 0 8px 22px -6px rgba(20, 128, 79, 0.45);
+    }
+
+    html.dark .button.whatsapp {
+      color: #071910;
+    }
+
+    .reply-address {
+      margin-top: 1.1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .reply-address a {
+      color: var(--blue);
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+
+    /* ==========================================================================
+       RODAPÉ & TOAST
+       ========================================================================== */
+    .footer-shell {
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer.wrap.footer {
+      padding-block: 1.6rem 2.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    footer.wrap.footer a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer.wrap.footer a:hover {
+      color: var(--blue);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.8rem 1.15rem;
+      border-radius: 14px;
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+      transform: translateY(90px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    @keyframes radarPing {
+      0% { box-shadow: 0 0 0 0 rgba(20, 128, 79, 0.55); }
+      70% { box-shadow: 0 0 0 8px rgba(20, 128, 79, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(20, 128, 79, 0); }
+    }
+
+    @keyframes floatCage {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE & ACESSIBILIDADE
+       ========================================================================== */
+    @media (max-width: 820px) {
+      .stat-grid,
+      .segmented-3 {
+        grid-template-columns: 1fr;
+      }
+      .sim-workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header.wrap.top {
+        flex-wrap: wrap;
+      }
+      .intro,
+      article p,
+      article li,
+      .note {
+        text-align: left;
+        hyphens: none;
+      }
+      .cta .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .svg-chain,
+      .brand-pulse,
+      .eyebrow-dot {
+        animation: none;
+      }
+      .statbox,
+      .button,
+      .seg-btn,
+      .focus-pill {
+        transition: none;
+      }
+    }
+  </style>
+
+  <!-- Evita flash de tema incorreto antes da pintura -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('bf-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Barra de progresso de leitura fixa -->
+  <div class="progress-track" aria-hidden="true">
+    <div id="progress-fill" class="progress-fill"></div>
+  </div>
+
+  <!-- Luz ambiente suave -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Cabeçalho -->
+  <div class="header-shell">
+    <header class="wrap top">
+      <a class="brand" href="../index.html">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="12" rx="3"></rect>
+            <path d="M7 10h10M7 14h6"></path>
+          </svg>
+          <span class="brand-pulse"></span>
+        </span>
+        <span>Biotério Forte</span>
+      </a>
+
+      <div class="header-actions">
+        <a class="back" href="../index.html#noticias">
+          <span class="back-arrow" aria-hidden="true">←</span>
+          <span>Voltar às notícias</span>
+        </a>
+
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="Alternar tema claro ou escuro" title="Alternar tema">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <main class="wrap">
+
+    <!-- Hero Section -->
+    <section class="reveal is-visible">
+      <div class="eyebrow-badge">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>EDITORIAL · ONE HEALTH &amp; P&amp;D AGROPECUÁRIO</span>
+      </div>
+
+      <h1>
+        <span class="headline-gradient">O que carne de alta qualidade tem a ver com ratos? IBeef - Tudo...</span>
+      </h1>
+
+      <p class="intro">
+        O dia em que levamos o Biotério Forte para uma apresentação sobre qualidade da carne na agropecuária. À primeira vista parece estranho — até você lembrar de uma regra básica da ciência: os ratos são a porta de entrada de quase toda medicação, suplemento e protocolo veterinário antes de chegar ao rebanho.
+      </p>
+    </section>
+
+    <!-- 3 Cards de Métricas (.statbox com spotlight no hover) -->
+    <section class="stat-grid reveal" aria-label="Indicadores da conexão entre biotério e agropecuária">
+      <!-- Card 1 -->
+      <div class="statbox">
+        <div class="stat-top">
+          <span class="stat-icon warn" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2v7.31"></path>
+              <path d="M14 9.3V1.99"></path>
+              <path d="M8.5 2h7"></path>
+              <path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path>
+            </svg>
+          </span>
+          <span class="stat-tag">Bancada Pré-Clínica</span>
+        </div>
+        <b class="stat-value warn-val">1ª Porta</b>
+        <span class="stat-desc">de entrada pré-clínica para fármacos e aditivos veterinários</span>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="statbox">
+        <div class="stat-top">
+          <span class="stat-icon ok" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+          </span>
+          <span class="stat-tag">Saúde Única</span>
+        </div>
+        <b class="stat-value ok-val">One Health</b>
+        <span class="stat-desc">elo invisível entre biotério, sanidade animal e mesa</span>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="statbox">
+        <div class="stat-top">
+          <span class="stat-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </span>
+          <span class="stat-tag">Monitoramento Contínuo</span>
+        </div>
+        <b class="stat-value">V2 · 24/7</b>
+        <span class="stat-desc">telemetria térmica e ambiental na base da cadeia</span>
+      </div>
+    </section>
+
+    <!-- SIMULADOR DA CADEIA TRANSLACIONAL: DO BIOTÉRIO AO PASTO -->
+    <section class="translational-panel reveal" aria-label="Simulador da Cadeia Translacional: Do Biotério ao Pasto">
+      <div class="panel-header">
+        <div>
+          <h2>
+            <span>Simulador da Cadeia Translacional: Do Biotério ao Pasto</span>
+            <span class="pill-live">One Health · Bancada → Campo → Mesa</span>
+          </h2>
+          <p class="panel-subtitle">
+            Selecione uma etapa da cadeia produtiva e escolha a frente de P&amp;D veterinário para visualizar como o controle microambiental e térmico no modelo murino sustenta o resultado final na qualidade da carne.
+          </p>
+        </div>
+      </div>
+
+      <div class="control-group-wrap">
+        <!-- Seletor de Etapa (3 Etapas) -->
+        <div>
+          <span class="control-label">1. Etapa da Cadeia Translacional</span>
+          <div class="segmented-3" role="tablist" aria-label="Etapas da cadeia translacional">
+            <button type="button" class="seg-btn active" data-stage="0" role="tab" aria-selected="true">
+              1. Modelo Murino (Biotério Forte)
+            </button>
+            <button type="button" class="seg-btn" data-stage="1" role="tab" aria-selected="false">
+              2. Validação Veterinária &amp; Zootécnica
+            </button>
+            <button type="button" class="seg-btn" data-stage="2" role="tab" aria-selected="false">
+              3. Qualidade da Carne &amp; Segurança Alimentar
+            </button>
+          </div>
+        </div>
+
+        <!-- Seletor de Foco (3 Frentes) -->
+        <div>
+          <span class="control-label">2. Frente de Pesquisa &amp; Desenvolvimento</span>
+          <div class="focus-pills" role="group" aria-label="Frente de pesquisa veterinária">
+            <button type="button" class="focus-pill active" data-focus="pharma">Fármacos &amp; Antiparasitários</button>
+            <button type="button" class="focus-pill" data-focus="nutrition">Nutrição &amp; Metabolismo</button>
+            <button type="button" class="focus-pill" data-focus="welfare">Estresse Térmico &amp; Bem-Estar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workspace: Diagnóstico Técnico + Esquema Vetorial Isométrico SVG -->
+      <div class="sim-workspace">
+        <div class="diag-card" aria-live="polite">
+          <div>
+            <div class="diag-top-tags">
+              <span id="diag-stage-tag" class="diag-kicker">ETAPA 01 · BASE PRÉ-CLÍNICA</span>
+              <span id="diag-focus-tag" class="diag-focus-tag">Fármacos &amp; Antiparasitários</span>
+            </div>
+
+            <h3 id="diag-title" style="margin-top: 0.75rem;">Triagem toxicológica, farmacocinética e dose segura na bancada</h3>
+            <p id="diag-desc" style="margin-top: 0.55rem;">
+              Antes de qualquer antiparasitário, antibiótico ou anti-inflamatório chegar a um ensaio bovino, sua absorção, metabolização hepática e janela terapêutica são rastreadas em roedores. O Biotério Forte garante microclima estável e termografia contínua para que a curva farmacológica não seja contaminada por estresse ambiental.
+            </p>
+          </div>
+
+          <div class="diag-risk-alert" id="diag-risk-box">
+            <strong>Risco se a base falhar:</strong> Flutuações térmicas e superlotação na caixa-moradia alteram enzimas hepáticas e cortisol no rato, gerando doses mal calibradas e resíduos indesejados nas etapas seguintes.
+          </div>
+
+          <div class="diag-indicators" id="diag-chips">
+            <span class="indicator-chip">✓ Biodisponibilidade limpa</span>
+            <span class="indicator-chip">✓ Resíduo zero previsível</span>
+            <span class="indicator-chip">✓ Telemetria térmica 24/7</span>
+          </div>
+        </div>
+
+        <!-- Esquema Vetorial Isométrico SVG -->
+        <div class="svg-stage">
+          <svg class="svg-chain" viewBox="0 0 380 265" role="img" aria-label="Diagrama vetorial isométrico conectando a tampa inteligente Biotério Forte aos indicadores da cadeia agropecuária">
+            <defs>
+              <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.26"></stop>
+                <stop offset="100%" stop-color="#14804f" stop-opacity="0.14"></stop>
+              </linearGradient>
+              <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#2f6fe4" stop-opacity="0.14"></stop>
+                <stop offset="100%" stop-color="#2f6fe4" stop-opacity="0.05"></stop>
+              </linearGradient>
+            </defs>
+
+            <!-- Sombra base -->
+            <ellipse cx="115" cy="218" rx="82" ry="13" fill="rgba(47, 111, 228, 0.10)"></ellipse>
+
+            <!-- NÓ 1: Tampa Inteligente Biotério Forte (Esquerda) -->
+            <g id="node-stage-0" class="chain-node">
+              <polygon points="44,142 115,172 186,142 186,182 115,210 44,182" fill="url(#boxGrad)" stroke="#2f6fe4" stroke-width="1.8" stroke-linejoin="round"></polygon>
+              <line x1="115" y1="172" x2="115" y2="210" stroke="#2f6fe4" stroke-width="1.8"></line>
+              <polygon points="38,124 115,92 192,124 115,156" fill="url(#lidGrad)" stroke="#2f6fe4" stroke-width="2" stroke-linejoin="round"></polygon>
+              <circle cx="115" cy="124" r="5" fill="#14804f"></circle>
+              <path d="M104 82a16 16 0 0 1 22 0M98 74a24 24 0 0 1 34 0" stroke="#14804f" stroke-width="1.7" stroke-linecap="round" fill="none"></path>
+              <text x="42" y="238" fill="#2f6fe4" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">01. BIOTÉRIO FORTE V2</text>
+            </g>
+
+            <!-- Fluxo de Dados Translacionais (Setas) -->
+            <path d="M196 124 L232 92" stroke="#2f6fe4" stroke-width="1.6" stroke-dasharray="4 3" fill="none"></path>
+            <path d="M196 154 L232 186" stroke="#14804f" stroke-width="1.6" stroke-dasharray="4 3" fill="none"></path>
+
+            <!-- NÓ 2: Validação Veterinária & Zootécnica (Superior Direito) -->
+            <g id="node-stage-1" class="chain-node dimmed">
+              <rect x="234" y="42" width="128" height="66" rx="14" fill="rgba(47, 111, 228, 0.12)" stroke="#2f6fe4" stroke-width="1.8"></rect>
+              <circle cx="256" cy="64" r="8" fill="#2f6fe4" fill-opacity="0.2" stroke="#2f6fe4" stroke-width="1.5"></circle>
+              <path d="M252 64l3 3 5-6" stroke="#2f6fe4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+              <text x="270" y="67" fill="#2f6fe4" font-family="JetBrains Mono, monospace" font-size="8.8" font-weight="600">02. VALIDAÇÃO</text>
+              <text x="246" y="86" fill="#566b82" font-family="JetBrains Mono, monospace" font-size="8">Biodisponibilidade</text>
+              <text x="246" y="98" fill="#566b82" font-family="JetBrains Mono, monospace" font-size="8">&amp; Resposta Imune</text>
+            </g>
+
+            <!-- NÓ 3: Qualidade da Carne & Segurança Alimentar (Inferior Direito) -->
+            <g id="node-stage-2" class="chain-node dimmed">
+              <rect x="234" y="156" width="128" height="68" rx="14" fill="rgba(20, 128, 79, 0.14)" stroke="#14804f" stroke-width="1.8"></rect>
+              <circle cx="256" cy="178" r="8" fill="#14804f" fill-opacity="0.22" stroke="#14804f" stroke-width="1.5"></circle>
+              <path d="M252 178l3 3 5-6" stroke="#14804f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+              <text x="270" y="181" fill="#14804f" font-family="JetBrains Mono, monospace" font-size="8.8" font-weight="600">03. MESA / CARNE</text>
+              <text x="246" y="200" fill="#566b82" font-family="JetBrains Mono, monospace" font-size="8">Resíduo Zero &amp;</text>
+              <text x="246" y="212" fill="#566b82" font-family="JetBrains Mono, monospace" font-size="8">Bem-Estar Auditável</text>
+            </g>
+          </svg>
+          <span class="svg-stage-caption">Pirâmide de confiança científica: da caixa-moradia ao padrão de exportação</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Corpo do Artigo Editorial (Estilo Jeb Blount) -->
+    <article>
+
+      <!-- Seção 1 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">01 · Quebrando a Bolha</span>
+        <h2>O estranhamento na plateia — e a lógica por trás dele</h2>
+        <p>
+          Imagine entrar em um auditório tomado por pesquisadores de produção animal, frigoríficos, zootecnistas e especialistas em qualidade da carne — e colocar no telão uma plataforma inteligente para <strong>biotério de roedores</strong>. Nos primeiros dez segundos, a pergunta silenciosa na sala é sempre a mesma: <em>"O que carne bovina de alto padrão tem a ver com ratos?"</em>
+        </p>
+        <p>
+          A resposta é direta e sem rodeios: <strong>tudo</strong>. Nenhuma indústria farmacêutica veterinária, nenhum laboratório de nutrição funcional e nenhum centro de sanidade animal formula um antiparasitário, vacina, aditivo metabólico ou protocolo anti-estresse e aplica direto no rebanho. A ciência não funciona no salto cego — ela começa na bancada pré-clínica.
+        </p>
+
+        <div class="callout-card">
+          <div class="callout-head">
+            <span class="callout-code">Realidade de P&amp;D Agropecuário</span>
+          </div>
+          <p>
+            Quem olha apenas para o curral e ignora o biotério está tentando controlar a qualidade do produto final sem auditar o primeiro elo da cadeia científica.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção 2 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">02 · A Porta de Entrada da Ciência</span>
+        <h2>Ratos são a porta de entrada de quase toda medicação</h2>
+        <p>
+          Em praticamente todos os contextos biomédicos e veterinários, os roedores são a <strong>primeira porta de entrada</strong> para testar segurança toxicológica, farmacocinética, biodisponibilidade, resposta inflamatória e eficácia inicial de novas moléculas e suplementos.
+        </p>
+        <p>
+          Agora faça a conta: se o biotério onde esse ensaio inicial acontece opera sem controle microambiental rigoroso, com estresse térmico silencioso ou manejo invasivo que dispara cortisol, <strong>o dado nasce torto</strong>. Um viés lá na caixa-moradia vira dosagem imprecisa, falha de eficácia no campo ou risco de resíduo lá na ponta.
+        </p>
+      </section>
+
+      <!-- Seção 3 -->
+      <section class="section-block reveal">
+        <span class="section-kicker">03 · Rastreabilidade &amp; Bem-Estar</span>
+        <h2>Bem-estar animal e rigor de dados começam antes do pasto</h2>
+        <p>
+          O mercado global de proteína animal cobra cada vez mais <strong>rastreabilidade, bem-estar comprovado, redução de antibióticos e segurança alimentar</strong>. Essa exigência não começa no embarque para o frigorífico — ela começa na qualidade da ciência que sustenta cada protocolo sanitário e nutricional.
+        </p>
+        <p>
+          É exatamente aí que o <strong>Biotério Forte V2</strong> conecta os dois mundos: ao entregar <strong>monitoramento térmico não invasivo (termografia), telemetria microambiental 24/7 e padronização dimensional</strong> na base pré-clínica, garantimos que cada avanço veterinário chegue ao campo apoiado em evidências sólidas, éticas e auditáveis.
+        </p>
+
+        <div class="callout-card ok-border">
+          <div class="callout-head">
+            <span class="callout-code">One Health · Do Biotério à Qualidade da Carne</span>
+          </div>
+          <p>
+            Proteger o bem-estar e a precisão experimental do roedor na bancada é o primeiro passo para garantir sanidade no rebanho, eficiência zootécnica e excelência na mesa do consumidor.
+          </p>
+        </div>
+      </section>
+
+      <!-- Espaço Interativo para Foto da Apresentação -->
+      <section class="photo-showcase reveal" aria-label="Fotos da apresenta&ccedil;&atilde;o e divulga&ccedil;&atilde;o do Biot&eacute;rio Forte">
+        <div class="photo-top">
+          <span class="photo-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <span>REGISTROS DE CAMPO &middot; DIVULGA&Ccedil;&Atilde;O DO PROJETO</span>
+          </span>
+        </div>
+        <div class="photo-frame event-photo-carousel" id="event-photo-carousel" role="region" aria-roledescription="carrossel" aria-label="Fotos de entrevistas, apresenta&ccedil;&otilde;es e divulga&ccedil;&atilde;o">
+          <figure class="event-photo-slide is-active" aria-label="Foto 1 de 5" aria-hidden="false">
+            <img src="../img/carne/490862355_9510286242396168_6100648344883269072_n.jpg" alt="Integrante do Biot&eacute;rio Forte em visita no Programa SBT Comunidade" fetchpriority="high" decoding="async">
+            <figcaption>Visita no Programa SBT Comunidade</figcaption>
+          </figure>
+          <figure class="event-photo-slide" aria-label="Foto 2 de 5" aria-hidden="true">
+            <img src="../img/carne/491019266_9510286545729471_8353880792982007823_n.jpg" alt="Equipe do projeto em visitando a Massa FM" loading="lazy" decoding="async">
+            <figcaption>Visitando a Massa FM</figcaption>
+          </figure>
+          <figure class="event-photo-slide" aria-label="Foto 3 de 5" aria-hidden="true">
+            <img src="../img/carne/492008269_9510275749063884_1377617723883445507_n.jpg" alt="Demonstra&ccedil;&atilde;o do Biot&eacute;rio Forte durante atividade de divulga&ccedil;&atilde;o" loading="lazy" decoding="async">
+            <figcaption>Demonstra&ccedil;&atilde;o do projeto</figcaption>
+          </figure>
+          <figure class="event-photo-slide" aria-label="Foto 4 de 5" aria-hidden="true">
+            <img src="../img/carne/492074516_9510286372396155_972369732026369091_n.jpg" alt="Registro descontra&iacute;do durante a divulga&ccedil;&atilde;o do projeto" loading="lazy" decoding="async">
+            <figcaption>Bastidores da divulga&ccedil;&atilde;o estavamos exaustos</figcaption>
+          </figure>
+          <figure class="event-photo-slide" aria-label="Foto 5 de 5" aria-hidden="true">
+            <img src="../img/carne/493411490_9577433962348062_3587090506674268379_n%20(1).jpg" alt="Apresenta&ccedil;&atilde;o do Biot&eacute;rio Forte em evento do Senar Mato Grosso" loading="lazy" decoding="async">
+            <figcaption>Apresenta&ccedil;&atilde;o no evento do Senar Mato Grosso</figcaption>
+          </figure>
+          <button class="event-photo-arrow prev" id="event-photo-prev" type="button" aria-label="Foto anterior"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+          <button class="event-photo-arrow next" id="event-photo-next" type="button" aria-label="Pr&oacute;xima foto"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+        </div>
+        <div class="event-photo-controls" aria-label="Navega&ccedil;&atilde;o das fotos">
+          <span class="event-photo-count" id="event-photo-count" aria-live="polite">1 / 5</span>
+          <div class="event-photo-dots" role="group" aria-label="Selecionar foto">
+            <button class="event-photo-dot is-active" type="button" data-event-slide="0" aria-label="Mostrar foto 1" aria-current="true"></button>
+            <button class="event-photo-dot" type="button" data-event-slide="1" aria-label="Mostrar foto 2" aria-current="false"></button>
+            <button class="event-photo-dot" type="button" data-event-slide="2" aria-label="Mostrar foto 3" aria-current="false"></button>
+            <button class="event-photo-dot" type="button" data-event-slide="3" aria-label="Mostrar foto 4" aria-current="false"></button>
+            <button class="event-photo-dot" type="button" data-event-slide="4" aria-label="Mostrar foto 5" aria-current="false"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-drawer reveal" aria-label="Citação editorial copiável">
+        <div class="quote-drawer-top">
+          <span class="window-title-wrap">
+            <span class="window-dots" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span>Tese central da palestra (pronta para copiar e compartilhar)</span>
+          </span>
+
+          <button id="copy-quote-btn" class="copy-snippet-btn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copy-quote-label">Copiar citação</span>
+          </button>
+        </div>
+
+        <div class="quote-body">
+          <pre id="quote-text-block" class="quote-text">"O que carne de alta qualidade tem a ver com ratos? Tudo. Os roedores são a primeira porta de entrada pré-clínica de quase toda medicação, antiparasitário, suplemento e protocolo veterinário antes de chegar ao rebanho. Sem rigor térmico, microambiental e bem-estar auditável no biotério, o dado nasce torto — e o erro escala até o campo." — Biotério Forte | One Health &amp; P&amp;D Agropecuário</pre>
+        </div>
+      </section>
+
+      <!-- Bloco de Conversão / CTA -->
+      <section class="cta-box reveal">
+        <h2>Atua com P&amp;D veterinário, nutrição animal ou biotérios universitários?</h2>
+        <p>
+          Vamos conversar sobre como o <strong>Biotério Forte V2</strong> eleva a confiabilidade dos seus ensaios pré-clínicos e fortalece a ponte entre bancada, sanidade animal e qualidade produtiva.
+        </p>
+
+        <div class="cta">
+          <a class="button whatsapp" href="https://wa.me/5566996675486?text=Ol%C3%A1%2C%20vi%20a%20mat%C3%A9ria%20sobre%20o%20Biot%C3%A9rio%20Forte%20na%20agropecu%C3%A1ria%20e%20quero%20conversar." target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>Falar no WhatsApp (+55 66 99667-5486)</span>
+          </a>
+
+          <a class="button primary" href="mailto:founder@thotiacorp.com.br?subject=Biot%C3%A9rio%20Forte%20%7C%20Conex%C3%A3o%20Agropecu%C3%A1ria%20e%20Sa%C3%BAde%20Animal">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>Enviar e-mail</span>
+          </a>
+
+          <a class="button" href="../consultoria.html">
+            <span>Conhecer Consultoria Técnica →</span>
+          </a>
+        </div>
+
+        <p class="reply-address">
+          Contato direto: <a href="mailto:founder@thotiacorp.com.br">founder@thotiacorp.com.br</a> · Resposta direta da liderança técnica do Biotério Forte.
+        </p>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Rodapé -->
+  <div class="footer-shell">
+    <footer class="wrap footer">
+      <a href="../index.html#noticias">← Voltar às notícias · Biotério Forte</a>
+      <span>One Health · P&amp;D Agropecuário · THOT I.A. CORP</span>
+    </footer>
+  </div>
+
+  <!-- Toast discreto de confirmação -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-msg">Citação copiada para a área de transferência!</span>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      /* 1. Alternância de tema Claro/Escuro persistente */
+      var themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          var isDark = document.documentElement.classList.toggle('dark');
+          try {
+            localStorage.setItem('bf-theme', isDark ? 'dark' : 'light');
+          } catch (e) {}
+        });
+      }
+
+      /* 2. Barra de progresso de leitura no topo */
+      var progressFill = document.getElementById('progress-fill');
+      function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        if (progressFill) {
+          progressFill.style.width = pct + '%';
+        }
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      /* 3. Efeito Spotlight nos cards (.statbox) */
+      document.querySelectorAll('.statbox').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      /* 4. Revelação suave ao rolar (IntersectionObserver) */
+      var revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      /* 5. Simulador da Cadeia Translacional: Do Biotério ao Pasto */
+      var currentStage = 0;
+      var currentFocus = 'pharma';
+
+      var focusLabels = {
+        pharma: 'Fármacos & Antiparasitários',
+        nutrition: 'Nutrição & Metabolismo',
+        welfare: 'Estresse Térmico & Bem-Estar'
+      };
+
+      var translationalMatrix = {
+        pharma: [
+          {
+            kicker: 'ETAPA 01 · MODELO MURINO (BIOTÉRIO FORTE)',
+            title: 'Triagem toxicológica, farmacocinética e dose segura na bancada',
+            desc: 'Antes de qualquer antiparasitário, antibiótico ou anti-inflamatório chegar a um ensaio bovino, sua absorção, metabolização hepática e janela terapêutica são rastreadas em roedores. O Biotério Forte garante microclima estável e termografia contínua para que a curva farmacológica não seja contaminada por estresse ambiental.',
+            risk: 'Flutuações térmicas e superlotação na caixa-moradia alteram enzimas hepáticas e cortisol no rato, gerando doses mal calibradas e resíduos indesejados nas etapas seguintes.',
+            chips: ['✓ Biodisponibilidade limpa', '✓ Curva PK/PD sem ruído', '✓ Telemetria térmica 24/7']
+          },
+          {
+            kicker: 'ETAPA 02 · VALIDAÇÃO VETERINÁRIA & ZOOTÉCNICA',
+            title: 'Transposição de dose e período de carência em ruminantes',
+            desc: 'Com dados pré-clínicos sólidos vindos de um biotério auditado, os ensaios veterinários definem com precisão o tempo de eliminação do princípio ativo e a resposta imunológica real no rebanho, reduzindo perdas e retrabalho experimental.',
+            risk: 'Dados murinos enviesados obrigam a repetir protocolos caros a campo ou resultam em falhas de proteção sanitária contra parasitas e infecções.',
+            chips: ['✓ Janela de carência precisa', '✓ Menor retrabalho a campo', '✓ Resposta imune rastreável']
+          },
+          {
+            kicker: 'ETAPA 03 · QUALIDADE DA CARNE & SEGURANÇA ALIMENTAR',
+            title: 'Resíduo zero e conformidade sanitária para exportação',
+            desc: 'Na ponta final, o frigorífico e o consumidor recebem uma carne livre de resíduos químicos acima do limite regulatório, respaldada por uma cadeia científica rastreável desde a primeira triagem no biotério.',
+            risk: 'Qualquer falha na calibração farmacológica lá na origem ameaça barreiras sanitárias internacionais e a reputação da cadeia produtiva.',
+            chips: ['✓ Resíduo zero garantido', '✓ Conformidade internacional', '✓ Segurança alimentar One Health']
+          }
+        ],
+        nutrition: [
+          {
+            kicker: 'ETAPA 01 · MODELO MURINO (BIOTÉRIO FORTE)',
+            title: 'Avaliação de aditivos, moduladores ruminais e absorção celular',
+            desc: 'Novos aditivos nutricionais, probióticos e moduladores metabólicos passam primeiro por modelos murinos para mapear digestibilidade, estresse oxidativo e resposta inflamatória intestinal sob temperatura e umidade controladas.',
+            risk: 'Sem controle de temperatura e umidade na caixa-moradia, o roedor altera o consumo alimentar e o gasto energético basal, mascarando o real efeito do aditivo.',
+            chips: ['✓ Gasto basal controlado', '✓ Resposta inflamatória limpa', '✓ Microclima padronizado']
+          },
+          {
+            kicker: 'ETAPA 02 · VALIDAÇÃO VETERINÁRIA & ZOOTÉCNICA',
+            title: 'Conversão alimentar, ganho de peso e eficiência metabólica',
+            desc: 'A formulação validada na bancada avança para testes zootécnicos com previsibilidade metabólica, acelerando o ajuste de dietas de terminação e reduzindo o custo por arroba produzida.',
+            risk: 'Formulações aprovadas sobre dados murinos ruidosos geram variação errática no ganho médio diário (GMD) quando aplicadas em escala.',
+            chips: ['✓ Conversão alimentar previsível', '✓ Eficiência metabólica', '✓ Redução de custo por lote']
+          },
+          {
+            kicker: 'ETAPA 03 · QUALIDADE DA CARNE & SEGURANÇA ALIMENTAR',
+            title: 'Marmoreio, perfil lipídico e estabilidade oxidativa da carne',
+            desc: 'A modulação nutricional bem calibrada desde a bancada reflete diretamente na deposição de gordura intramuscular, maciez e vida de prateleira dos cortes nobres.',
+            risk: 'Desequilíbrios oxidativos não detectados na fase experimental comprometem cor, suculência e validade comercial da carne.',
+            chips: ['✓ Perfil lipídico superior', '✓ Estabilidade oxidativa', '✓ Padrão sensorial de elite']
+          }
+        ],
+        welfare: [
+          {
+            kicker: 'ETAPA 01 · MODELO MURINO (BIOTÉRIO FORTE)',
+            title: 'Monitoramento térmico não invasivo e biomarcadores de estresse',
+            desc: 'Com termografia infravermelha e sensores contínuos sem abrir a caixa-moradia, o Biotério Forte detecta variações térmicas e comportamentais precoces sem provocar estresse de contenção ou manejo humano.',
+            risk: 'O manejo convencional invasivo dispara adrenalina e corticosterona no animal, invalidando estudos sobre estresse térmico e bem-estar.',
+            chips: ['✓ Zero estresse de manejo', '✓ Termografia infravermelha', '✓ Conformidade DBCA / 3Rs']
+          },
+          {
+            kicker: 'ETAPA 02 · VALIDAÇÃO VETERINÁRIA & ZOOTÉCNICA',
+            title: 'Protocolos de conforto térmico e mitigação de estresse no rebanho',
+            desc: 'Estratégias nutricionais e farmacológicas contra estresse calórico validadas sem ruído na bancada tornam-se ferramentas confiáveis para proteger o rebanho em climas tropicais.',
+            risk: 'Subestimar o estresse térmico nos modelos iniciais atrasa soluções de adaptação climática para a pecuária brasileira.',
+            chips: ['✓ Conforto térmico tropical', '✓ Protocolos anti-estresse', '✓ Bem-estar mensurável']
+          },
+          {
+            kicker: 'ETAPA 03 · QUALIDADE DA CARNE & SEGURANÇA ALIMENTAR',
+            title: 'pH final ideal e prevenção de carne DFD (escura, firme e seca)',
+            desc: 'Animais manejados sob protocolos de baixo estresse mantêm reservas adequadas de glicogênio muscular pré-abate, assegurando queda correta do pH post-mortem, maciez e cor vermelho-cereja.',
+            risk: 'Estresse agudo ou crônico na cadeia destrói o glicogênio muscular, eleva o pH final e gera cortes DFD rejeitados pelos mercados mais exigentes.',
+            chips: ['✓ pH post-mortem ideal', '✓ Prevenção de carne DFD', '✓ Bem-estar auditável']
+          }
+        ]
+      };
+
+      var stageBtns = document.querySelectorAll('.seg-btn[data-stage]');
+      var focusBtns = document.querySelectorAll('.focus-pill[data-focus]');
+
+      var diagStageTag = document.getElementById('diag-stage-tag');
+      var diagFocusTag = document.getElementById('diag-focus-tag');
+      var diagTitle = document.getElementById('diag-title');
+      var diagDesc = document.getElementById('diag-desc');
+      var diagRiskBox = document.getElementById('diag-risk-box');
+      var diagChips = document.getElementById('diag-chips');
+
+      function updateTranslationalSim() {
+        var dataList = translationalMatrix[currentFocus];
+        var item = dataList && dataList[currentStage];
+        if (!item) return;
+
+        stageBtns.forEach(function (btn, idx) {
+          var isAct = idx === currentStage;
+          btn.classList.toggle('active', isAct);
+          btn.setAttribute('aria-selected', isAct ? 'true' : 'false');
+        });
+
+        focusBtns.forEach(function (btn) {
+          var isAct = btn.getAttribute('data-focus') === currentFocus;
+          btn.classList.toggle('active', isAct);
+        });
+
+        if (diagStageTag) diagStageTag.textContent = item.kicker;
+        if (diagFocusTag) diagFocusTag.textContent = focusLabels[currentFocus] || '';
+        if (diagTitle) diagTitle.textContent = item.title;
+        if (diagDesc) diagDesc.textContent = item.desc;
+        if (diagRiskBox) {
+          diagRiskBox.innerHTML = '<strong>Risco se a base falhar:</strong> ' + item.risk;
+        }
+
+        if (diagChips) {
+          diagChips.innerHTML = '';
+          item.chips.forEach(function (chipText) {
+            var span = document.createElement('span');
+            span.className = 'indicator-chip';
+            span.textContent = chipText;
+            diagChips.appendChild(span);
+          });
+        }
+
+        // Ilumina etapas cumulativas no esquema SVG isométrico
+        ['node-stage-0', 'node-stage-1', 'node-stage-2'].forEach(function (nodeId, idx) {
+          var nodeEl = document.getElementById(nodeId);
+          if (nodeEl) {
+            nodeEl.classList.toggle('dimmed', idx > currentStage);
+          }
+        });
+      }
+
+      stageBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentStage = parseInt(btn.getAttribute('data-stage'), 10) || 0;
+          updateTranslationalSim();
+        });
+      });
+
+      focusBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentFocus = btn.getAttribute('data-focus') || 'pharma';
+          updateTranslationalSim();
+        });
+      });
+
+      updateTranslationalSim();
+
+      /* 6. Carousel das fotos de divulgacao */
+      var eventSlides = Array.prototype.slice.call(document.querySelectorAll('.event-photo-slide'));
+      var eventDots = Array.prototype.slice.call(document.querySelectorAll('.event-photo-dot'));
+      var eventCount = document.getElementById('event-photo-count');
+      var eventIndex = 0;
+
+      function showEventSlide(index) {
+        if (!eventSlides.length) return;
+        eventIndex = (index + eventSlides.length) % eventSlides.length;
+        eventSlides.forEach(function (slide, i) {
+          var active = i === eventIndex;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        eventDots.forEach(function (dot, i) {
+          var active = i === eventIndex;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+        if (eventCount) eventCount.textContent = (eventIndex + 1) + ' / ' + eventSlides.length;
+      }
+
+      var eventPrev = document.getElementById('event-photo-prev');
+      var eventNext = document.getElementById('event-photo-next');
+      if (eventPrev) eventPrev.addEventListener('click', function () { showEventSlide(eventIndex - 1); });
+      if (eventNext) eventNext.addEventListener('click', function () { showEventSlide(eventIndex + 1); });
+      eventDots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          showEventSlide(parseInt(dot.getAttribute('data-event-slide'), 10));
+        });
+      });
+
+      /* 7. Toast & Cópia da Citação em 1 Clique */
+      var toast = document.getElementById('toast');
+      var toastMsg = document.getElementById('toast-msg');
+      var toastTimer;
+
+      function showToast(message) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2800);
+      }
+
+      var copyQuoteBtn = document.getElementById('copy-quote-btn');
+      var copyQuoteLabel = document.getElementById('copy-quote-label');
+      var quoteTextBlock = document.getElementById('quote-text-block');
+
+      if (copyQuoteBtn && quoteTextBlock) {
+        copyQuoteBtn.addEventListener('click', function () {
+          var text = quoteTextBlock.textContent.trim();
+          var textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          try {
+            document.execCommand('copy');
+            if (copyQuoteLabel) copyQuoteLabel.textContent = 'Copiado!';
+            showToast('Citação copiada para a área de transferência!');
+            setTimeout(function () {
+              if (copyQuoteLabel) copyQuoteLabel.textContent = 'Copiar citação';
+            }, 2400);
+          } catch (err) {
+            showToast('Selecione o texto para copiar.');
+          }
+          document.body.removeChild(textarea);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

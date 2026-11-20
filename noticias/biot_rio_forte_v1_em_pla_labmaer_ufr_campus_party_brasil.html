@@ -9,7 +9,11 @@
   <meta property="og:site_name" content="Biotério Forte">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Imprimimos a V1 em PLA com o LabMaer (UFR) e levamos para a Campus Party. O jogo mudou. | Biotério Forte">
-  <meta property="og:description" content="Com auxílio externo da UFR, a primeira versão física do Biotério Forte ganhou forma em PLA e foi à Campus Party Brasil com a tese de IA, sensores e redução de até 3/4 no uso de animais.">
+    <meta property="og:image" content="https://bioterioforte.com.br/img/V1/IMG-20220713-WA0010.jpg">
+  <meta property="og:image:alt" content="Protótipo V1 do Biotério Forte impresso em PLA">
+  <meta name="twitter:image" content="https://bioterioforte.com.br/img/V1/IMG-20220713-WA0010.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Com auxílio externo da UFR, a primeira versão física do Biotério Forte ganhou forma em PLA e foi à Campus Party Brasil com a tese de IA, sensores e redução de até 3/4 no uso de animais.">
   <title>Imprimimos a V1 em PLA com o LabMaer (UFR) e levamos para a Campus Party | Biotério Forte</title>
 
   <!-- Google Fonts: Bricolage Grotesque + Inter + JetBrains Mono -->
@@ -133,7 +137,7 @@
     }
 
     .wrap {
-      width: min(100% - 40px, 920px);
+      width: min(100% - 40px, 1240px);
       margin-inline: auto;
       position: relative;
       z-index: 1;
@@ -930,6 +934,88 @@
     /* ==========================================================================
        ESPAÇOS RESERVADOS PARA IMAGENS (DRIVE + UPLOAD LOCAL)
        ========================================================================== */
+    .unic-test-card {
+      margin-top: 2rem;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+    }
+
+    .unic-test-carousel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, var(--surface-soft), var(--chip));
+    }
+
+    .unic-test-slide {
+      display: none;
+      position: relative;
+      min-height: clamp(360px, 55vw, 680px);
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .unic-test-slide.is-active { display: flex; }
+
+    .unic-test-carousel img {
+      display: block;
+      width: 100%;
+      height: clamp(360px, 55vw, 680px);
+      object-fit: contain;
+    }
+
+    .unic-test-slide figcaption {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      padding: .45rem .75rem;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(15,27,51,.78);
+      color: #fff;
+      font: 500 .76rem var(--body);
+      backdrop-filter: blur(8px);
+    }
+
+    .unic-test-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 50%;
+      background: rgba(15,27,51,.74);
+      color: #fff;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .unic-test-arrow:hover { background: var(--blue); transform: translateY(-50%) scale(1.06); }
+    .unic-test-arrow.prev { left: 1rem; }
+    .unic-test-arrow.next { right: 1rem; }
+    .unic-test-controls { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-top: .85rem; }
+    .unic-test-dots { display: flex; align-items: center; gap: .45rem; }
+    .unic-test-dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: var(--line); cursor: pointer; transition: width .2s ease, background .2s ease; }
+    .unic-test-dot.is-active { width: 28px; background: var(--blue); }
+    .unic-test-count { min-width: 3.5rem; color: var(--muted); font: 500 .76rem var(--mono); text-align: center; }
+
+    @media (max-width: 640px) {
+      .unic-test-slide, .unic-test-carousel img { height: min(118vw, 560px); min-height: 320px; }
+      .unic-test-arrow { width: 40px; height: 40px; }
+      .unic-test-arrow.prev { left: .65rem; }
+      .unic-test-arrow.next { right: .65rem; }
+      .unic-test-slide figcaption { left: .65rem; bottom: .65rem; font-size: .68rem; }
+    }
+
     .media-gallery-section {
       margin-top: 2.2rem;
       padding: 1.4rem;
@@ -1674,6 +1760,55 @@
         </div>
       </section>
 
+      <section class="unic-test-card reveal" aria-label="Testes da V1 no Biot&eacute;rio da UNIC antes da Campus Party">
+        <div class="gallery-top">
+          <div>
+            <span class="section-kicker">ANTES DA CAMPUS PARTY &middot; BIOT&Eacute;RIO DA UNIC</span>
+            <h3>Testamos a V1 no Biot&eacute;rio da UNIC antes de levar o projeto ao palco</h3>
+            <p>Registros da montagem, dos testes de uso e das primeiras leituras t&eacute;rmicas com o prot&oacute;tipo.</p>
+          </div>
+        </div>
+        <div class="unic-test-carousel" id="unic-test-carousel" role="region" aria-roledescription="carrossel" aria-label="Fotos dos testes da V1 no Biot&eacute;rio da UNIC">
+          <figure class="unic-test-slide is-active" aria-label="Foto 1 de 6" aria-hidden="false">
+            <img src="../img/unic/1671298469127.jpg" alt="Prot&oacute;tipo Biot&eacute;rio Forte V1 montado para testes no Biot&eacute;rio da UNIC" fetchpriority="high" decoding="async">
+            <figcaption>V1 montada no Biot&eacute;rio da UNIC</figcaption>
+          </figure>
+          <figure class="unic-test-slide" aria-label="Foto 2 de 6" aria-hidden="true">
+            <img src="../img/unic/1671298469844.jpg" alt="Vista interna da V1 durante testes de montagem e observa&ccedil;&atilde;o" loading="lazy" decoding="async">
+            <figcaption>Vista interna durante os testes</figcaption>
+          </figure>
+          <figure class="unic-test-slide" aria-label="Foto 3 de 6" aria-hidden="true">
+            <img src="../img/unic/1671298469897.jpg" alt="Vista frontal do prot&oacute;tipo V1 testado no Biot&eacute;rio da UNIC" loading="lazy" decoding="async">
+            <figcaption>Vista frontal do prot&oacute;tipo</figcaption>
+          </figure>
+          <figure class="unic-test-slide" aria-label="Foto 4 de 6" aria-hidden="true">
+            <img src="../img/unic/1671298470914.jpg" alt="Imagem termogr&aacute;fica obtida durante os testes da V1" loading="lazy" decoding="async">
+            <figcaption>Leitura termogr&aacute;fica nos testes</figcaption>
+          </figure>
+          <figure class="unic-test-slide" aria-label="Foto 5 de 6" aria-hidden="true">
+            <img src="../img/unic/1671298471457.jpg" alt="Vista lateral da caixa V1 utilizada nos testes no Biot&eacute;rio da UNIC" loading="lazy" decoding="async">
+            <figcaption>Verifica&ccedil;&atilde;o da estrutura e dos acessos</figcaption>
+          </figure>
+          <figure class="unic-test-slide" aria-label="Foto 6 de 6" aria-hidden="true">
+            <img src="../img/unic/1671298471470.jpg" alt="Vista em perspectiva da V1 durante os testes no Biot&eacute;rio da UNIC" loading="lazy" decoding="async">
+            <figcaption>Perspectiva da V1 durante os testes</figcaption>
+          </figure>
+          <button class="unic-test-arrow prev" id="unic-test-prev" type="button" aria-label="Foto anterior"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+          <button class="unic-test-arrow next" id="unic-test-next" type="button" aria-label="Pr&oacute;xima foto"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+        </div>
+        <div class="unic-test-controls" aria-label="Navega&ccedil;&atilde;o das fotos dos testes">
+          <span class="unic-test-count" id="unic-test-count" aria-live="polite">1 / 6</span>
+          <div class="unic-test-dots" role="group" aria-label="Selecionar foto dos testes">
+            <button class="unic-test-dot is-active" type="button" data-unic-slide="0" aria-label="Mostrar foto 1" aria-current="true"></button>
+            <button class="unic-test-dot" type="button" data-unic-slide="1" aria-label="Mostrar foto 2" aria-current="false"></button>
+            <button class="unic-test-dot" type="button" data-unic-slide="2" aria-label="Mostrar foto 3" aria-current="false"></button>
+            <button class="unic-test-dot" type="button" data-unic-slide="3" aria-label="Mostrar foto 4" aria-current="false"></button>
+            <button class="unic-test-dot" type="button" data-unic-slide="4" aria-label="Mostrar foto 5" aria-current="false"></button>
+            <button class="unic-test-dot" type="button" data-unic-slide="5" aria-label="Mostrar foto 6" aria-current="false"></button>
+          </div>
+        </div>
+      </section>
+
       <!-- Seção 2 -->
       <section class="section-block reveal">
         <span class="section-kicker">02 · Sensores, Visão Computacional &amp; IoT</span>
@@ -1814,6 +1949,33 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      var unicSlides = Array.prototype.slice.call(document.querySelectorAll('.unic-test-slide'));
+      var unicDots = Array.prototype.slice.call(document.querySelectorAll('.unic-test-dot'));
+      var unicCount = document.getElementById('unic-test-count');
+      var unicIndex = 0;
+      function showUnicSlide(index) {
+        if (!unicSlides.length) return;
+        unicIndex = (index + unicSlides.length) % unicSlides.length;
+        unicSlides.forEach(function (slide, i) {
+          var active = i === unicIndex;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        unicDots.forEach(function (dot, i) {
+          var active = i === unicIndex;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+        if (unicCount) unicCount.textContent = (unicIndex + 1) + ' / ' + unicSlides.length;
+      }
+      var unicPrev = document.getElementById('unic-test-prev');
+      var unicNext = document.getElementById('unic-test-next');
+      if (unicPrev) unicPrev.addEventListener('click', function () { showUnicSlide(unicIndex - 1); });
+      if (unicNext) unicNext.addEventListener('click', function () { showUnicSlide(unicIndex + 1); });
+      unicDots.forEach(function (dot) {
+        dot.addEventListener('click', function () { showUnicSlide(parseInt(dot.getAttribute('data-unic-slide'), 10)); });
+      });
+
       /* 1. Alternância de tema Claro/Escuro persistente */
       var themeToggle = document.getElementById('theme-toggle');
       if (themeToggle) {
