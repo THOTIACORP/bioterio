@@ -1946,7 +1946,50 @@ var p=n*mi/1440*100;document.getElementById('mvc').textContent=(p<1?f(p,1):f(Mat
 [r,b,m].forEach(function(e){e.addEventListener('input',u)});u()})();
 </script>
 <script>
-(function(){var f=document.getElementById('news-showcase-frame');if(!f)return;function fit(){try{var d=f.contentDocument;if(d)f.style.height=Math.max(d.documentElement.scrollHeight,d.body.scrollHeight)+'px'}catch(e){}}f.addEventListener('load',function(){fit();try{var d=f.contentDocument,R=f.contentWindow.ResizeObserver;if(R&&d)new R(fit).observe(d.documentElement)}catch(e){}});window.addEventListener('resize',fit)})();
+(function(){
+  var frame=document.getElementById('news-showcase-frame');
+  if(!frame)return;
+  var queued=false;
+
+  function fit(){
+    queued=false;
+    try{
+      var doc=frame.contentDocument;
+      if(!doc||!doc.documentElement||!doc.body)return;
+      var main=doc.querySelector('main');
+      var height=Math.ceil(main
+        ?main.getBoundingClientRect().bottom+frame.contentWindow.scrollY
+        :doc.body.scrollHeight);
+      if(height&&Math.abs(frame.clientHeight-height)>1)frame.style.height=height+'px';
+    }catch(e){}
+  }
+
+  function scheduleFit(){
+    if(queued)return;
+    queued=true;
+    requestAnimationFrame(function(){requestAnimationFrame(fit)});
+  }
+
+  frame.addEventListener('load',function(){
+    scheduleFit();
+    try{
+      var doc=frame.contentDocument,win=frame.contentWindow;
+      if(!doc||!win)return;
+      var ResizeObserverCtor=win.ResizeObserver;
+      if(ResizeObserverCtor){
+        var observer=new ResizeObserverCtor(scheduleFit);
+        [doc.documentElement,doc.body,doc.querySelector('main')].filter(Boolean).forEach(function(el){observer.observe(el)});
+      }
+      if(doc.fonts&&doc.fonts.ready)doc.fonts.ready.then(scheduleFit);
+      doc.addEventListener('load',scheduleFit,true);
+      win.addEventListener('resize',scheduleFit);
+      if(win.MutationObserver){
+        new win.MutationObserver(scheduleFit).observe(doc.body,{childList:true,subtree:true,characterData:true});
+      }
+    }catch(e){}
+  });
+  window.addEventListener('resize',scheduleFit);
+})();
 </script>
 </body>
 </html>
